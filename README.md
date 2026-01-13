@@ -1,4 +1,4 @@
-# Planificador Personal (Nombre en discusión)
+# Stoody (Nombre en discusión)
 
 Este proyecto consiste en una aplicación web de planificación personal, con módulos personalizables inicialmente orientados al ámbito estudiantil universitario.
 
