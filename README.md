@@ -1,4 +1,4 @@
-# Stoody (Nombre en discusión)
+# Schedio
 
 Este proyecto consiste en una aplicación web de planificación personal, con módulos personalizables inicialmente orientados al ámbito estudiantil universitario.
 
