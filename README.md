@@ -9,8 +9,7 @@
     * [2.4 Diagramas de flujo de datos](#24-diagramas-de-flujo-de-datos)
         * [2.4.1 Módulo de calificaciones](#241-módulo-de-calificaciones)
         * [2.4.2 Agenda personal](#242-agenda-personal)
-3. [Guía de instalación](#3-guía-de-instalación)
-4. [Prototipo de alta fidelidad](#4-prototipo-de-alta-fidelidad)
+3. [Prototipo de alta fidelidad](#3-prototipo-de-alta-fidelidad)
 
 ---
 
@@ -56,9 +55,7 @@ Algunas aplicaciones similares a esta propuesta son:
 
 ---
 
-## 3. Guía de instalación
-
-## 4. Prototipo de alta fidelidad.
+## 3. Prototipo de alta fidelidad.
 
 <img width="1920" height="1024" alt="Wireframe  US-1_ Crear Tarea" src="https://github.com/user-attachments/assets/56189507-d6cd-4ece-b2b1-ff240e305303" />
 
