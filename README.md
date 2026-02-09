@@ -27,7 +27,7 @@ Esta propuesta por módulos tiene por objetivo mantener la cualidad de escalabil
 - Rastreador de hábitos: Los usuarios serán capaces de registrar buenos hábitos de los cuales podrán configurar contadores de rachas y cada cuantos días se deben renovar o realizar para mantener el hábito.
 - Cursos: Destinado para estudiantes,  permite establecer cursos, asignaciones, calificaciones y consultar el estado y progreso en la asignatura.
 - Calendarios compartidos: Se establecen calendarios grupales entre 2 o más usuarios, donde las personas pertenecientes al grupo podrán ver los eventos de otros y establecer eventos compartidos.
-- 
+  
 Algunas aplicaciones similares a esta propuesta son:
 
 - Todoist: Plataforma rápida para listas de pendientes.
