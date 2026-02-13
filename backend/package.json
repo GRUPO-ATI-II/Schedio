@@ -4,6 +4,8 @@
   "description": "Este proyecto consiste en una aplicación web de planificación personal, con módulos personalizables inicialmente orientados al ámbito estudiantil universitario.",
   "main": "index.js",
   "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
