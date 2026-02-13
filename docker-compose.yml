@@ -1,4 +1,14 @@
 services:
+  apache-server:
+    build:
+      context: ./backend
+      target: server
+    container_name: schedio-apache
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
   mongo:
     image: mongo:latest
     container_name: schedio-mongo
