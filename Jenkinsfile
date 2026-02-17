@@ -13,6 +13,12 @@ pipeline {
         checkout scm
       }
     }
+    stage('DoD: Check Docker Permission'){
+        steps {
+            echo 'Verificando acceso al Socket de Docker...'
+            sh 'docker version'
+        }
+    }
     stage('Build Services') {
         parallel {
             stage('Build Frontend') {
