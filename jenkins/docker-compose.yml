@@ -1,20 +1,18 @@
 services:
   jenkins:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: jenkins
-    user: root
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+    build: .
+    container_name: jenkins-schedio
     ports:
       - "8080:8080"
-      - "50000:50000"
+    environment:
+      # This tells Jenkins where the configuration file is located inside the container
+      - CASC_JENKINS_CONFIG=/var/jenkins_home/jenkins-casc.yml
     volumes:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
+      # Mount the local file to the path specified in the environment variable above
+      - ./jenkins-casc.yml:/var/jenkins_home/jenkins-casc.yml
+    user: root
 
 volumes:
   jenkins_home:
