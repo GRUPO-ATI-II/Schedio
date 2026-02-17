@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Build Frontend') {
       steps {
-        sh "docker build -f frontend/Dockerfile.build -t ${FRONTEND_IMAGE}:build frontend"
+        sh 'docker build -f schedio-frontend/Dockerfile.build -t frontend-app:build schedio-frontend'
       }
     }
     stage('Frontend Production Image') {
