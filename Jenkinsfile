@@ -15,6 +15,7 @@ pipeline {
     }
     stage('DoD: Check Docker Permission'){
         steps {
+
             sh 'docker version'
         }
     }
