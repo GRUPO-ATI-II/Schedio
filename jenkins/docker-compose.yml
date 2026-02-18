@@ -7,7 +7,7 @@ services:
     environment:
       # This tells Jenkins where the configuration file is located inside the container
       - GITHUB_USER=ValCicco
-      - GITHUB_TOKEN=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
+      - GITHUB_TOKEN=GITHUB_TOKEN=${GITHUB_TOKEN}
       - CASC_JENKINS_CONFIG=/var/jenkins_home/jenkins-casc.yml
     volumes:
       - jenkins_home:/var/jenkins_home
