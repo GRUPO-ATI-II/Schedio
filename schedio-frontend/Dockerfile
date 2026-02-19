@@ -6,7 +6,7 @@ FROM base AS development
 COPY package*.json ./
 RUN npm install
 COPY . .
-CMD ["npm", "start", "--", "--host", "0.0.0.0"]
+CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--allowed-hosts", "all"]
 
 FROM base AS builder
 COPY package*.json ./
