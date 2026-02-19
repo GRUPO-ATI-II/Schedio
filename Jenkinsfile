@@ -10,6 +10,26 @@ pipeline {
         checkout scm
       }
     }
+    stage('Unit Tests') {
+      steps {
+        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+          // Construir la imagen de test
+          sh 'docker build -f ./schedio-frontend/Dockerfile.test -t frontend-test ./schedio-frontend'
+          // Ejecutar los tests
+          sh 'docker run --rm frontend-test'
+        }
+      }
+    }
+    stage('Backend Unit Tests') {
+      steps {
+        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+          // Construir la imagen de test
+          sh 'docker build -f ./backend/Dockerfile.test -t backend-test ./backend'
+          // Ejecutar los tests
+          sh 'docker run --rm backend-test'
+        }
+      }
+    }
     stage('Build') {
       parallel {
         stage('Build Frontend') {
