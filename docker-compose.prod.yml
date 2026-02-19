@@ -8,9 +8,10 @@ services:
 
   frontend:
     build:
-      target: production
+      context: ./schedio-frontend
+      target: server
     ports:
-      - "4000:4000"
+      - "4000:80"
     environment:
       - NODE_ENV=production
     volumes: !reset []
