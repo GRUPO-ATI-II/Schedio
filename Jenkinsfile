@@ -83,7 +83,7 @@ pipeline {
           echo "🔹 Ejecutando Cypress..."
           docker run --rm \
             --network "\$NET" \
-            -e CYPRESS_BASE_URL=http://schedio-frontend \
+            -e CYPRESS_BASE_URL=http://frontend:4200 \
             ${E2E_IMAGE}:latest
         """
       }
