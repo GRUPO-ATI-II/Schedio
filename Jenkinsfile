@@ -78,7 +78,9 @@ pipeline {
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest tests/e2e
 
           echo "🔹 Detectando red docker-compose..."
-          NET=\$(docker network ls --format '{{.Name}}' | grep "_default\$" | head -n 1)
+          NET=\$(docker compose -f docker-compose.yml ps -q frontend \
+          | xargs docker inspect \
+          --format='{{range $k,$v := .NetworkSettings.Networks}}{{$k}}{{end}}')
 
           echo "🔹 Ejecutando Cypress..."
           docker run --rm \
