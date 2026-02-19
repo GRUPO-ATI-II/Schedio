@@ -63,23 +63,37 @@ pipeline {
 //        }
 //      }
 //    }
-//    stage('E2E Tests') {
-//      steps {
-//        script {
-//          catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-//            sh """
-//            docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE} tests/e2e
-//            docker run --rm ${E2E_IMAGE}
-//            """
-//          }
-//        }
-//      }
-//      post {
-//        unstable {
-//          echo 'AVISO: No se ejecutaron pruebas E2E o el contenedor de Cypress falló'
-//        }
-//      }
-//    }
+  stage('E2E Tests') {
+  steps {
+    script {
+      catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+        sh """
+          set -e
+
+          echo "🔹 Levantando servicios con docker compose..."
+          docker compose up -d
+
+          echo "🔹 Construyendo imagen E2E..."
+          docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest tests/e2e
+
+          echo "🔹 Detectando red docker-compose..."
+          NET=\$(docker network ls --format '{{.Name}}' | grep "_default\$" | head -n 1)
+
+          echo "🔹 Ejecutando Cypress..."
+          docker run --rm \
+            --network "\$NET" \
+            -e CYPRESS_BASE_URL=http://schedio-frontend \
+            ${E2E_IMAGE}:latest
+        """
+      }
+    }
+  }
+  post {
+    unstable {
+      echo 'AVISO: Pruebas E2E fallaron o el contenedor Cypress tuvo errores'
+    }
+  }
+}
 //    stage('Performance Tests') {
 //      steps {
 //        script {

@@ -1,11 +1,11 @@
-FROM cypress/included:13.6.2
+# Imagen oficial que ya trae Node + Cypress + navegador
+FROM cypress/included:13.13.0
 
-WORKDIR /app
+# Carpeta de trabajo dentro del contenedor
+WORKDIR /e2e
 
-COPY package.json package-lock.json ./
-
-RUN npm install
-
+# Copiamos todo el contenido del directorio e2e
 COPY . .
 
-CMD ["npx", "cypress", "run"]
+# Ejecutar Cypress en modo headless
+CMD ["cypress", "run"]
