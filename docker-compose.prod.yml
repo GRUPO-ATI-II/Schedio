@@ -4,6 +4,7 @@ services:
       target: production
     environment:
       - NODE_ENV=production
+    volumes: !reset []
 
   frontend:
     build:
@@ -12,3 +13,4 @@ services:
       - "4000:4000"
     environment:
       - NODE_ENV=production
+    volumes: !reset []
