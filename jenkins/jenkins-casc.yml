@@ -1,0 +1,39 @@
+jenkins:
+  systemMessage: "Welcome to the Schedio CI/CD Server (Managed by Code)"
+  numExecutors: 2
+  mode: NORMAL
+  scmCheckoutRetryCount: 3
+
+credentials:
+  system:
+    domainCredentials:
+      - domain:
+          name: "global"
+          description: "Global credentials"
+        credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "github-token-ati"
+              username: "${GITHUB_USER}"
+              password: "${GITHUB_TOKEN}"
+
+jobs:
+  - script: >
+      pipelineJob('Schedio-Main-Pipeline') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote { 
+                  url('https://github.com/GRUPO-ATI-II/Schedio.git') 
+                  credentials('github-token-ati')
+                }
+                branches('main')
+              }
+            }
+          }
+        }
+        triggers {
+          scm('H H/4 * * *')
+        }
+      }
