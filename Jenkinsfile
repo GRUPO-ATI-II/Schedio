@@ -71,7 +71,8 @@ pipeline {
           set -e
 
           echo "🔹 Levantando servicios con docker compose..."
-          docker compose up -d
+          docker compose -f docker-compose.yml up -d
+          docker compose -f docker-compose.yml ps
 
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest tests/e2e
@@ -120,6 +121,7 @@ pipeline {
       echo 'Pipeline finalizado: Error crítico en el proceso'
     }
     always {
+      sh 'docker compose -f docker-compose.yml down --remove-orphans || true'
       sh 'docker system prune -f'
     }
   }
