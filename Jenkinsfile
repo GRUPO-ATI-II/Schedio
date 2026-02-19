@@ -74,6 +74,9 @@ pipeline {
           docker compose -f docker-compose.yml up -d
           docker compose -f docker-compose.yml ps
 
+          echo "⏳ Esperando a que Angular levante..."
+          sleep 20
+
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest tests/e2e
 
