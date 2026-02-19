@@ -71,9 +71,9 @@ pipeline {
           set -e
 
           echo "🔹 Levantando servicios con docker compose..."
-          docker compose -f docker-compose.yml up -d
-          docker compose -f docker-compose.yml ps
-
+          docker compose -f docker-compose.qa.yml up -d
+          docker compose -f docker-compose.qa.yml ps
+          
           echo "⏳ Esperando a que Angular levante..."
           sleep 20
 
