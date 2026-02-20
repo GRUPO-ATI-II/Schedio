@@ -87,13 +87,17 @@ pipeline {
           echo "🔹 Detectando red docker-compose..."
           NET=schedio-main-pipeline_default
 
+          NET=$(docker network ls --filter name="${JOB_NAME}" --format "{{.Name}}" | head -n 1)
+
+          echo "🔹 Red detectada automáticamente: $NET"
+
           echo "🔹 Ejecutando Cypress..."
           #docker run --rm --network "\$NET" ${E2E_IMAGE}:latest
           #docker run --rm --network host ${E2E_IMAGE}:latest
           #docker run --rm --network schedio-main-pipeline_default ${E2E_IMAGE}:latest
           # El nombre de la red ahora será fijamente 'schedio-qa_default'
           docker run --rm \
-            --network schedio-qa_default \
+            --network "$NET" \
             -e CYPRESS_BASE_URL=http://frontend:4200 \
             ${E2E_IMAGE}:latest
         """
