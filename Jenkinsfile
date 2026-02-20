@@ -87,7 +87,7 @@ pipeline {
           echo "🔹 Detectando red docker-compose..."
           NET=schedio-main-pipeline_default
 
-          NET=$(docker network ls --filter name="${JOB_NAME}" --format "{{.Name}}" | head -n 1)
+          NET=\$(docker network ls --filter name="\${JOB_NAME}" --format "{{.Name}}" | head -n 1)
 
           echo "🔹 Red detectada automáticamente: $NET"
 
