@@ -13,7 +13,13 @@ pipeline {
         checkout scm
       }
     }
-    stage('Unit Tests') {
+    stage('DoD: Check Docker Permission'){
+        steps {
+
+            sh 'docker version'
+        }
+    }
+     stage('Unit Tests') {
       steps {
         catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
           // Construir la imagen de test
@@ -33,7 +39,7 @@ pipeline {
         }
       }
     }
-    stage('Build') {
+     stage('Build') {
       parallel {
         stage('Build Frontend') {
           steps {
@@ -49,7 +55,7 @@ pipeline {
         }
       }
     }
-    stage('API Tests (Postman/Newman)') {
+     stage('API Tests (Postman/Newman)') {
         steps {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
@@ -66,7 +72,7 @@ pipeline {
             }
         }
     }
-    stage('Performance Tests (JMeter)') {
+     stage('Performance Tests (JMeter)') {
         steps {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
@@ -77,6 +83,12 @@ pipeline {
                 }
             }
         }
+        post {
+            unstable {
+                echo 'AVISO: No se ejecutaron pruebas de Performance o los scripts de JMeter faltan'
+            }
+        }
+    }
   stage('E2E Tests') {
   steps {
     script {
@@ -105,12 +117,13 @@ pipeline {
       }
     }
   }
-  post {
-    unstable {
-      echo 'AVISO: Pruebas E2E fallaron o el contenedor Cypress tuvo errores'
+    post {
+      unstable {
+        echo 'AVISO: Pruebas E2E fallaron o el contenedor Cypress tuvo errores'
+      }
     }
-  }
-}
+
+    }
   }
   post {
     success {
