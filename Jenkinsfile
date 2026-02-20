@@ -78,7 +78,7 @@ pipeline {
           sleep 20
 
           echo "🔹 Construyendo imagen E2E..."
-          docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest .
+          docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e
 
           echo "🔹 Detectando red docker-compose..."
           NET=schedio-main-pipeline_default
