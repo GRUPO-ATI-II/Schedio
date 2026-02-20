@@ -78,17 +78,14 @@ pipeline {
           sleep 20
 
           echo "🔹 Construyendo imagen E2E..."
-          #docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest tests/e2e
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest .
 
           echo "🔹 Detectando red docker-compose..."
           NET=schedio-main-pipeline_default
 
-              echo "🔹 Ejecutando Cypress..."
-          docker run --rm \
-            --network "\$NET" \
-            #${E2E_IMAGE}:latest
-            docker run --rm --network host ${E2E_IMAGE}:latest
+          echo "🔹 Ejecutando Cypress..."
+          docker run --rm --network "\$NET" ${E2E_IMAGE}:latest
+          #docker run --rm --network host ${E2E_IMAGE}:latest
         """
       }
     }
