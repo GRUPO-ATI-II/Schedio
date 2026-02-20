@@ -18,3 +18,10 @@ FROM node:22-alpine AS production
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
 CMD ["node", "dist/schedio-frontend/server/server.mjs"]
+
+FROM nginx:alpine AS server
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist/schedio-frontend/browser /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

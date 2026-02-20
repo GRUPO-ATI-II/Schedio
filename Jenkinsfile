@@ -3,9 +3,6 @@ pipeline {
   environment {
     FRONTEND_IMAGE = "frontend-app"
     BACKEND_IMAGE  = "backend-app"
-    API_TEST_IMAGE = "api-tests"
-    E2E_IMAGE      = "e2e-tests"
-    PERF_IMAGE     = "perf-tests"
   }
   stages {
     stage('Checkout') {
@@ -13,32 +10,74 @@ pipeline {
         checkout scm
       }
     }
-    stage('DoD: Check Docker Permission'){
-        steps {
-
-            sh 'docker version'
+    stage('Unit Tests') {
+      steps {
+        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+          // Construir la imagen de test
+          sh 'docker build -f ./schedio-frontend/Dockerfile.test -t frontend-test ./schedio-frontend'
+          // Ejecutar los tests
+          sh 'docker run --rm frontend-test'
         }
+      }
     }
-    stage('Build Services') {
-        parallel {
-            stage('Build Frontend') {
-                steps {
-                    // Using the specific 'builder' target for the frontend
-                    sh 'docker build --target builder -t ${FRONTEND_IMAGE}:build ./schedio-frontend'
+    stage('Backend Unit Tests') {
+      steps {
+        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+          // Construir la imagen de test
+          sh 'docker build -f ./backend/Dockerfile.test -t backend-test ./backend'
+          // Ejecutar los tests
+          sh 'docker run --rm backend-test'
+        }
+      }
+    }
+    stage('Build') {
+      parallel {
+        stage('Build Frontend') {
+          steps {
+            // Usa el Dockerfile.build para compilar el frontend
+            sh 'docker build -f ./schedio-frontend/Dockerfile.build -t ${FRONTEND_IMAGE}:build ./schedio-frontend'
+          }
+        }
+        stage('Build Backend') {
+          steps {
+            // Usa el Dockerfile.build para compilar el backend
+            sh 'docker build -f ./backend/Dockerfile.build -t ${BACKEND_IMAGE}:build ./backend'
+          }
+        }
+      }
+    }
+    stage('API Tests (Postman/Newman)') {
+        steps {
+            script {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    sh """
+                    docker build -f tests/api/Dockerfile.test -t ${API_TEST_IMAGE} tests/api
+                    docker run --rm ${API_TEST_IMAGE}
+                    """
                 }
             }
-            stage('Build Backend') {
-                steps {
-                    // Building the backend (defaults to the last stage, 'production')
-                    sh 'docker build -t ${BACKEND_IMAGE}:latest ./backend'
-                }
+        }
+        post {
+            unstable {
+                echo 'AVISO: No se ejecutaron pruebas de API o fallo del contenedor Newman'
             }
         }
     }
-    stage('Frontend Production Image') {
+    stage('Performance Tests (JMeter)') {
         steps {
-            // We target the 'production' stage for the final, slim image
-            sh 'docker build --target production -t ${FRONTEND_IMAGE}:latest ./schedio-frontend'
+            script {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    sh """
+                    docker build -f tests/performance/Dockerfile.perf -t ${PERF_IMAGE} tests/performance
+                    docker run --rm ${PERF_IMAGE}
+                    """
+                }
+            }
+        }
+        post {
+            unstable {
+                echo 'AVISO: No se ejecutaron pruebas de Performance o los scripts de JMeter faltan'
+            }
         }
     }
 //    stage('Unit Tests') {
@@ -116,14 +155,9 @@ pipeline {
 //    }
   }
   post {
-    success {
-      echo 'Pipeline finalizado: Proceso completado exitosamente'
-    }
-    failure {
-      echo 'Pipeline finalizado: Error crítico en el proceso'
-    }
     always {
       sh 'docker compose -f docker-compose.yml down --remove-orphans || true'
+      // Limpieza de imágenes intermedias para ahorrar espacio
       sh 'docker system prune -f'
     }
   }

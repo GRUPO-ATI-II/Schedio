@@ -1,0 +1,46 @@
+{
+	"info": {
+		"name": "Hola Mundo - API Tests",
+		"_postman_id": "00000000-0000-0000-0000-000000000000",
+		"description": "Colección mínima para verificar que Newman/Jenkins ejecutan correctamente una petición y pasan un test simple.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET httpbin - Hola Mundo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/get",
+					"protocol": "https",
+					"host": [
+						"httpbin.org"
+					],
+					"path": [
+						"get"
+					]
+				}
+			},
+			"response": [],
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response contains url field\", function () {",
+							"  var json = pm.response.json();",
+							"  pm.expect(json).to.have.property('url');",
+							"});"
+						]
+					}
+				}
+			]
+		}
+	]
+}
+
