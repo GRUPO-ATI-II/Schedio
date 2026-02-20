@@ -75,7 +75,7 @@ pipeline {
           docker compose -f docker-compose.qa.yml ps
 
           echo "⏳ Esperando a que Angular levante..."
-          sleep 120
+          sleep 20
 
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e
@@ -83,20 +83,9 @@ pipeline {
           #echo "🔹 Detectando red docker-compose..."
           #NET=schedio-main-pipeline_default
 
-          #NET=\$(docker network ls --filter name="\${JOB_NAME}" --format "{{.Name}}" | head -n 1)
-
-          #echo "🔹 Red detectada automáticamente: \$NET"
-
           echo "🔹 Ejecutando Cypress..."
-          #docker run --rm --network "\$NET" ${E2E_IMAGE}:latest
-          #docker run --rm --network host ${E2E_IMAGE}:latest
-          #docker run --rm --network schedio-main-pipeline_default ${E2E_IMAGE}:latest
-          # El nombre de la red ahora será fijamente 'schedio-qa_default'
-
-          FRONTEND_ID=\$(docker ps -q --filter "name=frontend" | head -n 1)
-          echo "🔹 ID de Frontend detectado: \$FRONTEND_ID"
           docker run --rm \
-            --network schedio-main-pipeline_default \
+            --network "\$NET" \
             -e CYPRESS_BASE_URL=http://frontend:4000 \
             ${E2E_IMAGE}:latest
         """
