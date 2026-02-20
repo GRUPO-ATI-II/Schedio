@@ -1,13 +1,19 @@
 services:
   backend:
-    image: backend-app:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: production
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=qa
 
   frontend:
-    image: frontend-app:latest
+    build:
+      context: ./schedio-frontend
+      dockerfile: Dockerfile
+      target: production
     ports:
       - "4200:4200"
     environment:
