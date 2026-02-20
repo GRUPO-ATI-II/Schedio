@@ -13,56 +13,70 @@ pipeline {
         checkout scm
       }
     }
-    stage('DoD: Check Docker Permission'){
-        steps {
-
-            sh 'docker version'
+    stage('Unit Tests') {
+      steps {
+        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+          // Construir la imagen de test
+          sh 'docker build -f ./schedio-frontend/Dockerfile.test -t frontend-test ./schedio-frontend'
+          // Ejecutar los tests
+          sh 'docker run --rm frontend-test'
         }
+      }
     }
-    stage('Build Services') {
-        parallel {
-            stage('Build Frontend') {
-                steps {
-                    // Using the specific 'builder' target for the frontend
-                    sh 'docker build --target builder -t ${FRONTEND_IMAGE}:build ./schedio-frontend'
+    stage('Backend Unit Tests') {
+      steps {
+        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+          // Construir la imagen de test
+          sh 'docker build -f ./backend/Dockerfile.test -t backend-test ./backend'
+          // Ejecutar los tests
+          sh 'docker run --rm backend-test'
+        }
+      }
+    }
+    stage('Build') {
+      parallel {
+        stage('Build Frontend') {
+          steps {
+            // Usa el Dockerfile.build para compilar el frontend
+            sh 'docker build -f ./schedio-frontend/Dockerfile.build -t ${FRONTEND_IMAGE}:build ./schedio-frontend'
+          }
+        }
+        stage('Build Backend') {
+          steps {
+            // Usa el Dockerfile.build para compilar el backend
+            sh 'docker build -f ./backend/Dockerfile.build -t ${BACKEND_IMAGE}:build ./backend'
+          }
+        }
+      }
+    }
+    stage('API Tests (Postman/Newman)') {
+        steps {
+            script {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    sh """
+                    docker build -f tests/api/Dockerfile.test -t ${API_TEST_IMAGE} tests/api
+                    docker run --rm ${API_TEST_IMAGE}
+                    """
                 }
             }
-            stage('Build Backend') {
-                steps {
-                    // Building the backend (defaults to the last stage, 'production')
-                    sh 'docker build -t ${BACKEND_IMAGE}:latest ./backend'
-                }
+        }
+        post {
+            unstable {
+                echo 'AVISO: No se ejecutaron pruebas de API o fallo del contenedor Newman'
             }
         }
     }
-    stage('Frontend Production Image') {
+    stage('Performance Tests (JMeter)') {
         steps {
-            // We target the 'production' stage for the final, slim image
-            sh 'docker build --target production -t ${FRONTEND_IMAGE}:latest ./schedio-frontend'
+            script {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    sh """
+                    docker build -f tests/performance/Dockerfile.perf -t ${PERF_IMAGE} tests/performance
+                    docker run --rm ${PERF_IMAGE}
+                    """
+                }
+            }
         }
-    }
-//    stage('Unit Tests') {
-//      steps {
-//        sh "docker run --rm ${FRONTEND_IMAGE}:build npm test -- --watchAll=false"
-//      }
-//    }
-//    stage('API Tests (Postman/Newman)') {
-//      steps {
-//        script {
-//          catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-//            sh """
-//            docker build -f tests/api/Dockerfile.test -t ${API_TEST_IMAGE} tests/api
-//            docker run --rm ${API_TEST_IMAGE} newman run coleccion.postman_collection.json -e entorno.postman_environment.json
-//            """
-//          }
-//        }
-//      }
-//      post {
-//        unstable {
-//          echo 'AVISO: No se ejecutaron pruebas de API o los archivos no están presentes'
-//        }
-//      }
-//    }
   stage('E2E Tests') {
   steps {
     script {
@@ -97,23 +111,6 @@ pipeline {
     }
   }
 }
-//    stage('Performance Tests') {
-//      steps {
-//        script {
-//          catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-//            sh """
-//            docker build -f tests/performance/Dockerfile.performance -t ${PERF_IMAGE} tests/performance
-//            docker run --rm ${PERF_IMAGE}
-//            """
-//          }
-//        }
-//      }
-//      post {
-//        unstable {
-//          echo 'AVISO: No se ejecutaron pruebas de Performance o los scripts de JMeter faltan'
-//        }
-//      }
-//    }
   }
   post {
     success {
