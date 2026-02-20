@@ -1,0 +1,11 @@
+# Imagen oficial que ya trae Node + Cypress + navegador
+FROM cypress/included:13.13.0
+
+# Carpeta de trabajo dentro del contenedor
+WORKDIR /e2e
+
+# Copiamos todo el contenido del directorio e2e
+COPY . .
+
+# Ejecutar Cypress en modo headless
+CMD ["cypress", "run"]
