@@ -75,7 +75,7 @@ pipeline {
           docker compose -f docker-compose.qa.yml ps
 
           echo "⏳ Esperando a que Angular levante..."
-          sleep 60
+          sleep 30
 
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e
@@ -94,9 +94,10 @@ pipeline {
           # El nombre de la red ahora será fijamente 'schedio-qa_default'
 
           FRONTEND_ID=\$(docker ps -q -f "name=frontend")
+          # Usamos network host para que Cypress busque directamente en el puerto de tu Windows
           docker run --rm \
-            --network schedio-main-pipeline_default \
-            -e CYPRESS_BASE_URL=http://frontend:4200 \
+            --network host \
+            -e CYPRESS_BASE_URL=http://localhost:4200 \
             ${E2E_IMAGE}:latest
         """
       }
