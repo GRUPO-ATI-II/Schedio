@@ -3,6 +3,7 @@ pipeline {
   environment {
     FRONTEND_IMAGE = "frontend-app"
     BACKEND_IMAGE  = "backend-app"
+    
   }
   stages {
     stage('Checkout') {
