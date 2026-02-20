@@ -86,7 +86,11 @@ pipeline {
           echo "🔹 Ejecutando Cypress..."
           #docker run --rm --network "\$NET" ${E2E_IMAGE}:latest
           #docker run --rm --network host ${E2E_IMAGE}:latest
-          docker run --rm --network schedio-main-pipeline_default ${E2E_IMAGE}:latest
+          #docker run --rm --network schedio-main-pipeline_default ${E2E_IMAGE}:latest
+          docker run --rm \
+            --network schedio-main-pipeline_default \
+            -e CYPRESS_BASE_URL=http://frontend:4200 \
+            ${E2E_IMAGE}:latest
         """
       }
     }
