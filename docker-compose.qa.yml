@@ -1,14 +1,14 @@
 services:
   backend:
-    image: backend-app:latest
-    ports:
-      - "3000:3000"
+    build:
+      target: production
     environment:
       - NODE_ENV=qa
 
   frontend:
-    image: frontend-app:latest
+    build:
+      target: production
     ports:
-      - "4200:4200"
+      - "4100:4000"
     environment:
       - NODE_ENV=qa
