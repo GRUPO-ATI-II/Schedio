@@ -46,6 +46,40 @@ pipeline {
         }
       }
     }
+    stage('API Tests (Postman/Newman)') {
+        steps {
+            script {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    sh """
+                    docker build -f tests/api/Dockerfile.test -t ${API_TEST_IMAGE} tests/api
+                    docker run --rm ${API_TEST_IMAGE}
+                    """
+                }
+            }
+        }
+        post {
+            unstable {
+                echo 'AVISO: No se ejecutaron pruebas de API o fallo del contenedor Newman'
+            }
+        }
+    }
+    stage('Performance Tests (JMeter)') {
+        steps {
+            script {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    sh """
+                    docker build -f tests/performance/Dockerfile.perf -t ${PERF_IMAGE} tests/performance
+                    docker run --rm ${PERF_IMAGE}
+                    """
+                }
+            }
+        }
+        post {
+            unstable {
+                echo 'AVISO: No se ejecutaron pruebas de Performance o los scripts de JMeter faltan'
+            }
+        }
+    }
   }
   post {
     always {

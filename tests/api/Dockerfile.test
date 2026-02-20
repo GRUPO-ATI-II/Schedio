@@ -1,0 +1,6 @@
+FROM postman/newman:alpine
+WORKDIR /etc/newman
+COPY postman_coll.json .
+
+ENTRYPOINT ["newman", "run", "postman_coll.json"]
+CMD ["--reporters", "cli"]
