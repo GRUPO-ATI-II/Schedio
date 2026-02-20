@@ -1,6 +1,8 @@
 services:
   backend:
     build:
+      context: ./backend    # <--- La carpeta donde está el código del backend
+      dockerfile: Dockerfile
       target: production
     ports:
       - "3000:3000"
@@ -9,6 +11,8 @@ services:
 
   frontend:
     build:
+      context: ./schedio-frontend
+      dockerfile: Dockerfile
       target: production
     ports:
       - "4200:4200"
