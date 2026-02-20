@@ -93,10 +93,10 @@ pipeline {
           #docker run --rm --network schedio-main-pipeline_default ${E2E_IMAGE}:latest
           # El nombre de la red ahora será fijamente 'schedio-qa_default'
 
-          FRONTEND_ID=\$(docker ps -q -f "name=frontend")
-          # Usamos network host para que Cypress busque directamente en el puerto de tu Windows
+          FRONTEND_ID=\$(docker ps -q --filter "name=frontend" | head -n 1)
+          echo "🔹 ID de Frontend detectado: \$FRONTEND_ID"
           docker run --rm \
-            --network host \
+            --network container:\$FRONTEND_ID \
             -e CYPRESS_BASE_URL=http://localhost:4200 \
             ${E2E_IMAGE}:latest
         """
