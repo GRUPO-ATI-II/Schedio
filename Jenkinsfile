@@ -84,8 +84,9 @@ pipeline {
           NET=schedio-main-pipeline_default
 
           echo "🔹 Ejecutando Cypress..."
-          docker run --rm --network "\$NET" ${E2E_IMAGE}:latest
+          #docker run --rm --network "\$NET" ${E2E_IMAGE}:latest
           #docker run --rm --network host ${E2E_IMAGE}:latest
+          docker run --rm --network schedio-main-pipeline_default ${E2E_IMAGE}:latest
         """
       }
     }
