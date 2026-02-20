@@ -74,10 +74,6 @@ pipeline {
           docker compose -f docker-compose.qa.yml up -d
           docker compose -f docker-compose.qa.yml ps
 
-          # Guardamos el nombre de la red que creó compose para usarla luego
-          COMPOSE_NET=\$(docker network ls --filter name=schedio-main-pipeline -q | head -n 1)
-          echo "🔹 Red detectada: \$COMPOSE_NET"
-
           echo "⏳ Esperando a que Angular levante..."
           sleep 60
 
@@ -99,8 +95,8 @@ pipeline {
 
           FRONTEND_ID=\$(docker ps -q -f "name=frontend")
           docker run --rm \
-            --network container:\$FRONTEND_ID \
-            -e CYPRESS_BASE_URL=http://localhost:4200 \
+            --network schedio-main-pipeline_default \
+            -e CYPRESS_BASE_URL=http://frontend:4200 \
             ${E2E_IMAGE}:latest
         """
       }
