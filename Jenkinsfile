@@ -97,7 +97,7 @@ pipeline {
           echo "🔹 ID de Frontend detectado: \$FRONTEND_ID"
           docker run --rm \
             --network schedio-main-pipeline_default \
-            -e CYPRESS_BASE_URL=http://frontend:4200 \
+            -e CYPRESS_BASE_URL=http://frontend:4000 \
             ${E2E_IMAGE}:latest
         """
       }
