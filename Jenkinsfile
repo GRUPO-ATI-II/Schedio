@@ -75,7 +75,7 @@ pipeline {
           docker compose -f docker-compose.qa.yml ps
 
           echo "⏳ Esperando a que Angular levante..."
-          sleep 30
+          sleep 120
 
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e
@@ -96,8 +96,8 @@ pipeline {
           FRONTEND_ID=\$(docker ps -q --filter "name=frontend" | head -n 1)
           echo "🔹 ID de Frontend detectado: \$FRONTEND_ID"
           docker run --rm \
-            --network container:\$FRONTEND_ID \
-            -e CYPRESS_BASE_URL=http://localhost:4200 \
+            --network schedio-main-pipeline_default \
+            -e CYPRESS_BASE_URL=http://frontend:4200 \
             ${E2E_IMAGE}:latest
         """
       }
