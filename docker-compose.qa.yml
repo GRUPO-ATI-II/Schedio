@@ -1,19 +1,13 @@
 services:
   backend:
-    build:
-      context: ./backend    # <--- La carpeta donde está el código del backend
-      dockerfile: Dockerfile
-      target: production
+    image: backend-app:latest
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=qa
 
   frontend:
-    build:
-      context: ./schedio-frontend
-      dockerfile: Dockerfile
-      target: production
+    image: frontend-app:latest
     ports:
       - "4200:4200"
     environment:

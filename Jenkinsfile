@@ -81,11 +81,10 @@ pipeline {
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e
 
           #echo "🔹 Detectando red docker-compose..."
-          NET=schedio-main-pipeline_default
 
           echo "🔹 Ejecutando Cypress..."
           docker run --rm \
-            --network "\$NET" \
+            --network schedio-main-pipeline_default \
             -e CYPRESS_BASE_URL=http://frontend:4000 \
             ${E2E_IMAGE}:latest
         """
