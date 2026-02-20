@@ -91,8 +91,9 @@ pipeline {
           #docker run --rm --network "\$NET" ${E2E_IMAGE}:latest
           #docker run --rm --network host ${E2E_IMAGE}:latest
           #docker run --rm --network schedio-main-pipeline_default ${E2E_IMAGE}:latest
+          # El nombre de la red ahora será fijamente 'schedio-qa_default'
           docker run --rm \
-            --network "\$COMPOSE_NET" \
+            --network schedio-qa_default \
             -e CYPRESS_BASE_URL=http://frontend:4200 \
             ${E2E_IMAGE}:latest
         """
