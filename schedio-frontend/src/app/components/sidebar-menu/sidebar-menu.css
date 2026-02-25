@@ -1,0 +1,22 @@
+.sidebar-container {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  background-color: #30105b;
+  height: 85vh;
+  align-items: flex-end;
+}
+
+.main-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-configurations {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: auto;
+  align-items: flex-end;
+  padding-top: 30px;
+}

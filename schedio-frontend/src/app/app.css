@@ -1,0 +1,27 @@
+.app-layout {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 70px 1fr;
+  grid-template-areas:
+    'logo    main'
+    'sidebar main';
+}
+
+.LogoApp {
+  grid-area: logo;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+app-sidebar-menu {
+  grid-area: sidebar;
+  background-color: #30105b;
+}
+
+app-main-app-component {
+  grid-area: main;
+  background-color: #6a33bd;
+}
