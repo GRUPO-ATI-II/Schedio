@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  /* typography */
+  --font-primary: 'Work Sans', sans-serif;
+
+  /* Font Weights (Work Sans supports a range) */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semiBold: 600;
+  --fw-bold: 700;
+  --fw-extraBold: 800;
+
+  /* sizes desktop */
+  --desktop-h1: 48px;
+  --desktop-h2: 40px;
+  --desktop-h3: 34px;
+  --desktop-h4: 28px;
+  --desktop-h5: 24px;
+  --desktop-h6: 20px;
+  --desktop-p: 16px;
+  --desktop-small: 12px;
+  /* sizes mobile */
+  --mobile-h1: 34px;
+  --mobile-h2: 28px;
+  --mobile-h3: 24px;
+  --mobile-h4: 20px;
+  --mobile-h5: 18px;
+  --mobile-h6: 16px;
+  --mobile-p: 14px;
+  --mobile-small: 12px;
+
+  /* colors */
+  /* puples */
+  --purple-50: #F9F6FE;
+  --purple-100: #F0EAFD;
+  --purple-200: #E4D9FB;
+  --purple-300: #D0BBF7;
+  --purple-400: #B390F0;
+  --purple-500: #9665E7;
+  --purple-600: #7E45D8;
+  --purple-700: #6A33BD;
+  --purple-800: #5E30A0;
+  --purple-900: #4B277C;
+  --purple-950: #30105B;
+
+  /* orange */
+  --orange-50: #FFF6EB;
+  --orange-100: #FFE6C6;
+  --orange-200: #FFCA88;
+  --orange-300: #FFA33E;
+  --orange-400: #FF8B20;
+  --orange-500: #F96407;
+  --orange-600: #DD4202;
+  --orange-700: #B72806;
+  --orange-800: #941E0C;
+  --orange-900: #7A1B0D;
+  --orange-950: #460A02;
+
+  /* neutrals */
+  --black: #000000;
+  --white: #FFFFFF;
+  --grey-100: #D9D9D9;
+  --grey-200: #AFAFAF;
+  --grey-400: #8B8B8B;
+  --grey-800: #333333;
+  --grey-950: #1E1E1E;
+
+  /* messages */
+  --error: #F95050;
+  --success: #67E26D;
+}

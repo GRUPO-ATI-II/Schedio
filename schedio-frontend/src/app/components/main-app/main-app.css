@@ -1,9 +1,8 @@
 .main-content {
   display: grid;
-  background-color: #6a33bd;
   height: 100vh;
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 4fr 6fr;
+  grid-template-columns: 2fr 6fr;
   column-gap: 2%;
   grid-template-areas:
     'header header'
@@ -22,7 +21,7 @@
 
 .main-container {
   grid-area: router;
-  background-color: white;
+  background-color: var(--main-card-color);
   border-radius: 24px;
   width: 100%;
   height: 100%;
