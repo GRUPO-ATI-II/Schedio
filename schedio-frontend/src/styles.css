@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/_themes.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  font: var(--text-p);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.header h1 {
+  font: var(--text-h1);
+  color: white;
+  margin-left: 2%;
+}
