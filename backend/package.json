@@ -4,7 +4,7 @@
   "description": "Este proyecto consiste en una aplicación web de planificación personal, con módulos personalizables inicialmente orientados al ámbito estudiantil universitario.",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch index.js",
+    "dev": "nodemon -L index.js",
     "start": "node index.js",
     "test": "jest"
   },
@@ -20,10 +20,12 @@
   },
   "homepage": "https://github.com/GRUPO-ATI-II/Schedio#readme",
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "mongoose": "^9.1.6"
   },
   "devDependencies": {
-    "jest": "^30.2.0"
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.14"
   }
 }

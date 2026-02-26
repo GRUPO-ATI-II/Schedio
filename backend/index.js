@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+const cors = require('cors');
+app.use(cors()); // Colócalo antes de tus rutas
+
 const mongoURI = process.env.MONGO_URI || 'mongodb://schedio-mongo:27017/schedio';
 
 mongoose.connect(mongoURI)
@@ -27,3 +30,5 @@ app.get('/health', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
+console.log("No!")

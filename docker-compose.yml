@@ -12,6 +12,7 @@ services:
       context: ./backend
       target: development
     container_name: schedio-backend
+    command: npm run dev
     ports:
       - "3000:3000"
     volumes:
@@ -21,6 +22,7 @@ services:
       - mongo
     environment:
       - MONGODB_URI=mongodb://mongo:27017/schedio
+      - CHOKIDAR_USEPOLLING=true
 
   frontend:
     build:

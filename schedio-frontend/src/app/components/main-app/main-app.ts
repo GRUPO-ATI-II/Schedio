@@ -5,6 +5,7 @@ import { CalendarTab } from '../calendar-tab/calendar-tab';
 import { PersonalCalendar } from '../personal-calendar/personal-calendar';
 import { UserFavorites } from '../user-favorites/user-favorites';
 import { Categories } from '../categories/categories';
+// import { InputField } from '../input-field/input-field';
 
 @Component({
   selector: 'app-main-app-component',
