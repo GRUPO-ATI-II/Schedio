@@ -17,19 +17,19 @@
   --desktop-h2: 40px;
   --desktop-h3: 34px;
   --desktop-h4: 28px;
-  --desktop-h5: 24px;
-  --desktop-h6: 20px;
-  --desktop-p: 16px;
+  --desktop-h5: 20px;
+  --desktop-h6: 16px;
+  --desktop-p: 14px;
   --desktop-small: 12px;
   /* sizes mobile */
   --mobile-h1: 34px;
   --mobile-h2: 28px;
   --mobile-h3: 24px;
   --mobile-h4: 20px;
-  --mobile-h5: 18px;
-  --mobile-h6: 16px;
-  --mobile-p: 14px;
-  --mobile-small: 12px;
+  --mobile-h5: 16px;
+  --mobile-h6: 14px;
+  --mobile-p: 12px;
+  --mobile-small: 10px;
 
   /* colors */
   /* puples */

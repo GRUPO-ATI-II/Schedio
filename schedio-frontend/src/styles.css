@@ -1,5 +1,9 @@
 @import './styles/_themes.css';
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,10 +11,16 @@ body {
   font: var(--text-p);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 .header h1 {
   font: var(--text-h1);
   color: white;
   margin-left: 2%;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
 }
