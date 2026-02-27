@@ -1,0 +1,48 @@
+<div class="report-container vertical">
+  <div>
+    <h2 class="form-title">Reporte de Error</h2>
+    <div class="form-grid">
+      <div class="input-group full-width">
+        <label>Módulo</label>
+        <select class="custom-select">
+          <option disabled selected>Selecciona el módulo</option>
+          <option>Planificación académica</option>
+          <option>Calendario</option>
+          <option>Perfil</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Descripción</label>
+        <textarea class="custom-textarea" placeholder="Describe tu error en pocas palabras"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label>Imagen</label>
+        <div class="orange-upload-box">
+          <app-input-field type="file" class="hidden-input"></app-input-field>
+          <div class="upload-content">
+            <img src="./icon_upload.svg" alt="Upload" class="upload-icon-svg">
+            <p>Adjuntar imagen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <app-rect-base-button class="cancel-btn">Cancelar</app-rect-base-button>
+
+    <div class="report-buttons">
+      <app-rect-base-button [isAction]="true" class="email-btn">
+        Por Email
+        <img src="./icon_email.svg" class="btn-icon" alt="Email">
+      </app-rect-base-button>
+
+      <app-rect-base-button [isAction]="true" class="whatsapp-btn">
+        Por WhatsApp
+        <img src="./icon_ws.svg" class="btn-icon" alt="WhatsApp">
+      </app-rect-base-button>
+    </div>
+  </div>
+</div>
