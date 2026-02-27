@@ -1,0 +1,38 @@
+.date-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.date-label {
+  font-size: 0.875rem;
+  color: var(--light-fc, #fff);
+  font-weight: 500;
+  text-align: left;
+  padding-left: 0.25rem;
+}
+
+.input-field {
+  font: var(--text-h6);
+  color: var(--light-fc);
+  border-radius: 8px;
+  background-color: var(--shade-main-color);
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-weight: 500;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* Remove default appearance for date input to style consistently */
+.input-field::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.input-field::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
