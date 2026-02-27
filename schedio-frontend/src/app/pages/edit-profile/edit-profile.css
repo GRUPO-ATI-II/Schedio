@@ -1,0 +1,47 @@
+:host {
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ height: 100%;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background-color: var(--orange-100);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.input-group {
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  color: var(--dark-fc);
+  font: var(--text-h6);
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 600;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 3fr 3fr 1fr;
+  gap: 35px 45px;
+  align-items: start;
+}
+
+.pageHeader {
+  color: var(--purple-800);
+  font: var(--text-h2);
+  margin: 0 0 35px 0;
+}
