@@ -4,8 +4,15 @@
   --background-color: var(--purple-900);
   --sidebar-menu-color: var(--purple-950);
   --side-card-color: var(--purple-800);
+  --shade-main-color: var(--purple-200);
   --main-card-color: var(--purple-100);
+  --accent-color: var(--orange-400);
 
+  /* font colors */
+  --light-fc: var(--grey-400);
+  --dark-fc: var(--grey-800);
+
+  /* font styles */
   --text-h1: var(--fw-extraBold) clamp(var(--mobile-h1), 8vw + 1rem, var(--desktop-h1)) var(--font-primary);
   --text-h2: var(--fw-bold) clamp(var(--mobile-h2), 6vw + 1rem, var(--desktop-h2)) var(--font-primary);
   --text-h3: var(--fw-semiBold) clamp(var(--mobile-h3), 4vw + 1rem, var(--desktop-h3)) var(--font-primary);
