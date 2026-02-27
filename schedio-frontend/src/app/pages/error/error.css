@@ -33,12 +33,12 @@
 ::ng-deep app-input-field input,
 .custom-select,
 .custom-textarea {
-  background-color: #E9DFFE !important;
+  background-color: #e9dffe !important;
   border: none !important;
   padding: 12px 16px !important;
   border-radius: 14px !important;
   font: var(--text-p) !important;
-  color: #5A5A5A !important;
+  color: #5a5a5a !important;
   width: 100% !important;
   height: 48px !important;
   box-sizing: border-box !important;
@@ -47,31 +47,6 @@
 .custom-textarea {
   height: 180px !important;
   resize: none;
-}
-
-.orange-upload-box {
-  background-color: #FFD6A5 !important;
-  border: 2px dashed #FF8A00 !important;
-  border-radius: 14px;
-  height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  text-align: center;
-}
-
-.upload-icon-svg {
-  width: 40px;
-  margin-bottom: 10px;
-}
-
-.hidden-input {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
 }
 
 .actions {
@@ -110,6 +85,6 @@
 }
 
 .whatsapp-btn ::ng-deep button {
-  background-color: #34A853 !important;
+  background-color: #34a853 !important;
   color: white !important;
 }

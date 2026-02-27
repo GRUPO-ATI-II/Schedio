@@ -8,7 +8,6 @@ import { Error } from './pages/error/error';
 import { EditProfile } from './pages/edit-profile/edit-profile';
 import { NotFound } from './pages/not-found/not-found';
 
-
 export const routes: Routes = [
   {
     path: '',
@@ -21,9 +20,8 @@ export const routes: Routes = [
   },
   {
     path: 'register',
-    loadComponent: () => import('./pages/register/register').then(m => m.Register),
+    loadComponent: () => import('./pages/register/register').then((m) => m.Register),
   },
-
   {
     path: '',
     component: MainLayoutComponent,
@@ -31,7 +29,9 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'ticket', // o la página principal
+        redirectTo: 'ticket',
+      },
+      {
         path: 'ticket',
         component: Ticket,
       },
@@ -39,13 +39,9 @@ export const routes: Routes = [
         path: 'error',
         component: Error,
       },
+      {
         path: 'edit-profile',
         component: EditProfile,
-      },
-
-      {
-        path: 'ticket',
-        component: Ticket,
       },
       {
         path: 'contact-center/reset-user-credentials',
@@ -55,9 +51,10 @@ export const routes: Routes = [
         path: 'contact-center/edit-user',
         component: EditSpecificUserCredentials,
       },
+      {
         path: '**',
-        component: NotFound
-      }
+        component: NotFound,
+      },
     ],
   },
 ];
