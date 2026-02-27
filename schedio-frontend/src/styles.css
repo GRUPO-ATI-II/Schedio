@@ -11,6 +11,7 @@ body {
   font: var(--text-p);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 .header h1 {
