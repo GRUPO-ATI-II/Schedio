@@ -1,3 +1,38 @@
-<p>ticket works!</p>
-<app-input-field></app-input-field>
-<app-rect-base-button [isAction]="true">Button</app-rect-base-button>
+<div class="report-container vertical">
+  <div>
+    <h2 class="form-title">Reporte de Ticket</h2>
+
+    <div class="form-grid">
+      <div class="input-group">
+        <label>Título</label>
+        <app-input-field placeholder="Colócale nombre a tu ticket"></app-input-field>
+      </div>
+
+      <div class="input-group">
+        <label>Prioridad</label>
+        <select class="custom-select">
+          <option disabled selected>Selecciona la prioridad</option>
+          <option>Alta</option>
+          <option>Media</option>
+          <option>Baja</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Descripción</label>
+        <textarea placeholder="Describe tu ticket en pocas palabras"></textarea>
+      </div>
+
+      <div class="input-group">
+        <label>Estudiante asociado</label>
+        <select class="custom-select">
+          <option disabled selected>Buscar estudiante...</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <app-rect-base-button class="cancel-btn">Cancelar</app-rect-base-button>
+    <app-rect-base-button [isAction]="true">Guardar</app-rect-base-button>
+  </div>
+</div>

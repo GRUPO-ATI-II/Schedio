@@ -1,3 +1,7 @@
+:host {
+  width: 100%;
+}
+
 .rect-button {
   border-radius: 8px;
   padding: 10px;
@@ -7,9 +11,14 @@
   border: none;
   width: 100%;
   cursor: pointer;
+  transition: 0.25s ease-in-out;
 }
 
 .action {
   color: white;
   background-color: var(--accent-color);
+}
+
+.rect-button:hover {
+  background-color: var(--purple-800);
 }

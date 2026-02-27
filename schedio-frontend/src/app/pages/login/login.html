@@ -1,1 +1,15 @@
-<p>login works!</p>
+<main>
+  <div class="image-container">
+    <img src="./login-illustration.svg" alt="Login Image" class="login-image" />
+  </div>
+  <div class="login-container vertical">
+      <img src="./logo-horizontal.svg" alt="Logo" class="login-logo" />
+      <form class="login-form vertical" (ngSubmit)="login()">
+        <app-input-field label="Correo Electrónico" type="email" [placeholder]="'Ingrese su correo electrónico'"></app-input-field>
+        <app-input-field label="Contraseña" type="password" [placeholder]="'Ingrese su contraseña'"></app-input-field>
+        
+        <app-rect-base-button [isAction]="true" class="login-button" (clicked)="login()">Iniciar Sesión</app-rect-base-button>
+      </form>
+      <a routerLink="/register">¿No tienes cuenta? Registrate aqui.</a>
+  </div>
+</main>

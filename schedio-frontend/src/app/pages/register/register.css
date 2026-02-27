@@ -15,7 +15,8 @@ main {
   width: clamp(20rem, 95%, 28rem);
   justify-content: center;
   align-items: center;
-  height: 60%;
+  height: auto; 
+  /* Changed height from 60% to auto to fit all the inputs nicely */
 }
 
 .image-container {
@@ -52,8 +53,7 @@ a:hover {
 
 @media (max-width: 768px) {
   main {
-    flex-direction: column-reverse;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
   }
-
 }
