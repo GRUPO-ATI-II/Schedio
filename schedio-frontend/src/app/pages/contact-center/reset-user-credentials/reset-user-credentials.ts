@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { InputField } from '../../../components/ui/input-field/input-field';
 
 @Component({
@@ -7,4 +8,10 @@ import { InputField } from '../../../components/ui/input-field/input-field';
   templateUrl: './reset-user-credentials.html',
   styleUrl: './reset-user-credentials.css',
 })
-export class ResetUserCredentials {}
+export class ResetUserCredentials {
+  constructor(private router: Router) {}
+
+  openModal() {
+    this.router.navigate(['/contact-center/edit-user']);
+  }
+}
