@@ -5,8 +5,13 @@ import { Ticket } from './pages/ticket/ticket';
 
 export const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login', // o la página principal
+  },
+  {
     path: 'login',
-    component: Login
+    component: Login,
   },
 
   {
@@ -14,15 +19,9 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'ticket'   // o la página principal
-      },
-      {
         path: 'ticket',
-        component: Ticket
-      }
-    ]
-  }
-
-];  
+        component: Ticket,
+      },
+    ],
+  },
+];
