@@ -1,0 +1,15 @@
+.rect-button {
+  border-radius: 8px;
+  padding: 10px;
+  font: var(--text-h5);
+  color: var(--dark-fc);
+  background-color: var(--grey-100);
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.action {
+  color: white;
+  background-color: var(--accent-color);
+}

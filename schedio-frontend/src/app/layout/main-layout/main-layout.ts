@@ -6,8 +6,8 @@ import { CalendarTab } from '../../components/calendar-tab/calendar-tab';
 import { PersonalCalendar } from '../../components/personal-calendar/personal-calendar';
 import { UserFavorites } from '../../components/user-favorites/user-favorites';
 import { Categories } from '../../components/categories/categories';
-// import { InputField } from '../ui/input-field/input-field'; //importen asi los componentes basicos
-// import { RectBaseButton } from '../ui/rect-base-button/rect-base-button';
+import { InputField } from '../../components/ui/input-field/input-field'; //importen asi los componentes basicos
+import { RectBaseButton } from '../../components/ui/rect-base-button/rect-base-button';
 
 @Component({
   standalone: true,
