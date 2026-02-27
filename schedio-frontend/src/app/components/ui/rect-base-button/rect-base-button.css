@@ -1,3 +1,7 @@
+:host {
+  width: 100%;
+}
+
 .rect-button {
   border-radius: 8px;
   padding: 10px;
