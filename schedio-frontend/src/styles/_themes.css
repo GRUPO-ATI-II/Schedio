@@ -13,14 +13,21 @@
   --dark-fc: var(--grey-800);
 
   /* font styles */
-  --text-h1: var(--fw-extraBold) clamp(var(--mobile-h1), 8vw + 1rem, var(--desktop-h1)) var(--font-primary);
-  --text-h2: var(--fw-bold) clamp(var(--mobile-h2), 6vw + 1rem, var(--desktop-h2)) var(--font-primary);
-  --text-h3: var(--fw-semiBold) clamp(var(--mobile-h3), 4vw + 1rem, var(--desktop-h3)) var(--font-primary);
+  --text-h1: var(--fw-extraBold) clamp(var(--mobile-h1), 8vw + 1rem, var(--desktop-h1))
+    var(--font-primary);
+  --text-h2: var(--fw-bold) clamp(var(--mobile-h2), 6vw + 1rem, var(--desktop-h2))
+    var(--font-primary);
+  --text-h3: var(--fw-semiBold) clamp(var(--mobile-h3), 4vw + 1rem, var(--desktop-h3))
+    var(--font-primary);
 
-  --text-h4: var(--fw-semiBold) clamp(var(--mobile-h4), 3vw + 1rem, var(--desktop-h4)) var(--font-primary);
-  --text-h5: var(--fw-semiBold) clamp(var(--mobile-h5), 2vw + 1rem, var(--desktop-h5)) var(--font-primary);
-  --text-h6: var(--fw-regular) clamp(var(--mobile-h6), 1vw + 1rem, var(--desktop-h6)) var(--font-primary);
+  --text-h4: var(--fw-semiBold) clamp(var(--mobile-h4), 3vw + 1rem, var(--desktop-h4))
+    var(--font-primary);
+  --text-h5: var(--fw-semiBold) clamp(var(--mobile-h5), 2vw + 1rem, var(--desktop-h5))
+    var(--font-primary);
+  --text-h6: var(--fw-regular) clamp(var(--mobile-h6), 1vw + 1rem, var(--desktop-h6))
+    var(--font-primary);
 
-  --text-p: var(--fw-regular) clamp(var(--mobile-p), 0.5vw + 1rem, var(--desktop-p)) var(--font-primary);
+  --text-p: var(--fw-regular) clamp(var(--mobile-p), 0.5vw + 1rem, var(--desktop-p))
+    var(--font-primary);
   --text-small: var(--fw-regular) var(--mobile-small) var(--font-primary);
 }
