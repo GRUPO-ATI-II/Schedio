@@ -1,8 +1,11 @@
 const request = require('supertest');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 const express = require('express');
 const userController = require('../src/controllers/user.controller');
 const User = require('../src/entities/user.entity');
+
+let mongoServer;
 
 // Configuramos una app de Express temporal para el test
 const app = express();
@@ -15,16 +18,20 @@ describe('Integration Test: User Registration', () => {
 
     // Conexión a la base de datos de QA/Test antes de empezar
     beforeAll(async () => {
-        const url = process.env.MONGODB_URI || 'mongodb://mongo:27017/schedio_test';
-        console.log(`Trying to connect to: ${url}`);
         try {
-            await mongoose.connect(url, {
-                serverSelectionTimeoutMS: 5000,
-            });
-            console.log("✅ Successful connection between containers");
+            // Intentamos levantar el servidor en memoria
+            mongoServer = await MongoMemoryServer.create();
+            const uri = mongoServer.getUri();
+            await mongoose.connect(uri);
+            console.log("Using MongoMemoryServer");
         } catch (error) {
-            console.error("❌ Could not reach Mongo container:", error.message);
-            throw error;
+            console.warn("Could not set up MongoMemoryServer");
+            console.log("Connecting with Mongo real container...");
+
+            // Si falla, conectamos al contenedor de mongo de tu docker-compose
+            // Nota: 'mongo' es el nombre del servicio en tu docker-compose.yml
+            const fallbackUri = 'mongodb://mongo:27017/schedio_test';
+            await mongoose.connect(fallbackUri);
         }
     });
 
@@ -35,7 +42,12 @@ describe('Integration Test: User Registration', () => {
 
     // Poor jenkins needs this
     afterAll(async () => {
-        await mongoose.connection.close();
+        if (mongoose.connection.readyState !== 0) {
+            await mongoose.disconnect();
+        }
+        if (mongoServer) {
+            await mongoServer.stop();
+        }
     });
 
     it('Should register a new user and return 201', async () => {
