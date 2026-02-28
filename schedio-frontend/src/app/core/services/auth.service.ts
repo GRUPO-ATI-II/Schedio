@@ -8,7 +8,7 @@ import { User } from '../../shared/entities/user.entity';
 })
 export class AuthService {
   // apunta al backend
-  private readonly API_URL = 'http://localhost:3000/api/users';
+  private readonly API_URL = '/api/users';
 
   constructor(private http: HttpClient) {}
 

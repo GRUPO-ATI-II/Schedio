@@ -27,7 +27,7 @@ export class Register {
       }
 
     testConnection() {
-      this.http.get('http://backend:3000/api/test-db').subscribe({
+      this.http.get('/api/test-db').subscribe({
         next: (res) => console.log('✅ Successful Connection:', res),
         error: (err) => console.error('❌ Connection Error:', err)
       });
