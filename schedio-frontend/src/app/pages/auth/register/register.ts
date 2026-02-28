@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InputField } from '../../../shared/components/ui/input-field/input-field';
@@ -22,8 +23,14 @@ export class Register {
         password: ''
     };
 
-    constructor(private authService: AuthService, private router: Router, private http: HttpClient) {
-      this.testConnection();
+    constructor(private authService: AuthService,
+      private router: Router,
+      private http: HttpClient,
+      @Inject(PLATFORM_ID) private platformId: Object
+      ) {
+        if (isPlatformBrowser(this.platformId)) {
+                    this.testConnection();
+                }
       }
 
     testConnection() {
