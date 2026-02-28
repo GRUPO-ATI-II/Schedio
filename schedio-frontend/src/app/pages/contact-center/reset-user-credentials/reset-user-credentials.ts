@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { InputField } from '../../../components/ui/input-field/input-field';
+import { InputField } from '../../../shared/components/ui/input-field/input-field';
 
 @Component({
   selector: 'app-reset-user-credentials',

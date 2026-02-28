@@ -4,10 +4,14 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-
 const cors = require('cors');
-app.use(cors()); // Colócalo antes de tus rutas
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.use(express.json());
 
 const mongoURI = process.env.MONGO_URI || 'mongodb://schedio-mongo:27017/schedio';
 
@@ -27,8 +31,20 @@ app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const mongoose = require('mongoose');
+    const state = mongoose.connection.readyState;
+    // 0 = disconnected, 1 = connected
+    res.json({
+      message: "Backend alcanzable",
+      dbStatus: state === 1 ? "Conectado a MongoDB" : "Error en DB"
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
-
-console.log("No!")

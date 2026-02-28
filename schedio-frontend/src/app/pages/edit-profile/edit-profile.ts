@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ButtonBox } from '../../components/ui/button-box/button-box';
-import { InputField } from '../../components/ui/input-field/input-field';
-import { InputTextarea } from '../../components/ui/input-textarea/input-textarea';
+import { ButtonBox } from '../../shared/components/ui/button-box/button-box';
+import { InputField } from '../../shared/components/ui/input-field/input-field';
+import { InputTextarea } from '../../shared/components/ui/input-textarea/input-textarea';
 
 @Component({
   selector: 'app-edit-profile',
