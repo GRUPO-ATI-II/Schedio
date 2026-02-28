@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const userController = require('./src/controllers/user.controller');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const cors = require('cors');
 app.use(cors({
   origin: 'http://localhost:4200',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -13,11 +14,19 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    console.log('Body:', req.body); // Verifica si llegan los datos de Angular
+    next();
+});
+
 const mongoURI = process.env.MONGO_URI || 'mongodb://schedio-mongo:27017/schedio';
 
 mongoose.connect(mongoURI)
   .then(() => console.log('Conectado a MongoDB con éxito'))
   .catch(err => console.error('!!!!Error al conectar a MongoDB:', err));
+
+app.post('/api/users/register', userController.register);
 
 app.get('/', (req, res) => {
   res.json({

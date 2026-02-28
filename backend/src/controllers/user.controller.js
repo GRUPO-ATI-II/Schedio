@@ -2,6 +2,7 @@ const userService = require('../services/user.service');
 
 const register = async (req, res) => {
   try {
+    console.log("📥 Procesando registro para:", req.body.email);
     const existingUser = await userService.findByEmail(req.body.email);
     if (existingUser) {
       return res.status(400).json({ message: "The user already exists" });
@@ -10,6 +11,9 @@ const register = async (req, res) => {
     const savedUser = await userService.registerUser(req.body);
     res.status(201).json(savedUser);
   } catch (error) {
+    console.error("❌ ERROR DETECTADO:");
+    console.error("Mensaje:", error.message);
+    console.error("Stack:", error.stack);
     res.status(500).json({ error: error.message });
   }
 };

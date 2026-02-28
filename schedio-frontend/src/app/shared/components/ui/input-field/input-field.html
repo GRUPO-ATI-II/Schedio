@@ -1,2 +1,8 @@
-<input class = "input-field" type="text" [placeholder] = "placeholder">
+<input
+  class="input-field"
+  [type]="type"
+  [placeholder]="placeholder"
+  [value]="value"
+  (input)="onInput($event)"
+  (blur)="onTouched()">
 
