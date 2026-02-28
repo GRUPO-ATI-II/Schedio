@@ -4,7 +4,7 @@ const register = async (req, res) => {
   try {
     const existingUser = await userService.findByEmail(req.body.email);
     if (existingUser) {
-      return res.status(400).json({ message: "El usuario ya existe" });
+      return res.status(400).json({ message: "The user already exists" });
     }
 
     const savedUser = await userService.registerUser(req.body);

@@ -37,8 +37,8 @@ app.get('/api/test-db', async (req, res) => {
     const state = mongoose.connection.readyState;
     // 0 = disconnected, 1 = connected
     res.json({
-      message: "Backend alcanzable",
-      dbStatus: state === 1 ? "Conectado a MongoDB" : "Error en DB"
+      message: "Backend reachable",
+      dbStatus: state === 1 ? "Connected to MongoDB" : "Error in DB"
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
