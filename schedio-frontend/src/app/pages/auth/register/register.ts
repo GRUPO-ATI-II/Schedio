@@ -28,8 +28,8 @@ export class Register {
 
     testConnection() {
       this.http.get('/api/test-db').subscribe({
-        next: (res) => console.log('✅ Successful Connection:', res),
-        error: (err) => console.error('❌ Connection Error:', err)
+        next: (res) => console.log('Successful Connection:', res),
+        error: (err) => console.error('Connection Error:', err)
       });
     }
     isSubmitting = false;
@@ -44,11 +44,11 @@ export class Register {
 
         this.authService.register(this.userForm).subscribe({
             next: (response) => {
-                console.log('Registro exitoso', response);
+                console.log('Successful Sign in', response);
                 this.router.navigate(['/login']); // Redirige al éxito
             },
             error: (err) => {
-                console.error('Error en el registro:', err);
+                console.error('Sign in Error:', err);
                 alert('No se pudo completar el registro. Revisa la consola.');
             }
         });

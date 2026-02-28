@@ -8,19 +8,26 @@
           placeholder="Ingrese su nombre"
           [(ngModel)]="userForm.firstName">
         </app-input-field>
+
         <app-input-field
           label="Apellido"
           name="lastName"
           placeholder="Ingrese su apellido"
           [(ngModel)]="userForm.lastName">
         </app-input-field>
+
         <app-input-field
           label="Correo Electrónico"
           name="email"
           placeholder="Ingrese su correo electrónico"
           [(ngModel)]="userForm.email">
         </app-input-field>
-        <app-date-field label="Fecha de Nacimiento"></app-date-field>
+
+        <app-date-field
+          label="Fecha de Nacimiento"
+          [(ngModel)]="userForm.birthDate"
+          name="birthDate">
+        </app-date-field>
 
         <app-input-field
           label="Contraseña"
@@ -29,6 +36,7 @@
           type='password'
           [(ngModel)]="userForm.password">
         </app-input-field>
+
         <app-rect-base-button [isAction]="true" class="login-button">Registrar</app-rect-base-button>
       </form>
       <a routerLink="/login">¿Ya tienes cuenta? Inicia sesión aquí.</a>

@@ -2,5 +2,8 @@
   @if (label) {
     <label class="date-label">{{ label }}</label>
   }
-  <input class="input-field" type="date">
+  <input class="input-field" type="date"
+   [value]="value"
+   (input)="onInput($event)"
+   (blur)="onTouched()">
 </div>
