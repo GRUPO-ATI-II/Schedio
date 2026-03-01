@@ -29,7 +29,6 @@ describe('Integration Test: User Registration', () => {
             console.log("Connecting with Mongo real container...");
 
             // Si falla, conectamos al contenedor de mongo de tu docker-compose
-            // Nota: 'mongo' es el nombre del servicio en tu docker-compose.yml
             const fallbackUri = 'mongodb://mongo:27017/schedio_test';
             await mongoose.connect(fallbackUri);
         }

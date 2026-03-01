@@ -27,6 +27,7 @@ mongoose.connect(mongoURI)
   .catch(err => console.error('!!!!Error al conectar a MongoDB:', err));
 
 app.post('/api/users/register', userController.register);
+app.post('/api/users/login', userController.login);
 
 app.get('/', (req, res) => {
   res.json({
