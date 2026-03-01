@@ -19,6 +19,7 @@ export class InputField{
   @Input() placeholder: string = '';
   @Input() type: string = 'text';
   @Input() name: string = '';
+  @Input() pattern: string = ''
 
   value: string = '';
   onChange: any = () => {};
@@ -29,8 +30,20 @@ export class InputField{
   registerOnTouched(fn: any): void { this.onTouched = fn; }
 
   onInput(event: Event): void {
-    const val = (event.target as HTMLInputElement).value;
-    this.value = val;
-    this.onChange(val);
+    const inputElement = event.target as HTMLInputElement;
+    let newValue = inputElement.value;
+
+    if (this.pattern) {
+
+      const regex = new RegExp(`^${this.pattern}$`);
+
+      if (newValue !== '' && !regex.test(newValue)) {
+         inputElement.value = this.value;
+         return;
+       }
+    }
+
+    this.value = newValue;
+    this.onChange(this.value);
   }
 }
