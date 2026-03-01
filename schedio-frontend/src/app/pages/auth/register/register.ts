@@ -46,6 +46,7 @@ export class Register {
 
         if (!this.userForm.email || !this.userForm.password) {
             alert('Por favor, completa todos los campos.');
+            this.isSubmitting = false;
             return;
         }
 
@@ -59,5 +60,6 @@ export class Register {
                 alert('No se pudo completar el registro. Revisa la consola.');
             }
         });
+      this.isSubmitting=false;
     }
 }
