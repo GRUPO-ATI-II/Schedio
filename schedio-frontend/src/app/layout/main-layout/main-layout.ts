@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { SidebarMenu } from '../../components/sidebar-menu/sidebar-menu';
-import { CalendarTab } from '../../components/calendar-tab/calendar-tab';
-import { PersonalCalendar } from '../../components/personal-calendar/personal-calendar';
-import { UserFavorites } from '../../components/user-favorites/user-favorites';
-import { Categories } from '../../components/categories/categories';
-import { InputField } from '../../components/ui/input-field/input-field'; //importen asi los componentes basicos
-import { RectBaseButton } from '../../components/ui/rect-base-button/rect-base-button';
+import { SidebarMenu } from '../../shared/components/sidebar-menu/sidebar-menu';
+import { CalendarTab } from '../../shared/components/calendar-tab/calendar-tab';
+import { PersonalCalendar } from '../../shared/components/personal-calendar/personal-calendar';
+import { UserFavorites } from '../../shared/components/user-favorites/user-favorites';
+import { Categories } from '../../shared/components/categories/categories';
+import { InputField } from '../../shared/components/ui/input-field/input-field'; //importen asi los componentes basicos
+import { RectBaseButton } from '../../shared/components/ui/rect-base-button/rect-base-button';
 
 @Component({
   standalone: true,

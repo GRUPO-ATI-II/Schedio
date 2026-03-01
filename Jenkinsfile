@@ -31,12 +31,18 @@ pipeline {
     }
     stage('Backend Unit Tests') {
       steps {
-        catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-          // Construir la imagen de test
-          sh 'docker build -f ./backend/Dockerfile.test -t backend-test ./backend'
-          // Ejecutar los tests
-          sh 'docker run --rm backend-test'
-        }
+          script {
+              // Limpiar rastro anterior y levantar bd
+              sh 'docker rm -f schedio-mongo || true'
+              sh 'docker compose up -d mongo'
+
+              catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                  sh 'docker build -f ./backend/Dockerfile.test -t backend-test ./backend'
+
+                  // Conectar el test a la red que Jenkins acaba de crear
+                  sh 'docker run --rm --network schedio-main-pipeline_default backend-test'
+              }
+          }
       }
     }
      stage('Build') {

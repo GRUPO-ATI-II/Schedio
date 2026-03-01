@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Login } from './pages/login/login';
 import { MainLayoutComponent } from './layout/main-layout/main-layout';
 import { Ticket } from './pages/ticket/ticket';
 import { ResetUserCredentials } from './pages/contact-center/reset-user-credentials/reset-user-credentials';
@@ -16,11 +15,11 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: Login,
+    loadComponent: () => import('./pages/auth/login/login').then(m => m.Login),
   },
   {
     path: 'register',
-    loadComponent: () => import('./pages/register/register').then((m) => m.Register),
+    loadComponent: () => import('./pages/auth/register/register').then((m) => m.Register),
   },
   {
     path: '',
