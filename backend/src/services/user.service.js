@@ -20,6 +20,20 @@ class UserService {
   async findByEmail(email) {
     return await User.findOne({ email });
   }
+
+  async loginUser(email, password) {
+    const user = await User.findOne({ email });
+    if (!user) {
+        return null; // incorrect email
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+        return null; // incorrect password
+    }
+
+    return user;
+  }
 }
 
 module.exports = new UserService();

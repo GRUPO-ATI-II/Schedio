@@ -18,4 +18,30 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { register };
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        console.log("Login attempt for:", email);
+
+        const user = await userService.loginUser(email, password);
+
+        if (!user) {
+            return res.status(401).json({ message: "Invalid email or password "});
+        }
+
+        res.status(200).json({
+            message: "Login successful",
+            user: {
+                id: user._id,
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName
+            }
+        });
+    } catch (error) {
+        console.error("Login error:", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+module.exports = { register, login };

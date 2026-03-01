@@ -6,6 +6,7 @@
           label="Nombre"
           name="firstName"
           placeholder="Ingrese su nombre"
+          pattern='[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*'
           [(ngModel)]="userForm.firstName">
         </app-input-field>
 
@@ -13,6 +14,7 @@
           label="Apellido"
           name="lastName"
           placeholder="Ingrese su apellido"
+          pattern='[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*'
           [(ngModel)]="userForm.lastName">
         </app-input-field>
 
@@ -20,6 +22,7 @@
           label="Correo Electrónico"
           name="email"
           placeholder="Ingrese su correo electrónico"
+          type='email'
           [(ngModel)]="userForm.email">
         </app-input-field>
 
