@@ -13,12 +13,25 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "es",
+        "locales": {
+          "en": "src/locale/messages.en.xlf",
+          "fr": "src/locale/messages.fr.xlf",
+          "it": "src/locale/messages.it.xlf",
+          "pt": "src/locale/messages.pt.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "polyfills": [
+              "node_modules/zone.js/fesm2015/zone.js",
+              "@angular/localize/init"
+            ],
             "assets": [
               {
                 "glob": "**/*",
@@ -28,11 +41,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "outputMode": "static",
+            "preserveSymlinks": true,
+            "prerender": false
           },
           "configurations": {
             "production": {
@@ -54,6 +65,15 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "es": {
+              "localize": ["es"]
+            },
+            "en": {
+              "localize": ["en"]
+            },
+            "fr": {
+              "localize": ["fr"]
             }
           },
           "defaultConfiguration": "production"
@@ -67,6 +87,9 @@
             "production": {
               "buildTarget": "schedio-frontend:build:production"
             },
+            "es": { "buildTarget": "schedio-frontend:build:es" },
+            "en": { "buildTarget": "schedio-frontend:build:en" },
+            "fr": { "buildTarget": "schedio-frontend:build:fr" },
             "development": {
               "buildTarget": "schedio-frontend:build:development"
             }

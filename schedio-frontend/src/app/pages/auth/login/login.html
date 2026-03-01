@@ -1,27 +1,40 @@
 <main>
   <div class="image-container">
-    <img src="./login-illustration.svg" alt="Login Image" class="login-image" />
+    <img src="/login-illustration.svg" alt="Login Image" class="login-image" />
   </div>
   <div class="login-container vertical">
-      <img src="./logo-horizontal.svg" alt="Logo" class="login-logo" />
-      <form class="login-form vertical" (ngSubmit)="login()">
-        <app-input-field
-          label="Correo Electrónico"
-          name="email"
-          type="email"
-          [placeholder]="'Ingrese su correo electrónico'"
-          [(ngModel)]="loginForm.email">
-        </app-input-field>
-        <app-input-field
-          label="Contraseña"
-          name="password"
-          type="password"
-          [placeholder]="'Ingrese su contraseña'"
-          [(ngModel)]="loginForm.password">
-        </app-input-field>
+    <img src="/logo-horizontal.svg" alt="Logo" class="login-logo" />
+    <form class="login-form vertical" (ngSubmit)="login()">
+      <app-input-field
+        label="Correo Electrónico"
+        i18n-label="@@emailLabel"
+        name="email"
+        type="email"
+        [placeholder]="'Ingrese su correo electrónico'"
+        i18n-placeholder="@@emailPlaceholder"
+        [(ngModel)]="loginForm.email">
+      </app-input-field>
+      <app-input-field
+        label="Contraseña"
+        i18n-label="@@passwordLabel"
+        name="password"
+        type="password"
+        [placeholder]="'Ingrese su contraseña'"
+        i18n-placeholder="@@passwordPlaceholder"
+        [(ngModel)]="loginForm.password">
+      </app-input-field>
 
-        <app-rect-base-button [isAction]="true" class="login-button" (clicked)="login()">Iniciar Sesión</app-rect-base-button>
-      </form>
-      <a routerLink="/register">¿No tienes cuenta? Registrate aqui.</a>
+      <app-rect-base-button
+        [isAction]="true"
+        class="login-button"
+        (clicked)="login()"
+        i18n="@@LoginButton">
+        Iniciar Sesión
+      </app-rect-base-button>
+    </form>
+    <a routerLink="/register"
+       i18n="@@SignInLink">
+      ¿No tienes cuenta? Regístrate aquí.
+    </a>
   </div>
 </main>
