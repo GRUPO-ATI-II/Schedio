@@ -1,42 +1,43 @@
 <div class="report-container vertical">
   <div>
-    <h2 class="form-title">Reporte de Error</h2>
+    <h2 class="form-title" i18n="@@ErrorReport">Reporte de Error</h2>
     <div class="form-grid">
       <div class="input-group full-width">
-        <label>Módulo</label>
+        <label i18n="@@Module">Módulo</label>
         <select class="custom-select">
-          <option disabled selected>Selecciona el módulo</option>
-          <option>Planificación académica</option>
-          <option>Calendario</option>
-          <option>Perfil</option>
+          <option disabled selected i18n="@@ModuleSelect">Selecciona el módulo</option>
+          <option i18n="@@AcademicPlanning">Planificación académica</option>
+          <option i18n="@@Calendar">Calendario</option>
+          <option i18n="@@Profile">Perfil</option>
         </select>
       </div>
 
       <div class="input-group">
-        <label>Descripción</label>
+        <label i18n="@@Desc">Descripción</label>
         <textarea
           class="custom-textarea"
           placeholder="Describe tu error en pocas palabras"
+          i18n-placeholder="@@DescErrorPlaceholder"
         ></textarea>
       </div>
 
       <div class="input-group">
-        <label>Imagen</label>
+        <label i18n="@@Img">Imagen</label>
         <app-upload-image />
       </div>
     </div>
   </div>
 
   <div class="actions">
-    <app-rect-base-button class="cancel-btn">Cancelar</app-rect-base-button>
+    <app-rect-base-button class="cancel-btn" i18n="@@Cancel">Cancelar</app-rect-base-button>
 
     <div class="report-buttons">
-      <app-rect-base-button [isAction]="true" class="email-btn">
+      <app-rect-base-button [isAction]="true" class="email-btn" i18n="@@ByEmail">
         Por Email
         <img src="./icon_email.svg" class="btn-icon" alt="Email" />
       </app-rect-base-button>
 
-      <app-rect-base-button [isAction]="true" class="whatsapp-btn">
+      <app-rect-base-button [isAction]="true" class="whatsapp-btn" i18n="@@ByWs">
         Por WhatsApp
         <img src="./icon_ws.svg" class="btn-icon" alt="WhatsApp" />
       </app-rect-base-button>

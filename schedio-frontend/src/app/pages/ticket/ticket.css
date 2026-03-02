@@ -1,7 +1,7 @@
 .form-title {
-  color: var(--purple-800);
-  font: var(--text-h2);  
-  margin: 0 0 35px 0;
+  color: var(--purple-950);
+  font: var(--text-h2);
+  margin: 0 0 20px 0;
 }
 
 .report-container {

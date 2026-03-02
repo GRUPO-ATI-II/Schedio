@@ -39,7 +39,7 @@ export const routes: Routes = [
         component: Error,
       },
       {
-        path: 'edit-profile',
+        path: 'settings',
         component: EditProfile,
       },
       {

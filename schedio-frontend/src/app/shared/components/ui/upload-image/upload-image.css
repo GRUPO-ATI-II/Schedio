@@ -1,13 +1,14 @@
 .orange-upload-box {
-  background-color: #ffd6a5 !important;
-  border: 2px dashed #ff8a00 !important;
+  background-color: var(--orange-200) !important;
+  border: 2px dashed var(--orange-500) !important;
   border-radius: 14px;
-  height: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 .upload-icon-svg {
@@ -21,4 +22,12 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+.upload-content {
+  display: flex;
+  padding: 20px 0;
+  gap: 16px;
+  font: var(--text-p);
+  font-weight: var(--fw-bold);
 }
