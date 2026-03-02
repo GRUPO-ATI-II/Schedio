@@ -88,3 +88,9 @@
   background-color: #34a853 !important;
   color: white !important;
 }
+
+app-upload-image {
+  height: 180px;
+  display: flex;
+  width: 100%;
+}

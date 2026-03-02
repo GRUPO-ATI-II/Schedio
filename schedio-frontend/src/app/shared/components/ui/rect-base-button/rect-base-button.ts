@@ -11,7 +11,7 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class RectBaseButton {
   @Input() isAction: boolean = false;
-
+  @Input() isLine: boolean = false;
   @Output() clicked = new EventEmitter<void>();
 
   handleClick() {

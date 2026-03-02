@@ -1,37 +1,46 @@
 <h2 class = "pageHeader" i18n="@@EditProfile">
-  Editar perfil
+  Configuración
 </h2>
 
-<div class="form-grid">
-  <div class="info">
-    <div class="input-group">
-      <label i18n="@@Username">Nombre de usuario</label>
-      <app-input-field placeholder='Ingrese el nombre de usuario' i18n-placeholder="@@UsernamePlaceholder"></app-input-field>
+
+<div class="content">
+  <div class="basic-profile-info-group">
+    <app-pfp></app-pfp>
+    <div class="username">
+      <label>Nombre de usuario</label>
+      <button class="edit-btn">
+        <img src="./icon_edit.svg" alt="Edit Username" />
+      </button>
     </div>
-    <div class="input-group">
-      <label i18n="@@Desc">Descripción</label>
-      <app-input-textarea placeholder='Cuéntanos de ti' i18n-placeholder="@@DescPlaceholder"></app-input-textarea>
-    </div>
+    <app-rect-base-button [isAction]="true" id="logout" i18n>
+      Cerrar Sesión
+      <img src="./icon_logout.svg" class="btn-icon" alt="Logout Icon" />
+    </app-rect-base-button>
   </div>
 
-  <div class="info">
-    <div  class="input-group">
-      <label i18n="@@Email">Correo electrónico</label>
-      <app-input-field placeholder='example@gmail.com'></app-input-field>
-    </div>
-    <div class="input-group">
-      <label i18n="@@ChangePassword">Cambiar contraseña</label>
-      <app-input-field placeholder='Ingrese la contraseña' i18n-placeholder="@@PasswordPlaceholder"></app-input-field>
-      <app-input-field placeholder='Confirme la contraseña' i18n-placeholder="@@ConfirmPasswordPlaceholder"></app-input-field>
-    </div>
+  <div class="form-grid">
+    <label class="section-label" i18n="@@BasicUserData">Datos Básicos</label>
+    <app-input-field placeholder='Nombre Completo' i18n-placeholder="@@UsernamePlaceholder"></app-input-field>
+    <app-input-field placeholder='Correo Electrónico'></app-input-field>
+
+    <app-input-field placeholder='Contraseña' i18n-placeholder="@@PasswordPlaceholder"></app-input-field>
+    <app-input-field placeholder='Confirmar Contraseña' i18n-placeholder="@@ConfirmPasswordPlaceholder"></app-input-field>
+
+    <app-upload-image></app-upload-image>
+
+    <label class="section-label" i18n="@@Internationalization">Internacionalización</label>
+    <select class="custom-select">
+      <option disabled selected i18n="@@LanguageSelect">Idioma Preferido</option>
+      <option i18n="@@Spanish">Español</option>
+      <option i18n="@@English">Inglés</option>
+      <option i18n="@@French">Francés</option>
+      <option i18n="@@Italian">Italiano</option>
+      <option i18n="@@Portuguese">Portugués</option>
+    </select>
+
+    <label class="section-label" i18n="@@Support">¿Estás teniendo problemas?</label>
+    <app-rect-base-button [isLine]="true" (clicked)="sendTicket()" i18n>Envia un ticket</app-rect-base-button>
+    <app-rect-base-button [isLine]="true" id="report-btn" (clicked)="reportError()" i18n>Reportar Error</app-rect-base-button>
   </div>
-
-  <div class="input-group">
-    <label i18n="@@ProfilePicture">Foto de perfil</label>
-    <div class="circle"></div>
-  </div>
-
-
-
 </div>
 <app-button-box></app-button-box>

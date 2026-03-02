@@ -5,13 +5,29 @@
 .rect-button {
   border-radius: 8px;
   padding: 10px;
-  font: var(--text-h5);
+  font: var(--text-h6);
+  font-weight: var(--fw-semiBold);
   color: var(--dark-fc);
   background-color: var(--grey-100);
   border: none;
   width: 100%;
   cursor: pointer;
   transition: 0.25s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.line {
+  background-color: transparent;
+  border: solid;
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.line:hover {
+  border-color: white;
 }
 
 .action {
@@ -21,4 +37,5 @@
 
 .rect-button:hover {
   background-color: var(--purple-800);
+  color: white;
 }
