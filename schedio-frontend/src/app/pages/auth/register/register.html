@@ -4,45 +4,54 @@
       <form class="login-form vertical" (ngSubmit)="register()">
         <app-input-field
           label="Nombre"
+          i18n-label="@@firstNameLabel"
           name="firstName"
           placeholder="Ingrese su nombre"
+          i18n-placeholder="@@firstNamePlaceholder"
           pattern='[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*'
           [(ngModel)]="userForm.firstName">
         </app-input-field>
 
         <app-input-field
           label="Apellido"
+          i18n-label="@@lastNameLabel"
           name="lastName"
           placeholder="Ingrese su apellido"
+          i18n-placeholder="@@lastNamePlaceholder"
           pattern='[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*'
           [(ngModel)]="userForm.lastName">
         </app-input-field>
 
         <app-input-field
           label="Correo Electrónico"
+          i18n-label="@@emailLabel"
           name="email"
           placeholder="Ingrese su correo electrónico"
+          i18n-placeholder="@@emailPlaceholder"
           type='email'
           [(ngModel)]="userForm.email">
         </app-input-field>
 
         <app-date-field
           label="Fecha de Nacimiento"
+          i18n-label="@@birthDateLabel"
           [(ngModel)]="userForm.birthDate"
           name="birthDate">
         </app-date-field>
 
         <app-input-field
           label="Contraseña"
+          i18n-label="@@passwordLabel"
           name="password"
           placeholder="Ingrese su contraseña"
+          i18n-placeholder="@@passwordPlaceholder"
           type='password'
           [(ngModel)]="userForm.password">
         </app-input-field>
 
-        <app-rect-base-button [isAction]="true" class="login-button">Registrar</app-rect-base-button>
+        <app-rect-base-button [isAction]="true" class="login-button" i18n="@@SignInButton">Registrar</app-rect-base-button>
       </form>
-      <a routerLink="/login">¿Ya tienes cuenta? Inicia sesión aquí.</a>
+      <a routerLink="/login" i18n="@@LoginLink">¿Ya tienes cuenta? Inicia sesión aquí.</a>
   </div>
   <div class="image-container">
     <img src="./register-illustration.svg" alt="Register Image" class="login-image" />

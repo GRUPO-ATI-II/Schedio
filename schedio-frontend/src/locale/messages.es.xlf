@@ -2,11 +2,33 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="es" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="contactModuleTitle" datatype="html">
+        <source>Módulo de contacto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/layout/main-layout/main-layout.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="emailLabel" datatype="html">
         <source>Correo Electrónico</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/auth/login/login.html</context>
           <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="emailPlaceholder" datatype="html">
+        <source>Ingrese su correo electrónico</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="passwordLabel" datatype="html">
@@ -15,19 +37,514 @@
           <context context-type="sourcefile">src/app/pages/auth/login/login.html</context>
           <context context-type="linenumber">18,19</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="passwordPlaceholder" datatype="html">
+        <source>Ingrese su contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="LoginButton" datatype="html">
         <source> Iniciar Sesión </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/auth/login/login.html</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="SignInLink" datatype="html">
         <source> ¿No tienes cuenta? Regístrate aquí. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/auth/login/login.html</context>
+          <context context-type="linenumber">37,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="firstNameLabel" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="firstNamePlaceholder" datatype="html">
+        <source>Ingrese su nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="lastNameLabel" datatype="html">
+        <source>Apellido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="lastNamePlaceholder" datatype="html">
+        <source>Ingrese su apellido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="birthDateLabel" datatype="html">
+        <source>Fecha de Nacimiento</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SignInButton" datatype="html">
+        <source>Registrar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="LoginLink" datatype="html">
+        <source>¿Ya tienes cuenta? Inicia sesión aquí.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/register/register.html</context>
+          <context context-type="linenumber">54,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="UserName" datatype="html">
+        <source>Nombre de Usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="edit-user-specific-credentials-namePlaceholder" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="edit-user-specific-credentials-emailPlaceholder" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SelectRol" datatype="html">
+        <source>Selecciona un rol</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="OptionAdmin" datatype="html">
+        <source>Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="OptionCommonUser" datatype="html">
+        <source>Usuario común</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="OptionSecurity" datatype="html">
+        <source>Seguridad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">17,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="RecentTickets" datatype="html">
+        <source>Tickets recientes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SeeMore" datatype="html">
+        <source> Ver más </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="EditCredentials" datatype="html">
+        <source>Editar credenciales de usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SearchUser" datatype="html">
+        <source>Buscar usuario...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Rol" datatype="html">
+        <source>Rol</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5357661269973482487" datatype="html">
+        <source>Nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+        <note priority="1" from="description">@FirstName</note>
+      </trans-unit>
+      <trans-unit id="LastName" datatype="html">
+        <source>Apellido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="User" datatype="html">
+        <source>Usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6597520566647669940" datatype="html">
+        <source>Correo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Admin" datatype="html">
+        <source>Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Security" datatype="html">
+        <source>Seguridad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="CommonUser" datatype="html">
+        <source>Usuario común</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact-center/reset-user-credentials/reset-user-credentials.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="EditProfile" datatype="html">
+        <source> Editar perfil
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Username" datatype="html">
+        <source>Nombre de usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="UsernamePlaceholder" datatype="html">
+        <source>Ingrese el nombre de usuario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Desc" datatype="html">
+        <source>Descripción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="DescPlaceholder" datatype="html">
+        <source>Cuéntanos de ti</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Email" datatype="html">
+        <source>Correo electrónico</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ChangePassword" datatype="html">
+        <source>Cambiar contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="PasswordPlaceholder" datatype="html">
+        <source>Ingrese la contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ConfirmPasswordPlaceholder" datatype="html">
+        <source>Confirme la contraseña</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ProfilePicture" datatype="html">
+        <source>Foto de perfil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ErrorReport" datatype="html">
+        <source>Reporte de Error</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Module" datatype="html">
+        <source>Módulo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ModuleSelect" datatype="html">
+        <source>Selecciona el módulo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="AcademicPlanning" datatype="html">
+        <source>Planificación académica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Calendar" datatype="html">
+        <source>Calendario</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Profile" datatype="html">
+        <source>Perfil</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="DescErrorPlaceholder" datatype="html">
+        <source>Describe tu error en pocas palabras</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Img" datatype="html">
+        <source>Imagen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Cancel" datatype="html">
+        <source>Cancelar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ByEmail" datatype="html">
+        <source> Por Email <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;./icon_email.svg&quot; class=&quot;btn-icon&quot; alt=&quot;Email&quot; /&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
           <context context-type="linenumber">36,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ByWs" datatype="html">
+        <source> Por WhatsApp <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;./icon_ws.svg&quot; class=&quot;btn-icon&quot; alt=&quot;WhatsApp&quot; /&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">41,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="PageNotFound" datatype="html">
+        <source>Página no encontrada</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.html</context>
+          <context context-type="linenumber">3,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4383536515891197937" datatype="html">
+        <source> Lo sentimos, la página que estás buscando no está disponible o ha sido movida. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/&quot;&gt;"/> Te invitamos a volver al inicio o visitar nuestras soluciones en seguros. <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.html</context>
+          <context context-type="linenumber">5,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6466316634273740943" datatype="html">
+        <source>Reporte de Ticket</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">3,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8331458230102334089" datatype="html">
+        <source>Título</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TickerNamePlaceholder" datatype="html">
+        <source>Colócale nombre a tu ticket</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6945482597041095036" datatype="html">
+        <source>Prioridad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2535244750553953577" datatype="html">
+        <source>Selecciona la prioridad</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3532023074608212433" datatype="html">
+        <source>Alta</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3250391385569692601" datatype="html">
+        <source>Media</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4555461823311221429" datatype="html">
+        <source>Baja</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2702769239797460498" datatype="html">
+        <source>Descripción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TicketDescPlaceholder" datatype="html">
+        <source>Describe tu ticket en pocas palabras</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6553562528268482169" datatype="html">
+        <source>Estudiante asociado</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="873010161401640841" datatype="html">
+        <source>Buscar estudiante...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6402951927316857780" datatype="html">
+        <source>Cancelar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/ui/button-box/button-box.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1372173599787735409" datatype="html">
+        <source>Guardar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/ticket/ticket.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/ui/button-box/button-box.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4389970548212166541" datatype="html">
+        <source>Título del ticket...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/ui/ticket/ticket.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4166113375888586791" datatype="html">
+        <source>Usuario: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;user-link&quot;&gt;"/>John Doe<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/ui/ticket/ticket.html</context>
+          <context context-type="linenumber">6,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4232299256956065229" datatype="html">
+        <source>Adjuntar imagen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/ui/upload-image/upload-image.html</context>
+          <context context-type="linenumber">5,6</context>
         </context-group>
       </trans-unit>
     </body>

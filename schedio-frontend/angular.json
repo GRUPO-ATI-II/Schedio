@@ -29,7 +29,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "polyfills": [
-              "node_modules/zone.js/fesm2015/zone.js",
+              "zone.js",
               "@angular/localize/init"
             ],
             "assets": [
