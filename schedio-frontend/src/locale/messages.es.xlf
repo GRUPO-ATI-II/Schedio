@@ -255,78 +255,116 @@
         </context-group>
       </trans-unit>
       <trans-unit id="EditProfile" datatype="html">
-        <source> Editar perfil
+        <source> Configuración
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
-          <context context-type="linenumber">2,5</context>
+          <context context-type="linenumber">2,6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="Username" datatype="html">
-        <source>Nombre de usuario</source>
+      <trans-unit id="4364325144232719896" datatype="html">
+        <source> Cerrar Sesión <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;./icon_logout.svg&quot; class=&quot;btn-icon&quot; alt=&quot;Logout Icon&quot; /&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
-          <context context-type="linenumber">8,9</context>
+          <context context-type="linenumber">17,19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="UsernamePlaceholder" datatype="html">
-        <source>Ingrese el nombre de usuario</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="Desc" datatype="html">
-        <source>Descripción</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
-          <context context-type="linenumber">12,13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/error/error.html</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="DescPlaceholder" datatype="html">
-        <source>Cuéntanos de ti</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="Email" datatype="html">
-        <source>Correo electrónico</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ChangePassword" datatype="html">
-        <source>Cambiar contraseña</source>
+      <trans-unit id="BasicUserData" datatype="html">
+        <source>Datos Básicos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
           <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="PasswordPlaceholder" datatype="html">
-        <source>Ingrese la contraseña</source>
+      <trans-unit id="UsernamePlaceholder" datatype="html">
+        <source>Nombre Completo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="ConfirmPasswordPlaceholder" datatype="html">
-        <source>Confirme la contraseña</source>
+      <trans-unit id="PasswordPlaceholder" datatype="html">
+        <source>Contraseña</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="ProfilePicture" datatype="html">
-        <source>Foto de perfil</source>
+      <trans-unit id="ConfirmPasswordPlaceholder" datatype="html">
+        <source>Confirmar Contraseña</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Internationalization" datatype="html">
+        <source>Internacionalización</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="LanguageSelect" datatype="html">
+        <source>Idioma Preferido</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Spanish" datatype="html">
+        <source>Español</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="English" datatype="html">
+        <source>Inglés</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="French" datatype="html">
+        <source>Francés</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Italian" datatype="html">
+        <source>Italiano</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Portuguese" datatype="html">
+        <source>Portugués</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Support" datatype="html">
+        <source>¿Estás teniendo problemas?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4115874022400093637" datatype="html">
+        <source>Envia un ticket</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2587370317988213854" datatype="html">
+        <source>Reportar Error</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/edit-profile/edit-profile.html</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ErrorReport" datatype="html">
@@ -369,6 +407,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/error/error.html</context>
           <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="Desc" datatype="html">
+        <source>Descripción</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/error/error.html</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="DescErrorPlaceholder" datatype="html">

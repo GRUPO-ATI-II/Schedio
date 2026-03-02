@@ -16,6 +16,18 @@ import { Router } from '@angular/router';
 export class EditProfile {
   private router = inject(Router);
 
+  onGuardar(selectedLang: string) {
+    if (selectedLang) {
+
+      const segments = window.location.pathname.split('/');
+      const currentPath = segments.slice(2).join('/');
+
+      window.location.href = `/${selectedLang}/${currentPath}`;
+    } else {
+      console.log("No language change");
+    }
+  }
+
   sendTicket() {
     this.router.navigate(['/ticket']);
   }

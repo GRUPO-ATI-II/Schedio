@@ -1,2 +1,2 @@
-<app-rect-base-button i18n>Cancelar</app-rect-base-button>
-<app-rect-base-button [isAction]="true" i18n>Guardar</app-rect-base-button>
+<app-rect-base-button (clicked)="onCancel()" i18n>Cancelar</app-rect-base-button>
+<app-rect-base-button [isAction]="true" (clicked)="onSave()" i18n>Guardar</app-rect-base-button>

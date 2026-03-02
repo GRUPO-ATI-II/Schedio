@@ -5,8 +5,9 @@
 
 <div class="content">
   <div class="basic-profile-info-group">
-    <app-pfp></app-pfp>
+    <app-pfp src="./profile_picture.jpeg"></app-pfp>
     <div class="username">
+<!--this should be variable (the actual username)-->
       <label>Nombre de usuario</label>
       <button class="edit-btn">
         <img src="./icon_edit.svg" alt="Edit Username" />
@@ -29,13 +30,13 @@
     <app-upload-image></app-upload-image>
 
     <label class="section-label" i18n="@@Internationalization">Internacionalización</label>
-    <select class="custom-select">
-      <option disabled selected i18n="@@LanguageSelect">Idioma Preferido</option>
-      <option i18n="@@Spanish">Español</option>
-      <option i18n="@@English">Inglés</option>
-      <option i18n="@@French">Francés</option>
-      <option i18n="@@Italian">Italiano</option>
-      <option i18n="@@Portuguese">Portugués</option>
+    <select class="custom-select" #langSelect>
+      <option value="" disabled selected i18n="@@LanguageSelect">Idioma Preferido</option>
+      <option value="es" i18n="@@Spanish">Español</option>
+      <option value="en" i18n="@@English">Inglés</option>
+      <option value="fr" i18n="@@French">Francés</option>
+      <option value="it" i18n="@@Italian">Italiano</option>
+      <option value="pt" i18n="@@Portuguese">Portugués</option>
     </select>
 
     <label class="section-label" i18n="@@Support">¿Estás teniendo problemas?</label>
@@ -43,4 +44,4 @@
     <app-rect-base-button [isLine]="true" id="report-btn" (clicked)="reportError()" i18n>Reportar Error</app-rect-base-button>
   </div>
 </div>
-<app-button-box></app-button-box>
+<app-button-box (saveClicked)="onGuardar(langSelect.value)"></app-button-box>
