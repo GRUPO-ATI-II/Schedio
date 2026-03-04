@@ -3,7 +3,7 @@ const reminderService = require("../services/reminders.service");
 // --- CREAR RECORDATORIO ---
 const create = async (req, res) => {
   try {
-    // req.body debe traer: description, date, agenda (ID) y opcionalmente event (ID)
+    // Body esperado: { description, date, agenda (ID), event (ID) }
     const newReminder = await reminderService.createReminder(req.body);
     res.status(201).json({
       message: "Reminder created successfully",

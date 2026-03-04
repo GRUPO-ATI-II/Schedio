@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 
+/**
+ * Reminder siempre es creado por un Event (relación "Creates" del diagrama ER).
+ * También mantiene referencia directa a la Agenda a la que pertenece.
+ */
 const ReminderSchema = new mongoose.Schema(
   {
     description: {
@@ -15,13 +19,14 @@ const ReminderSchema = new mongoose.Schema(
     agenda: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Agenda",
-      required: true,
+      required: [true, "El recordatorio debe estar vinculado a una agenda"],
     },
 
+    // Según el diagrama ER: Event --Creates--> Reminder (1:M), event es requerido
     event: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Event",
-      default: null,
+      required: [true, "El recordatorio debe estar vinculado a un evento"],
     },
 
     completed: {

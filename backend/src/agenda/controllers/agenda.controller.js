@@ -3,9 +3,8 @@ const agendaService = require("../services/agenda.service");
 // --- CREAR AGENDA ---
 const create = async (req, res) => {
   try {
-    // El cuerpo debe contener el userId (ej: { "user": "ID_DE_MONGO" })
+    // Body esperado: { users: ["userId1", "userId2", ...] }
     const newAgenda = await agendaService.createAgenda(req.body);
-
     res.status(201).json({
       message: "Agenda created successfully",
       agenda: newAgenda,
@@ -18,17 +17,45 @@ const create = async (req, res) => {
   }
 };
 
-// --- OBTENER AGENDA POR USUARIO ---
+// --- OBTENER AGENDAS DE UN USUARIO (M:N) ---
 const getByUser = async (req, res) => {
   try {
     const { userId } = req.params;
-    const agenda = await agendaService.getAgendaByUserId(userId);
+    // Retorna TODAS las agendas en las que el usuario participa
+    const agendas = await agendaService.getAgendasByUserId(userId);
+    res.status(200).json(agendas);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-    if (!agenda) {
-      return res.status(404).json({ message: "No agenda found for this user" });
+// --- AGREGAR USUARIO A AGENDA (M:N) ---
+const addUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { userId } = req.body;
+    const updated = await agendaService.addUserToAgenda(id, userId);
+    if (!updated) {
+      return res.status(404).json({ message: "Agenda not found" });
     }
+    res.status(200).json({ message: "User added to agenda", agenda: updated });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-    res.status(200).json(agenda);
+// --- REMOVER USUARIO DE AGENDA (M:N) ---
+const removeUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { userId } = req.body;
+    const updated = await agendaService.removeUserFromAgenda(id, userId);
+    if (!updated) {
+      return res.status(404).json({ message: "Agenda not found" });
+    }
+    res
+      .status(200)
+      .json({ message: "User removed from agenda", agenda: updated });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -37,15 +64,12 @@ const getByUser = async (req, res) => {
 // --- ACTUALIZAR AGENDA ---
 const update = async (req, res) => {
   try {
-    const { id } = req.params; // El ID de la agenda
+    const { id } = req.params;
     const { field, newValue } = req.body;
-
     const updatedAgenda = await agendaService.updateAgenda(id, field, newValue);
-
     if (!updatedAgenda) {
       return res.status(404).json({ message: "Agenda not found" });
     }
-
     res
       .status(200)
       .json({ message: "Update successful", agenda: updatedAgenda });
@@ -59,15 +83,13 @@ const remove = async (req, res) => {
   try {
     const { id } = req.params;
     const deleted = await agendaService.deleteAgenda(id);
-
     if (!deleted) {
       return res.status(404).json({ message: "Agenda not found" });
     }
-
     res.status(200).json({ message: "Agenda deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = { create, getByUser, update, remove };
+module.exports = { create, getByUser, addUser, removeUser, update, remove };

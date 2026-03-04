@@ -1,30 +1,18 @@
 const mongoose = require("mongoose");
 
+/**
+ * Grade representa un nivel o ciclo académico al que pertenece un usuario.
+ * Ejemplos: "1er Ciclo", "5to Ciclo", "8vo Ciclo".
+ *
+ * NOTA: Las calificaciones numéricas están en la entidad GradeRecord.
+ */
 const GradeSchema = new mongoose.Schema(
   {
-    score: {
-      type: Number,
-      required: [true, "La nota es obligatoria"],
-      min: 0,
-      max: 20,
-    },
-
-    assignment: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Assignment",
-      required: true,
-    },
-
-    subject: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Subject",
-      required: true,
-    },
-
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+    value: {
+      type: String,
+      required: [true, "El valor del nivel académico es obligatorio"],
+      unique: true,
+      trim: true,
     },
   },
   {

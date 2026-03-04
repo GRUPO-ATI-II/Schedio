@@ -1,11 +1,23 @@
 const mongoose = require("mongoose");
 
+/**
+ * Agenda soporta relación M:N con User.
+ * Una agenda puede ser compartida por múltiples usuarios (e.g. agenda grupal),
+ * y un usuario puede pertenecer a múltiples agendas.
+ */
 const AgendaSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: [true, "La agenda debe estar vinculada a un usuario"],
+    users: {
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      ],
+      validate: {
+        validator: (arr) => arr.length > 0,
+        message: "La agenda debe tener al menos un usuario vinculado",
+      },
     },
 
     creation_time: {

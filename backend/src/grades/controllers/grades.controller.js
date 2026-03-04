@@ -1,70 +1,73 @@
-const agendaService = require("../services/grade.service");
+const gradeRecordService = require("../services/grade.service");
 
-// --- CREAR AGENDA ---
+// --- CREAR REGISTRO DE NOTA ---
 const create = async (req, res) => {
   try {
-    // El cuerpo debe contener el userId (ej: { "user": "ID_DE_MONGO" })
-    const newAgenda = await agendaService.createAgenda(req.body);
-
+    // Body esperado: { score, user, assignment, subject }
+    const newGradeRecord = await gradeRecordService.createGradeRecord(req.body);
     res.status(201).json({
-      message: "Agenda created successfully",
-      agenda: newAgenda,
+      message: "GradeRecord created successfully",
+      gradeRecord: newGradeRecord,
     });
   } catch (error) {
-    console.error("❌ [Agenda Controller Error]:", error.message);
+    console.error("❌ [GradeRecord Controller Error]:", error.message);
     res
       .status(500)
-      .json({ error: "Internal Server Error while creating agenda" });
+      .json({ error: "Internal Server Error while creating grade record" });
   }
 };
 
-// --- OBTENER AGENDA POR USUARIO ---
-const getByUser = async (req, res) => {
+// --- OBTENER NOTAS POR MATERIA Y USUARIO ---
+const getBySubject = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const agenda = await agendaService.getAgendaByUserId(userId);
-
-    if (!agenda) {
-      return res.status(404).json({ message: "No agenda found for this user" });
-    }
-
-    res.status(200).json(agenda);
+    const { userId, subjectId } = req.params;
+    const grades = await gradeRecordService.getGradesBySubject(
+      userId,
+      subjectId,
+    );
+    res.status(200).json(grades);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// --- ACTUALIZAR AGENDA ---
+// --- OBTENER PROMEDIO POR MATERIA Y USUARIO ---
+const getAverage = async (req, res) => {
+  try {
+    const { userId, subjectId } = req.params;
+    const average = await gradeRecordService.getAverageBySubject(
+      userId,
+      subjectId,
+    );
+    res.status(200).json({ average });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// --- OBTENER NOTAS POR ASIGNACIÓN ---
+const getByAssignment = async (req, res) => {
+  try {
+    const { assignmentId } = req.params;
+    const grades = await gradeRecordService.getGradesByAssignment(assignmentId);
+    res.status(200).json(grades);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// --- ACTUALIZAR NOTA ---
 const update = async (req, res) => {
   try {
-    const { id } = req.params; // El ID de la agenda
-    const { field, newValue } = req.body;
-
-    const updatedAgenda = await agendaService.updateAgenda(id, field, newValue);
-
-    if (!updatedAgenda) {
-      return res.status(404).json({ message: "Agenda not found" });
+    const { id } = req.params;
+    const { score } = req.body;
+    const updated = await gradeRecordService.updateGradeRecord(id, score);
+    if (!updated) {
+      return res.status(404).json({ message: "GradeRecord not found" });
     }
-
     res
       .status(200)
-      .json({ message: "Update successful", agenda: updatedAgenda });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-// --- ELIMINAR AGENDA ---
-const remove = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const deleted = await agendaService.deleteAgenda(id);
-
-    if (!deleted) {
-      return res.status(404).json({ message: "Agenda not found" });
-    }
-
-    res.status(200).json({ message: "Agenda deleted successfully" });
+      .json({ message: "Update successful", gradeRecord: updated });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -72,7 +75,8 @@ const remove = async (req, res) => {
 
 module.exports = {
   create,
-  getByUser,
+  getBySubject,
+  getAverage,
+  getByAssignment,
   update,
-  remove,
 };
