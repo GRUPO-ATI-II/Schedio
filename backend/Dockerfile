@@ -1,24 +1,20 @@
-FROM node:22-alpine
-
-# Definimos el directorio de trabajo
+FROM node:22-alpine AS base
 WORKDIR /app
-
-# Copiamos archivos de dependencias
 COPY package*.json ./
-
-# Instalamos todas las dependencias (incluyendo devDependencies)
 RUN npm install
-
-# Copiamos el resto del código
 COPY . .
 
-# Seteamos variables de entorno para desarrollo
-ENV NODE_ENV=dev
-# Aseguramos que los binarios de node_modules sean visibles
+# Etapa de desarrollo
+FROM base AS development
+ENV NODE_ENV=development
 ENV PATH /app/node_modules/.bin:$PATH
-
-# Exponemos el puerto definido en tu .env.dev (usualmente 3000)
 EXPOSE 3000
-
-# Comando para arrancar en modo desarrollo
+# Usamos el nuevo comando que definiste
 CMD ["npm", "run", "start:dev"]
+
+# Etapa de producción (Para Jenkins)
+FROM base AS production
+ENV NODE_ENV=production
+RUN npm prune --production
+EXPOSE 3000
+CMD ["npm", "start"]

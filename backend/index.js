@@ -2,15 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
-const { database, up } = require("migrate-mongo");
-// IMPORTANTE: Importamos la configuración para el migrador
-const migrateConfig = require("./migrate-mongo-config.js");
+// Importamos la librería completa primero
+const migrateMongo = require("migrate-mongo");
 
-// 1. Configuración de Entorno Dinámica
 const env = process.env.NODE_ENV || "dev";
 dotenv.config({ path: path.resolve(process.cwd(), `.env.${env}`) });
 
-// Importación de Módulos
+// Módulos (Usuarios, Agenda, etc.)
 const userModule = require("./src/users/user.module");
 const agendaModule = require("./src/agenda/agenda.module");
 const reminderModule = require("./src/reminders/reminders.module");
@@ -22,51 +20,51 @@ const gradeModule = require("./src/grades/grade.module");
 const app = express();
 app.use(express.json());
 
-// 2. Función para ejecutar Migraciones automáticas
 const runMigrations = async () => {
   try {
     console.log(
       `🔄 [Migrator]: Verificando migraciones en entorno: ${env.toUpperCase()}`,
     );
 
-    // CORRECCIÓN: Pasamos migrateConfig a la función connect
-    const { db, client } = await database.connect(migrateConfig);
-    const migrated = await up(db, client);
+    // migrate-mongo v14.x (CommonJS) returns promises via Proxy
+    const up = await migrateMongo.up;
+    const config = await migrateMongo.config;
 
-    migrated.forEach((file) =>
-      console.log(`✅ [Migrator]: Ejecutada con éxito -> ${file}`),
-    );
+    // Cargar la configuración desde migrate-mongo-config.js
+    await config.read();
 
-    if (migrated.length === 0) {
+    // Mongoose ya está conectado, usamos su base de datos nativa
+    const db = mongoose.connection.db;
+
+    const migrated = await up(db);
+
+    if (migrated && migrated.length > 0) {
+      migrated.forEach((file) =>
+        console.log(`✅ [Migrator]: Ejecutada -> ${file}`),
+      );
+    } else {
       console.log("ℹ️ [Migrator]: No hay migraciones pendientes.");
     }
-
-    // Cerramos la conexión del cliente de migración (no la de mongoose)
-    await client.close();
   } catch (err) {
-    console.error(
-      "❌ [Migrator Error]: No se pudieron ejecutar las migraciones:",
-      err.message,
-    );
-    // En desarrollo, podrías quitar el process.exit para que la app no muera
-    // process.exit(1);
+    console.error("❌ [Migrator Error]:", err.message);
   }
 };
 
-// 3. Configuración de MongoDB y Arranque de App
+// 3. Configuración de MongoDB y Arranque
 const startApp = async () => {
   try {
-    // Conexión a DB via Mongoose
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log(
-      `🔌 [DB]: MongoDB Conectado a ${process.env.DB_NAME || "Schedio"}`,
-    );
-    mongoose.set("autoIndex", true);
+    const mongoUri =
+      process.env.MONGO_URI || "mongodb://mongo:27017/schedio_dev";
 
-    // Ejecutar migraciones
+    await mongoose.connect(mongoUri);
+    console.log(
+      `🔌 [DB]: MongoDB Conectado a ${process.env.DB_NAME || "schedio_dev"}`,
+    );
+
+    // Ejecutar migraciones tras conectar la DB
     await runMigrations();
 
-    // Inicialización de Módulos
+    // Cargar módulos
     userModule(app);
     agendaModule(app);
     reminderModule(app);
@@ -75,7 +73,6 @@ const startApp = async () => {
     assignmentModule(app);
     gradeModule(app);
 
-    // 4. Escucha de Puerto Dinámica
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(
