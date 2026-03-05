@@ -17,6 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/f
 })
 export class DateField implements ControlValueAccessor {
     @Input() label: string = '';
+    @Input() required: boolean = false;
 
     value: string = '';
       onChange: any = () => {};

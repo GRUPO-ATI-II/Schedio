@@ -1,0 +1,27 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: schedio_db_container
+    restart: always
+    ports:
+      - "27017:27017" # Para que te conectes desde MongoDB Compass en tu PC
+    volumes:
+      - schedio_data:/data/db
+  api:
+    build: .
+    container_name: schedio_api
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=dev
+      - MONGO_URI=mongodb://mongodb:27017/schedio_dev
+      - PORT=3000
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: on-failure
+
+volumes:
+  schedio_data:

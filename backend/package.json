@@ -4,8 +4,11 @@
   "description": "Este proyecto consiste en una aplicación web de planificación personal, con módulos personalizables inicialmente orientados al ámbito estudiantil universitario.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -L index.js",
-    "start": "node index.js",
+    "start:dev": "cross-env NODE_ENV=dev nodemon index.js",
+    "start:qa": "cross-env NODE_ENV=qa node index.js",
+    "start:prod": "cross-env NODE_ENV=prod node index.js",
+    "migrate:create": "cross-env NODE_ENV=dev migrate-mongo create",
+    "migrate:up": "cross-env NODE_ENV=dev migrate-mongo up",
     "test": "jest --runInBand --detectOpenHandles",
     "test:ci": "jest --ci --reporters=default --reporters=jest-junit --runInBand"
   },
@@ -23,7 +26,10 @@
   "dependencies": {
     "bcryptjs": "^3.0.0",
     "cors": "^2.8.6",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "migrate-mongo": "^14.0.7",
     "mongoose": "^9.1.6"
   },
   "devDependencies": {

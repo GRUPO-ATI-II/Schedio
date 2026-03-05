@@ -7,6 +7,7 @@
     <form class="login-form vertical" (ngSubmit)="login()">
       <app-input-field
         label="Correo Electrónico"
+        [required]="missingEmail"
         i18n-label="@@emailLabel"
         name="email"
         type="email"
@@ -16,6 +17,7 @@
       </app-input-field>
       <app-input-field
         label="Contraseña"
+        [required]="missingPassword"
         i18n-label="@@passwordLabel"
         name="password"
         type="password"
@@ -23,7 +25,8 @@
         i18n-placeholder="@@passwordPlaceholder"
         [(ngModel)]="loginForm.password">
       </app-input-field>
-
+      <label [class.visible]="missingFields" class="missingField" i18n>* campos obligatorios</label>
+      <label [class.visible]="wrongCredentials" class="missingField" i18n>Credenciales Incorrectas</label>
       <app-rect-base-button
         [isAction]="true"
         class="login-button"

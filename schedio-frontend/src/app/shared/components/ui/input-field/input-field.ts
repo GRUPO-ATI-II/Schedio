@@ -20,6 +20,8 @@ export class InputField{
   @Input() type: string = 'text';
   @Input() name: string = '';
   @Input() pattern: string = ''
+  @Input() label: string = '';
+  @Input() required: boolean = false;
 
   value: string = '';
   onChange: any = () => {};
