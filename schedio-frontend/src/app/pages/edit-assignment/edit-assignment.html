@@ -1,0 +1,59 @@
+<div class="task-container vertical">
+  <div>
+    <h2 class="form-title" i18n="@@EditAssignment">Editar Tarea</h2>
+
+    <div class="form-grid">
+      <div class="column">
+        <div class="input-group">
+          <label i18n>Titulo de la Tarea</label>
+          <app-input-field placeholder=""
+                           i18n-placeholder="@@AssignmentNamePlaceholder">
+          </app-input-field>
+        </div>
+
+        <div class="input-group">
+          <label i18n>Descripción</label>
+          <textarea placeholder="Descripción breve" i18n-placeholder="@@AssignmentDescPlaceholder"></textarea>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="input-group">
+          <label i18n>Fecha de Finalización</label>
+          <div class="date-inputs">
+            <input type="number" class="custom-input date-field" placeholder="Día" min="1" max="31">
+            <input type="number" class="custom-input date-field" placeholder="Mes" min="1" max="12">
+            <input type="number" class="custom-input date-field" placeholder="Año" min="2000">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label i18n>Hora de Finalización</label>
+          <div class="time-inputs">
+            <input type="number" class="custom-input time-field" placeholder="Hora" min="1" max="12">
+            <input type="number" class="custom-input time-field" placeholder="Min" min="0" max="59">
+            <select class="custom-select time-select">
+              <option i18n>AM</option>
+              <option i18n>PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label i18n>Categoría</label>
+          <select class="custom-select">
+            <option disabled selected i18n>Selecciona la categoría</option>
+            <option i18n>Trabajo</option>
+            <option i18n>Estudio</option>
+            <option i18n>Personal</option>
+          </select>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <div class="actions">
+    <app-rect-base-button class="cancel-btn" i18n>Cancelar</app-rect-base-button>
+    <app-rect-base-button [isAction]="true" i18n>Guardar</app-rect-base-button>
+  </div>
+</div>
