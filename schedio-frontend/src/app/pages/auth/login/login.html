@@ -25,7 +25,8 @@
         i18n-placeholder="@@passwordPlaceholder"
         [(ngModel)]="loginForm.password">
       </app-input-field>
-
+      <label [class.visible]="missingFields" class="missingField" i18n>* campos obligatorios</label>
+      <label [class.visible]="wrongCredentials" class="missingField" i18n>Credenciales Incorrectas</label>
       <app-rect-base-button
         [isAction]="true"
         class="login-button"

@@ -19,6 +19,7 @@ export class Register {
     missingBDay = false;
     missingPassword = false;
     passwordError = false;
+    missingFields = false;
 
     userForm = {
         username: '',
@@ -44,7 +45,8 @@ export class Register {
         this.missingPassword = !this.userForm.password;
         this.passwordError = this.userForm.password != this.userForm.confirmPassword;
 
-        if (this.missingUsername || this.missingEmail || this.missingBDay || this.missingPassword || this.passwordError) {
+        this.missingFields = this.missingUsername || this.missingEmail || this.missingBDay || this.missingPassword;
+        if (this.missingFields || this.passwordError) {
             this.isSubmitting = false;
             return;
         }

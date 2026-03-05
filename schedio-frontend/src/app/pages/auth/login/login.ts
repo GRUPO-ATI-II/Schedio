@@ -16,6 +16,9 @@ export class Login {
   isSubmitting = false;
   missingEmail = false;
   missingPassword = false;
+  missingFields = false;
+  wrongCredentials = false;
+
   constructor(private authService: AuthService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object) {}
@@ -25,8 +28,10 @@ export class Login {
     this.isSubmitting = true;
     this.missingEmail = !this.loginForm.email;
     this.missingPassword = !this.loginForm.password;
+    this.missingFields = this.missingEmail || this.missingPassword;
+    this.wrongCredentials = false;
 
-    if (this.missingPassword || this.missingEmail) {
+    if (this.missingFields) {
       this.isSubmitting = false;
       return;
     }
@@ -39,8 +44,8 @@ export class Login {
       error: (err) => {
           this.isSubmitting = false;
           console.error('Login Error:', err);
-          alert('Credenciales incorrectas');
         }
     });
+    this.wrongCredentials = true;
   }
 }
