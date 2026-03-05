@@ -15,7 +15,6 @@ main {
   width: clamp(20rem, 95%, 28rem);
   justify-content: center;
   align-items: center;
-  height: 60%;
 }
 
 .image-container {

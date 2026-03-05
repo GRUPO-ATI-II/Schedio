@@ -7,6 +7,30 @@ main {
   padding: 1rem;
 }
 
+.input-label {
+  font-size: 0.875rem;
+  color: var(--light-fc, #fff);
+  font-weight: 500;
+  text-align: left;
+  padding-left: 0.25rem;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.missingField {
+  color: var(--error);
+  display: none;
+}
+
+.visible {
+  display: inline;
+}
+
 .login-container {
   background-color: var(--main-card-color);
   border-radius: 24px;
@@ -15,7 +39,7 @@ main {
   width: clamp(20rem, 95%, 28rem);
   justify-content: center;
   align-items: center;
-  height: auto; 
+  height: auto;
   /* Changed height from 60% to auto to fit all the inputs nicely */
 }
 
