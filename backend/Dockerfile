@@ -1,16 +1,20 @@
 FROM node:22-alpine AS base
-
 WORKDIR /app
-
 COPY package*.json ./
-
 RUN npm install
-
 COPY . .
 
+# Etapa de desarrollo
 FROM base AS development
-CMD ["npm", "run", "dev"]
+ENV NODE_ENV=development
+ENV PATH /app/node_modules/.bin:$PATH
+EXPOSE 3000
+# Usamos el nuevo comando que definiste
+CMD ["npm", "run", "start:dev"]
 
+# Etapa de producción (Para Jenkins)
 FROM base AS production
-RUN npm prune --production # Limpia dependencias de desarrollo
+ENV NODE_ENV=production
+RUN npm prune --production
+EXPOSE 3000
 CMD ["npm", "start"]

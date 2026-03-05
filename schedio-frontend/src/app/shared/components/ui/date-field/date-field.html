@@ -1,6 +1,9 @@
 <div class="date-container">
   @if (label) {
-    <label class="date-label">{{ label }}</label>
+    <label class="date-label">
+      {{ label }}
+      <span [class.visible]="required" class="missingField">*</span>
+    </label>
   }
   <input class="input-field" type="date"
    [value]="value"

@@ -2,28 +2,20 @@
   <div class="login-container vertical">
       <img src="./logo-horizontal.svg" alt="Logo" class="login-logo" />
       <form class="login-form vertical" (ngSubmit)="register()">
-        <app-input-field
-          label="Nombre"
-          i18n-label="@@firstNameLabel"
-          name="firstName"
-          placeholder="Ingrese su nombre"
-          i18n-placeholder="@@firstNamePlaceholder"
-          pattern='[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*'
-          [(ngModel)]="userForm.firstName">
-        </app-input-field>
 
         <app-input-field
-          label="Apellido"
-          i18n-label="@@lastNameLabel"
-          name="lastName"
-          placeholder="Ingrese su apellido"
-          i18n-placeholder="@@lastNamePlaceholder"
-          pattern='[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*'
-          [(ngModel)]="userForm.lastName">
+          label="Nombre de Usuario"
+          [required]="missingUsername"
+          i18n-label="@@usernameLabel"
+          name="userName"
+          placeholder="Ingrese su nombre de usuario"
+          i18n-placeholder="@@usernamePlaceholder"
+          [(ngModel)]="userForm.username">
         </app-input-field>
 
         <app-input-field
           label="Correo Electrónico"
+          [required]="missingEmail"
           i18n-label="@@emailLabel"
           name="email"
           placeholder="Ingrese su correo electrónico"
@@ -34,21 +26,33 @@
 
         <app-date-field
           label="Fecha de Nacimiento"
+          [required]="missingBDay"
           i18n-label="@@birthDateLabel"
           [(ngModel)]="userForm.birthDate"
           name="birthDate">
         </app-date-field>
 
-        <app-input-field
-          label="Contraseña"
-          i18n-label="@@passwordLabel"
-          name="password"
-          placeholder="Ingrese su contraseña"
-          i18n-placeholder="@@passwordPlaceholder"
-          type='password'
-          [(ngModel)]="userForm.password">
-        </app-input-field>
-
+        <div class="info-section">
+          <app-input-field
+            label="Contraseña"
+            [required]="missingPassword"
+            i18n-label="@@passwordLabel"
+            name="password"
+            placeholder="Ingrese su contraseña"
+            i18n-placeholder="@@passwordPlaceholder"
+            type='password'
+            [(ngModel)]="userForm.password">
+          </app-input-field>
+          <app-input-field
+            name="confirmPassword"
+            placeholder="Confirmar contraseña"
+            i18n-placeholder="@@confirmPasswordPlaceholder"
+            type='password'
+            [(ngModel)]="userForm.confirmPassword">
+          </app-input-field>
+          <label [class.visible]="passwordError" class="missingField" i18n>Las contraseñas no coinciden</label>
+        </div>
+        <label [class.visible]="missingFields" class="missingField" i18n>* campos obligatorios</label>
         <app-rect-base-button [isAction]="true" class="login-button" i18n="@@SignInButton">Registrar</app-rect-base-button>
       </form>
       <a routerLink="/login" i18n="@@LoginLink">¿Ya tienes cuenta? Inicia sesión aquí.</a>
