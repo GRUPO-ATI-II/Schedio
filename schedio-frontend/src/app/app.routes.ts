@@ -5,6 +5,7 @@ import { ResetUserCredentials } from './pages/contact-center/reset-user-credenti
 import { EditSpecificUserCredentials } from './pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials';
 import { Error } from './pages/error/error';
 import { EditProfile } from './pages/edit-profile/edit-profile';
+import { CreateAssignment } from './pages/create-assignment/create-assignment';
 import { NotFound } from './pages/not-found/not-found';
 
 export const routes: Routes = [
@@ -49,6 +50,10 @@ export const routes: Routes = [
       {
         path: 'contact-center/edit-user',
         component: EditSpecificUserCredentials,
+      },
+      {
+        path: 'agenda/new-assignment',
+        component: CreateAssignment,
       },
       {
         path: '**',

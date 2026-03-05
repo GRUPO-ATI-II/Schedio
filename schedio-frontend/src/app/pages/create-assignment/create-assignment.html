@@ -1,0 +1,56 @@
+<h2 class = "pageHeader" i18n="@@NewAssignment">
+  Nueva Tarea
+</h2>
+
+<form class="form-grid">
+  <label class="section-label" i18n="@@NewAssignmentTitle">Título de la tarea</label>
+
+  <label class="section-label second-column" i18n="@@FinishDate">Fecha de finalización</label>
+
+  <app-input-field
+    placeholder='Colócale un nombre a tu tarea'
+    i18n-placeholder="@@NewAssignmentTitlePlaceholder">
+  </app-input-field>
+
+  <app-input-field
+    placeholder='Día'
+    i18n-placeholder="@@DayPlaceholder">
+  </app-input-field>
+  <app-input-field
+    placeholder='Mes'
+    i18n-placeholder="@@MonthPlaceholder">
+  </app-input-field>
+  <app-input-field
+    placeholder='Año'
+    i18n-placeholder="@@YearPlaceholder">
+  </app-input-field>
+
+  <label class="section-label" i18n="@@NewAssignmentDesc">Descripción (Opcional)</label>
+
+  <label class="section-label second-column" i18n="@@FinishTime">Hora de finalización</label>
+
+  <app-input-textarea
+    placeholder='Describe tu tarea en pocas palabras'
+    i18n-placeholder="@@NewAssignmentDescPlaceholder">
+  </app-input-textarea>
+
+  <app-input-field
+    placeholder='Hora'
+    i18n-placeholder="@@HourPlaceholder">
+  </app-input-field>
+  <app-input-field
+    placeholder='Min'
+    i18n-placeholder="@@MinutePlaceholder">
+  </app-input-field>
+  <select class="custom-select">
+    <option value="" disabled selected i18n>AM/PM</option>
+  </select>
+
+  <label class="section-label" i18n="@@Category">Categoria</label>
+
+  <select class="custom-select second-column">
+    <option value="" disabled selected i18n>Selecciona una categoría</option>
+  </select>
+
+</form>
+<app-button-box></app-button-box>
