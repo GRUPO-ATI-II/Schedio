@@ -6,6 +6,7 @@ import { EditSpecificUserCredentials } from './pages/contact-center/edit-specifi
 import { Error } from './pages/error/error';
 import { EditProfile } from './pages/edit-profile/edit-profile';
 import { NotFound } from './pages/not-found/not-found';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',

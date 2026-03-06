@@ -13,7 +13,7 @@
         <img src="./icon_edit.svg" alt="Edit Username" />
       </button>
     </div>
-    <app-rect-base-button [isAction]="true" id="logout" i18n>
+    <app-rect-base-button [isAction]="true" id="logout" (clicked)="logout()" i18n>
       Cerrar Sesión
       <img src="./icon_logout.svg" class="btn-icon" alt="Logout Icon" />
     </app-rect-base-button>

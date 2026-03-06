@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InputField } from '../../../shared/components/ui/input-field/input-field';
@@ -14,8 +14,11 @@ import { HttpClient } from '@angular/common/http';
     styleUrl: './register.css',
 })
 export class Register {
+    private static readonly EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     missingUsername = false;
     missingEmail = false;
+    invalidEmail = false;
     missingBDay = false;
     missingPassword = false;
     passwordError = false;
@@ -29,11 +32,13 @@ export class Register {
         confirmPassword: '',
     };
 
-    constructor(private authService: AuthService,
+    constructor(
+      private authService: AuthService,
       private router: Router,
       private http: HttpClient,
-      @Inject(PLATFORM_ID) private platformId: Object
-      ) {}
+      private cdr: ChangeDetectorRef,
+      @Inject(PLATFORM_ID) private platformId: Object,
+    ) {}
 
     isSubmitting = false;
     register() {
@@ -41,22 +46,23 @@ export class Register {
         this.isSubmitting = true;
         this.missingUsername = !this.userForm.username;
         this.missingEmail = !this.userForm.email;
+        this.invalidEmail = !!this.userForm.email && !Register.EMAIL_REGEX.test(this.userForm.email.trim());
         this.missingBDay = !this.userForm.birthDate;
         this.missingPassword = !this.userForm.password;
         this.passwordError = this.userForm.password != this.userForm.confirmPassword;
 
         this.missingFields = this.missingUsername || this.missingEmail || this.missingBDay || this.missingPassword;
-        if (this.missingFields || this.passwordError) {
+        if (this.missingFields || this.invalidEmail || this.passwordError) {
             this.isSubmitting = false;
+            this.cdr.detectChanges();
             return;
         }
 
         const { confirmPassword, ...dataToSend } = this.userForm;
 
         this.authService.register(dataToSend).subscribe({
-            next: (response) => {
-                console.log('Successful Sign in', response);
-                this.router.navigate(['/login']); // Redirige al éxito
+            next: () => {
+                this.router.navigate(['/login'], { state: { registrationSuccess: true } });
             },
             error: (err) => {
                 console.error('Sign in Error:', err);
