@@ -1,1 +1,20 @@
-<div class="user-favorites-card"></div>
+<div class="user-favorites-card">
+  <div class="card-header" (click)="toggle()">
+    <h3 class="card-title" i18n>Favoritos</h3>
+    <img src="icon_despliegue.svg" alt="Toggle" [class.expanded]="isExpanded">
+  </div>
+  <ul class="favorite-list" *ngIf="isExpanded">
+    <li>
+      <div class="item-name">
+        <span class="dot bday-dot"></span>
+        <span i18n>Proyecto Web</span>
+      </div>
+    </li>
+    <li>
+      <div class="item-name">
+        <span class="dot work-dot"></span>
+        <span i18n>Reunión diseño</span>
+      </div>
+    </li>
+  </ul>
+</div>
