@@ -1,17 +1,17 @@
-<h2 class = "pageHeader" i18n="@@NewAssignment">
-  Nueva Tarea
+<h2 class = "pageHeader" i18n="@@NewEvent">
+  Nuevo Evento
 </h2>
 
 <form class="form-grid">
-  <label class="section-label" i18n="@@NewAssignmentTitle">Título de la tarea</label>
+  <label class="section-label" i18n="@@NewEventTitle">Título del evento</label>
 
-  <label class="section-label second-column" i18n="@@FinishDate">Fecha de finalización</label>
+  <label class="section-label second-column" i18n="@@EventDate">Fecha del evento</label>
 
   <app-input-field
     [(ngModel)]="title"
     name="title"
-    placeholder='Colócale un nombre a tu tarea'
-    i18n-placeholder="@@NewAssignmentTitlePlaceholder">
+    placeholder='Colócale un nombre a tu evento'
+    i18n-placeholder="@@NewEventTitlePlaceholder">
   </app-input-field>
 
   <app-date-field
@@ -19,14 +19,14 @@
     name="date"
   ></app-date-field>
 
-  <label class="section-label" i18n="@@NewAssignmentDesc">Descripción (Opcional)</label>
+  <label class="section-label" i18n="@@NewEventDesc">Descripción (Opcional)</label>
 
-  <label class="section-label second-column" i18n="@@FinishTime">Hora de finalización</label>
+  <label class="section-label second-column" i18n="@@EventTime">Hora de inicio</label>
 
   <app-input-textarea
     [(ngModel)]="description"
     name="description"
-    placeholder='Describe tu tarea en pocas palabras'
+    placeholder='Describe tu evento en pocas palabras'
     i18n-placeholder="@@NewAssignmentDescPlaceholder">
   </app-input-textarea>
 
