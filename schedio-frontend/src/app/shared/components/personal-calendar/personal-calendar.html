@@ -1,1 +1,31 @@
-<div class="personal-calendar-card"></div>
+<div class="personal-calendar-card">
+  <div class="card-header" (click)="toggle()">
+    <h3 class="card-title" i18n>Mis Calendarios</h3>
+    <img src="icon_despliegue.svg" alt="Toggle" [class.expanded]="isExpanded">
+  </div>
+  <ul class="calendar-list" *ngIf="isExpanded">
+    <li>
+      <div class="item-name">
+        <span class="dot group-dot"></span>
+        <span i18n>Grupo amigos</span>
+      </div>
+      <div class="avatars">
+        <div class="avatar-circle"></div>
+        <div class="avatar-circle"></div>
+        <div class="avatar-circle"></div>
+      </div>
+    </li>
+    <li>
+      <div class="item-name">
+        <span class="dot bday-dot"></span>
+        <span i18n>Cumpleaños</span>
+      </div>
+    </li>
+    <li>
+      <div class="item-name">
+        <span class="dot all-dot"></span>
+        <span i18n>Todos</span>
+      </div>
+    </li>
+  </ul>
+</div>
