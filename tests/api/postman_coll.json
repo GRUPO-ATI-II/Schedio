@@ -1,46 +1,126 @@
 {
-	"info": {
-		"name": "Hola Mundo - API Tests",
-		"_postman_id": "00000000-0000-0000-0000-000000000000",
-		"description": "Colección mínima para verificar que Newman/Jenkins ejecutan correctamente una petición y pasan un test simple.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "GET httpbin - Hola Mundo",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://httpbin.org/get",
-					"protocol": "https",
-					"host": [
-						"httpbin.org"
-					],
-					"path": [
-						"get"
-					]
-				}
-			},
-			"response": [],
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"  pm.response.to.have.status(200);",
-							"});",
-							"pm.test(\"Response contains url field\", function () {",
-							"  var json = pm.response.json();",
-							"  pm.expect(json).to.have.property('url');",
-							"});"
-						]
-					}
-				}
-			]
-		}
-	]
+  "info": {
+    "name": "Schedio API Tests - Auth",
+    "_postman_id": "00000000-0000-0000-0000-000000000000",
+    "description": "Pruebas funcionales de Registro y Login para el backend Schedio.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Registro de Usuario",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"user{{$randomInt}}\",\n  \"email\": \"newman{{$randomInt}}@test.com\",\n    \"password\": \"password123\",\n    \"birthDate\": \"2000-01-01\"\n}"
+        },
+        "url": {
+          "raw": "http://backend:3000/api/users/register",
+          "host": ["backend"],
+          "port": "3000",
+          "path": ["api", "users", "register"]
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "var jsonData = pm.response.json();",
+            "pm.test(\"AC1: Registro exitoso - Status 201\", function () { pm.response.to.have.status(201); });",
+            "pm.test(\"AC1: Retorna email correcto\", function () { ",
+            "    // Look inside the user object if it exists, otherwise look at root",
+            "    var userEmail = jsonData.user ? jsonData.user.email : jsonData.email;",
+            "    pm.expect(userEmail).to.contain('@test.com'); ",
+            "    pm.globals.set(\"last_email\", userEmail);",
+            "});"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "2. Login Exitoso",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"{{last_email}}\",\n    \"password\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "http://backend:3000/api/users/login",
+          "host": ["backend"],
+          "port": "3000",
+          "path": ["api", "users", "login"]
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "var jsonData = pm.response.json();",
+            "pm.test(\"AC2: Login exitoso - Status 200\", function () { pm.response.to.have.status(200); });",
+            "pm.test(\"AC2: Verifica que retorne un JWT o ID\", function () { ",
+            "    pm.expect(jsonData.user).to.have.property('id');",
+            "    pm.expect(jsonData.user.id).to.not.be.null;",
+            "});"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "3. Login Fallido - Credenciales Incorrectas",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"login@example.com\",\n    \"password\": \"wrongPassword\"\n}"
+        },
+        "url": {
+          "raw": "http://backend:3000/api/users/login",
+          "host": ["backend"],
+          "port": "3000",
+          "path": ["api", "users", "login"]
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test(\"AC3: Manejo de error 401 para credenciales inválidas\", function () { pm.response.to.have.status(401); });"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "4. Registro Fallido - Email Duplicado",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Duplicado\",\n    \"lastName\": \"User\",\n    \"email\": \"valerria02@gmail.com\",\n    \"password\": \"password123\",\n    \"birthDate\": \"2000-01-01\"\n}"
+        },
+        "url": {
+          "raw": "http://backend:3000/api/users/register",
+          "host": ["backend"],
+          "port": "3000",
+          "path": ["api", "users", "register"]
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test(\"AC4: No permite registrar email duplicado (Status 400 o 409)\", function () { \n    pm.expect(pm.response.code).to.be.oneOf([400, 409]); \n});"
+          ]
+        }
+      }]
+    }
+  ]
 }
-
