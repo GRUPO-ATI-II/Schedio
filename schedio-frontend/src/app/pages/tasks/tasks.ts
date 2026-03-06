@@ -100,4 +100,8 @@ export class Tasks implements OnInit {
   onAddTask(): void {
     this.router.navigate(['/agenda/new-assignment']);
   }
+
+  onAddEvent(): void {
+    this.router.navigate(['/agenda/new-event']);
+  }
 }

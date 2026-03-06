@@ -3,9 +3,14 @@
   <div class="tasks-container">
     <div class="tasks-header">
       <h2 class="tasks-title" i18n>Agenda</h2>
+
+      <app-rect-base-button [isAction]="true" (clicked)="onAddEvent()">
+        <span class="tasks-add-icon" aria-hidden="true"></span>
+        <span i18n>Nuevo evento</span>
+      </app-rect-base-button>
       <app-rect-base-button [isAction]="true" (clicked)="onAddTask()">
         <span class="tasks-add-icon" aria-hidden="true"></span>
-        <span i18n>Agregar nueva tarea</span>
+        <span i18n>Nueva tarea</span>
       </app-rect-base-button>
     </div>
 

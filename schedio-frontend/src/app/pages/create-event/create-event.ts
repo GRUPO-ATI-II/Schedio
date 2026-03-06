@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ButtonBox } from '../../shared/components/ui/button-box/button-box';
 import { InputField } from '../../shared/components/ui/input-field/input-field';
@@ -16,6 +17,7 @@ import { DateField } from '../../shared/components/ui/date-field/date-field';
 })
 export class CreateEvent {
   private readonly eventService = inject(EventService);
+  private readonly router = inject(Router);
 
   title = '';
   description = '';
@@ -40,7 +42,7 @@ export class CreateEvent {
     if (confirm('¿Estás seguro de que deseas cancelar? Se perderán los cambios.')) {
       this.title = '';
       this.description = '';
-      // Logic to navigate back can go here (using Router)
+      this.router.navigate(['/agenda']);
     }
   }
 
@@ -68,7 +70,7 @@ export class CreateEvent {
       next: (res) => {
         console.log('Event created!', res);
         alert('Evento creado con éxito');
-        //TODO redirect to view assignment page
+        this.router.navigate(['/agenda']);
       },
       error: (err) => {
         console.error('Error creating event', err);
