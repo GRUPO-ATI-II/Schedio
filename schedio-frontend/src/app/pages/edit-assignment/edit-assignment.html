@@ -41,11 +41,10 @@
     placeholder='Min'
     i18n-placeholder="@@MinutePlaceholder">
   </app-input-field>
-  <select class="custom-select">
-    <option value="" disabled selected hidden>AM/PM</option>
-    <option value="AM">AM</option>
-    <option value="PM">PM</option>
-  </select>
+  <select class="custom-select" [(ngModel)]="ampm" name="ampm">
+  <option value="AM">AM</option>
+  <option value="PM">PM</option>
+</select>
 
   <label class="section-label" i18n="@@Category">Categoria</label>
 

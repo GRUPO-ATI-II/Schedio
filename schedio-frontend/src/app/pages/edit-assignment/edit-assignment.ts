@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit , ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputField } from '../../shared/components/ui/input-field/input-field';
 import { InputTextarea } from '../../shared/components/ui/input-textarea/input-textarea';
@@ -19,6 +19,7 @@ export class EditAssignment implements OnInit {
   private readonly assignmentService = inject(AssignmentService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   assignmentId = '';
   title = '';
@@ -61,6 +62,8 @@ export class EditAssignment implements OnInit {
       this.minute = d.getMinutes().toString();
     }
     this.selectedSubject = a.subject || '';
+
+    this.cdr.detectChanges();
   }
 
   onSave() {
