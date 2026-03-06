@@ -14,10 +14,11 @@ class AssignmentService {
     return await Assignment.findById(id).populate("subject");
   }
 
-  async updateAssignment(id, field, newValue) {
+  async updateAssignment(id, updatedData) {
+    // updatedData should be an object containing the fields to replace/update
     return await Assignment.findByIdAndUpdate(
       id,
-      { $set: { [field]: newValue } },
+      { $set: updatedData },
       { new: true, runValidators: true },
     );
   }

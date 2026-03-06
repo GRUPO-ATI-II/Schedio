@@ -6,6 +6,8 @@ const assignmentService = require("../src/assignments/services/assignment.servic
 const app = express();
 app.use(express.json());
 app.post("/api/assignment", assignmentController.create);
+app.get("/api/assignment/:id", assignmentController.getById);
+app.put("/api/assignment/:id", assignmentController.update);
 
 // Mock the service
 jest.mock("../src/assignments/services/assignment.service");
@@ -44,5 +46,40 @@ describe("Assignment Controller", () => {
 
     expect(response.status).toBe(500);
     expect(response.body.error).toBe("DB Error");
+  });
+
+  test("GET /api/assignment/:id - success returns assignment", async () => {
+    assignmentService.getById.mockResolvedValue({ _id: "abc", ...mockAssignment });
+    const response = await request(app).get("/api/assignment/abc");
+    expect(response.status).toBe(200);
+    expect(response.body._id).toBe("abc");
+    expect(assignmentService.getById).toHaveBeenCalledWith("abc");
+  });
+
+  test("GET /api/assignment/:id - not found", async () => {
+    assignmentService.getById.mockResolvedValue(null);
+    const response = await request(app).get("/api/assignment/xyz");
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe("Assignment not found");
+  });
+
+  test("PUT /api/assignment/:id - success", async () => {
+    const updated = { _id: "abc", ...mockAssignment, title: "Updated" };
+    assignmentService.updateAssignment.mockResolvedValue(updated);
+    const response = await request(app)
+      .put("/api/assignment/abc")
+      .send({ title: "Updated" });
+    expect(response.status).toBe(200);
+    expect(response.body.title).toBe("Updated");
+    expect(assignmentService.updateAssignment).toHaveBeenCalledWith("abc", { title: "Updated" });
+  });
+
+  test("PUT /api/assignment/:id - service error", async () => {
+    assignmentService.updateAssignment.mockRejectedValue(new Error("fail"));
+    const response = await request(app)
+      .put("/api/assignment/abc")
+      .send({ title: "x" });
+    expect(response.status).toBe(500);
+    expect(response.body.error).toBe("fail");
   });
 });

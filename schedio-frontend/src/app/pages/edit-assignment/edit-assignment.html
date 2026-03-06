@@ -1,59 +1,60 @@
-<div class="task-container vertical">
-  <div>
-    <h2 class="form-title" i18n="@@EditAssignment">Editar Tarea</h2>
+<h2 class = "pageHeader" i18n="@@EditAssignment">
+  Editar Tarea
+</h2>
 
-    <div class="form-grid">
-      <div class="column">
-        <div class="input-group">
-          <label i18n>Titulo de la Tarea</label>
-          <app-input-field placeholder=""
-                           i18n-placeholder="@@AssignmentNamePlaceholder">
-          </app-input-field>
-        </div>
+<form class="form-grid">
+  <label class="section-label" i18n="@@NewAssignmentTitle">Título de la tarea</label>
 
-        <div class="input-group">
-          <label i18n>Descripción</label>
-          <textarea placeholder="Descripción breve" i18n-placeholder="@@AssignmentDescPlaceholder"></textarea>
-        </div>
-      </div>
+  <label class="section-label second-column" i18n="@@FinishDate">Fecha de finalización</label>
 
-      <div class="column">
-        <div class="input-group">
-          <label i18n>Fecha de Finalización</label>
-          <div class="date-inputs">
-            <input type="number" class="custom-input date-field" placeholder="Día" min="1" max="31">
-            <input type="number" class="custom-input date-field" placeholder="Mes" min="1" max="12">
-            <input type="number" class="custom-input date-field" placeholder="Año" min="2000">
-          </div>
-        </div>
+  <app-input-field
+    [(ngModel)]="title"
+    name="title"
+    placeholder='Colócale un nombre a tu tarea'
+    i18n-placeholder="@@NewAssignmentTitlePlaceholder">
+  </app-input-field>
 
-        <div class="input-group">
-          <label i18n>Hora de Finalización</label>
-          <div class="time-inputs">
-            <input type="number" class="custom-input time-field" placeholder="Hora" min="1" max="12">
-            <input type="number" class="custom-input time-field" placeholder="Min" min="0" max="59">
-            <select class="custom-select time-select">
-              <option i18n>AM</option>
-              <option i18n>PM</option>
-            </select>
-          </div>
-        </div>
+  <app-date-field
+    i18n-label="@@finishDateLabel"
+    [(ngModel)]="date"
+    name="date"
+  ></app-date-field>
 
-        <div class="input-group">
-          <label i18n>Categoría</label>
-          <select class="custom-select">
-            <option disabled selected i18n>Selecciona la categoría</option>
-            <option i18n>Trabajo</option>
-            <option i18n>Estudio</option>
-            <option i18n>Personal</option>
-          </select>
-        </div>
-      </div>
-    </div>
-</div>
+  <label class="section-label" i18n="@@NewAssignmentDesc">Descripción (Opcional)</label>
 
-  <div class="actions">
-    <app-rect-base-button class="cancel-btn" i18n>Cancelar</app-rect-base-button>
-    <app-rect-base-button [isAction]="true" i18n>Guardar</app-rect-base-button>
-  </div>
-</div>
+  <label class="section-label second-column" i18n="@@FinishTime">Hora de finalización</label>
+
+  <app-input-textarea
+    [(ngModel)]="description"
+    name="description"
+    placeholder='Describe tu tarea en pocas palabras'
+    i18n-placeholder="@@NewAssignmentDescPlaceholder">
+  </app-input-textarea>
+
+  <app-input-field
+    [(ngModel)]="hour"
+    name="hour"
+    placeholder='Hora'
+    i18n-placeholder="@@HourPlaceholder">
+  </app-input-field>
+  <app-input-field
+    [(ngModel)]="minute"
+    name="minute"
+    placeholder='Min'
+    i18n-placeholder="@@MinutePlaceholder">
+  </app-input-field>
+  <select class="custom-select" [(ngModel)]="ampm" name="ampm">
+    <option value="" disabled i18n>AM/PM</option>
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+  </select>
+
+  <label class="section-label" i18n="@@Category">Categoria</label>
+
+  <select class="custom-select second-column" [(ngModel)]="selectedSubject" name="subject">
+    <option value="" disabled selected i18n>Selecciona una categoría</option>
+    
+  </select>
+
+</form>
+<app-button-box (cancelClicked)="onCancel()" (saveClicked)="onSave()"></app-button-box>
