@@ -1,0 +1,16 @@
+<button
+  type="button"
+  class="card-checkbox"
+  [class.checked]="checked"
+  [class.overdue]="overdue"
+  [attr.aria-label]="overdue ? 'Completar tarea atrasada' : (checked ? 'Marcar como no completada' : 'Marcar como completada')"
+  [attr.aria-pressed]="checked"
+  (click)="onClick()"
+>
+  @if (overdue && !checked) {
+    <span class="card-checkbox-exclamation" aria-hidden="true">!</span>
+  }
+  @if (checked) {
+    <span class="card-checkbox-icon" aria-hidden="true"></span>
+  }
+</button>
