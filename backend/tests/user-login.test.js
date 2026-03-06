@@ -2,8 +2,8 @@ const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 const express = require('express');
-const userController = require('../src/controllers/user.controller');
-const User = require('../src/entities/user.entity');
+const userController = require('../src/users/controllers/user.controller');
+const User = require('../src/users/entities/user.entity');
 
 let mongoServer;
 
@@ -31,7 +31,7 @@ describe('Integration Test: User Login', () => {
             await mongoose.connect(fallbackUri);
         }
 
-        const userService = require('../src/services/user.service');
+        const userService = require('../src/users/services/user.service');
         const userData = {
             firstName: 'Login',
             lastName: 'Test',
@@ -39,7 +39,7 @@ describe('Integration Test: User Login', () => {
             password: 'correctPassword123',
             birthDate: '2005-09-03'
         };
-        await userService.registerUser(userData);
+        await userService.createUser(userData);
     });
 
     // Poor jenkins needs this

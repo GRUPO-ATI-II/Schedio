@@ -1,5 +1,4 @@
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service'
 import { InputField } from '../../../shared/components/ui/input-field/input-field';
@@ -15,6 +14,11 @@ import { Router, RouterModule } from '@angular/router';
 export class Login {
   loginForm = {email: '', password: ''};
   isSubmitting = false;
+  missingEmail = false;
+  missingPassword = false;
+  missingFields = false;
+  wrongCredentials = false;
+
   constructor(private authService: AuthService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object) {}
@@ -22,6 +26,15 @@ export class Login {
   login() {
     if (this.isSubmitting) return;
     this.isSubmitting = true;
+    this.missingEmail = !this.loginForm.email;
+    this.missingPassword = !this.loginForm.password;
+    this.missingFields = this.missingEmail || this.missingPassword;
+    this.wrongCredentials = false;
+
+    if (this.missingFields) {
+      this.isSubmitting = false;
+      return;
+    }
 
     this.authService.login(this.loginForm).subscribe({
       next: () => {
@@ -31,8 +44,8 @@ export class Login {
       error: (err) => {
           this.isSubmitting = false;
           console.error('Login Error:', err);
-          alert('Credenciales incorrectas');
         }
     });
+    this.wrongCredentials = true;
   }
 }
