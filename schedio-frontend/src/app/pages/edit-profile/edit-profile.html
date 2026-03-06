@@ -40,7 +40,7 @@
     </select>
 
     <label class="section-label" i18n="@@Support">¿Estás teniendo problemas?</label>
-    <app-rect-base-button [isLine]="true" (clicked)="sendTicket()" i18n>Envia un ticket</app-rect-base-button>
+    <app-rect-base-button  [isLine]="true" id="ticket-btn" (clicked)="sendTicket()" i18n>Envia un ticket</app-rect-base-button>
     <app-rect-base-button [isLine]="true" id="report-btn" (clicked)="reportError()" i18n>Reportar Error</app-rect-base-button>
   </div>
 </div>
