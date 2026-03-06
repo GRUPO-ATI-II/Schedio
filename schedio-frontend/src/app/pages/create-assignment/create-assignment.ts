@@ -15,7 +15,7 @@ import { DateField } from '../../shared/components/ui/date-field/date-field';
   styleUrl: './create-assignment.css',
 })
 export class CreateAssignment {
-  private assignmentService = inject(AssignmentService);
+  private readonly assignmentService = inject(AssignmentService);
 
   title = '';
   description = '';
@@ -50,7 +50,7 @@ export class CreateAssignment {
         return;
     }
 
-    let finalHour = parseInt(this.hour);
+    let finalHour = Number.parseInt(this.hour);
     if (this.ampm === 'PM' && finalHour < 12) finalHour += 12;
     if (this.ampm === 'AM' && finalHour === 12) finalHour = 0;
 
@@ -69,6 +69,7 @@ export class CreateAssignment {
       next: (res) => {
         console.log('Assignment created!', res);
         alert('Tarea creada con éxito');
+        //TODO redirect to view assignment page
       },
       error: (err) => {
         console.error('Error creating assignment', err);
