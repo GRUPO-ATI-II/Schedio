@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout';
 import { Ticket } from './pages/ticket/ticket';
+import { Tasks } from './pages/tasks/tasks';
 import { ResetUserCredentials } from './pages/contact-center/reset-user-credentials/reset-user-credentials';
 import { EditSpecificUserCredentials } from './pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials';
 import { Error } from './pages/error/error';
@@ -53,6 +54,10 @@ export const routes: Routes = [
       {
         path: 'contact-center/edit-user',
         component: EditSpecificUserCredentials,
+      },
+      {
+        path: 'agenda',
+        component: Tasks,
       },
       {
         path: 'agenda/new-assignment',

@@ -121,6 +121,54 @@
           ]
         }
       }]
+    },
+    {
+      "name": "5. Creación de Tarea (Assignment)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Tarea Postman\",\n    \"instructions\": \"Resolver cuestionario\",\n    \"deadline\": \"2026-06-01T00:00:00.000Z\",\n    \"ponderation\": 15,\n    \"subject\": \"65f123456789012345678901\"\n}"
+        },
+        "url": {
+          "raw": "http://backend:3000/api/assignment",
+          "host": [
+            "backend"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "assignment"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "",
+              "pm.test(\"AC5: Creación exitosa - Status 201\", function () { ",
+              "    pm.response.to.have.status(201); ",
+              "});",
+              "",
+              "pm.test(\"AC5: Retorna la tarea creada con los datos correctos\", function () { ",
+              "    pm.expect(jsonData.instructions).to.eql('Resolver cuestionario');",
+              "    pm.expect(jsonData.ponderation).to.eql(15);",
+              "    pm.expect(jsonData).to.have.property('_id');",
+              "});"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

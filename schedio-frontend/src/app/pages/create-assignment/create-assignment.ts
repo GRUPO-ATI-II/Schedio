@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ButtonBox } from '../../shared/components/ui/button-box/button-box';
 import { InputField } from '../../shared/components/ui/input-field/input-field';
@@ -16,6 +17,7 @@ import { DateField } from '../../shared/components/ui/date-field/date-field';
 })
 export class CreateAssignment {
   private readonly assignmentService = inject(AssignmentService);
+  private readonly router = inject(Router);
 
   title = '';
   description = '';
@@ -66,10 +68,8 @@ export class CreateAssignment {
     };
 
     this.assignmentService.createAssignment(newAssignment).subscribe({
-      next: (res) => {
-        console.log('Assignment created!', res);
-        alert('Tarea creada con éxito');
-        //TODO redirect to view assignment page
+      next: () => {
+        this.router.navigate(['/agenda']);
       },
       error: (err) => {
         console.error('Error creating assignment', err);

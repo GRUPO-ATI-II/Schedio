@@ -1,0 +1,45 @@
+<div class="tasks-page">
+
+  <div class="tasks-container">
+    <div class="tasks-header">
+      <h2 class="tasks-title" i18n>Agenda</h2>
+      <app-rect-base-button [isAction]="true" (clicked)="onAddTask()">
+        <span class="tasks-add-icon" aria-hidden="true"></span>
+        <span i18n>Agregar nueva tarea</span>
+      </app-rect-base-button>
+    </div>
+
+    @if (error) {
+      <p class="tasks-error">{{ error }}</p>
+      <button type="button" class="tasks-retry" (click)="loadTasks()" i18n>Reintentar</button>
+    } @else {
+      <div class="tasks-list">
+        @for (task of visibleTasks; track task.id) {
+          <app-task-card
+            [title]="task.title"
+            [dueAt]="task.dueAt"
+            [timeLabel]="task.timeLabel"
+            [completed]="task.completed"
+            (toggleComplete)="onToggleComplete(task)"
+          />
+        }
+      </div>
+      @if (visibleTasks.length === 0 && !loading) {
+        <p class="tasks-message" i18n>No hay tareas. Agrega una nueva o revisa más tarde.</p>
+      }
+    }
+  </div>
+
+  @if (!loading && !error && completedCount > 0) {
+    <p class="tasks-completed-footer">
+      {{ completedMessage }}
+      <button type="button" class="tasks-toggle-completed" (click)="toggleShowCompleted()">
+        @if (showCompleted) {
+          <span i18n>Ocultar completadas</span>
+        } @else {
+          <span i18n>Ver completadas</span>
+        }
+      </button>
+    </p>
+  }
+</div>
