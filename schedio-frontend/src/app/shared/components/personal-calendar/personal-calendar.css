@@ -1,10 +1,106 @@
 .personal-calendar-card {
-  background: var(--side-card-color);
+  background: var(--side-card-color, #4D2678);
   color: white;
-  border-radius: 24px;
+  border-radius: 20px;
   width: 100%;
   height: 100%;
-  padding: 2rem;
+  padding: 1.5rem;
+  padding-bottom: 1.2rem;
   box-sizing: border-box;
   grid-area: personal-calendar;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.icon-chevron-down {
+  font-size: 1rem;
+  font-weight: bold;
+  user-select: none;
+}
+
+.card-header img {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.expanded {
+  transform: rotate(180deg);
+}
+
+.calendar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.calendar-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.item-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #D3D3D3;
+  flex-shrink: 0;
+}
+
+.avatars {
+  display: flex;
+  padding-right: 4px;
+}
+
+.avatar-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--side-card-color, #4D2678);
+  margin-left: -8px;
+  background-size: cover;
+  background-position: center;
+}
+
+.avatar-circle:nth-child(1) {
+  background-color: #ffdfba;
+}
+
+.avatar-circle:nth-child(2) {
+  background-color: #ffffba;
+}
+
+.avatar-circle:nth-child(3) {
+  background-color: #baffc9;
+}
+
+.avatar-circle:first-child {
+  margin-left: 0;
 }

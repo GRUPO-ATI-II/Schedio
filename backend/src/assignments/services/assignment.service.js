@@ -10,6 +10,10 @@ class AssignmentService {
     return await Assignment.find({ subject: subjectId }).sort({ deadline: 1 });
   }
 
+  async getAll() {
+    return await Assignment.find().sort({ deadline: 1 }).populate("subject", "name");
+  }
+
   async getById(id) {
     return await Assignment.findById(id).populate("subject");
   }

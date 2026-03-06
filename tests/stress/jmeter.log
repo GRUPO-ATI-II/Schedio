@@ -1,0 +1,1637 @@
+2026-03-06 04:53:32,126 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2026-03-06 04:53:32,219 INFO o.a.j.JMeter: Loading user properties from: /opt/apache-jmeter-5.5/bin/user.properties
+2026-03-06 04:53:32,222 INFO o.a.j.JMeter: Loading system properties from: /opt/apache-jmeter-5.5/bin/system.properties
+2026-03-06 04:53:32,224 INFO o.a.j.JMeter: Setting System property: log4j2.formatMsgNoLookups=true
+2026-03-06 04:53:32,226 INFO o.a.j.JMeter: Setting JMeter property: host=host.docker.internal
+2026-03-06 04:53:32,228 INFO o.a.j.JMeter: Setting JMeter property: port=3000
+2026-03-06 04:53:32,229 INFO o.a.j.JMeter: Setting JMeter property: users=500
+2026-03-06 04:53:32,230 INFO o.a.j.JMeter: Setting JMeter property: rampUp=30
+2026-03-06 04:53:32,233 INFO o.a.j.JMeter: Setting JMeter property: loops=1
+2026-03-06 04:53:32,258 INFO o.a.j.JMeter: Copyright (c) 1998-2022 The Apache Software Foundation
+2026-03-06 04:53:32,259 INFO o.a.j.JMeter: Version 5.5
+2026-03-06 04:53:32,260 INFO o.a.j.JMeter: java.version=1.8.0_275
+2026-03-06 04:53:32,261 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2026-03-06 04:53:32,261 INFO o.a.j.JMeter: os.name=Linux
+2026-03-06 04:53:32,262 INFO o.a.j.JMeter: os.arch=amd64
+2026-03-06 04:53:32,263 INFO o.a.j.JMeter: os.version=6.6.87.1-microsoft-standard-WSL2
+2026-03-06 04:53:32,263 INFO o.a.j.JMeter: file.encoding=UTF-8
+2026-03-06 04:53:32,264 INFO o.a.j.JMeter: java.awt.headless=true
+2026-03-06 04:53:32,265 INFO o.a.j.JMeter: Max memory     =8766095360
+2026-03-06 04:53:32,267 INFO o.a.j.JMeter: Available Processors =8
+2026-03-06 04:53:32,282 INFO o.a.j.JMeter: Default Locale=English (EN)
+2026-03-06 04:53:32,284 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2026-03-06 04:53:32,284 INFO o.a.j.JMeter: JMeterHome=/opt/apache-jmeter-5.5
+2026-03-06 04:53:32,286 INFO o.a.j.JMeter: user.dir  =/tests
+2026-03-06 04:53:32,288 INFO o.a.j.JMeter: PWD       =/tests
+2026-03-06 04:53:32,290 INFO o.a.j.JMeter: IP: 172.18.0.5 Name: a2a1b858a321 FullName: a2a1b858a321
+2026-03-06 04:53:32,385 INFO o.a.j.JMeter: Setting property 'jmeter.reportgenerator.outputdir' to:'/tests/report'
+2026-03-06 04:53:32,414 INFO o.a.j.s.FileServer: Default base='/tests'
+2026-03-06 04:53:32,420 INFO o.a.j.s.FileServer: Set new base='/tests'
+2026-03-06 04:53:32,935 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2026-03-06 04:53:32,995 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2026-03-06 04:53:33,015 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2026-03-06 04:53:33,045 INFO o.a.j.s.SaveService: Loading file: stress-test.jmx
+2026-03-06 04:53:33,275 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-03-06 04:53:33,276 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-03-06 04:53:33,279 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-03-06 04:53:33,281 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-03-06 04:53:33,282 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2026-03-06 04:53:33,283 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2026-03-06 04:53:35,011 INFO o.a.j.JMeter: Creating summariser <summary>
+2026-03-06 04:53:35,037 INFO o.a.j.r.d.ReportGenerator: ReportGenerator will use for Parsing the separator: ','
+2026-03-06 04:53:35,040 INFO o.a.j.r.d.ReportGenerator: Will generate report at end of test from  results file: results.jtl
+2026-03-06 04:53:35,042 INFO o.a.j.r.d.ReportGenerator: Reading report generator properties from: /opt/apache-jmeter-5.5/bin/reportgenerator.properties
+2026-03-06 04:53:35,044 INFO o.a.j.r.d.ReportGenerator: Merging with JMeter properties
+2026-03-06 04:53:35,084 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.temp_dir' not found, using default value 'temp' instead.
+2026-03-06 04:53:35,115 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.apdex_per_transaction' not found, using default value 'null' instead.
+2026-03-06 04:53:35,117 INFO o.a.j.r.c.ReportGeneratorConfiguration: apdex_per_transaction is empty, not APDEX per transaction customization
+2026-03-06 04:53:35,118 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.sample_filter' not found, using default value 'null' instead.
+2026-03-06 04:53:35,143 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.report_title' not found, using default value 'null' instead.
+2026-03-06 04:53:35,157 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.start_date' not found, using default value 'null' instead.
+2026-03-06 04:53:35,161 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.end_date' not found, using default value 'null' instead.
+2026-03-06 04:53:35,179 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.date_format' not found, using default value 'null' instead.
+2026-03-06 04:53:35,183 INFO o.a.j.r.c.ReportGeneratorConfiguration: Will use date range start date: null, end date: null
+2026-03-06 04:53:35,198 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.totalTPS.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,218 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.activeThreadsOverTime.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,222 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.timeVsThreads.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,223 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimeDistribution.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,228 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.transactionsPerSecond.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,230 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentiles.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,233 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentilesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,235 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,237 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.connectTimeOverTime.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,238 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.latenciesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2026-03-06 04:53:35,242 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.filters_only_sample_series' not found, using default value 'true' instead.
+2026-03-06 04:53:35,246 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.series_filter' not found, using default value '' instead.
+2026-03-06 04:53:35,249 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.show_controllers_only' not found, using default value 'false' instead.
+2026-03-06 04:53:35,251 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.filters_only_sample_series' not found, using default value 'true' instead.
+2026-03-06 04:53:35,252 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.series_filter' not found, using default value '' instead.
+2026-03-06 04:53:35,253 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.show_controllers_only' not found, using default value 'false' instead.
+2026-03-06 04:53:35,305 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2026-03-06 04:53:35,310 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2026-03-06 04:53:35,311 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2026-03-06 04:53:35,339 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2026-03-06 04:53:35,341 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2026-03-06 04:53:36,771 INFO o.a.j.JMeter: Running test (1772769216771)
+2026-03-06 04:53:36,926 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Usuarios concurrentes
+2026-03-06 04:53:36,927 INFO o.a.j.e.StandardJMeterEngine: Starting 500 threads for group Usuarios concurrentes.
+2026-03-06 04:53:36,927 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2026-03-06 04:53:36,928 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=500 ramp-up=30 delayedStart=false
+2026-03-06 04:53:36,945 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-1
+2026-03-06 04:53:36,997 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-2
+2026-03-06 04:53:37,057 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-3
+2026-03-06 04:53:37,117 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-4
+2026-03-06 04:53:37,182 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-5
+2026-03-06 04:53:37,234 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-6
+2026-03-06 04:53:37,293 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-7
+2026-03-06 04:53:37,353 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-8
+2026-03-06 04:53:37,411 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-9
+2026-03-06 04:53:37,471 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-10
+2026-03-06 04:53:37,531 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-11
+2026-03-06 04:53:37,592 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-12
+2026-03-06 04:53:37,652 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-13
+2026-03-06 04:53:37,714 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-14
+2026-03-06 04:53:37,777 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-15
+2026-03-06 04:53:37,812 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2026-03-06 04:53:37,812 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2026-03-06 04:53:37,833 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-16
+2026-03-06 04:53:37,891 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-17
+2026-03-06 04:53:37,951 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-18
+2026-03-06 04:53:38,013 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-19
+2026-03-06 04:53:38,072 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-20
+2026-03-06 04:53:38,137 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-21
+2026-03-06 04:53:38,191 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-22
+2026-03-06 04:53:38,253 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-23
+2026-03-06 04:53:38,316 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-24
+2026-03-06 04:53:38,372 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-25
+2026-03-06 04:53:38,432 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-26
+2026-03-06 04:53:38,490 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-27
+2026-03-06 04:53:38,552 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-28
+2026-03-06 04:53:38,611 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-29
+2026-03-06 04:53:38,671 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-30
+2026-03-06 04:53:38,733 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-31
+2026-03-06 04:53:38,793 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-32
+2026-03-06 04:53:38,851 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-33
+2026-03-06 04:53:38,941 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-34
+2026-03-06 04:53:38,959 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = a2a1b858a321
+2026-03-06 04:53:38,973 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-35
+2026-03-06 04:53:38,976 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2026-03-06 04:53:38,980 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2026-03-06 04:53:38,981 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2026-03-06 04:53:38,982 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2026-03-06 04:53:38,983 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2026-03-06 04:53:39,030 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-36
+2026-03-06 04:53:39,093 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-37
+2026-03-06 04:53:39,151 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-38
+2026-03-06 04:53:39,212 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-39
+2026-03-06 04:53:39,272 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-40
+2026-03-06 04:53:39,331 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-41
+2026-03-06 04:53:39,393 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-42
+2026-03-06 04:53:39,453 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-43
+2026-03-06 04:53:39,512 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-44
+2026-03-06 04:53:39,570 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-45
+2026-03-06 04:53:39,634 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-46
+2026-03-06 04:53:39,693 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-47
+2026-03-06 04:53:39,752 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-48
+2026-03-06 04:53:39,812 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-49
+2026-03-06 04:53:39,871 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-50
+2026-03-06 04:53:39,934 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-51
+2026-03-06 04:53:39,994 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-52
+2026-03-06 04:53:40,053 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-53
+2026-03-06 04:53:40,111 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-54
+2026-03-06 04:53:40,172 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-55
+2026-03-06 04:53:40,231 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-56
+2026-03-06 04:53:40,295 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-57
+2026-03-06 04:53:40,351 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-58
+2026-03-06 04:53:40,413 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-59
+2026-03-06 04:53:40,471 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-60
+2026-03-06 04:53:40,532 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-61
+2026-03-06 04:53:40,591 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-62
+2026-03-06 04:53:40,651 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-63
+2026-03-06 04:53:40,715 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-64
+2026-03-06 04:53:40,775 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-65
+2026-03-06 04:53:40,831 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-66
+2026-03-06 04:53:40,893 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-67
+2026-03-06 04:53:40,952 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-68
+2026-03-06 04:53:41,019 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-69
+2026-03-06 04:53:41,073 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-70
+2026-03-06 04:53:41,128 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-33
+2026-03-06 04:53:41,129 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-29
+2026-03-06 04:53:41,129 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-33
+2026-03-06 04:53:41,130 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-29
+2026-03-06 04:53:41,133 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-71
+2026-03-06 04:53:41,191 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-72
+2026-03-06 04:53:41,251 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-73
+2026-03-06 04:53:41,312 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-74
+2026-03-06 04:53:41,372 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-75
+2026-03-06 04:53:41,431 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-76
+2026-03-06 04:53:41,452 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-25
+2026-03-06 04:53:41,452 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-38
+2026-03-06 04:53:41,453 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-25
+2026-03-06 04:53:41,454 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-15
+2026-03-06 04:53:41,454 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-38
+2026-03-06 04:53:41,455 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-15
+2026-03-06 04:53:41,490 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-77
+2026-03-06 04:53:41,550 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-78
+2026-03-06 04:53:41,611 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-79
+2026-03-06 04:53:41,673 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-34
+2026-03-06 04:53:41,673 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-34
+2026-03-06 04:53:41,679 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-80
+2026-03-06 04:53:41,731 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-81
+2026-03-06 04:53:41,793 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-82
+2026-03-06 04:53:41,852 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-83
+2026-03-06 04:53:41,914 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-84
+2026-03-06 04:53:41,925 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-30
+2026-03-06 04:53:41,926 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-30
+2026-03-06 04:53:41,971 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-85
+2026-03-06 04:53:42,034 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-86
+2026-03-06 04:53:42,094 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-87
+2026-03-06 04:53:42,152 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-88
+2026-03-06 04:53:42,215 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-89
+2026-03-06 04:53:42,274 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-90
+2026-03-06 04:53:42,281 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-26
+2026-03-06 04:53:42,284 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-26
+2026-03-06 04:53:42,333 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-91
+2026-03-06 04:53:42,395 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-92
+2026-03-06 04:53:42,451 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-93
+2026-03-06 04:53:42,474 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-3
+2026-03-06 04:53:42,474 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-5
+2026-03-06 04:53:42,475 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-3
+2026-03-06 04:53:42,475 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-5
+2026-03-06 04:53:42,514 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-94
+2026-03-06 04:53:42,571 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-95
+2026-03-06 04:53:42,636 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-96
+2026-03-06 04:53:42,700 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-97
+2026-03-06 04:53:42,755 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-98
+2026-03-06 04:53:42,816 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-99
+2026-03-06 04:53:42,877 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-100
+2026-03-06 04:53:42,925 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-13
+2026-03-06 04:53:42,925 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-13
+2026-03-06 04:53:42,929 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-24
+2026-03-06 04:53:42,931 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-24
+2026-03-06 04:53:42,935 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-101
+2026-03-06 04:53:42,991 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-102
+2026-03-06 04:53:43,050 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-103
+2026-03-06 04:53:43,110 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-104
+2026-03-06 04:53:43,170 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-105
+2026-03-06 04:53:43,234 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-106
+2026-03-06 04:53:43,249 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-20
+2026-03-06 04:53:43,250 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-20
+2026-03-06 04:53:43,291 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-107
+2026-03-06 04:53:43,358 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-108
+2026-03-06 04:53:43,413 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-109
+2026-03-06 04:53:43,470 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-110
+2026-03-06 04:53:43,530 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-111
+2026-03-06 04:53:43,591 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-112
+2026-03-06 04:53:43,592 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-11
+2026-03-06 04:53:43,593 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-11
+2026-03-06 04:53:43,655 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-113
+2026-03-06 04:53:43,711 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-114
+2026-03-06 04:53:43,775 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-115
+2026-03-06 04:53:43,820 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-2
+2026-03-06 04:53:43,820 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-2
+2026-03-06 04:53:43,834 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-116
+2026-03-06 04:53:43,892 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-117
+2026-03-06 04:53:43,954 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-118
+2026-03-06 04:53:44,018 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-119
+2026-03-06 04:53:44,042 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-8
+2026-03-06 04:53:44,042 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-8
+2026-03-06 04:53:44,072 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-120
+2026-03-06 04:53:44,132 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-121
+2026-03-06 04:53:44,191 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-122
+2026-03-06 04:53:44,252 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-123
+2026-03-06 04:53:44,259 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-7
+2026-03-06 04:53:44,260 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-7
+2026-03-06 04:53:44,312 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-124
+2026-03-06 04:53:44,360 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-22
+2026-03-06 04:53:44,361 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-22
+2026-03-06 04:53:44,398 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-125
+2026-03-06 04:53:44,436 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-126
+2026-03-06 04:53:44,492 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-127
+2026-03-06 04:53:44,565 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-128
+2026-03-06 04:53:44,566 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-39
+2026-03-06 04:53:44,566 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-39
+2026-03-06 04:53:44,626 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-129
+2026-03-06 04:53:44,672 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-130
+2026-03-06 04:53:44,734 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-131
+2026-03-06 04:53:44,795 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-132
+2026-03-06 04:53:44,851 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-133
+2026-03-06 04:53:44,914 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-134
+2026-03-06 04:53:44,948 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-21
+2026-03-06 04:53:44,948 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-21
+2026-03-06 04:53:44,971 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-135
+2026-03-06 04:53:45,030 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-136
+2026-03-06 04:53:45,090 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-137
+2026-03-06 04:53:45,150 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-138
+2026-03-06 04:53:45,212 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-139
+2026-03-06 04:53:45,268 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-27
+2026-03-06 04:53:45,268 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-27
+2026-03-06 04:53:45,271 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-140
+2026-03-06 04:53:45,335 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-141
+2026-03-06 04:53:45,394 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-142
+2026-03-06 04:53:45,427 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-37
+2026-03-06 04:53:45,431 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-37
+2026-03-06 04:53:45,437 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-14
+2026-03-06 04:53:45,450 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-14
+2026-03-06 04:53:45,453 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-143
+2026-03-06 04:53:45,512 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-144
+2026-03-06 04:53:45,571 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-145
+2026-03-06 04:53:45,631 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-146
+2026-03-06 04:53:45,691 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-147
+2026-03-06 04:53:45,752 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-148
+2026-03-06 04:53:45,811 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-149
+2026-03-06 04:53:45,871 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-150
+2026-03-06 04:53:45,931 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-151
+2026-03-06 04:53:45,991 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-152
+2026-03-06 04:53:45,996 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-10
+2026-03-06 04:53:45,996 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-10
+2026-03-06 04:53:46,051 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-153
+2026-03-06 04:53:46,111 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-154
+2026-03-06 04:53:46,172 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-155
+2026-03-06 04:53:46,218 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-1
+2026-03-06 04:53:46,219 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-1
+2026-03-06 04:53:46,231 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-156
+2026-03-06 04:53:46,290 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-157
+2026-03-06 04:53:46,350 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-158
+2026-03-06 04:53:46,411 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-159
+2026-03-06 04:53:46,472 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-160
+2026-03-06 04:53:46,514 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-12
+2026-03-06 04:53:46,514 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-12
+2026-03-06 04:53:46,533 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-161
+2026-03-06 04:53:46,592 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-162
+2026-03-06 04:53:46,651 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-163
+2026-03-06 04:53:46,712 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-164
+2026-03-06 04:53:46,736 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-6
+2026-03-06 04:53:46,737 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-6
+2026-03-06 04:53:46,772 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-165
+2026-03-06 04:53:46,831 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-166
+2026-03-06 04:53:46,890 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-167
+2026-03-06 04:53:46,951 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-168
+2026-03-06 04:53:46,953 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-9
+2026-03-06 04:53:46,954 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-9
+2026-03-06 04:53:47,013 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-169
+2026-03-06 04:53:47,050 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-35
+2026-03-06 04:53:47,051 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-35
+2026-03-06 04:53:47,073 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-170
+2026-03-06 04:53:47,133 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-171
+2026-03-06 04:53:47,192 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-172
+2026-03-06 04:53:47,250 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-31
+2026-03-06 04:53:47,251 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-31
+2026-03-06 04:53:47,252 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-173
+2026-03-06 04:53:47,311 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-174
+2026-03-06 04:53:47,371 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-175
+2026-03-06 04:53:47,431 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-176
+2026-03-06 04:53:47,491 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-177
+2026-03-06 04:53:47,550 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-178
+2026-03-06 04:53:47,596 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-23
+2026-03-06 04:53:47,597 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-23
+2026-03-06 04:53:47,598 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-28
+2026-03-06 04:53:47,599 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-28
+2026-03-06 04:53:47,612 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-179
+2026-03-06 04:53:47,671 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-180
+2026-03-06 04:53:47,734 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-181
+2026-03-06 04:53:47,790 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-182
+2026-03-06 04:53:47,854 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-183
+2026-03-06 04:53:47,911 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-184
+2026-03-06 04:53:47,972 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-185
+2026-03-06 04:53:47,994 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-36
+2026-03-06 04:53:47,995 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-36
+2026-03-06 04:53:48,031 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-186
+2026-03-06 04:53:48,092 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-187
+2026-03-06 04:53:48,117 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-41
+2026-03-06 04:53:48,118 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-41
+2026-03-06 04:53:48,121 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-18
+2026-03-06 04:53:48,122 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-18
+2026-03-06 04:53:48,150 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-188
+2026-03-06 04:53:48,211 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-189
+2026-03-06 04:53:48,273 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-190
+2026-03-06 04:53:48,331 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-191
+2026-03-06 04:53:48,392 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-192
+2026-03-06 04:53:48,451 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-193
+2026-03-06 04:53:48,511 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-194
+2026-03-06 04:53:48,572 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-195
+2026-03-06 04:53:48,602 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-4
+2026-03-06 04:53:48,603 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-4
+2026-03-06 04:53:48,631 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-196
+2026-03-06 04:53:48,692 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-197
+2026-03-06 04:53:48,727 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-32
+2026-03-06 04:53:48,727 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-32
+2026-03-06 04:53:48,751 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-198
+2026-03-06 04:53:48,812 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-199
+2026-03-06 04:53:48,872 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-200
+2026-03-06 04:53:48,934 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-201
+2026-03-06 04:53:48,993 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-202
+2026-03-06 04:53:49,051 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-203
+2026-03-06 04:53:49,111 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-204
+2026-03-06 04:53:49,163 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-40
+2026-03-06 04:53:49,164 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-40
+2026-03-06 04:53:49,176 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-205
+2026-03-06 04:53:49,232 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-206
+2026-03-06 04:53:49,292 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-207
+2026-03-06 04:53:49,354 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-208
+2026-03-06 04:53:49,389 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-17
+2026-03-06 04:53:49,390 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-17
+2026-03-06 04:53:49,412 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-209
+2026-03-06 04:53:49,470 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-210
+2026-03-06 04:53:49,531 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-211
+2026-03-06 04:53:49,592 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-212
+2026-03-06 04:53:49,652 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-213
+2026-03-06 04:53:49,672 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-16
+2026-03-06 04:53:49,672 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-16
+2026-03-06 04:53:49,711 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-214
+2026-03-06 04:53:49,771 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-215
+2026-03-06 04:53:49,831 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-216
+2026-03-06 04:53:49,891 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-217
+2026-03-06 04:53:49,897 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-19
+2026-03-06 04:53:49,900 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-19
+2026-03-06 04:53:49,952 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-218
+2026-03-06 04:53:50,000 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-42
+2026-03-06 04:53:50,003 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-42
+2026-03-06 04:53:50,013 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-219
+2026-03-06 04:53:50,075 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-220
+2026-03-06 04:53:50,134 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-221
+2026-03-06 04:53:50,194 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-222
+2026-03-06 04:53:50,252 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-223
+2026-03-06 04:53:50,312 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-224
+2026-03-06 04:53:50,359 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-43
+2026-03-06 04:53:50,359 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-43
+2026-03-06 04:53:50,370 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-225
+2026-03-06 04:53:50,431 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-226
+2026-03-06 04:53:50,490 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-227
+2026-03-06 04:53:50,551 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-228
+2026-03-06 04:53:50,562 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-44
+2026-03-06 04:53:50,563 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-44
+2026-03-06 04:53:50,612 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-229
+2026-03-06 04:53:50,672 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-230
+2026-03-06 04:53:50,731 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-231
+2026-03-06 04:53:50,767 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-45
+2026-03-06 04:53:50,768 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-45
+2026-03-06 04:53:50,791 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-232
+2026-03-06 04:53:50,852 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-233
+2026-03-06 04:53:50,869 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-46
+2026-03-06 04:53:50,869 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-46
+2026-03-06 04:53:50,914 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-234
+2026-03-06 04:53:50,971 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-235
+2026-03-06 04:53:50,977 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-47
+2026-03-06 04:53:50,978 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-47
+2026-03-06 04:53:51,031 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-236
+2026-03-06 04:53:51,091 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-237
+2026-03-06 04:53:51,151 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-238
+2026-03-06 04:53:51,212 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-239
+2026-03-06 04:53:51,272 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-240
+2026-03-06 04:53:51,331 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-241
+2026-03-06 04:53:51,361 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-48
+2026-03-06 04:53:51,361 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-49
+2026-03-06 04:53:51,363 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-48
+2026-03-06 04:53:51,363 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-49
+2026-03-06 04:53:51,390 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-242
+2026-03-06 04:53:51,450 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-243
+2026-03-06 04:53:51,515 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-244
+2026-03-06 04:53:51,555 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-50
+2026-03-06 04:53:51,556 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-50
+2026-03-06 04:53:51,574 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-245
+2026-03-06 04:53:51,631 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-246
+2026-03-06 04:53:51,690 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-247
+2026-03-06 04:53:51,750 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-248
+2026-03-06 04:53:51,810 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-249
+2026-03-06 04:53:51,871 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-250
+2026-03-06 04:53:51,874 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-52
+2026-03-06 04:53:51,874 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-51
+2026-03-06 04:53:51,874 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-51
+2026-03-06 04:53:51,874 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-52
+2026-03-06 04:53:51,931 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-251
+2026-03-06 04:53:51,991 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-252
+2026-03-06 04:53:52,051 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-253
+2026-03-06 04:53:52,115 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-254
+2026-03-06 04:53:52,175 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-255
+2026-03-06 04:53:52,233 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-256
+2026-03-06 04:53:52,291 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-257
+2026-03-06 04:53:52,351 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-258
+2026-03-06 04:53:52,385 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-53
+2026-03-06 04:53:52,386 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-53
+2026-03-06 04:53:52,413 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-259
+2026-03-06 04:53:52,471 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-260
+2026-03-06 04:53:52,532 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-261
+2026-03-06 04:53:52,534 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-54
+2026-03-06 04:53:52,535 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-54
+2026-03-06 04:53:52,590 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-262
+2026-03-06 04:53:52,650 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-263
+2026-03-06 04:53:52,711 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-264
+2026-03-06 04:53:52,772 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-265
+2026-03-06 04:53:52,830 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-266
+2026-03-06 04:53:52,894 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-267
+2026-03-06 04:53:52,955 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-268
+2026-03-06 04:53:52,963 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-55
+2026-03-06 04:53:52,963 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-55
+2026-03-06 04:53:53,011 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-269
+2026-03-06 04:53:53,072 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-270
+2026-03-06 04:53:53,133 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-271
+2026-03-06 04:53:53,191 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-272
+2026-03-06 04:53:53,250 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-273
+2026-03-06 04:53:53,262 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-56
+2026-03-06 04:53:53,263 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-56
+2026-03-06 04:53:53,312 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-274
+2026-03-06 04:53:53,370 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-275
+2026-03-06 04:53:53,378 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-58
+2026-03-06 04:53:53,378 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-57
+2026-03-06 04:53:53,379 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-58
+2026-03-06 04:53:53,379 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-57
+2026-03-06 04:53:53,430 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-276
+2026-03-06 04:53:53,491 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-277
+2026-03-06 04:53:53,555 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-278
+2026-03-06 04:53:53,583 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-59
+2026-03-06 04:53:53,583 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-59
+2026-03-06 04:53:53,614 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-279
+2026-03-06 04:53:53,670 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-280
+2026-03-06 04:53:53,730 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-281
+2026-03-06 04:53:53,793 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-282
+2026-03-06 04:53:53,853 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-283
+2026-03-06 04:53:53,911 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-284
+2026-03-06 04:53:53,971 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-285
+2026-03-06 04:53:54,046 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-286
+2026-03-06 04:53:54,091 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-287
+2026-03-06 04:53:54,134 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-60
+2026-03-06 04:53:54,135 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-60
+2026-03-06 04:53:54,153 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-288
+2026-03-06 04:53:54,213 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-289
+2026-03-06 04:53:54,271 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-290
+2026-03-06 04:53:54,333 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-291
+2026-03-06 04:53:54,390 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-292
+2026-03-06 04:53:54,451 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-293
+2026-03-06 04:53:54,508 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-61
+2026-03-06 04:53:54,509 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-61
+2026-03-06 04:53:54,508 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-62
+2026-03-06 04:53:54,511 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-294
+2026-03-06 04:53:54,512 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-62
+2026-03-06 04:53:54,572 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-295
+2026-03-06 04:53:54,631 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-296
+2026-03-06 04:53:54,690 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-297
+2026-03-06 04:53:54,742 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-63
+2026-03-06 04:53:54,744 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-63
+2026-03-06 04:53:54,756 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-298
+2026-03-06 04:53:54,812 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-299
+2026-03-06 04:53:54,873 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-300
+2026-03-06 04:53:54,932 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-301
+2026-03-06 04:53:54,995 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-302
+2026-03-06 04:53:55,026 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-64
+2026-03-06 04:53:55,028 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-64
+2026-03-06 04:53:55,050 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-303
+2026-03-06 04:53:55,110 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-304
+2026-03-06 04:53:55,172 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-305
+2026-03-06 04:53:55,233 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-306
+2026-03-06 04:53:55,294 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-307
+2026-03-06 04:53:55,352 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-308
+2026-03-06 04:53:55,414 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-309
+2026-03-06 04:53:55,471 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-310
+2026-03-06 04:53:55,471 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-65
+2026-03-06 04:53:55,473 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-65
+2026-03-06 04:53:55,532 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-311
+2026-03-06 04:53:55,572 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-66
+2026-03-06 04:53:55,572 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-66
+2026-03-06 04:53:55,593 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-312
+2026-03-06 04:53:55,654 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-313
+2026-03-06 04:53:55,712 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-314
+2026-03-06 04:53:55,771 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-315
+2026-03-06 04:53:55,783 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-67
+2026-03-06 04:53:55,783 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-67
+2026-03-06 04:53:55,831 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-316
+2026-03-06 04:53:55,880 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-68
+2026-03-06 04:53:55,881 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-68
+2026-03-06 04:53:55,890 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-317
+2026-03-06 04:53:55,951 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-318
+2026-03-06 04:53:56,013 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-319
+2026-03-06 04:53:56,071 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-320
+2026-03-06 04:53:56,131 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-321
+2026-03-06 04:53:56,192 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-322
+2026-03-06 04:53:56,255 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-323
+2026-03-06 04:53:56,283 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-70
+2026-03-06 04:53:56,283 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-70
+2026-03-06 04:53:56,285 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-69
+2026-03-06 04:53:56,286 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-69
+2026-03-06 04:53:56,312 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-324
+2026-03-06 04:53:56,371 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-325
+2026-03-06 04:53:56,432 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-326
+2026-03-06 04:53:56,493 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-327
+2026-03-06 04:53:56,554 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-328
+2026-03-06 04:53:56,613 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-71
+2026-03-06 04:53:56,613 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-71
+2026-03-06 04:53:56,615 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-329
+2026-03-06 04:53:56,675 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-330
+2026-03-06 04:53:56,730 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-331
+2026-03-06 04:53:56,756 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-72
+2026-03-06 04:53:56,757 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-72
+2026-03-06 04:53:56,791 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-332
+2026-03-06 04:53:56,850 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-333
+2026-03-06 04:53:56,911 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-334
+2026-03-06 04:53:56,971 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-335
+2026-03-06 04:53:57,030 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-336
+2026-03-06 04:53:57,090 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-337
+2026-03-06 04:53:57,150 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-338
+2026-03-06 04:53:57,212 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-339
+2026-03-06 04:53:57,218 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-74
+2026-03-06 04:53:57,218 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-73
+2026-03-06 04:53:57,218 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-74
+2026-03-06 04:53:57,218 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-73
+2026-03-06 04:53:57,271 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-340
+2026-03-06 04:53:57,331 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-341
+2026-03-06 04:53:57,392 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-342
+2026-03-06 04:53:57,451 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-343
+2026-03-06 04:53:57,513 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-344
+2026-03-06 04:53:57,572 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-345
+2026-03-06 04:53:57,631 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-346
+2026-03-06 04:53:57,676 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-75
+2026-03-06 04:53:57,676 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-75
+2026-03-06 04:53:57,691 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-347
+2026-03-06 04:53:57,752 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-348
+2026-03-06 04:53:57,812 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-349
+2026-03-06 04:53:57,873 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-350
+2026-03-06 04:53:57,931 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-351
+2026-03-06 04:53:57,942 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-76
+2026-03-06 04:53:57,942 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-76
+2026-03-06 04:53:57,992 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-352
+2026-03-06 04:53:58,051 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-353
+2026-03-06 04:53:58,112 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-354
+2026-03-06 04:53:58,172 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-355
+2026-03-06 04:53:58,181 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-77
+2026-03-06 04:53:58,182 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-77
+2026-03-06 04:53:58,234 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-356
+2026-03-06 04:53:58,291 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-357
+2026-03-06 04:53:58,350 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-358
+2026-03-06 04:53:58,404 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-78
+2026-03-06 04:53:58,404 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-78
+2026-03-06 04:53:58,411 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-359
+2026-03-06 04:53:58,470 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-360
+2026-03-06 04:53:58,501 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-79
+2026-03-06 04:53:58,501 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-79
+2026-03-06 04:53:58,532 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-361
+2026-03-06 04:53:58,594 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-362
+2026-03-06 04:53:58,653 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-363
+2026-03-06 04:53:58,713 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-364
+2026-03-06 04:53:58,773 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-365
+2026-03-06 04:53:58,827 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-80
+2026-03-06 04:53:58,827 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-80
+2026-03-06 04:53:58,834 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-366
+2026-03-06 04:53:58,891 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-367
+2026-03-06 04:53:58,952 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-368
+2026-03-06 04:53:59,010 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-369
+2026-03-06 04:53:59,046 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-81
+2026-03-06 04:53:59,046 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-81
+2026-03-06 04:53:59,072 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-370
+2026-03-06 04:53:59,130 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-371
+2026-03-06 04:53:59,190 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-372
+2026-03-06 04:53:59,251 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-373
+2026-03-06 04:53:59,310 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-374
+2026-03-06 04:53:59,354 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-82
+2026-03-06 04:53:59,355 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-82
+2026-03-06 04:53:59,370 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-375
+2026-03-06 04:53:59,430 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-376
+2026-03-06 04:53:59,478 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-84
+2026-03-06 04:53:59,479 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-83
+2026-03-06 04:53:59,479 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-84
+2026-03-06 04:53:59,480 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-83
+2026-03-06 04:53:59,491 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-377
+2026-03-06 04:53:59,554 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-378
+2026-03-06 04:53:59,610 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-379
+2026-03-06 04:53:59,671 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-380
+2026-03-06 04:53:59,731 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-381
+2026-03-06 04:53:59,788 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-85
+2026-03-06 04:53:59,788 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-85
+2026-03-06 04:53:59,793 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-382
+2026-03-06 04:53:59,854 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-383
+2026-03-06 04:53:59,911 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-384
+2026-03-06 04:53:59,973 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-385
+2026-03-06 04:54:00,031 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-386
+2026-03-06 04:54:00,090 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-387
+2026-03-06 04:54:00,099 INFO o.a.j.r.Summariser: summary +    176 in 00:00:23 =    7.5/s Avg:  5452 Min:   412 Max: 17717 Err:     0 (0.00%) Active: 302 Started: 387 Finished: 85
+2026-03-06 04:54:00,100 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-86
+2026-03-06 04:54:00,100 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-86
+2026-03-06 04:54:00,156 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-388
+2026-03-06 04:54:00,210 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-389
+2026-03-06 04:54:00,271 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-390
+2026-03-06 04:54:00,332 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-391
+2026-03-06 04:54:00,393 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-392
+2026-03-06 04:54:00,407 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-87
+2026-03-06 04:54:00,407 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-87
+2026-03-06 04:54:00,452 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-393
+2026-03-06 04:54:00,506 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-88
+2026-03-06 04:54:00,506 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-88
+2026-03-06 04:54:00,512 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-394
+2026-03-06 04:54:00,571 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-395
+2026-03-06 04:54:00,607 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-89
+2026-03-06 04:54:00,607 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-90
+2026-03-06 04:54:00,607 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-89
+2026-03-06 04:54:00,607 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-90
+2026-03-06 04:54:00,631 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-396
+2026-03-06 04:54:00,690 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-397
+2026-03-06 04:54:00,750 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-398
+2026-03-06 04:54:00,811 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-399
+2026-03-06 04:54:00,870 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-400
+2026-03-06 04:54:00,932 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-401
+2026-03-06 04:54:00,946 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-91
+2026-03-06 04:54:00,947 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-91
+2026-03-06 04:54:00,992 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-402
+2026-03-06 04:54:01,051 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-403
+2026-03-06 04:54:01,112 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-404
+2026-03-06 04:54:01,172 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-405
+2026-03-06 04:54:01,231 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-406
+2026-03-06 04:54:01,291 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-407
+2026-03-06 04:54:01,355 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-408
+2026-03-06 04:54:01,382 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-92
+2026-03-06 04:54:01,382 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-93
+2026-03-06 04:54:01,383 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-92
+2026-03-06 04:54:01,384 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-93
+2026-03-06 04:54:01,411 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-409
+2026-03-06 04:54:01,471 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-410
+2026-03-06 04:54:01,532 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-411
+2026-03-06 04:54:01,592 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-412
+2026-03-06 04:54:01,650 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-413
+2026-03-06 04:54:01,711 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-414
+2026-03-06 04:54:01,771 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-415
+2026-03-06 04:54:01,816 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-94
+2026-03-06 04:54:01,817 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-94
+2026-03-06 04:54:01,832 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-416
+2026-03-06 04:54:01,892 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-417
+2026-03-06 04:54:01,950 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-418
+2026-03-06 04:54:02,010 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-419
+2026-03-06 04:54:02,040 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-95
+2026-03-06 04:54:02,042 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-95
+2026-03-06 04:54:02,070 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-420
+2026-03-06 04:54:02,130 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-421
+2026-03-06 04:54:02,192 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-422
+2026-03-06 04:54:02,251 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-423
+2026-03-06 04:54:02,311 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-424
+2026-03-06 04:54:02,361 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-96
+2026-03-06 04:54:02,362 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-96
+2026-03-06 04:54:02,371 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-425
+2026-03-06 04:54:02,431 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-426
+2026-03-06 04:54:02,491 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-427
+2026-03-06 04:54:02,551 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-428
+2026-03-06 04:54:02,612 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-429
+2026-03-06 04:54:02,670 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-430
+2026-03-06 04:54:02,686 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-97
+2026-03-06 04:54:02,686 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-97
+2026-03-06 04:54:02,730 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-431
+2026-03-06 04:54:02,791 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-432
+2026-03-06 04:54:02,851 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-433
+2026-03-06 04:54:02,910 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-434
+2026-03-06 04:54:02,963 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-98
+2026-03-06 04:54:02,964 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-98
+2026-03-06 04:54:02,972 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-435
+2026-03-06 04:54:03,031 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-436
+2026-03-06 04:54:03,092 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-437
+2026-03-06 04:54:03,151 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-438
+2026-03-06 04:54:03,211 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-439
+2026-03-06 04:54:03,238 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-99
+2026-03-06 04:54:03,238 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-99
+2026-03-06 04:54:03,271 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-440
+2026-03-06 04:54:03,331 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-441
+2026-03-06 04:54:03,391 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-442
+2026-03-06 04:54:03,452 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-443
+2026-03-06 04:54:03,466 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-100
+2026-03-06 04:54:03,467 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-100
+2026-03-06 04:54:03,513 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-444
+2026-03-06 04:54:03,568 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-101
+2026-03-06 04:54:03,568 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-101
+2026-03-06 04:54:03,572 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-445
+2026-03-06 04:54:03,631 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-446
+2026-03-06 04:54:03,690 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-447
+2026-03-06 04:54:03,750 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-448
+2026-03-06 04:54:03,812 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-449
+2026-03-06 04:54:03,871 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-450
+2026-03-06 04:54:03,887 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-102
+2026-03-06 04:54:03,887 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-102
+2026-03-06 04:54:03,930 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-451
+2026-03-06 04:54:03,990 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-452
+2026-03-06 04:54:04,050 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-453
+2026-03-06 04:54:04,104 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-103
+2026-03-06 04:54:04,104 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-103
+2026-03-06 04:54:04,110 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-454
+2026-03-06 04:54:04,170 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-455
+2026-03-06 04:54:04,206 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-104
+2026-03-06 04:54:04,207 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-104
+2026-03-06 04:54:04,232 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-456
+2026-03-06 04:54:04,291 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-457
+2026-03-06 04:54:04,318 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-105
+2026-03-06 04:54:04,319 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-105
+2026-03-06 04:54:04,350 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-458
+2026-03-06 04:54:04,410 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-459
+2026-03-06 04:54:04,470 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-460
+2026-03-06 04:54:04,531 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-461
+2026-03-06 04:54:04,591 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-462
+2026-03-06 04:54:04,651 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-463
+2026-03-06 04:54:04,710 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-464
+2026-03-06 04:54:04,773 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-465
+2026-03-06 04:54:04,802 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-107
+2026-03-06 04:54:04,803 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-107
+2026-03-06 04:54:04,803 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-106
+2026-03-06 04:54:04,806 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-106
+2026-03-06 04:54:04,834 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-466
+2026-03-06 04:54:04,893 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-467
+2026-03-06 04:54:04,951 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-468
+2026-03-06 04:54:05,010 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-469
+2026-03-06 04:54:05,071 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-470
+2026-03-06 04:54:05,131 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-471
+2026-03-06 04:54:05,191 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-472
+2026-03-06 04:54:05,250 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-473
+2026-03-06 04:54:05,273 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-108
+2026-03-06 04:54:05,274 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-108
+2026-03-06 04:54:05,311 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-474
+2026-03-06 04:54:05,371 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-475
+2026-03-06 04:54:05,430 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-476
+2026-03-06 04:54:05,481 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-109
+2026-03-06 04:54:05,483 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-109
+2026-03-06 04:54:05,498 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-477
+2026-03-06 04:54:05,551 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-478
+2026-03-06 04:54:05,579 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-110
+2026-03-06 04:54:05,580 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-110
+2026-03-06 04:54:05,611 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-479
+2026-03-06 04:54:05,671 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-480
+2026-03-06 04:54:05,730 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-481
+2026-03-06 04:54:05,782 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-111
+2026-03-06 04:54:05,783 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-111
+2026-03-06 04:54:05,790 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-482
+2026-03-06 04:54:05,852 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-483
+2026-03-06 04:54:05,885 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-112
+2026-03-06 04:54:05,886 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-112
+2026-03-06 04:54:05,912 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-484
+2026-03-06 04:54:05,972 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-485
+2026-03-06 04:54:06,031 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-486
+2026-03-06 04:54:06,090 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-487
+2026-03-06 04:54:06,151 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-488
+2026-03-06 04:54:06,212 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-489
+2026-03-06 04:54:06,271 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-490
+2026-03-06 04:54:06,290 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-114
+2026-03-06 04:54:06,291 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-113
+2026-03-06 04:54:06,291 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-114
+2026-03-06 04:54:06,291 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-113
+2026-03-06 04:54:06,331 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-491
+2026-03-06 04:54:06,391 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-492
+2026-03-06 04:54:06,451 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-493
+2026-03-06 04:54:06,513 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-494
+2026-03-06 04:54:06,573 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-495
+2026-03-06 04:54:06,595 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-115
+2026-03-06 04:54:06,596 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-115
+2026-03-06 04:54:06,631 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-496
+2026-03-06 04:54:06,686 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-116
+2026-03-06 04:54:06,687 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-116
+2026-03-06 04:54:06,691 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-497
+2026-03-06 04:54:06,751 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-498
+2026-03-06 04:54:06,811 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-499
+2026-03-06 04:54:06,870 INFO o.a.j.t.JMeterThread: Thread started: Usuarios concurrentes 1-500
+2026-03-06 04:54:07,211 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-117
+2026-03-06 04:54:07,212 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-117
+2026-03-06 04:54:07,213 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-118
+2026-03-06 04:54:07,213 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-118
+2026-03-06 04:54:07,442 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-119
+2026-03-06 04:54:07,445 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-119
+2026-03-06 04:54:07,656 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-120
+2026-03-06 04:54:07,657 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-120
+2026-03-06 04:54:07,771 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-121
+2026-03-06 04:54:07,774 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-121
+2026-03-06 04:54:08,295 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-122
+2026-03-06 04:54:08,296 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-122
+2026-03-06 04:54:08,296 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-124
+2026-03-06 04:54:08,296 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-124
+2026-03-06 04:54:08,296 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-123
+2026-03-06 04:54:08,297 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-123
+2026-03-06 04:54:08,669 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-125
+2026-03-06 04:54:08,669 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-125
+2026-03-06 04:54:08,937 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-127
+2026-03-06 04:54:08,937 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-126
+2026-03-06 04:54:08,937 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-127
+2026-03-06 04:54:08,938 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-126
+2026-03-06 04:54:09,240 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-128
+2026-03-06 04:54:09,241 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-128
+2026-03-06 04:54:09,346 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-129
+2026-03-06 04:54:09,346 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-129
+2026-03-06 04:54:09,547 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-130
+2026-03-06 04:54:09,548 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-130
+2026-03-06 04:54:09,734 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-131
+2026-03-06 04:54:09,735 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-131
+2026-03-06 04:54:09,951 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-132
+2026-03-06 04:54:09,951 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-132
+2026-03-06 04:54:10,306 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-133
+2026-03-06 04:54:10,307 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-133
+2026-03-06 04:54:10,498 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-134
+2026-03-06 04:54:10,499 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-134
+2026-03-06 04:54:10,589 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-135
+2026-03-06 04:54:10,589 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-135
+2026-03-06 04:54:10,876 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-136
+2026-03-06 04:54:10,877 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-136
+2026-03-06 04:54:11,179 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-138
+2026-03-06 04:54:11,179 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-137
+2026-03-06 04:54:11,180 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-137
+2026-03-06 04:54:11,180 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-138
+2026-03-06 04:54:11,509 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-139
+2026-03-06 04:54:11,509 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-139
+2026-03-06 04:54:11,709 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-140
+2026-03-06 04:54:11,710 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-140
+2026-03-06 04:54:11,805 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-141
+2026-03-06 04:54:11,806 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-141
+2026-03-06 04:54:12,361 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-142
+2026-03-06 04:54:12,362 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-142
+2026-03-06 04:54:12,573 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-143
+2026-03-06 04:54:12,574 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-145
+2026-03-06 04:54:12,574 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-143
+2026-03-06 04:54:12,573 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-144
+2026-03-06 04:54:12,576 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-145
+2026-03-06 04:54:12,576 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-144
+2026-03-06 04:54:12,848 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-146
+2026-03-06 04:54:12,850 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-146
+2026-03-06 04:54:13,161 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-148
+2026-03-06 04:54:13,161 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-147
+2026-03-06 04:54:13,161 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-148
+2026-03-06 04:54:13,162 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-147
+2026-03-06 04:54:13,355 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-149
+2026-03-06 04:54:13,356 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-149
+2026-03-06 04:54:13,679 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-150
+2026-03-06 04:54:13,680 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-150
+2026-03-06 04:54:13,991 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-151
+2026-03-06 04:54:13,991 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-152
+2026-03-06 04:54:13,992 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-151
+2026-03-06 04:54:13,992 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-152
+2026-03-06 04:54:14,408 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-153
+2026-03-06 04:54:14,409 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-153
+2026-03-06 04:54:14,409 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-154
+2026-03-06 04:54:14,411 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-154
+2026-03-06 04:54:14,977 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-155
+2026-03-06 04:54:14,978 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-156
+2026-03-06 04:54:14,978 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-156
+2026-03-06 04:54:14,978 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-155
+2026-03-06 04:54:15,291 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-157
+2026-03-06 04:54:15,292 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-157
+2026-03-06 04:54:15,392 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-158
+2026-03-06 04:54:15,394 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-158
+2026-03-06 04:54:15,706 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-159
+2026-03-06 04:54:15,706 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-159
+2026-03-06 04:54:15,810 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-160
+2026-03-06 04:54:15,811 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-160
+2026-03-06 04:54:16,090 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-162
+2026-03-06 04:54:16,090 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-162
+2026-03-06 04:54:16,090 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-161
+2026-03-06 04:54:16,091 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-161
+2026-03-06 04:54:16,538 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-163
+2026-03-06 04:54:16,539 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-163
+2026-03-06 04:54:16,645 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-164
+2026-03-06 04:54:16,645 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-164
+2026-03-06 04:54:16,829 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-165
+2026-03-06 04:54:16,829 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-165
+2026-03-06 04:54:17,023 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-166
+2026-03-06 04:54:17,024 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-166
+2026-03-06 04:54:17,543 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-167
+2026-03-06 04:54:17,544 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-167
+2026-03-06 04:54:17,635 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-168
+2026-03-06 04:54:17,635 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-169
+2026-03-06 04:54:17,636 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-169
+2026-03-06 04:54:17,635 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-168
+2026-03-06 04:54:17,943 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-170
+2026-03-06 04:54:17,943 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-170
+2026-03-06 04:54:18,040 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-171
+2026-03-06 04:54:18,040 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-171
+2026-03-06 04:54:18,233 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-172
+2026-03-06 04:54:18,234 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-172
+2026-03-06 04:54:18,425 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-173
+2026-03-06 04:54:18,425 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-173
+2026-03-06 04:54:18,613 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-174
+2026-03-06 04:54:18,614 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-174
+2026-03-06 04:54:18,795 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-175
+2026-03-06 04:54:18,796 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-175
+2026-03-06 04:54:18,987 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-176
+2026-03-06 04:54:18,987 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-176
+2026-03-06 04:54:19,185 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-177
+2026-03-06 04:54:19,185 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-177
+2026-03-06 04:54:19,378 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-178
+2026-03-06 04:54:19,379 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-178
+2026-03-06 04:54:19,574 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-179
+2026-03-06 04:54:19,574 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-179
+2026-03-06 04:54:19,766 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-180
+2026-03-06 04:54:19,767 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-180
+2026-03-06 04:54:20,081 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-181
+2026-03-06 04:54:20,082 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-181
+2026-03-06 04:54:20,179 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-182
+2026-03-06 04:54:20,180 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-182
+2026-03-06 04:54:20,371 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-183
+2026-03-06 04:54:20,372 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-183
+2026-03-06 04:54:20,563 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-184
+2026-03-06 04:54:20,563 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-184
+2026-03-06 04:54:20,759 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-185
+2026-03-06 04:54:20,760 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-185
+2026-03-06 04:54:20,960 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-186
+2026-03-06 04:54:20,960 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-186
+2026-03-06 04:54:21,162 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-187
+2026-03-06 04:54:21,163 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-187
+2026-03-06 04:54:21,374 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-188
+2026-03-06 04:54:21,374 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-188
+2026-03-06 04:54:21,576 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-189
+2026-03-06 04:54:21,577 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-189
+2026-03-06 04:54:21,780 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-190
+2026-03-06 04:54:21,786 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-190
+2026-03-06 04:54:22,393 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-192
+2026-03-06 04:54:22,393 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-191
+2026-03-06 04:54:22,393 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-191
+2026-03-06 04:54:22,396 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-192
+2026-03-06 04:54:22,496 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-193
+2026-03-06 04:54:22,497 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-193
+2026-03-06 04:54:22,692 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-194
+2026-03-06 04:54:22,692 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-194
+2026-03-06 04:54:22,978 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-195
+2026-03-06 04:54:22,979 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-195
+2026-03-06 04:54:22,979 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-196
+2026-03-06 04:54:22,982 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-196
+2026-03-06 04:54:23,394 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-198
+2026-03-06 04:54:23,395 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-198
+2026-03-06 04:54:23,394 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-197
+2026-03-06 04:54:23,396 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-197
+2026-03-06 04:54:23,590 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-199
+2026-03-06 04:54:23,591 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-199
+2026-03-06 04:54:23,992 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-200
+2026-03-06 04:54:23,992 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-200
+2026-03-06 04:54:24,320 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-201
+2026-03-06 04:54:24,321 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-201
+2026-03-06 04:54:24,418 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-202
+2026-03-06 04:54:24,419 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-202
+2026-03-06 04:54:24,851 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-204
+2026-03-06 04:54:24,852 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-204
+2026-03-06 04:54:24,851 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-203
+2026-03-06 04:54:24,852 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-203
+2026-03-06 04:54:25,150 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-206
+2026-03-06 04:54:25,151 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-206
+2026-03-06 04:54:25,298 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-205
+2026-03-06 04:54:25,299 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-205
+2026-03-06 04:54:25,594 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-207
+2026-03-06 04:54:25,594 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-208
+2026-03-06 04:54:25,595 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-207
+2026-03-06 04:54:25,596 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-208
+2026-03-06 04:54:25,781 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-209
+2026-03-06 04:54:25,781 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-209
+2026-03-06 04:54:26,158 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-210
+2026-03-06 04:54:26,158 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-211
+2026-03-06 04:54:26,159 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-210
+2026-03-06 04:54:26,159 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-211
+2026-03-06 04:54:26,373 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-212
+2026-03-06 04:54:26,374 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-212
+2026-03-06 04:54:26,658 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-213
+2026-03-06 04:54:26,658 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-213
+2026-03-06 04:54:26,855 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-214
+2026-03-06 04:54:26,856 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-214
+2026-03-06 04:54:27,151 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-216
+2026-03-06 04:54:27,151 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-215
+2026-03-06 04:54:27,151 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-215
+2026-03-06 04:54:27,151 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-216
+2026-03-06 04:54:27,351 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-217
+2026-03-06 04:54:27,351 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-217
+2026-03-06 04:54:27,736 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-218
+2026-03-06 04:54:27,736 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-218
+2026-03-06 04:54:27,736 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-219
+2026-03-06 04:54:27,737 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-219
+2026-03-06 04:54:28,021 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-220
+2026-03-06 04:54:28,022 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-220
+2026-03-06 04:54:28,332 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-221
+2026-03-06 04:54:28,333 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-221
+2026-03-06 04:54:28,434 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-222
+2026-03-06 04:54:28,437 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-222
+2026-03-06 04:54:28,634 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-223
+2026-03-06 04:54:28,634 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-223
+2026-03-06 04:54:28,820 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-224
+2026-03-06 04:54:28,820 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-224
+2026-03-06 04:54:29,010 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-225
+2026-03-06 04:54:29,011 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-225
+2026-03-06 04:54:29,314 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-226
+2026-03-06 04:54:29,314 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-226
+2026-03-06 04:54:29,314 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-227
+2026-03-06 04:54:29,316 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-227
+2026-03-06 04:54:29,606 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-228
+2026-03-06 04:54:29,607 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-228
+2026-03-06 04:54:29,798 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-229
+2026-03-06 04:54:29,798 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-229
+2026-03-06 04:54:30,082 INFO o.a.j.r.Summariser: summary +    286 in 00:00:30 =    9.5/s Avg: 14785 Min:   376 Max: 39229 Err:     0 (0.00%) Active: 271 Started: 500 Finished: 229
+2026-03-06 04:54:30,083 INFO o.a.j.r.Summariser: summary =    462 in 00:00:53 =    8.7/s Avg: 11230 Min:   376 Max: 39229 Err:     0 (0.00%)
+2026-03-06 04:54:30,090 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-231
+2026-03-06 04:54:30,090 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-231
+2026-03-06 04:54:30,091 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-230
+2026-03-06 04:54:30,091 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-230
+2026-03-06 04:54:30,292 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-232
+2026-03-06 04:54:30,293 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-232
+2026-03-06 04:54:30,721 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-233
+2026-03-06 04:54:30,721 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-233
+2026-03-06 04:54:30,813 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-234
+2026-03-06 04:54:30,814 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-234
+2026-03-06 04:54:31,004 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-235
+2026-03-06 04:54:31,004 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-235
+2026-03-06 04:54:31,336 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-236
+2026-03-06 04:54:31,336 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-236
+2026-03-06 04:54:31,536 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-237
+2026-03-06 04:54:31,537 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-237
+2026-03-06 04:54:31,552 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-238
+2026-03-06 04:54:31,553 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-238
+2026-03-06 04:54:31,859 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-239
+2026-03-06 04:54:31,859 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-239
+2026-03-06 04:54:32,362 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-240
+2026-03-06 04:54:32,362 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-240
+2026-03-06 04:54:32,573 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-241
+2026-03-06 04:54:32,574 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-241
+2026-03-06 04:54:32,828 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-242
+2026-03-06 04:54:32,829 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-242
+2026-03-06 04:54:33,163 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-243
+2026-03-06 04:54:33,207 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-243
+2026-03-06 04:54:33,818 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-244
+2026-03-06 04:54:33,818 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-244
+2026-03-06 04:54:33,819 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-246
+2026-03-06 04:54:33,819 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-246
+2026-03-06 04:54:33,819 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-245
+2026-03-06 04:54:33,823 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-245
+2026-03-06 04:54:34,411 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-247
+2026-03-06 04:54:34,411 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-247
+2026-03-06 04:54:34,628 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-248
+2026-03-06 04:54:34,629 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-248
+2026-03-06 04:54:34,899 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-249
+2026-03-06 04:54:34,900 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-249
+2026-03-06 04:54:35,153 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-250
+2026-03-06 04:54:35,153 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-250
+2026-03-06 04:54:35,264 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-251
+2026-03-06 04:54:35,268 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-251
+2026-03-06 04:54:35,650 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-252
+2026-03-06 04:54:35,651 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-252
+2026-03-06 04:54:35,753 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-253
+2026-03-06 04:54:35,755 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-253
+2026-03-06 04:54:35,957 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-254
+2026-03-06 04:54:35,957 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-254
+2026-03-06 04:54:36,314 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-255
+2026-03-06 04:54:36,314 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-255
+2026-03-06 04:54:36,571 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-256
+2026-03-06 04:54:36,572 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-256
+2026-03-06 04:54:36,881 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-257
+2026-03-06 04:54:36,884 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-257
+2026-03-06 04:54:37,158 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-258
+2026-03-06 04:54:37,159 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-258
+2026-03-06 04:54:37,397 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-259
+2026-03-06 04:54:37,398 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-259
+2026-03-06 04:54:37,656 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-260
+2026-03-06 04:54:37,657 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-260
+2026-03-06 04:54:37,889 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-261
+2026-03-06 04:54:37,890 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-261
+2026-03-06 04:54:38,121 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-262
+2026-03-06 04:54:38,122 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-262
+2026-03-06 04:54:38,361 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-263
+2026-03-06 04:54:38,362 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-263
+2026-03-06 04:54:38,588 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-264
+2026-03-06 04:54:38,589 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-264
+2026-03-06 04:54:38,812 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-265
+2026-03-06 04:54:38,812 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-265
+2026-03-06 04:54:39,045 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-266
+2026-03-06 04:54:39,046 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-266
+2026-03-06 04:54:39,321 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-267
+2026-03-06 04:54:39,321 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-267
+2026-03-06 04:54:39,579 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-268
+2026-03-06 04:54:39,580 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-268
+2026-03-06 04:54:39,813 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-269
+2026-03-06 04:54:39,814 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-269
+2026-03-06 04:54:40,062 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-270
+2026-03-06 04:54:40,063 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-270
+2026-03-06 04:54:40,311 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-271
+2026-03-06 04:54:40,311 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-271
+2026-03-06 04:54:40,549 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-272
+2026-03-06 04:54:40,550 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-272
+2026-03-06 04:54:40,764 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-273
+2026-03-06 04:54:40,764 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-273
+2026-03-06 04:54:40,867 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-274
+2026-03-06 04:54:40,868 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-274
+2026-03-06 04:54:41,268 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-275
+2026-03-06 04:54:41,269 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-275
+2026-03-06 04:54:41,528 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-276
+2026-03-06 04:54:41,529 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-276
+2026-03-06 04:54:41,764 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-277
+2026-03-06 04:54:41,764 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-277
+2026-03-06 04:54:41,968 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-278
+2026-03-06 04:54:41,969 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-278
+2026-03-06 04:54:42,211 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-279
+2026-03-06 04:54:42,211 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-279
+2026-03-06 04:54:42,448 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-281
+2026-03-06 04:54:42,448 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-280
+2026-03-06 04:54:42,450 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-280
+2026-03-06 04:54:42,450 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-281
+2026-03-06 04:54:42,747 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-282
+2026-03-06 04:54:42,748 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-282
+2026-03-06 04:54:42,844 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-283
+2026-03-06 04:54:42,845 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-283
+2026-03-06 04:54:43,140 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-284
+2026-03-06 04:54:43,141 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-284
+2026-03-06 04:54:43,442 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-285
+2026-03-06 04:54:43,442 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-286
+2026-03-06 04:54:43,443 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-285
+2026-03-06 04:54:43,443 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-286
+2026-03-06 04:54:43,754 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-287
+2026-03-06 04:54:43,755 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-287
+2026-03-06 04:54:43,849 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-288
+2026-03-06 04:54:43,850 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-288
+2026-03-06 04:54:44,041 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-289
+2026-03-06 04:54:44,042 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-289
+2026-03-06 04:54:44,351 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-290
+2026-03-06 04:54:44,351 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-291
+2026-03-06 04:54:44,352 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-290
+2026-03-06 04:54:44,352 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-291
+2026-03-06 04:54:44,751 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-292
+2026-03-06 04:54:44,755 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-292
+2026-03-06 04:54:44,877 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-293
+2026-03-06 04:54:44,878 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-293
+2026-03-06 04:54:45,161 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-294
+2026-03-06 04:54:45,162 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-294
+2026-03-06 04:54:45,162 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-295
+2026-03-06 04:54:45,163 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-295
+2026-03-06 04:54:45,471 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-296
+2026-03-06 04:54:45,477 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-296
+2026-03-06 04:54:46,105 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-298
+2026-03-06 04:54:46,105 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-298
+2026-03-06 04:54:46,106 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-297
+2026-03-06 04:54:46,107 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-297
+2026-03-06 04:54:46,108 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-299
+2026-03-06 04:54:46,109 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-299
+2026-03-06 04:54:46,521 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-300
+2026-03-06 04:54:46,521 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-300
+2026-03-06 04:54:46,709 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-301
+2026-03-06 04:54:46,710 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-301
+2026-03-06 04:54:46,709 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-302
+2026-03-06 04:54:46,711 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-302
+2026-03-06 04:54:47,083 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-303
+2026-03-06 04:54:47,083 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-303
+2026-03-06 04:54:47,361 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-304
+2026-03-06 04:54:47,361 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-305
+2026-03-06 04:54:47,361 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-304
+2026-03-06 04:54:47,361 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-305
+2026-03-06 04:54:47,457 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-306
+2026-03-06 04:54:47,458 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-306
+2026-03-06 04:54:47,863 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-307
+2026-03-06 04:54:47,864 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-307
+2026-03-06 04:54:48,068 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-308
+2026-03-06 04:54:48,068 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-308
+2026-03-06 04:54:48,160 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-309
+2026-03-06 04:54:48,160 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-309
+2026-03-06 04:54:48,356 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-310
+2026-03-06 04:54:48,357 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-310
+2026-03-06 04:54:48,643 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-312
+2026-03-06 04:54:48,644 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-312
+2026-03-06 04:54:48,643 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-311
+2026-03-06 04:54:48,645 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-311
+2026-03-06 04:54:48,830 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-313
+2026-03-06 04:54:48,831 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-313
+2026-03-06 04:54:49,111 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-314
+2026-03-06 04:54:49,111 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-314
+2026-03-06 04:54:49,305 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-315
+2026-03-06 04:54:49,306 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-315
+2026-03-06 04:54:49,502 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-316
+2026-03-06 04:54:49,503 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-316
+2026-03-06 04:54:49,711 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-317
+2026-03-06 04:54:49,711 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-317
+2026-03-06 04:54:50,060 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-318
+2026-03-06 04:54:50,060 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-318
+2026-03-06 04:54:50,162 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-319
+2026-03-06 04:54:50,162 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-319
+2026-03-06 04:54:50,363 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-320
+2026-03-06 04:54:50,365 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-320
+2026-03-06 04:54:50,646 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-321
+2026-03-06 04:54:50,648 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-321
+2026-03-06 04:54:50,747 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-322
+2026-03-06 04:54:50,749 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-322
+2026-03-06 04:54:51,118 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-324
+2026-03-06 04:54:51,118 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-324
+2026-03-06 04:54:51,119 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-323
+2026-03-06 04:54:51,120 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-323
+2026-03-06 04:54:51,212 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-325
+2026-03-06 04:54:51,218 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-325
+2026-03-06 04:54:51,492 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-326
+2026-03-06 04:54:51,492 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-326
+2026-03-06 04:54:51,792 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-327
+2026-03-06 04:54:51,792 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-328
+2026-03-06 04:54:51,793 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-328
+2026-03-06 04:54:51,793 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-327
+2026-03-06 04:54:52,229 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-329
+2026-03-06 04:54:52,230 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-329
+2026-03-06 04:54:52,502 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-330
+2026-03-06 04:54:52,502 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-330
+2026-03-06 04:54:52,596 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-331
+2026-03-06 04:54:52,597 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-331
+2026-03-06 04:54:52,802 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-332
+2026-03-06 04:54:52,804 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-332
+2026-03-06 04:54:53,107 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-333
+2026-03-06 04:54:53,107 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-333
+2026-03-06 04:54:53,388 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-334
+2026-03-06 04:54:53,388 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-335
+2026-03-06 04:54:53,389 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-335
+2026-03-06 04:54:53,388 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-334
+2026-03-06 04:54:53,489 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-336
+2026-03-06 04:54:53,489 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-336
+2026-03-06 04:54:53,890 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-337
+2026-03-06 04:54:53,891 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-337
+2026-03-06 04:54:53,986 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-338
+2026-03-06 04:54:53,986 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-338
+2026-03-06 04:54:54,311 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-339
+2026-03-06 04:54:54,311 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-339
+2026-03-06 04:54:54,404 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-340
+2026-03-06 04:54:54,404 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-340
+2026-03-06 04:54:54,607 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-341
+2026-03-06 04:54:54,607 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-341
+2026-03-06 04:54:54,889 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-342
+2026-03-06 04:54:54,890 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-342
+2026-03-06 04:54:55,190 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-343
+2026-03-06 04:54:55,191 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-343
+2026-03-06 04:54:55,302 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-344
+2026-03-06 04:54:55,302 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-344
+2026-03-06 04:54:55,592 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-345
+2026-03-06 04:54:55,593 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-345
+2026-03-06 04:54:55,909 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-346
+2026-03-06 04:54:55,909 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-346
+2026-03-06 04:54:56,007 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-348
+2026-03-06 04:54:56,007 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-347
+2026-03-06 04:54:56,008 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-347
+2026-03-06 04:54:56,008 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-348
+2026-03-06 04:54:56,421 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-349
+2026-03-06 04:54:56,422 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-349
+2026-03-06 04:54:56,512 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-350
+2026-03-06 04:54:56,513 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-350
+2026-03-06 04:54:56,808 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-351
+2026-03-06 04:54:56,808 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-351
+2026-03-06 04:54:57,103 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-352
+2026-03-06 04:54:57,103 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-352
+2026-03-06 04:54:57,103 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-353
+2026-03-06 04:54:57,104 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-353
+2026-03-06 04:54:57,417 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-354
+2026-03-06 04:54:57,417 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-354
+2026-03-06 04:54:57,645 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-355
+2026-03-06 04:54:57,646 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-355
+2026-03-06 04:54:57,863 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-356
+2026-03-06 04:54:57,863 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-356
+2026-03-06 04:54:57,964 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-357
+2026-03-06 04:54:57,964 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-357
+2026-03-06 04:54:58,264 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-359
+2026-03-06 04:54:58,264 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-358
+2026-03-06 04:54:58,265 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-359
+2026-03-06 04:54:58,266 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-358
+2026-03-06 04:54:58,747 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-360
+2026-03-06 04:54:58,747 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-361
+2026-03-06 04:54:58,748 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-361
+2026-03-06 04:54:58,748 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-360
+2026-03-06 04:54:58,939 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-362
+2026-03-06 04:54:58,940 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-362
+2026-03-06 04:55:00,103 INFO o.a.j.r.Summariser: summary +    274 in 00:00:30 =    9.1/s Avg: 26610 Min:   378 Max: 60795 Err:     0 (0.00%) Active: 138 Started: 500 Finished: 362
+2026-03-06 04:55:00,104 INFO o.a.j.r.Summariser: summary =    736 in 00:01:23 =    8.8/s Avg: 16955 Min:   376 Max: 60795 Err:     0 (0.00%)
+2026-03-06 04:55:14,324 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-363
+2026-03-06 04:55:14,325 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-363
+2026-03-06 04:55:14,420 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-365
+2026-03-06 04:55:14,420 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-365
+2026-03-06 04:55:14,510 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-364
+2026-03-06 04:55:14,511 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-364
+2026-03-06 04:55:14,735 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-366
+2026-03-06 04:55:14,735 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-366
+2026-03-06 04:55:14,874 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-367
+2026-03-06 04:55:14,874 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-367
+2026-03-06 04:55:15,050 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-368
+2026-03-06 04:55:15,051 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-368
+2026-03-06 04:55:15,153 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-370
+2026-03-06 04:55:15,154 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-369
+2026-03-06 04:55:15,154 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-370
+2026-03-06 04:55:15,155 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-369
+2026-03-06 04:55:15,250 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-371
+2026-03-06 04:55:15,251 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-371
+2026-03-06 04:55:15,341 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-372
+2026-03-06 04:55:15,341 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-372
+2026-03-06 04:55:15,440 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-373
+2026-03-06 04:55:15,440 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-373
+2026-03-06 04:55:15,537 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-374
+2026-03-06 04:55:15,538 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-374
+2026-03-06 04:55:15,632 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-375
+2026-03-06 04:55:15,632 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-375
+2026-03-06 04:55:15,735 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-376
+2026-03-06 04:55:15,735 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-376
+2026-03-06 04:55:15,832 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-377
+2026-03-06 04:55:15,833 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-377
+2026-03-06 04:55:15,931 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-378
+2026-03-06 04:55:15,932 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-378
+2026-03-06 04:55:16,031 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-379
+2026-03-06 04:55:16,032 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-379
+2026-03-06 04:55:16,124 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-380
+2026-03-06 04:55:16,124 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-380
+2026-03-06 04:55:16,219 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-381
+2026-03-06 04:55:16,220 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-381
+2026-03-06 04:55:16,316 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-382
+2026-03-06 04:55:16,317 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-382
+2026-03-06 04:55:16,415 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-383
+2026-03-06 04:55:16,416 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-383
+2026-03-06 04:55:16,508 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-384
+2026-03-06 04:55:16,508 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-384
+2026-03-06 04:55:16,600 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-385
+2026-03-06 04:55:16,600 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-385
+2026-03-06 04:55:16,691 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-386
+2026-03-06 04:55:16,691 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-386
+2026-03-06 04:55:16,784 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-387
+2026-03-06 04:55:16,784 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-387
+2026-03-06 04:55:16,878 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-388
+2026-03-06 04:55:16,878 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-388
+2026-03-06 04:55:16,968 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-389
+2026-03-06 04:55:16,969 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-389
+2026-03-06 04:55:17,062 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-390
+2026-03-06 04:55:17,063 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-390
+2026-03-06 04:55:17,152 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-392
+2026-03-06 04:55:17,153 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-392
+2026-03-06 04:55:17,246 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-391
+2026-03-06 04:55:17,247 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-391
+2026-03-06 04:55:17,338 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-393
+2026-03-06 04:55:17,338 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-393
+2026-03-06 04:55:17,427 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-394
+2026-03-06 04:55:17,428 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-394
+2026-03-06 04:55:17,526 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-395
+2026-03-06 04:55:17,526 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-395
+2026-03-06 04:55:17,624 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-396
+2026-03-06 04:55:17,626 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-396
+2026-03-06 04:55:17,721 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-397
+2026-03-06 04:55:17,722 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-397
+2026-03-06 04:55:17,822 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-398
+2026-03-06 04:55:17,822 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-398
+2026-03-06 04:55:18,037 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-399
+2026-03-06 04:55:18,037 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-400
+2026-03-06 04:55:18,037 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-399
+2026-03-06 04:55:18,037 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-400
+2026-03-06 04:55:18,138 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-401
+2026-03-06 04:55:18,139 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-401
+2026-03-06 04:55:18,239 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-402
+2026-03-06 04:55:18,239 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-402
+2026-03-06 04:55:18,432 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-404
+2026-03-06 04:55:18,433 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-403
+2026-03-06 04:55:18,433 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-403
+2026-03-06 04:55:18,433 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-404
+2026-03-06 04:55:18,531 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-405
+2026-03-06 04:55:18,531 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-405
+2026-03-06 04:55:18,626 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-406
+2026-03-06 04:55:18,627 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-406
+2026-03-06 04:55:18,721 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-407
+2026-03-06 04:55:18,721 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-407
+2026-03-06 04:55:18,810 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-408
+2026-03-06 04:55:18,810 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-408
+2026-03-06 04:55:18,912 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-409
+2026-03-06 04:55:18,913 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-409
+2026-03-06 04:55:19,013 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-410
+2026-03-06 04:55:19,013 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-410
+2026-03-06 04:55:19,108 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-411
+2026-03-06 04:55:19,109 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-411
+2026-03-06 04:55:19,201 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-412
+2026-03-06 04:55:19,201 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-412
+2026-03-06 04:55:19,292 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-414
+2026-03-06 04:55:19,292 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-414
+2026-03-06 04:55:19,384 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-413
+2026-03-06 04:55:19,385 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-413
+2026-03-06 04:55:19,486 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-415
+2026-03-06 04:55:19,487 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-415
+2026-03-06 04:55:19,586 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-416
+2026-03-06 04:55:19,586 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-416
+2026-03-06 04:55:19,688 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-417
+2026-03-06 04:55:19,688 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-417
+2026-03-06 04:55:19,788 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-418
+2026-03-06 04:55:19,788 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-418
+2026-03-06 04:55:19,992 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-419
+2026-03-06 04:55:19,993 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-420
+2026-03-06 04:55:19,993 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-419
+2026-03-06 04:55:19,994 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-420
+2026-03-06 04:55:20,201 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-421
+2026-03-06 04:55:20,202 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-422
+2026-03-06 04:55:20,202 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-421
+2026-03-06 04:55:20,203 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-422
+2026-03-06 04:55:20,295 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-423
+2026-03-06 04:55:20,295 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-423
+2026-03-06 04:55:20,391 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-424
+2026-03-06 04:55:20,391 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-424
+2026-03-06 04:55:20,483 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-425
+2026-03-06 04:55:20,484 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-425
+2026-03-06 04:55:20,579 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-426
+2026-03-06 04:55:20,580 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-426
+2026-03-06 04:55:20,670 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-427
+2026-03-06 04:55:20,670 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-427
+2026-03-06 04:55:20,762 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-428
+2026-03-06 04:55:20,763 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-428
+2026-03-06 04:55:20,858 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-429
+2026-03-06 04:55:20,858 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-429
+2026-03-06 04:55:20,952 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-430
+2026-03-06 04:55:20,952 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-430
+2026-03-06 04:55:21,044 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-431
+2026-03-06 04:55:21,045 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-431
+2026-03-06 04:55:21,144 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-433
+2026-03-06 04:55:21,144 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-433
+2026-03-06 04:55:21,237 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-432
+2026-03-06 04:55:21,238 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-432
+2026-03-06 04:55:21,329 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-434
+2026-03-06 04:55:21,329 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-434
+2026-03-06 04:55:21,422 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-435
+2026-03-06 04:55:21,423 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-435
+2026-03-06 04:55:21,519 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-436
+2026-03-06 04:55:21,519 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-436
+2026-03-06 04:55:21,612 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-437
+2026-03-06 04:55:21,612 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-437
+2026-03-06 04:55:21,710 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-438
+2026-03-06 04:55:21,710 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-438
+2026-03-06 04:55:21,921 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-439
+2026-03-06 04:55:21,921 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-439
+2026-03-06 04:55:22,025 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-440
+2026-03-06 04:55:22,026 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-440
+2026-03-06 04:55:22,143 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-441
+2026-03-06 04:55:22,143 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-441
+2026-03-06 04:55:22,285 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-442
+2026-03-06 04:55:22,286 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-442
+2026-03-06 04:55:22,395 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-443
+2026-03-06 04:55:22,395 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-443
+2026-03-06 04:55:22,495 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-445
+2026-03-06 04:55:22,496 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-445
+2026-03-06 04:55:22,496 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-444
+2026-03-06 04:55:22,497 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-444
+2026-03-06 04:55:22,591 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-446
+2026-03-06 04:55:22,591 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-446
+2026-03-06 04:55:22,691 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-447
+2026-03-06 04:55:22,691 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-447
+2026-03-06 04:55:22,778 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-448
+2026-03-06 04:55:22,778 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-448
+2026-03-06 04:55:22,867 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-449
+2026-03-06 04:55:22,868 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-449
+2026-03-06 04:55:22,961 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-450
+2026-03-06 04:55:22,961 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-450
+2026-03-06 04:55:23,054 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-451
+2026-03-06 04:55:23,054 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-451
+2026-03-06 04:55:23,146 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-452
+2026-03-06 04:55:23,146 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-452
+2026-03-06 04:55:23,234 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-453
+2026-03-06 04:55:23,235 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-453
+2026-03-06 04:55:23,329 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-454
+2026-03-06 04:55:23,330 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-454
+2026-03-06 04:55:23,419 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-455
+2026-03-06 04:55:23,419 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-455
+2026-03-06 04:55:23,507 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-457
+2026-03-06 04:55:23,507 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-457
+2026-03-06 04:55:23,600 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-456
+2026-03-06 04:55:23,601 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-456
+2026-03-06 04:55:23,690 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-458
+2026-03-06 04:55:23,690 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-458
+2026-03-06 04:55:23,778 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-459
+2026-03-06 04:55:23,780 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-459
+2026-03-06 04:55:24,000 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-460
+2026-03-06 04:55:24,000 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-460
+2026-03-06 04:55:24,113 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-462
+2026-03-06 04:55:24,113 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-461
+2026-03-06 04:55:24,113 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-461
+2026-03-06 04:55:24,113 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-462
+2026-03-06 04:55:24,317 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-463
+2026-03-06 04:55:24,317 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-464
+2026-03-06 04:55:24,318 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-464
+2026-03-06 04:55:24,317 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-463
+2026-03-06 04:55:24,419 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-465
+2026-03-06 04:55:24,420 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-465
+2026-03-06 04:55:24,627 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-466
+2026-03-06 04:55:24,628 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-466
+2026-03-06 04:55:24,744 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-467
+2026-03-06 04:55:24,744 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-467
+2026-03-06 04:55:24,877 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-468
+2026-03-06 04:55:24,877 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-469
+2026-03-06 04:55:24,878 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-468
+2026-03-06 04:55:24,878 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-469
+2026-03-06 04:55:24,982 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-470
+2026-03-06 04:55:24,983 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-470
+2026-03-06 04:55:25,208 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-471
+2026-03-06 04:55:25,208 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-471
+2026-03-06 04:55:25,327 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-472
+2026-03-06 04:55:25,328 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-472
+2026-03-06 04:55:25,433 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-473
+2026-03-06 04:55:25,433 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-473
+2026-03-06 04:55:25,536 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-474
+2026-03-06 04:55:25,537 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-474
+2026-03-06 04:55:25,642 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-475
+2026-03-06 04:55:25,643 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-475
+2026-03-06 04:55:25,642 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-476
+2026-03-06 04:55:25,643 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-476
+2026-03-06 04:55:25,922 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-477
+2026-03-06 04:55:25,922 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-477
+2026-03-06 04:55:26,062 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-478
+2026-03-06 04:55:26,063 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-478
+2026-03-06 04:55:26,190 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-479
+2026-03-06 04:55:26,191 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-479
+2026-03-06 04:55:26,191 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-480
+2026-03-06 04:55:26,192 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-480
+2026-03-06 04:55:26,291 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-481
+2026-03-06 04:55:26,292 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-481
+2026-03-06 04:55:26,388 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-482
+2026-03-06 04:55:26,389 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-482
+2026-03-06 04:55:26,598 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-483
+2026-03-06 04:55:26,599 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-483
+2026-03-06 04:55:26,693 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-485
+2026-03-06 04:55:26,693 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-484
+2026-03-06 04:55:26,693 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-485
+2026-03-06 04:55:26,694 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-484
+2026-03-06 04:55:26,781 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-486
+2026-03-06 04:55:26,782 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-486
+2026-03-06 04:55:26,869 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-487
+2026-03-06 04:55:26,870 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-487
+2026-03-06 04:55:26,957 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-488
+2026-03-06 04:55:26,958 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-488
+2026-03-06 04:55:27,046 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-489
+2026-03-06 04:55:27,047 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-489
+2026-03-06 04:55:27,136 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-490
+2026-03-06 04:55:27,136 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-490
+2026-03-06 04:55:27,230 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-491
+2026-03-06 04:55:27,231 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-491
+2026-03-06 04:55:27,323 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-492
+2026-03-06 04:55:27,323 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-492
+2026-03-06 04:55:27,417 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-493
+2026-03-06 04:55:27,418 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-493
+2026-03-06 04:55:27,520 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-494
+2026-03-06 04:55:27,521 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-494
+2026-03-06 04:55:27,735 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-495
+2026-03-06 04:55:27,735 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-496
+2026-03-06 04:55:27,736 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-495
+2026-03-06 04:55:27,736 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-496
+2026-03-06 04:55:27,947 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-497
+2026-03-06 04:55:27,948 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-497
+2026-03-06 04:55:28,060 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-498
+2026-03-06 04:55:28,061 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-498
+2026-03-06 04:55:28,192 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-499
+2026-03-06 04:55:28,193 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-499
+2026-03-06 04:55:28,223 INFO o.a.j.t.JMeterThread: Thread is done: Usuarios concurrentes 1-500
+2026-03-06 04:55:28,223 INFO o.a.j.t.JMeterThread: Thread finished: Usuarios concurrentes 1-500
+2026-03-06 04:55:28,225 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2026-03-06 04:55:28,228 INFO o.a.j.r.Summariser: summary +    264 in 00:00:28 =    9.4/s Avg: 38260 Min: 13734 Max: 67552 Err:     0 (0.00%) Active: 0 Started: 500 Finished: 500
+2026-03-06 04:55:28,229 INFO o.a.j.r.Summariser: summary =   1000 in 00:01:51 =    9.0/s Avg: 22580 Min:   376 Max: 67552 Err:     0 (0.00%)
+2026-03-06 04:55:28,232 INFO o.a.j.JMeter: Generating Dashboard
+2026-03-06 04:55:28,233 INFO o.a.j.r.d.ReportGenerator: Flushing result collector before report Generation
+2026-03-06 04:55:28,302 INFO o.a.j.r.p.NormalizerSampleConsumer: Using format, 'ms', to parse timeStamp field
+2026-03-06 04:55:28,634 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): beginDate produced 0 samples
+2026-03-06 04:55:28,635 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): endDate produced 0 samples
+2026-03-06 04:55:28,641 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ApdexSummaryConsumer#stopProducing(): apdexSummary produced 0 samples
+2026-03-06 04:55:28,642 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.RequestsSummaryConsumer#stopProducing(): requestsSummary produced 0 samples
+2026-03-06 04:55:28,657 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.StatisticsSummaryConsumer#stopProducing(): statisticsSummary produced 0 samples
+2026-03-06 04:55:28,666 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.Top5ErrorsBySamplerConsumer#stopProducing(): top5ErrorsBySampler produced 0 samples
+2026-03-06 04:55:28,667 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ErrorsSummaryConsumer#stopProducing(): errorsSummary produced 0 samples
+2026-03-06 04:55:28,667 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.HitsPerSecondGraphConsumer#stopProducing(): hitsPerSecond produced 0 samples
+2026-03-06 04:55:28,826 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyVSRequestGraphConsumer#stopProducing(): latencyVsRequest produced 0 samples
+2026-03-06 04:55:28,828 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.SyntheticResponseTimeDistributionGraphConsumer#stopProducing(): syntheticResponseTimeDistribution produced 0 samples
+2026-03-06 04:55:28,837 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.BytesThroughputGraphConsumer#stopProducing(): bytesThroughputOverTime produced 0 samples
+2026-03-06 04:55:28,838 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.CodesPerSecondGraphConsumer#stopProducing(): codesPerSecond produced 0 samples
+2026-03-06 04:55:29,025 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeVSRequestGraphConsumer#stopProducing(): responseTimeVsRequest produced 0 samples
+2026-03-06 04:55:29,027 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): startIntervalControlerFilter produced 7000 samples
+2026-03-06 04:55:29,029 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TotalTPSGraphConsumer#stopProducing(): totalTPS produced 0 samples
+2026-03-06 04:55:29,033 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ActiveThreadsGraphConsumer#stopProducing(): activeThreadsOverTime produced 0 samples
+2026-03-06 04:55:29,034 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TimeVSThreadGraphConsumer#stopProducing(): timeVsThreads produced 0 samples
+2026-03-06 04:55:29,037 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeDistributionGraphConsumer#stopProducing(): responseTimeDistribution produced 0 samples
+2026-03-06 04:55:29,038 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TransactionsPerSecondGraphConsumer#stopProducing(): transactionsPerSecond produced 0 samples
+2026-03-06 04:55:29,039 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesGraphConsumer#stopProducing(): responseTimePercentiles produced 0 samples
+2026-03-06 04:55:29,049 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesOverTimeGraphConsumer#stopProducing(): responseTimePercentilesOverTime produced 0 samples
+2026-03-06 04:55:29,052 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeOverTimeGraphConsumer#stopProducing(): responseTimesOverTime produced 0 samples
+2026-03-06 04:55:29,053 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ConnectTimeOverTimeGraphConsumer#stopProducing(): connectTimeOverTime produced 0 samples
+2026-03-06 04:55:29,054 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyOverTimeGraphConsumer#stopProducing(): latenciesOverTime produced 0 samples
+2026-03-06 04:55:29,055 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): nameFilter produced 15000 samples
+2026-03-06 04:55:29,073 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): dateRangeFilter produced 3000 samples
+2026-03-06 04:55:29,079 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.NormalizerSampleConsumer#stopProducing(): normalizer produced 1000 samples
+2026-03-06 04:55:29,091 INFO o.a.j.r.p.CsvFileSampleSource: produce(): 1000 samples produced in 731ms on channel 0
+2026-03-06 04:55:29,094 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'json' of className:'org.apache.jmeter.report.dashboard.JsonExporter'
+2026-03-06 04:55:29,470 INFO o.a.j.r.d.JsonExporter: Found data for consumer statisticsSummary in context
+2026-03-06 04:55:29,470 INFO o.a.j.r.d.JsonExporter: Creating statistics for overall
+2026-03-06 04:55:29,471 INFO o.a.j.r.d.JsonExporter: Creating statistics for other transactions
+2026-03-06 04:55:29,473 INFO o.a.j.r.d.JsonExporter: Checking output folder
+2026-03-06 04:55:29,477 INFO o.a.j.r.d.JsonExporter: Writing statistics JSON to /tests/report/statistics.json
+2026-03-06 04:55:29,660 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'html' of className:'org.apache.jmeter.report.dashboard.HtmlTemplateExporter'
+2026-03-06 04:55:29,685 INFO o.a.j.r.d.HtmlTemplateExporter: Will generate dashboard in folder: /tests/report
+2026-03-06 04:55:29,969 INFO o.a.j.r.d.HtmlTemplateExporter: Report will be generated in: /tests/report, creating folder structure
+2026-03-06 04:55:29,991 INFO o.a.j.r.d.TemplateVisitor: Copying folder from '/opt/apache-jmeter-5.5/bin/report-template' to '/tests/report', got message: /tests/report, found non empty folder with following content [/tests/report/statistics.json], will be ignored
+2026-03-06 04:55:33,586 INFO o.a.j.JMeter: Dashboard generated
