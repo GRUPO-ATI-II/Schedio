@@ -61,3 +61,30 @@
 .tasks-toggle-completed:hover {
   color: var(--purple-700);
 }
+
+.tasks-message {
+  font: var(--text-p);
+  color: var(--grey-700);
+  margin: 1rem 0;
+}
+
+.tasks-error {
+  font: var(--text-p);
+  color: var(--red-600, #b91c1c);
+  margin: 1rem 0;
+}
+
+.tasks-retry {
+  font: var(--text-p);
+  padding: 0.5rem 1rem;
+  background: var(--purple-600, #7c3aed);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.tasks-retry:hover {
+  opacity: 0.9;
+}

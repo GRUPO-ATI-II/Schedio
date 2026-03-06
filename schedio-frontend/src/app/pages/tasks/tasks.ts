@@ -1,7 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskCard } from '../../shared/components/ui/task-card/task-card';
 import { RectBaseButton } from '../../shared/components/ui/rect-base-button/rect-base-button';
+import { AssignmentService, AssignmentResponse } from '../../core/services/assignment.service';
+
+export interface AgendaTask {
+  id: string;
+  title: string;
+  dueAt: Date;
+  timeLabel: string | null;
+  completed: boolean;
+}
 
 @Component({
   selector: 'app-tasks',
@@ -10,60 +19,55 @@ import { RectBaseButton } from '../../shared/components/ui/rect-base-button/rect
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
 })
-export class Tasks {
-  constructor(private router: Router) {}
+export class Tasks implements OnInit {
+  constructor(
+    private router: Router,
+    private assignmentService: AssignmentService,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   /** Si es true, se muestran también las tareas completadas. */
   showCompleted = false;
 
-  /** Lista de tareas (reemplazar por datos desde API o estado cuando exista). */
-  tasks = [
-    {
-      title: 'Tarea atrasada (overdue)',
-      dueAt: (() => {
-        const d = new Date();
-        d.setDate(d.getDate() - 2);
-        d.setHours(10, 0, 0, 0);
-        return d;
-      })(),
-      timeLabel: '10:00 am',
-      completed: false,
-    },
-    {
-      title: 'Tarea completada',
-      dueAt: (() => {
-        const d = new Date();
-        d.setDate(d.getDate() + 1);
-        return d;
-      })(),
-      timeLabel: '11:00 am a 12:00 pm',
-      completed: true,
-    },
-    {
-      title: 'Entrega en pocas horas',
-      dueAt: (() => {
-        const d = new Date();
-        d.setHours(d.getHours() + 4, 30, 0, 0);
-        return d;
-      })(),
-      timeLabel: null as string | null,
-      completed: false,
-    },
-    {
-      title: 'Entrega en 3 días',
-      dueAt: (() => {
-        const d = new Date();
-        d.setDate(d.getDate() + 3);
-        d.setHours(14, 0, 0, 0);
-        return d;
-      })(),
-      timeLabel: '2:00 pm a 3:00 pm',
-      completed: false,
-    },
-  ];
+  /** Lista de tareas cargadas desde la BD. */
+  tasks: AgendaTask[] = [];
+
+  loading = false;
+  error: string | null = null;
+
+  ngOnInit(): void {
+    this.loadTasks();
+  }
+
+  loadTasks(): void {
+    this.loading = true;
+    this.error = null;
+    this.assignmentService.getAll().subscribe({
+      next: (list) => {
+        this.tasks = list.map((a) => this.assignmentToTask(a));
+        this.loading = false;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = err?.error?.message || err?.message || 'Error al cargar las tareas.';
+        this.cdr.detectChanges();
+      },
+    });
+  }
+
+  private assignmentToTask(a: AssignmentResponse): AgendaTask {
+    return {
+      id: a._id,
+      title: a.title,
+      dueAt: new Date(a.deadline),
+      timeLabel: null,
+      completed: !!(a.send_time),
+    };
+  }
 
   /** Tareas que se muestran: sin completar siempre; completadas solo si showCompleted es true. */
-  get visibleTasks(): typeof this.tasks {
+  get visibleTasks(): AgendaTask[] {
     return this.showCompleted ? this.tasks : this.tasks.filter((t) => !t.completed);
   }
 
@@ -80,11 +84,20 @@ export class Tasks {
     this.showCompleted = !this.showCompleted;
   }
 
-  onToggleComplete(task: { completed: boolean }): void {
-    task.completed = true;
+  onToggleComplete(task: AgendaTask): void {
+    const newCompleted = !task.completed;
+    this.assignmentService.updateCompletion(task.id, newCompleted).subscribe({
+      next: () => {
+        task.completed = newCompleted;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        // Opcional: mostrar mensaje de error
+      },
+    });
   }
 
- /* onAddTask(): void {
+  onAddTask(): void {
     this.router.navigate(['/agenda/new-assignment']);
-  }*/
+  }
 }
