@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
+const cors = require("cors");
 // Importamos la librería completa primero
 const migrateMongo = require("migrate-mongo");
 
@@ -18,6 +19,7 @@ const assignmentModule = require("./src/assignments/assignment.module");
 const gradeModule = require("./src/grades/grade.module");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const runMigrations = async () => {
