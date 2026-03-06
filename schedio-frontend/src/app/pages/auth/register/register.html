@@ -23,6 +23,7 @@
           type='email'
           [(ngModel)]="userForm.email">
         </app-input-field>
+        <label [class.visible]="invalidEmail" class="missingField" i18n>Introduce un correo electrónico válido</label>
 
         <app-date-field
           label="Fecha de Nacimiento"
@@ -53,7 +54,7 @@
           <label [class.visible]="passwordError" class="missingField" i18n>Las contraseñas no coinciden</label>
         </div>
         <label [class.visible]="missingFields" class="missingField" i18n>* campos obligatorios</label>
-        <app-rect-base-button [isAction]="true" class="login-button" i18n="@@SignInButton">Registrar</app-rect-base-button>
+        <app-rect-base-button [isAction]="true" class="login-button" (clicked)="register()" i18n="@@SignInButton">Registrar</app-rect-base-button>
       </form>
       <a routerLink="/login" i18n="@@LoginLink">¿Ya tienes cuenta? Inicia sesión aquí.</a>
   </div>

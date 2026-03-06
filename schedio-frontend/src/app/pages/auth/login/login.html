@@ -4,6 +4,7 @@
   </div>
   <div class="login-container vertical">
     <img src="/logo-horizontal.svg" alt="Logo" class="login-logo" />
+    <p [class.visible]="showRegistrationSuccess" class="success-message" i18n>Registro completado. Inicia sesión con tu correo y contraseña.</p>
     <form class="login-form vertical" (ngSubmit)="login()">
       <app-input-field
         label="Correo Electrónico"

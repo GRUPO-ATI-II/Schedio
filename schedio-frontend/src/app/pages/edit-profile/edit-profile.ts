@@ -5,6 +5,7 @@ import { RectBaseButton } from '../../shared/components/ui/rect-base-button/rect
 import { Pfp } from '../../shared/components/ui/pfp/pfp'
 import { UploadImage } from '../../shared/components/ui/upload-image/upload-image'
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -15,6 +16,12 @@ import { Router } from '@angular/router';
 })
 export class EditProfile {
   private router = inject(Router);
+  private authService = inject(AuthService);
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 
   onGuardar(selectedLang: string) {
     if (selectedLang) {
