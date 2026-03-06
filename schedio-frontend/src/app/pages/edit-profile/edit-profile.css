@@ -53,6 +53,11 @@
   font-weight: var(--fw-semiBold);
 }
 
+#logout:hover ::ng-deep button{
+  background-color: var(--purple-800);
+  color: white;
+}
+
 .username {
   color: var(--purple-950);
   font: var(--text-h5);
@@ -94,6 +99,12 @@
   color: var(--error);
 }
 
+#report-btn:hover ::ng-deep button{
+  border-color: var(--error) ;
+  background-color: var(--error);
+  color: white;
+}
+
 .pageHeader {
   color: var(--purple-950);
   font: var(--text-h2);
@@ -102,4 +113,9 @@
 
 app-upload-image {
   grid-column: span 2;
+}
+
+#ticket-btn:hover ::ng-deep button{
+  border-color: var(--accent-color) ;
+  background-color: var(--accent-color) ;
 }

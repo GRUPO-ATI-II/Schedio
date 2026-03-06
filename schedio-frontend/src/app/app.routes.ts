@@ -9,6 +9,7 @@ import { EditProfile } from './pages/edit-profile/edit-profile';
 import { CreateAssignment } from './pages/create-assignment/create-assignment';
 import { NotFound } from './pages/not-found/not-found';
 import { authGuard } from './core/guards/auth.guard';
+import { guestGuard } from './core/guards/guest.guard';
 
 export const routes: Routes = [
   {
@@ -18,10 +19,12 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [guestGuard],
     loadComponent: () => import('./pages/auth/login/login').then(m => m.Login),
   },
   {
     path: 'register',
+    canActivate: [guestGuard],
     loadComponent: () => import('./pages/auth/register/register').then((m) => m.Register),
   },
   {
@@ -32,7 +35,7 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'ticket',
+        redirectTo: 'agenda',
       },
       {
         path: 'ticket',
