@@ -1,0 +1,63 @@
+:host {
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ height: 100%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.input-group {
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-label {
+  color: var(--dark-fc);
+  font: var(--text-h6);
+  margin-top: 8px;
+  display: block;
+  font-weight: 600;
+}
+
+.second-column {
+  grid-column: span 3;
+}
+
+app-input-textarea {
+  grid-row: span 5;
+}
+
+app-date-field {
+  grid-column: span 3;
+}
+
+.custom-select {
+  background-color: var(--purple-200) !important;
+  border: none !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  font: var(--text-h6);
+  color: var(--light-fc);
+  font-weight: var(--fw-medium);
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  gap: 10px 20px;
+  align-items: start;
+}
+
+.pageHeader {
+  color: var(--purple-950);
+  font: var(--text-h2);
+  margin: 0 0 20px 0;
+}
