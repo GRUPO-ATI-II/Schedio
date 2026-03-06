@@ -16,6 +16,7 @@ Write-Host ""
 
 # Usamos host.docker.internal para alcanzar el localhost de Windows desde el contenedor
 docker run --rm `
+  --network="schedio_default" `
   -v "${PWD}:/tests" `
   -w /tests `
   justb4/jmeter:5.5 `
