@@ -80,7 +80,8 @@
         },
         "serve": {
           "options": {
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "proxy.conf.json",
+            "allowedHosts": ["frontend", "localhost", "127.0.0.1"]
           },
           "builder": "@angular/build:dev-server",
           "configurations": {
