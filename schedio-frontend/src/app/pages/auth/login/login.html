@@ -4,9 +4,11 @@
   </div>
   <div class="login-container vertical">
     <img src="/logo-horizontal.svg" alt="Logo" class="login-logo" />
+    <p [class.visible]="showRegistrationSuccess" class="success-message" i18n>Registro completado. Inicia sesión con tu correo y contraseña.</p>
     <form class="login-form vertical" (ngSubmit)="login()">
       <app-input-field
         label="Correo Electrónico"
+        [required]="missingEmail"
         i18n-label="@@emailLabel"
         name="email"
         type="email"
@@ -16,6 +18,7 @@
       </app-input-field>
       <app-input-field
         label="Contraseña"
+        [required]="missingPassword"
         i18n-label="@@passwordLabel"
         name="password"
         type="password"
@@ -23,7 +26,8 @@
         i18n-placeholder="@@passwordPlaceholder"
         [(ngModel)]="loginForm.password">
       </app-input-field>
-
+      <label [class.visible]="missingFields" class="missingField" i18n>* campos obligatorios</label>
+      <label [class.visible]="wrongCredentials" class="missingField" i18n>Credenciales Incorrectas</label>
       <app-rect-base-button
         [isAction]="true"
         class="login-button"

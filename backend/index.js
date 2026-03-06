@@ -1,60 +1,91 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const userController = require('./src/controllers/user.controller');
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const path = require("path");
+const cors = require("cors");
+// Importamos la librería completa primero
+const migrateMongo = require("migrate-mongo");
+
+const env = process.env.NODE_ENV || "dev";
+dotenv.config({ path: path.resolve(process.cwd(), `.env.${env}`) });
+
+// Módulos (Usuarios, Agenda, etc.)
+const userModule = require("./src/users/user.module");
+const agendaModule = require("./src/agenda/agenda.module");
+const reminderModule = require("./src/reminders/reminders.module");
+const eventModule = require("./src/event/event.module");
+const subjectModule = require("./src/subject/subject.module");
+const assignmentModule = require("./src/assignments/assignment.module");
+const gradeModule = require("./src/grades/grade.module");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(cors({
-  origin: 'http://localhost:4200',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
+app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-    console.log('Body:', req.body); // Verifica si llegan los datos de Angular
-    next();
-});
-
-const mongoURI = process.env.MONGO_URI || 'mongodb://schedio-mongo:27017/schedio';
-
-mongoose.connect(mongoURI)
-  .then(() => console.log('Conectado a MongoDB con éxito'))
-  .catch(err => console.error('!!!!Error al conectar a MongoDB:', err));
-
-app.post('/api/users/register', userController.register);
-app.post('/api/users/login', userController.login);
-
-app.get('/', (req, res) => {
-  res.json({
-    mensaje: "¡Backend de Schedio funcionando!",
-    estado: "Online",
-    tecnologias: ["Express 5", "Mongoose 9", "Node 22"]
-  });
-});
-
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
-});
-
-app.get('/api/test-db', async (req, res) => {
+const runMigrations = async () => {
   try {
-    const mongoose = require('mongoose');
-    const state = mongoose.connection.readyState;
-    // 0 = disconnected, 1 = connected
-    res.json({
-      message: "Backend reachable",
-      dbStatus: state === 1 ? "Connected to MongoDB" : "Error in DB"
+    console.log(
+      `🔄 [Migrator]: Verificando migraciones en entorno: ${env.toUpperCase()}`,
+    );
+
+    // migrate-mongo v14.x (CommonJS) returns promises via Proxy
+    const up = await migrateMongo.up;
+    const config = await migrateMongo.config;
+
+    // Cargar la configuración desde migrate-mongo-config.js
+    await config.read();
+
+    // Mongoose ya está conectado, usamos su base de datos nativa
+    const db = mongoose.connection.db;
+
+    const migrated = await up(db);
+
+    if (migrated && migrated.length > 0) {
+      migrated.forEach((file) =>
+        console.log(`✅ [Migrator]: Ejecutada -> ${file}`),
+      );
+    } else {
+      console.log("ℹ️ [Migrator]: No hay migraciones pendientes.");
+    }
+  } catch (err) {
+    console.error("❌ [Migrator Error]:", err.message);
+  }
+};
+
+// 3. Configuración de MongoDB y Arranque
+const startApp = async () => {
+  try {
+    const mongoUri =
+      process.env.MONGO_URI || "mongodb://mongo:27017/schedio_dev";
+
+    await mongoose.connect(mongoUri);
+    console.log(
+      `🔌 [DB]: MongoDB Conectado a ${process.env.DB_NAME || "schedio_dev"}`,
+    );
+
+    // Ejecutar migraciones tras conectar la DB
+    await runMigrations();
+
+    // Cargar módulos
+    userModule(app);
+    agendaModule(app);
+    reminderModule(app);
+    eventModule(app);
+    subjectModule(app);
+    assignmentModule(app);
+    gradeModule(app);
+
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(
+        `🚀 [Server]: Schedio API lista en modo ${env.toUpperCase()}`,
+      );
+      console.log(`🔗 [URL]: http://localhost:${PORT}`);
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("❌ [Fatal Error]:", err.message);
+    process.exit(1);
   }
-});
+};
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+startApp();

@@ -1,0 +1,14 @@
+# Imagen oficial que ya trae Node + Cypress + navegador
+FROM cypress/included:13.13.0
+
+# Carpeta de trabajo dentro del contenedor
+WORKDIR /e2e
+
+# Copiamos todo el contenido del directorio e2e
+COPY . .
+
+# Dentro de la red Docker el frontend se alcanza por el nombre del servicio
+ENV CYPRESS_BASE_URL=http://frontend:4200
+
+# Ejecutar Cypress en modo headless
+CMD ["cypress", "run"]

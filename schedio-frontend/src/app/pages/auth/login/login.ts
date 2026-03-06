@@ -1,5 +1,4 @@
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, PLATFORM_ID, Inject, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service'
 import { InputField } from '../../../shared/components/ui/input-field/input-field';
@@ -12,27 +11,51 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
+export class Login implements OnInit {
   loginForm = {email: '', password: ''};
   isSubmitting = false;
-  constructor(private authService: AuthService,
+  missingEmail = false;
+  missingPassword = false;
+  missingFields = false;
+  wrongCredentials = false;
+  showRegistrationSuccess = false;
+
+  constructor(
+    private authService: AuthService,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object) {}
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) {}
+
+  ngOnInit() {
+    const state = this.router.getCurrentNavigation()?.extras?.state ?? history.state;
+    this.showRegistrationSuccess = (state as { registrationSuccess?: boolean })?.registrationSuccess === true;
+  }
 
   login() {
     if (this.isSubmitting) return;
     this.isSubmitting = true;
+    this.missingEmail = !this.loginForm.email;
+    this.missingPassword = !this.loginForm.password;
+    this.missingFields = this.missingEmail || this.missingPassword;
+    this.wrongCredentials = false;
+
+    if (this.missingFields) {
+      this.isSubmitting = false;
+      this.cdr.detectChanges();
+      return;
+    }
 
     this.authService.login(this.loginForm).subscribe({
       next: () => {
-          console.log('Successful Login');
-          this.router.navigate(['/ticket']); //TODO change to actual home page
-        },
-      error: (err) => {
-          this.isSubmitting = false;
-          console.error('Login Error:', err);
-          alert('Credenciales incorrectas');
-        }
+        this.wrongCredentials = false;
+        this.router.navigate(['/ticket']);
+      },
+      error: () => {
+        this.wrongCredentials = true;
+        this.isSubmitting = false;
+        setTimeout(() => this.cdr.detectChanges(), 0);
+      },
     });
   }
 }

@@ -1,5 +1,4 @@
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, PLATFORM_ID, Inject, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InputField } from '../../../shared/components/ui/input-field/input-field';
@@ -15,51 +14,63 @@ import { HttpClient } from '@angular/common/http';
     styleUrl: './register.css',
 })
 export class Register {
+    private static readonly EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    missingUsername = false;
+    missingEmail = false;
+    invalidEmail = false;
+    missingBDay = false;
+    missingPassword = false;
+    passwordError = false;
+    missingFields = false;
+
     userForm = {
-        firstName: '',
-        lastName: '',
+        username: '',
         email: '',
         birthDate: '',
-        password: ''
+        password: '',
+        confirmPassword: '',
     };
 
-    constructor(private authService: AuthService,
+    constructor(
+      private authService: AuthService,
       private router: Router,
       private http: HttpClient,
-      @Inject(PLATFORM_ID) private platformId: Object
-      ) {
-        if (isPlatformBrowser(this.platformId)) {
-                    this.testConnection();
-                }
-      }
+      private cdr: ChangeDetectorRef,
+      @Inject(PLATFORM_ID) private platformId: Object,
+    ) {}
 
-    testConnection() {
-      this.http.get('/api/test-db').subscribe({
-        next: (res) => console.log('Successful Connection:', res),
-        error: (err) => console.error('Connection Error:', err)
-      });
-    }
     isSubmitting = false;
     register() {
         if (this.isSubmitting) return;
         this.isSubmitting = true;
+        this.missingUsername = !this.userForm.username;
+        this.missingEmail = !this.userForm.email;
+        this.invalidEmail = !!this.userForm.email && !Register.EMAIL_REGEX.test(this.userForm.email.trim());
+        this.missingBDay = !this.userForm.birthDate;
+        this.missingPassword = !this.userForm.password;
+        this.passwordError = this.userForm.password != this.userForm.confirmPassword;
 
-        if (!this.userForm.email || !this.userForm.password) {
-            alert('Por favor, completa todos los campos.');
+        this.missingFields = this.missingUsername || this.missingEmail || this.missingBDay || this.missingPassword;
+        if (this.missingFields || this.invalidEmail || this.passwordError) {
             this.isSubmitting = false;
+            this.cdr.detectChanges();
             return;
         }
 
-        this.authService.register(this.userForm).subscribe({
-            next: (response) => {
-                console.log('Successful Sign in', response);
-                this.router.navigate(['/login']); // Redirige al éxito
+        const { confirmPassword, ...dataToSend } = this.userForm;
+
+        this.authService.register(dataToSend).subscribe({
+            next: () => {
+                this.router.navigate(['/login'], { state: { registrationSuccess: true } });
             },
             error: (err) => {
                 console.error('Sign in Error:', err);
                 alert('No se pudo completar el registro. Revisa la consola.');
+            },
+            complete: () => {
+                this.isSubmitting = false;
             }
         });
-      this.isSubmitting=false;
     }
 }

@@ -1,1 +1,26 @@
-<div class="categories-card"></div>
+<div class="categories-card">
+  <div class="card-header" (click)="toggle()">
+    <h3 class="card-title" i18n>Categorías</h3>
+    <img src="icon_despliegue.svg" alt="Toggle" [class.expanded]="isExpanded">
+  </div>
+  <ul class="category-list" *ngIf="isExpanded">
+    <li>
+      <div class="item-name">
+        <span class="dot uni-dot"></span>
+        <span i18n>Universidad</span>
+      </div>
+    </li>
+    <li>
+      <div class="item-name">
+        <span class="dot work-dot"></span>
+        <span i18n>Trabajo</span>
+      </div>
+    </li>
+    <li>
+      <div class="item-name">
+        <span class="dot event-dot"></span>
+        <span i18n>Eventos</span>
+      </div>
+    </li>
+  </ul>
+</div>

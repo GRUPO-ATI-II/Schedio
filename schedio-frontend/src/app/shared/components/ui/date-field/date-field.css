@@ -36,3 +36,12 @@
 .input-field::-webkit-calendar-picker-indicator:hover {
   opacity: 1;
 }
+
+.missingField {
+  color: var(--error);
+  display: none;
+}
+
+.visible {
+  display: inline;
+}

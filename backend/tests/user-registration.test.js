@@ -2,8 +2,8 @@ const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 const express = require('express');
-const userController = require('../src/controllers/user.controller');
-const User = require('../src/entities/user.entity');
+const userController = require('../src/users/controllers/user.controller');
+const User = require('../src/users/entities/user.entity');
 
 let mongoServer;
 
@@ -51,8 +51,7 @@ describe('Integration Test: User Registration', () => {
 
     it('Should register a new user and return 201', async () => {
         const newUser = {
-            firstName: 'Test',
-            lastName: 'Jenkins',
+            username: 'Test',
             email: 'test.jenkins@example.com',
             password: 'password123',
             birthDate: '2003-05-31'
@@ -63,15 +62,14 @@ describe('Integration Test: User Registration', () => {
             .send(newUser);
 
         expect(response.statusCode).toBe(201);
-        expect(response.body).toHaveProperty('email', newUser.email);
+        expect(response.body.user).toHaveProperty('email', newUser.email);
         // verify password is hashed
-        expect(response.body.password).not.toBe(newUser.password);
+        expect(response.body.user.password).not.toBe(newUser.password);
     });
 
     it('Should fail with 400 if the email is already in use', async () => {
         const userData = {
-            firstName: 'Duplicated',
-            lastName: 'User',
+            username: 'Duplicated',
             email: 'duplicate@example.com',
             password: 'password123',
             birthDate: '2003-05-31'
