@@ -33,6 +33,10 @@ app-input-textarea {
   grid-row: span 5;
 }
 
+app-date-field {
+  grid-column: span 3;
+}
+
 .custom-select {
   background-color: var(--purple-200) !important;
   border: none !important;

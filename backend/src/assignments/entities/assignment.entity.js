@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 
 const AssignmentSchema = new mongoose.Schema(
   {
+    title: {
+      type: String,
+      required: [true, "El titulo es obligatorio"],
+    },
     instructions: {
       type: String,
-      required: [true, "Las instrucciones son obligatorias"],
+      default: null,
     },
     deadline: {
       type: Date,
