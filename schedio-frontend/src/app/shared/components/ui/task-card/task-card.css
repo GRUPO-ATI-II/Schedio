@@ -1,0 +1,120 @@
+.task-card {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--purple-50);
+  border-radius: 12px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  height: 100%;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.task-card-bar {
+  width: 0.75rem;
+  min-width: 0.75rem;
+  border-radius: 12px 0 0 12px;
+  flex-shrink: 0;
+}
+
+/* Gris - Faltan días */
+.task-card.state-upcoming .task-card-bar,
+.task-card.state-soon .task-card-bar {
+  background-color: var(--grey-200);
+}
+
+/* Naranja - Faltan horas */
+.task-card.state-imminent .task-card-bar {
+  background-color: var(--orange-500);
+}
+
+.task-card.state-overdue .task-card-bar {
+  background-color: var(--error);
+}
+
+.task-card.state-completed .task-card-bar {
+  background-color: var(--success);
+}
+
+.task-card-body {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-date {
+  font: var(--text-p);
+  color: var(--grey-800);
+  font-weight: var(--fw-bold);
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.task-title {
+  font: var(--text-h5);
+  color: var(--grey-800);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.task-time {
+  font: var(--text-p);
+  color: var(--grey-800);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.task-time-icon {
+  width: 18px;
+  height: 18px;
+  background: url("/icons-clock.svg") center/contain no-repeat;
+  flex-shrink: 0;
+}
+
+.task-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;  
+  gap: 8px;
+  min-width: 11rem;
+}
+
+.task-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font: var(--text-p);
+  font-weight: var(--fw-bold);
+  color: var(--white);
+  padding: 8px 16px;
+  text-wrap: nowrap;
+}
+
+/* Gris - Faltan días */
+.task-card.state-upcoming .task-badge,
+.task-card.state-soon .task-badge {
+  background-color: var(--grey-400);
+}
+
+/* Naranja - Faltan horas */
+.task-card.state-imminent .task-badge {
+  background-color: var(--orange-500);
+}
+
+.task-card.state-overdue .task-badge {
+  background-color: var(--error);
+}
+
+.task-card.state-completed .task-badge {
+  background-color: var(--success);
+}
