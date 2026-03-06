@@ -1,0 +1,17 @@
+.tasks-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Esta línea es la clave */
+.agenda-wrapper {
+  display: contents;
+}
+
+@media (max-width: 768px) {
+  .tasks-container {
+    grid-template-columns: 1fr;
+  }
+}

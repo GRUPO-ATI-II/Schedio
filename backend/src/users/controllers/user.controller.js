@@ -92,5 +92,15 @@ const remove = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const getByUsername = async (req, res) => {
+  try {
+    const { username } = req.params;
+    const userId = await userService.getUserIdByUsername(username);
+    if (!userId) return res.status(404).json({ message: "User not found" });
+    res.status(200).json({ userId });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-module.exports = { register, login, update, remove };
+module.exports = { register, login, update, remove, getByUsername };

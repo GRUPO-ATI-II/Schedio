@@ -4,6 +4,18 @@
   box-sizing: border-box;
 }
 
+/* Añade esto a tu src/styles.css global */
+:root {
+  --main-card-color: #ffffff;
+  --purple-200: #d1c4e9;
+  --dark-fc: #333333;
+  --light-fc: #777777;
+  --error: #ff5252;
+  --success: #4caf50;
+  --accent-color: #ff9800;
+  --white: #ffffff;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,7 +23,6 @@ body {
   font: var(--text-p);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 .header h1 {

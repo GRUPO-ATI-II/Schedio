@@ -4,6 +4,7 @@ const userController = require("../controllers/user.controller");
 
 router.post("/register", userController.register);
 router.post("/login", userController.login);
+router.get("/id/:username", userController.getByUsername); // Nueva ruta
 router.put("/:email", userController.update);
 router.delete("/:email", userController.remove);
 

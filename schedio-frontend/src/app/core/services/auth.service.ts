@@ -5,19 +5,21 @@ import { User } from '../../shared/entities/user.entity';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  // apunta al backend
   private readonly API_URL = '/api/users';
   currentUser = signal<any>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if (typeof window !== 'undefined') {
+      const savedUser = localStorage.getItem('user');
+      if (savedUser) {
+        this.currentUser.set(JSON.parse(savedUser));
+      }
+    }
+  }
 
-  /**
-   * Envía los datos del formulario de registro al backend.
-   * @param userData Objeto con la información del nuevo usuario
-   */
   register(userData: Partial<User>): Observable<User> {
     return this.http.post<User>(`${this.API_URL}/register`, userData);
   }
@@ -27,9 +29,10 @@ export class AuthService {
       tap((response: any) => {
         if (typeof window !== 'undefined') {
           localStorage.setItem('token', response.token);
+          localStorage.setItem('user', JSON.stringify(response.user));
           this.currentUser.set(response.user);
         }
-      })
+      }),
     );
   }
 }

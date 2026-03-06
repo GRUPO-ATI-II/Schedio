@@ -1,36 +1,31 @@
 const Agenda = require("../entities/agenda.entity");
+const Task = require("../entities/task.entity");
 
 class AgendaService {
-  // Crea una agenda. Body esperado: { users: ["userId1", ...] }
   async createAgenda(agendaData) {
     const newAgenda = new Agenda(agendaData);
     return await newAgenda.save();
   }
 
-  // Devuelve todas las agendas en las que participa un usuario
+  async createTask(taskData) {
+    const newTask = new Task(taskData);
+    return await newTask.save();
+  }
+
   async getAgendasByUserId(userId) {
     return await Agenda.find({ users: userId })
       .populate("users", "firstName lastName username email")
       .sort({ creation_time: -1 });
   }
 
-  async getAgendaById(agendaId) {
-    return await Agenda.findById(agendaId).populate(
-      "users",
-      "firstName lastName username email",
-    );
-  }
-
-  // Agrega un usuario a una agenda existente
   async addUserToAgenda(agendaId, userId) {
     return await Agenda.findByIdAndUpdate(
       agendaId,
-      { $addToSet: { users: userId } }, // $addToSet evita duplicados
+      { $addToSet: { users: userId } },
       { new: true, runValidators: true },
     );
   }
 
-  // Remueve un usuario de una agenda
   async removeUserFromAgenda(agendaId, userId) {
     return await Agenda.findByIdAndUpdate(
       agendaId,
@@ -40,8 +35,6 @@ class AgendaService {
   }
 
   async updateAgenda(agendaId, field, newValue) {
-    const agenda = await this.getAgendaById(agendaId);
-    if (!agenda) return null;
     return await Agenda.findByIdAndUpdate(
       agendaId,
       { $set: { [field]: newValue } },
@@ -49,9 +42,62 @@ class AgendaService {
     );
   }
 
+  async getFullAgendaWithTasksByUserId(userId) {
+    const agendas = await Agenda.find({ users: userId })
+      .populate("users", "firstName lastName username email")
+      .lean();
+
+    return await Promise.all(
+      agendas.map(async (agenda) => {
+        const tasks = await Task.find({ agenda: agenda._id }).sort({
+          expiration_date: 1,
+        });
+        return {
+          ...agenda,
+          tasks: tasks.map((task) => this._formatTask(task)),
+        };
+      }),
+    );
+  }
+
+  _formatTask(task) {
+    const now = new Date();
+    const expDate = new Date(task.expiration_date);
+    const diffTime = expDate.getTime() - now.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    let status = "A tiempo";
+    let urgency = "ontime";
+
+    if (task.is_completed) {
+      status = "Completado";
+      urgency = "ontime";
+    } else if (diffDays < 0) {
+      status = `Atrasado por ${Math.abs(diffDays)} días`;
+      urgency = "overdue";
+    } else if (diffDays <= 2) {
+      status = `Vence en ${diffDays} día${diffDays === 1 ? "" : "s"}`;
+      urgency = "warning";
+    }
+
+    return {
+      id: task._id,
+      title: task.title,
+      date: expDate.toLocaleDateString("es-ES", {
+        weekday: "long",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }),
+      time: task.delivery_interval,
+      status: status,
+      urgency: urgency,
+      is_completed: task.is_completed,
+    };
+  }
+
   async deleteAgenda(agendaId) {
-    const agenda = await this.getAgendaById(agendaId);
-    if (!agenda) return null;
+    await Task.deleteMany({ agenda: agendaId });
     return await Agenda.findByIdAndDelete(agendaId);
   }
 }

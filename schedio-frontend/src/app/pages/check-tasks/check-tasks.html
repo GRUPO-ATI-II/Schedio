@@ -1,0 +1,13 @@
+<div class="tasks-container">
+  <div class="agenda-wrapper" *ngFor="let agenda of agendasConTareas">
+    <app-task
+      *ngFor="let task of agenda.tasks"
+      [date]="task.date"
+      [title]="task.title"
+      [time]="task.time"
+      [status]="task.status"
+      [urgency]="task.urgency"
+    >
+    </app-task>
+  </div>
+</div>

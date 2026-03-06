@@ -1,0 +1,17 @@
+<div class="task-card" [ngClass]="urgency">
+  <div class="accent-bar"></div>
+  <div class="card-body">
+    <div class="content">
+      <div class="date-header">{{ date }}</div>
+      <h3 class="title">{{ title }}</h3>
+      <div class="time"><span class="icon">🕒</span> {{ time }}</div>
+    </div>
+    <div class="status-container" *ngIf="urgency === 'overdue' || urgency === 'warning'">
+      <span class="badge">{{ status }}</span>
+      <span class="alert-icon">!</span>
+    </div>
+    <div class="status-container" *ngIf="urgency === 'completed'">
+      <span class="badge" style="background-color: var(--success); color: white">Completada</span>
+    </div>
+  </div>
+</div>

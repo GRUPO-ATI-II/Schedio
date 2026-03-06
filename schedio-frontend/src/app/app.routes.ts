@@ -6,6 +6,7 @@ import { EditSpecificUserCredentials } from './pages/contact-center/edit-specifi
 import { Error } from './pages/error/error';
 import { EditProfile } from './pages/edit-profile/edit-profile';
 import { NotFound } from './pages/not-found/not-found';
+import { CheckTasks } from './pages/check-tasks/check-tasks';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,7 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/auth/login/login').then(m => m.Login),
+    loadComponent: () => import('./pages/auth/login/login').then((m) => m.Login),
   },
   {
     path: 'register',
@@ -29,6 +30,10 @@ export const routes: Routes = [
         path: '',
         pathMatch: 'full',
         redirectTo: 'ticket',
+      },
+      {
+        path: 'tasks',
+        component: CheckTasks,
       },
       {
         path: 'ticket',

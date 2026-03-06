@@ -1,0 +1,127 @@
+.task-card {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--main-card-color);
+  border: 1px solid var(--purple-200);
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(48, 16, 91, 0.08);
+}
+
+:host {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.task-card:hover {
+  transform: translateY(-3px);
+  background-color: var(--purple-50);
+}
+
+.accent-bar {
+  width: 8px;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+}
+
+.task-card:hover .accent-bar {
+  width: 12px;
+}
+
+.card-body {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 16px 20px;
+  gap: 16px;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.date-header {
+  font: var(--text-small);
+  font-weight: var(--fw-bold);
+  color: var(--light-fc);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.title {
+  font: var(--text-h5);
+  color: var(--dark-fc);
+  margin: 0;
+}
+
+.time {
+  font: var(--text-p);
+  color: var(--grey-800);
+  margin-top: 4px;
+}
+
+.task-card.overdue .accent-bar {
+  background-color: var(--error);
+}
+.task-card.overdue .badge {
+  background-color: var(--error);
+  color: var(--white);
+}
+.task-card.overdue .alert-icon {
+  border: 1px solid var(--error);
+  background-color: var(--orange-50);
+  color: var(--error);
+}
+
+.task-card.warning .accent-bar {
+  background-color: var(--accent-color);
+}
+.task-card.warning .badge {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+.task-card.warning .alert-icon {
+  border: 1px solid var(--accent-color);
+  background-color: var(--orange-50);
+  color: var(--accent-color);
+}
+
+.task-card.ontime .accent-bar {
+  background-color: var(--light-fc);
+}
+
+.task-card.completed .accent-bar {
+  background-color: var(--success);
+}
+
+.task-card.completed:hover {
+  background-color: #e8f5e9;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font: var(--text-p);
+  font-weight: var(--fw-bold);
+  white-space: nowrap;
+}
+
+.alert-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  font-weight: var(--fw-extraBold);
+}
