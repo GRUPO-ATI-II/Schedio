@@ -49,4 +49,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { create, getBySubject, getAll, update }; // Simplificado para el ejemplo
+module.exports = { create, getBySubject, getById, getAll, update }; // Simplificado para el ejemplo
