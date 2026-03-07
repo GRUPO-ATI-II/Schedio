@@ -35,14 +35,13 @@ const getAll = async (req, res) => {
   }
 };
 
+
 const update = async (req, res) => {
   try {
     const { id } = req.params;
-    const { send_time } = req.body;
-    const updated = await assignmentService.updateAssignment(id, "send_time", send_time ?? null);
-    if (!updated) {
-      return res.status(404).json({ error: "Asignación no encontrada" });
-    }
+    // req.body contains whatever the frontend sent (could be send_time or the whole assignment)
+    const updated = await assignmentService.updateAssignment(id, req.body); 
+    if (!updated) return res.status(404).json({ error: "No encontrada" });
     res.status(200).json(updated);
   } catch (error) {
     res.status(500).json({ error: error.message });
