@@ -74,7 +74,7 @@ export class CreateAssignment {
         // Use the ID from the response to redirect to the edit page
         const newId = res._id || res.id; 
         if (newId) {
-          this.router.navigate(['/edit-assignment', newId]);
+          this.router.navigate(['/agenda/edit-assignment', newId]);
         } else {
           // Fallback if no ID is returned
           this.router.navigate(['/agenda']);
