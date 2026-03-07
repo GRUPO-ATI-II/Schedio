@@ -48,8 +48,8 @@ export class CreateEvent {
 
   onSubmit() {
     if (!this.date || !this.hour || !this.minute) {
-        alert('Por favor, completa la fecha y la hora.');
-        return;
+      alert('Por favor, completa la fecha y la hora.');
+      return;
     }
 
     let finalHour = Number.parseInt(this.hour);
@@ -70,11 +70,11 @@ export class CreateEvent {
       next: (res) => {
         console.log('Event created!', res);
         alert('Evento creado con éxito');
-        this.router.navigate(['/agenda']);
+        this.router.navigate(['/calendar']); // Redirect to calendar
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('Error creating event', err);
-        alert('Error: ' + err.error.message);
+        alert('Error: ' + err.error?.message);
       }
     });
   }

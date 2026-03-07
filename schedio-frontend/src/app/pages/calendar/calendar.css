@@ -33,6 +33,7 @@
   font-weight: 800;
   color: #2F115C;
   margin: 0;
+  min-width: 250px; /* stabilize width */
 }
 
 .calendar-nav-arrows {
@@ -81,9 +82,13 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.toggle-btn.disabled:hover {
+.toggle-btn:not(.active):hover {
   background-color: rgba(255,255,255,0.4);
 }
+
+/* ============================ */
+/* WEEK / DAY VIEW STYLES */
+/* ============================ */
 
 /* DAYS HEADER */
 .calendar-days-header {
@@ -93,6 +98,10 @@
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 20px;
   margin-bottom: 15px;
+}
+
+.calendar-days-header.single-col {
+  grid-template-columns: 80px 1fr;
 }
 
 .time-column-spacer {
@@ -108,6 +117,13 @@
   border-radius: 12px;
   background-color: #efe9f4;
   color: #6a4c9c;
+  transition: all 0.2s;
+}
+
+.day-header-col.clickable-day:hover {
+  cursor: pointer;
+  background-color: #e2d7ec;
+  transform: translateY(-2px);
 }
 
 .day-header-col.active-day {
@@ -148,7 +164,7 @@
 .time-row {
   display: flex;
   align-items: flex-start;
-  height: 90px;
+  height: 90px; /* This needs to match the getEventTop / Height math */
 }
 
 .time-label {
@@ -178,6 +194,10 @@
   grid-template-columns: 80px repeat(7, 1fr);
   gap: 10px;
   pointer-events: none;
+}
+
+.events-overlay.single-col {
+  grid-template-columns: 80px 1fr;
 }
 
 .events-cols {
@@ -231,15 +251,15 @@
   background-color: #c4aef5; /* Light purple */
 }
 
-.event-orange .event-title, .event-orange .event-time {
+.event-orange .event-title, .event-orange .event-time, .event-orange .pill-time, .event-orange .pill-title {
   color: #6a3a00;
 }
 
-.event-grey .event-title, .event-grey .event-time {
+.event-grey .event-title, .event-grey .event-time, .event-grey .pill-time, .event-grey .pill-title {
   color: #333333;
 }
 
-.event-purple .event-title, .event-purple .event-time {
+.event-purple .event-title, .event-purple .event-time, .event-purple .pill-time, .event-purple .pill-title {
   color: #3b1b5e;
 }
 
@@ -260,21 +280,113 @@
   background-position: center;
 }
 
-.avatar-circle:nth-child(1) {
-  background-color: #f78d1e;
-  z-index: 3;
+.avatar-circle:nth-child(1) { background-color: #f78d1e; z-index: 3; }
+.avatar-circle:nth-child(2) { background-color: #4b2c7e; z-index: 2; }
+.avatar-circle:nth-child(3) { background-color: #c4aef5; z-index: 1; }
+.avatar-circle:first-child { margin-left: 0; }
+
+/* ============================ */
+/* MONTH VIEW STYLES */
+/* ============================ */
+.calendar-month-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  border-bottom: 2px solid #efe9f4;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.avatar-circle:nth-child(2) {
-  background-color: #4b2c7e;
-  z-index: 2;
+.month-day-name {
+  font-weight: 800;
+  color: #4b2c7e;
+  font-size: 0.9rem;
 }
 
-.avatar-circle:nth-child(3) {
-  background-color: #c4aef5;
-  z-index: 1;
+.calendar-month-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #efe9f4;
+  border-top: 1px solid #efe9f4;
 }
 
-.avatar-circle:first-child {
-  margin-left: 0;
+.month-week-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  flex: 1;
+  min-height: 100px; /* guarantees cells don't shrink too much */
+}
+
+.month-day-cell {
+  border-right: 1px solid #efe9f4;
+  border-bottom: 1px solid #efe9f4;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.month-day-cell.clickable-day:hover {
+  cursor: pointer;
+  background-color: #f0eaf5;
+}
+
+.month-day-cell.other-month {
+  background-color: #faf9fc;
+}
+
+.month-day-cell.other-month .month-day-number {
+  color: #cabbd9;
+}
+
+.month-day-cell.active-month-day {
+  background-color: #fff6ed;
+}
+
+.month-day-cell.active-month-day .month-day-number {
+  color: #f78d1e;
+  font-weight: 800;
+}
+
+.month-day-number {
+  font-weight: 700;
+  color: #6d5b88;
+  font-size: 0.95rem;
+  align-self: flex-end;
+}
+
+.month-events-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 85px; /* prevent cell from growing too much */
+}
+
+.month-event-pill {
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.pill-time {
+  font-weight: 800;
+  font-size: 0.65rem;
+  opacity: 0.8;
+}
+
+.pill-title {
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
