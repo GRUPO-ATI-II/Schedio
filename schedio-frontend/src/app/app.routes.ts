@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout';
 import { Ticket } from './pages/ticket/ticket';
+import { Tasks } from './pages/tasks/tasks';
 import { ResetUserCredentials } from './pages/contact-center/reset-user-credentials/reset-user-credentials';
 import { EditSpecificUserCredentials } from './pages/contact-center/edit-specific-user-credentials/edit-specific-user-credentials';
 import { Error } from './pages/error/error';
@@ -9,6 +10,7 @@ import { CreateAssignment } from './pages/create-assignment/create-assignment';
 import { EditAssignment } from './pages/edit-assignment/edit-assignment';
 import { NotFound } from './pages/not-found/not-found';
 import { authGuard } from './core/guards/auth.guard';
+import { guestGuard } from './core/guards/guest.guard';
 
 export const routes: Routes = [
   {
@@ -18,10 +20,12 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [guestGuard],
     loadComponent: () => import('./pages/auth/login/login').then(m => m.Login),
   },
   {
     path: 'register',
+    canActivate: [guestGuard],
     loadComponent: () => import('./pages/auth/register/register').then((m) => m.Register),
   },
   {
@@ -32,7 +36,7 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'ticket',
+        redirectTo: 'agenda',
       },
       {
         path: 'ticket',
@@ -61,6 +65,14 @@ export const routes: Routes = [
       {
         path: 'contact-center/edit-user',
         component: EditSpecificUserCredentials,
+      },
+      {
+        path: 'agenda',
+        component: Tasks,
+      },
+      {
+        path: 'agenda/new-assignment',
+        component: CreateAssignment,
       },
       {
         path: '**',

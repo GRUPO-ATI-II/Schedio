@@ -49,7 +49,7 @@ export class Login implements OnInit {
     this.authService.login(this.loginForm).subscribe({
       next: () => {
         this.wrongCredentials = false;
-        this.router.navigate(['/ticket']);
+        this.router.navigate(['/agenda']);
       },
       error: () => {
         this.wrongCredentials = true;

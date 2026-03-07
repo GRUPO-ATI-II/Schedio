@@ -20,7 +20,7 @@ import { RectBaseButton } from '../../shared/components/ui/rect-base-button/rect
 })
 export class MainLayoutComponent {
   protected readonly title = signal('Schedio');
-  protected readonly viewTitle = signal($localize`:@@contactModuleTitle:Módulo de contacto`);
+  protected readonly viewTitle = signal($localize`:@@contactModuleTitle:Módulo de negocio`);
 
   cambiarTitulo(nuevoTitulo: string) {
     this.viewTitle.set(nuevoTitulo);

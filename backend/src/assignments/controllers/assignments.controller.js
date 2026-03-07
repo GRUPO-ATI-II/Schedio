@@ -17,7 +17,6 @@ const getBySubject = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 const getById = async (req, res) => {
   try {
     const task = await assignmentService.getById(req.params.id);
@@ -27,16 +26,27 @@ const getById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const getAll = async (req, res) => {
+  try {
+    const tasks = await assignmentService.getAll();
+    res.status(200).json(tasks);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 const update = async (req, res) => {
   try {
-    const updated = await assignmentService.updateAssignment(req.params.id, req.body);
-    // note: service updateAssignment previously accepted field & value; we modified to accept full object earlier?
-    // we'll adjust above accordingly.
+    const { id } = req.params;
+    const { send_time } = req.body;
+    const updated = await assignmentService.updateAssignment(id, "send_time", send_time ?? null);
+    if (!updated) {
+      return res.status(404).json({ error: "Asignación no encontrada" });
+    }
     res.status(200).json(updated);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = { create, getBySubject, getById, update };
+module.exports = { create, getBySubject, getAll, update }; // Simplificado para el ejemplo

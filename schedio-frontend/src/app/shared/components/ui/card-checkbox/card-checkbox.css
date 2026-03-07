@@ -1,0 +1,56 @@
+.card-checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  aspect-ratio: 1/1;
+  border-radius: 6px;
+  border: 2px solid var(--grey-100);
+  background: var(--white);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.card-checkbox:hover {
+  border-color: var(--grey-200);
+  background: var(--purple-50);
+}
+
+.card-checkbox.checked {
+  background-color: color-mix(in srgb, var(--success) 25%, var(--white));
+  border-color: var(--success);
+}
+
+.card-checkbox.checked:hover {
+  background-color: color-mix(in srgb, var(--success) 35%, var(--white));
+}
+
+.card-checkbox.overdue {
+  background-color: var(--orange-100);
+  border-color: var(--error);
+}
+
+.card-checkbox.overdue:hover {
+  background-color: color-mix(in srgb, var(--success) 25%, var(--white));
+  border-color: var(--success);
+}
+
+.card-checkbox-exclamation {
+  font: var(--text-h6);
+  font-weight: var(--fw-bold);  
+  color: var(--error);
+  line-height: 1;
+  user-select: none;
+}
+
+.card-checkbox-icon {
+  width: 6px;
+  height: 10px;
+  border: solid var(--success);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-bottom: 4px;
+  margin-left: 2px;
+}

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ButtonBox } from '../../shared/components/ui/button-box/button-box';
 import { InputField } from '../../shared/components/ui/input-field/input-field';
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class CreateAssignment {
   private readonly assignmentService = inject(AssignmentService);
-  private readonly router = inject(Router);
+
   title = '';
   description = '';
   date = '';
