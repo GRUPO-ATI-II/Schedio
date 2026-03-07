@@ -1,0 +1,152 @@
+<div class="calendar-page-container">
+  <div class="calendar-main-card">
+    
+    <!-- Top Header -->
+    <div class="calendar-top">
+      <div class="calendar-title-date">
+        <h2 class="calendar-month-year">Febrero 2026</h2>
+        <div class="calendar-nav-arrows">
+          <img src="icon_despliegue.svg" class="arrow left-arrow-cal" alt="Previous">
+          <img src="icon_despliegue.svg" class="arrow right-arrow-cal" alt="Next">
+        </div>
+      </div>
+
+      <div class="calendar-view-toggles">
+        <button class="toggle-btn disabled">Mes</button>
+        <button class="toggle-btn active">Semana</button>
+        <button class="toggle-btn disabled">Día</button>
+      </div>
+    </div>
+
+    <!-- Days Header -->
+    <div class="calendar-days-header">
+      <div class="time-column-spacer"></div>
+      @for (day of days; track day.date) {
+        <div class="day-header-col" [class.active-day]="day.active">
+          <span class="day-name">{{ day.name }}</span>
+          <span class="day-number">{{ day.date }}</span>
+        </div>
+      }
+    </div>
+
+    <!-- Calendar Grid -->
+    <div class="calendar-grid-body">
+      <!-- Background lines and Time Labels -->
+      <div class="time-row-container">
+        @for (hour of hours; track hour.offset) {
+          <div class="time-row">
+            <div class="time-label">{{ hour.label }}</div>
+            <div class="time-line"></div>
+          </div>
+        }
+      </div>
+
+      <!-- Events Overlay Layer -->
+      <div class="events-overlay">
+        <!-- We divide the overlay into 7 columns corresponding to the days -->
+        <div class="events-cols">
+          <div class="time-column-spacer"></div>
+          
+          <div class="day-events-col">
+            <!-- events for day index 0 -->
+            @for (event of events; track event.id) {
+              @if (event.dayIndex === 0) {
+                <div class="event-block" [ngClass]="event.colorClass" [style.top]="getEventTop(event.startHour)" [style.height]="getEventHeight(event.durationHours)">
+                  <p class="event-title">{{ event.title }}</p>
+                  <p class="event-time">{{ event.timeLabel }}</p>
+                  @if (event.hasAvatars) {
+                    <div class="event-avatars">
+                      <div class="avatar-circle"></div>
+                      <div class="avatar-circle"></div>
+                      <div class="avatar-circle"></div>
+                    </div>
+                  }
+                </div>
+              }
+            }
+          </div>
+
+          <div class="day-events-col">
+             <!-- events for day index 1 -->
+             @for (event of events; track event.id) {
+              @if (event.dayIndex === 1) {
+                <div class="event-block" [ngClass]="event.colorClass" [style.top]="getEventTop(event.startHour)" [style.height]="getEventHeight(event.durationHours)">
+                  <p class="event-title">{{ event.title }}</p>
+                  <p class="event-time">{{ event.timeLabel }}</p>
+                </div>
+              }
+            }
+          </div>
+
+          <div class="day-events-col">
+            <!-- events for day index 2 -->
+             @for (event of events; track event.id) {
+              @if (event.dayIndex === 2) {
+                <div class="event-block" [ngClass]="event.colorClass" [style.top]="getEventTop(event.startHour)" [style.height]="getEventHeight(event.durationHours)">
+                  <p class="event-title">{{ event.title }}</p>
+                  <p class="event-time">{{ event.timeLabel }}</p>
+                </div>
+              }
+            }
+          </div>
+
+          <div class="day-events-col">
+            <!-- events for day index 3 -->
+             @for (event of events; track event.id) {
+              @if (event.dayIndex === 3) {
+                <div class="event-block" [ngClass]="event.colorClass" [style.top]="getEventTop(event.startHour)" [style.height]="getEventHeight(event.durationHours)">
+                  <p class="event-title">{{ event.title }}</p>
+                  <p class="event-time">{{ event.timeLabel }}</p>
+                  @if (event.hasAvatars) {
+                    <div class="event-avatars">
+                      <div class="avatar-circle"></div>
+                      <div class="avatar-circle"></div>
+                      <div class="avatar-circle"></div>
+                    </div>
+                  }
+                </div>
+              }
+            }
+          </div>
+
+          <div class="day-events-col">
+            <!-- events for day index 4 -->
+             @for (event of events; track event.id) {
+              @if (event.dayIndex === 4) {
+                <div class="event-block" [ngClass]="event.colorClass" [style.top]="getEventTop(event.startHour)" [style.height]="getEventHeight(event.durationHours)">
+                  <p class="event-title">{{ event.title }}</p>
+                  <p class="event-time">{{ event.timeLabel }}</p>
+                </div>
+              }
+            }
+          </div>
+
+          <div class="day-events-col">
+            <!-- events for day index 5 -->
+             @for (event of events; track event.id) {
+              @if (event.dayIndex === 5) {
+                <div class="event-block" [ngClass]="event.colorClass" [style.top]="getEventTop(event.startHour)" [style.height]="getEventHeight(event.durationHours)">
+                  <p class="event-title">{{ event.title }}</p>
+                  <p class="event-time">{{ event.timeLabel }}</p>
+                  @if (event.hasAvatars) {
+                    <div class="event-avatars">
+                      <div class="avatar-circle"></div>
+                      <div class="avatar-circle"></div>
+                      <div class="avatar-circle"></div>
+                    </div>
+                  }
+                </div>
+              }
+            }
+          </div>
+
+          <div class="day-events-col">
+            <!-- Day 6 (dom) Empty -->
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
