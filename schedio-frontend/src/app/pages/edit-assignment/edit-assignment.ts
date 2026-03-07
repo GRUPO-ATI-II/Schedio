@@ -1,4 +1,4 @@
-import { Component, inject, OnInit , ChangeDetectorRef } from '@angular/core';
+import { Component, inject, OnInit , ChangeDetectorRef, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputField } from '../../shared/components/ui/input-field/input-field';
 import { InputTextarea } from '../../shared/components/ui/input-textarea/input-textarea';
@@ -30,11 +30,27 @@ export class EditAssignment implements OnInit {
   ampm = 'AM';
   selectedSubject = '';
 
-  ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    $event.returnValue = true;
+  }
+
+  constructor() {
+    // Attempt to get the state immediately during component creation
+    const navigation = this.router.currentNavigation();
+    const id = navigation?.extras.state?.['id'];
     if (id) {
-      this.assignmentId = id;
-      this.loadAssignment(id);
+      this.assignmentId = id; //
+    }
+  }
+  
+  ngOnInit() {
+    // If we have an ID from the constructor state, load it.
+    // If not, redirect back to the agenda.
+    if (this.assignmentId) {
+      this.loadAssignment(this.assignmentId); //
+    } else {
+      this.router.navigate(['/agenda']); //
     }
   }
 

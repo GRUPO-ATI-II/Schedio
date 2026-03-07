@@ -41,7 +41,7 @@ export class CreateAssignment {
     if (confirm('¿Estás seguro de que deseas cancelar? Se perderán los cambios.')) {
       this.title = '';
       this.description = '';
-      // Logic to navigate back can go here (using Router)
+      this.router.navigate(['/agenda']);
     }
   }
 
@@ -71,14 +71,9 @@ export class CreateAssignment {
         console.log('Assignment created!', res);
         alert('Tarea creada con éxito');
         
-        // Use the ID from the response to redirect to the edit page
-        const newId = res._id || res.id; 
-        if (newId) {
-          this.router.navigate(['/agenda/edit-assignment', newId]);
-        } else {
-          // Fallback if no ID is returned
-          this.router.navigate(['/agenda']);
-        }
+        
+        this.router.navigate(['/agenda']);
+        
       },
       error: (err) => {
         console.error('Error creating assignment', err);

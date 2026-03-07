@@ -56,7 +56,7 @@ export const routes: Routes = [
         component: CreateAssignment,
       },
       {
-        path: 'agenda/edit-assignment/:id',
+        path: 'agenda/edit-assignment',
         component: EditAssignment,
       },
       {
