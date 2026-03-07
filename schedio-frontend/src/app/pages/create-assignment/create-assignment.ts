@@ -7,7 +7,6 @@ import { InputTextarea } from '../../shared/components/ui/input-textarea/input-t
 import { AssignmentService } from '../../core/services/assignment.service';
 import { Assignment } from '../../shared/entities/assignment.entity';
 import { DateField } from '../../shared/components/ui/date-field/date-field';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-assignment',
@@ -18,7 +17,7 @@ import { Router } from '@angular/router';
 })
 export class CreateAssignment {
   private readonly assignmentService = inject(AssignmentService);
-
+  private readonly router = inject(Router);
   title = '';
   description = '';
   date = '';
@@ -68,10 +67,12 @@ export class CreateAssignment {
     };
 
     this.assignmentService.createAssignment(newAssignment).subscribe({
-      next: (res) => {
+      next: (res: any) => {
         console.log('Assignment created!', res);
         alert('Tarea creada con éxito');
-      const newId = res.id || res.id; 
+        
+        // Use the ID from the response to redirect to the edit page
+        const newId = res._id || res.id; 
         if (newId) {
           this.router.navigate(['/edit-assignment', newId]);
         } else {
