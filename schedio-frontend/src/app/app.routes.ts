@@ -7,6 +7,7 @@ import { EditSpecificUserCredentials } from './pages/contact-center/edit-specifi
 import { Error } from './pages/error/error';
 import { EditProfile } from './pages/edit-profile/edit-profile';
 import { CreateAssignment } from './pages/create-assignment/create-assignment';
+import { CreateEvent } from './pages/create-event/create-event';
 import { EditAssignment } from './pages/edit-assignment/edit-assignment';
 import { NotFound } from './pages/not-found/not-found';
 import { authGuard } from './core/guards/auth.guard';
@@ -73,6 +74,10 @@ export const routes: Routes = [
       {
         path: 'agenda/new-assignment',
         component: CreateAssignment,
+      },
+      {
+        path: 'agenda/new-event',
+        component: CreateEvent,
       },
       {
         path: '**',
