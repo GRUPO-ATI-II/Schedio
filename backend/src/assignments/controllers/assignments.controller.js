@@ -17,7 +17,15 @@ const getBySubject = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+const getById = async (req, res) => {
+  try {
+    const task = await assignmentService.getById(req.params.id);
+    if (!task) return res.status(404).json({ message: 'Assignment not found' });
+    res.status(200).json(task);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 const getAll = async (req, res) => {
   try {
     const tasks = await assignmentService.getAll();
@@ -27,18 +35,17 @@ const getAll = async (req, res) => {
   }
 };
 
+
 const update = async (req, res) => {
   try {
     const { id } = req.params;
-    const { send_time } = req.body;
-    const updated = await assignmentService.updateAssignment(id, "send_time", send_time ?? null);
-    if (!updated) {
-      return res.status(404).json({ error: "Asignación no encontrada" });
-    }
+    // req.body contains whatever the frontend sent (could be send_time or the whole assignment)
+    const updated = await assignmentService.updateAssignment(id, req.body); 
+    if (!updated) return res.status(404).json({ error: "No encontrada" });
     res.status(200).json(updated);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-module.exports = { create, getBySubject, getAll, update }; // Simplificado para el ejemplo
+module.exports = { create, getBySubject, getById, getAll, update }; // Simplificado para el ejemplo
