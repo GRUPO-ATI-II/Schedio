@@ -18,7 +18,6 @@ import { DateField } from '../../shared/components/ui/date-field/date-field';
 export class CreateAssignment {
   private readonly assignmentService = inject(AssignmentService);
   private readonly router = inject(Router);
-
   title = '';
   description = '';
   date = '';
@@ -42,7 +41,7 @@ export class CreateAssignment {
     if (confirm('¿Estás seguro de que deseas cancelar? Se perderán los cambios.')) {
       this.title = '';
       this.description = '';
-      // Logic to navigate back can go here (using Router)
+      this.router.navigate(['/agenda']);
     }
   }
 
@@ -68,8 +67,13 @@ export class CreateAssignment {
     };
 
     this.assignmentService.createAssignment(newAssignment).subscribe({
-      next: () => {
+      next: (res: any) => {
+        console.log('Assignment created!', res);
+        alert('Tarea creada con éxito');
+        
+        
         this.router.navigate(['/agenda']);
+        
       },
       error: (err) => {
         console.error('Error creating assignment', err);

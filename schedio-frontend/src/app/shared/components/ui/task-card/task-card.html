@@ -6,7 +6,10 @@
   <div class="task-card-body">
     <div class="task-card-header">
       <p class="task-date">{{ formattedDate }}</p>
-      <h3 class="task-title">{{ title }}</h3>
+      <h3 class="task-title"(click)="navigateToEdit($event)" 
+          style="cursor: pointer;">
+        {{ title }}
+      </h3>
       @if (displayedTime) {
       <p class="task-time">
         <span class="task-time-icon" aria-hidden="true"></span>
