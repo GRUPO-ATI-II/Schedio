@@ -6,5 +6,6 @@ router.post("/", assignmentController.create);
 router.get("/", assignmentController.getAll);
 router.get("/subject/:subjectId", assignmentController.getBySubject);
 router.put("/:id", assignmentController.update);
+router.delete("/:id", assignmentController.remove);
 
 module.exports = router;

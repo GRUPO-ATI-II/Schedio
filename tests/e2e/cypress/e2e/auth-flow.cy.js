@@ -41,7 +41,7 @@ describe('Integración Frontend–Backend: Registro, Login y Sesión', () => {
     fillRegister(user);
     cy.url().should('include', '/login', { timeout: NAV_TIMEOUT });
     fillLogin(user.email, user.password);
-    cy.url().should('include', '/ticket', { timeout: NAV_TIMEOUT });
+    cy.url().should('include', '/agenda', { timeout: NAV_TIMEOUT });
   });
 
   it('Tras login el token se guarda en localStorage', () => {
@@ -50,7 +50,7 @@ describe('Integración Frontend–Backend: Registro, Login y Sesión', () => {
     fillRegister(user);
     cy.url().should('include', '/login', { timeout: NAV_TIMEOUT });
     fillLogin(user.email, user.password);
-    cy.url().should('include', '/ticket', { timeout: NAV_TIMEOUT });
+    cy.url().should('include', '/agenda', { timeout: NAV_TIMEOUT });
 
     cy.window().then((win) => {
       const token = win.localStorage.getItem('token');
@@ -58,8 +58,8 @@ describe('Integración Frontend–Backend: Registro, Login y Sesión', () => {
     });
   });
 
-  it('Ruta protegida /ticket redirige a login sin sesión', () => {
-    cy.visit('/ticket');
+  it('Ruta protegida /agenda redirige a login sin sesión', () => {
+    cy.visit('/agenda');
     cy.url().should('include', '/login');
   });
 
