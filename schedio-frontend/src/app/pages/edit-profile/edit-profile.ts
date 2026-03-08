@@ -26,7 +26,7 @@ export class EditProfile implements OnInit {
   password = '';
   confirmPassword = '';
   isSubmitting = false;
-  userName = ''
+  userName = '';
 
   isEditingUsername = false; // Flag for UI toggle
   tempUsername = '';
