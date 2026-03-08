@@ -14,6 +14,10 @@ export interface CalendarEvent {
     colorClass: string;
     hasAvatars?: boolean;
     dateStr: string; // ISO string for Month view grouping
+    isAllDay: boolean;
+    overlapIndex: number;
+    totalOverlaps: number;
+    monthTimeLabel: string;
 }
 
 // Colors pool for dynamic assignment
@@ -37,6 +41,7 @@ export class Calendar implements OnInit {
     // Data State
     rawEvents: any[] = [];
     displayEvents: CalendarEvent[] = [];
+    allDayEvents: CalendarEvent[] = [];
 
     // Time grid layout
     hours = Array.from({ length: 14 }, (_, i) => {
@@ -47,13 +52,33 @@ export class Calendar implements OnInit {
     });
 
     // Active days shown depending on view
-    days: { name: string, date: number, active: boolean, fullDate: Date }[] = [];
+    days: { name: string, date: number, active: boolean, fullDate: Date, dateStr?: string }[] = [];
 
     // For Month view
-    monthWeeks: { name: string, date: number, active: boolean, fullDate: Date, isOtherMonth: boolean }[][] = [];
+    monthWeeks: { name: string, date: number, active: boolean, fullDate: Date, isOtherMonth: boolean, dateStr?: string }[][] = [];
 
     get currentMonthYearLabel(): string {
-        return this.currentDate.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }).replace(/^\w/, c => c.toUpperCase());
+        const monthFormatter = new Intl.DateTimeFormat('es-ES', { month: 'long', year: 'numeric' });
+
+        if (this.viewMode === 'day') {
+            const dayFormatter = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+            return dayFormatter.format(this.currentDate).replace(/^\w/, c => c.toUpperCase());
+        }
+        else if (this.viewMode === 'week' && this.days.length > 0) {
+            const start = this.days[0].fullDate;
+            const end = this.days[6].fullDate;
+            const startMonth = start.toLocaleDateString('es-ES', { month: 'short' });
+            const endMonth = end.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+
+            if (start.getMonth() !== end.getMonth()) {
+                return `${start.getDate()} ${startMonth} - ${end.getDate()} ${endMonth}`.replace(/^\w/, c => c.toUpperCase());
+            } else {
+                return `${start.getDate()} - ${end.getDate()} de ${endMonth}`.replace(/^\w/, c => c.toUpperCase());
+            }
+        }
+
+        // Default Month View
+        return monthFormatter.format(this.currentDate).replace(/^\w/, c => c.toUpperCase());
     }
 
     ngOnInit(): void {
@@ -90,7 +115,7 @@ export class Calendar implements OnInit {
             return d >= startOfRange && d <= endOfRange;
         });
 
-        this.displayEvents = filtered.map((ev, i) => {
+        const mappedEvents: CalendarEvent[] = filtered.map((ev, i) => {
             const d = new Date(ev.date);
             // Determine day index based on view
             let dayIdx = 0;
@@ -104,24 +129,115 @@ export class Calendar implements OnInit {
             const m = d.getMinutes();
             const startHour = h + (m / 60);
 
-            // Randomly assign a color from the pool as mock metadata
+            // Compute actual duration if endDate is present
+            let durationHours = 1;
+            let timeLabel = '';
+
+            const timeFormat = new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+            if (ev.isAllDay) {
+                timeLabel = 'Todo el día';
+            } else if (ev.endDate) {
+                const endD = new Date(ev.endDate);
+                const endH = endD.getHours();
+                const endM = endD.getMinutes();
+                const absoluteEnd = endH + (endM / 60);
+                durationHours = Math.max(0.5, absoluteEnd - startHour); // minimum 30 min visual block
+
+                timeLabel = `${timeFormat.format(d)} - ${timeFormat.format(endD)}`;
+            } else {
+                // Fallback if no endDate
+                timeLabel = `${timeFormat.format(d)} (1hr)`;
+            }
+
             const colorClass = EVENT_COLORS[i % EVENT_COLORS.length];
 
-            // Format time label
-            const timeLabel = d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: true });
+            // Formatter for month pill (short string)
+            let monthTimeLabel = '';
+            if (ev.isAllDay) {
+                monthTimeLabel = '';
+            } else {
+                let displayH = h;
+                const ampm = displayH >= 12 ? 'p' : 'a';
+                if (displayH > 12) {
+                    displayH -= 12;
+                }
+                if (displayH === 0) {
+                    displayH = 12; // 12 AM
+                }
+                // If there are minutes, show them, otherwise just the hour
+                monthTimeLabel = m > 0 ? `${displayH}:${m.toString().padStart(2, '0')}${ampm}` : `${displayH}${ampm}`;
+            }
+
+            // Generate Local Date String instead of ISO String for stable matching
+            const localDateStr = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
 
             return {
                 id: ev._id || i.toString(),
                 title: ev.title,
-                timeLabel: `${timeLabel} (1hr)`, // Assuming 1hr default since DB has no duration
+                timeLabel,
                 dayIndex: dayIdx,
-                startHour: startHour < 7 ? 7 : Math.min(startHour, 20), // bound visual
-                durationHours: 1, // Default duration since DB lacks end_time
+                startHour,
+                durationHours,
                 colorClass,
-                hasAvatars: i % 3 === 0, // mock some avatars
-                dateStr: d.toISOString().split('T')[0] // yyyy-mm-dd
+                hasAvatars: i % 3 === 0,
+                dateStr: localDateStr,
+                isAllDay: ev.isAllDay || false,
+                overlapIndex: 0,
+                totalOverlaps: 1,
+                monthTimeLabel
             };
         });
+
+        this.allDayEvents = mappedEvents.filter(e => e.isAllDay);
+        this.displayEvents = mappedEvents.filter(e => !e.isAllDay);
+
+        // Calculate overlaps for regular events
+        this.calculateOverlaps();
+    }
+
+    private calculateOverlaps() {
+        // Group by day first
+        const eventsByDay = new Map<number, CalendarEvent[]>();
+        for (const ev of this.displayEvents) {
+            if (!eventsByDay.has(ev.dayIndex)) {
+                eventsByDay.set(ev.dayIndex, []);
+            }
+            eventsByDay.get(ev.dayIndex)!.push(ev);
+        }
+
+        for (const [, dayEvents] of eventsByDay.entries()) {
+            // Sort by startHour
+            dayEvents.sort((a, b) => a.startHour - b.startHour);
+
+            let columns: CalendarEvent[][] = [];
+
+            for (const ev of dayEvents) {
+                let placed = false;
+                // Try to place in an existing column where the previous event has ended
+                for (let col = 0; col < columns.length; col++) {
+                    const lastEventInCol = columns[col][columns[col].length - 1];
+                    if (lastEventInCol.startHour + lastEventInCol.durationHours <= ev.startHour) {
+                        columns[col].push(ev);
+                        placed = true;
+                        break;
+                    }
+                }
+
+                // If couldn't place in existing column, create a new one
+                if (!placed) {
+                    columns.push([ev]);
+                }
+            }
+
+            // Assign overlap properties to events based on how many columns exist in this cluster
+            for (let i = 0; i < columns.length; i++) {
+                for (const ev of columns[i]) {
+                    ev.overlapIndex = i;
+                    ev.totalOverlaps = columns.length;
+                }
+            }
+        }
     }
 
     // --- View Helpers --- //
@@ -135,7 +251,8 @@ export class Calendar implements OnInit {
     }
 
     getEventsForDate(dateStr: string): CalendarEvent[] {
-        return this.displayEvents.filter(e => e.dateStr === dateStr);
+        const allEvents = [...this.allDayEvents, ...this.displayEvents];
+        return allEvents.filter(e => e.dateStr === dateStr);
     }
 
     // --- Navigation & View Toggles --- //
@@ -198,8 +315,9 @@ export class Calendar implements OnInit {
                 const curr = new Date(monday);
                 curr.setDate(monday.getDate() + i);
                 const name = curr.toLocaleDateString('es-ES', { weekday: 'short' });
-                const isActive = curr.toISOString().split('T')[0] === todayStr;
-                this.days.push({ name, date: curr.getDate(), active: isActive, fullDate: curr });
+                const localStr = `${curr.getFullYear()}-${(curr.getMonth() + 1).toString().padStart(2, '0')}-${curr.getDate().toString().padStart(2, '0')}`;
+                const isActive = localStr === todayStr;
+                this.days.push({ name, date: curr.getDate(), active: isActive, fullDate: curr, dateStr: localStr });
             }
         }
         else if (this.viewMode === 'month') {
@@ -218,9 +336,10 @@ export class Calendar implements OnInit {
                 const week = [];
                 for (let j = 0; j < 7; j++) {
                     const name = currentDay.toLocaleDateString('es-ES', { weekday: 'short' });
-                    const isActive = currentDay.toISOString().split('T')[0] === todayStr;
+                    const localStr = `${currentDay.getFullYear()}-${(currentDay.getMonth() + 1).toString().padStart(2, '0')}-${currentDay.getDate().toString().padStart(2, '0')}`;
+                    const isActive = localStr === todayStr;
                     const isOther = currentDay.getMonth() !== month;
-                    week.push({ name, date: currentDay.getDate(), active: isActive, fullDate: new Date(currentDay), isOtherMonth: isOther });
+                    week.push({ name, date: currentDay.getDate(), active: isActive, fullDate: new Date(currentDay), isOtherMonth: isOther, dateStr: localStr });
                     currentDay.setDate(currentDay.getDate() + 1);
                 }
                 this.monthWeeks.push(week);
@@ -233,24 +352,36 @@ export class Calendar implements OnInit {
 
     private getStartDateOfCurrentView(): Date {
         if (this.viewMode === 'day') {
-            return new Date(this.currentDate.setHours(0, 0, 0, 0));
+            const d = new Date(this.currentDate);
+            d.setHours(0, 0, 0, 0);
+            return d;
         }
         if (this.viewMode === 'week') {
-            return new Date(this.days[0].fullDate.setHours(0, 0, 0, 0));
+            const d = new Date(this.days[0].fullDate);
+            d.setHours(0, 0, 0, 0);
+            return d;
         }
         // month
-        return new Date(this.monthWeeks[0][0].fullDate.setHours(0, 0, 0, 0));
+        const d = new Date(this.monthWeeks[0][0].fullDate);
+        d.setHours(0, 0, 0, 0);
+        return d;
     }
 
     private getEndDateOfCurrentView(): Date {
         if (this.viewMode === 'day') {
-            return new Date(this.currentDate.setHours(23, 59, 59, 999));
+            const d = new Date(this.currentDate);
+            d.setHours(23, 59, 59, 999);
+            return d;
         }
         if (this.viewMode === 'week') {
-            return new Date(this.days[6].fullDate.setHours(23, 59, 59, 999));
+            const d = new Date(this.days[6].fullDate);
+            d.setHours(23, 59, 59, 999);
+            return d;
         }
         // month: get last day of last week
         const lastWeek = this.monthWeeks[this.monthWeeks.length - 1];
-        return new Date(lastWeek[6].fullDate.setHours(23, 59, 59, 999));
+        const d = new Date(lastWeek[6].fullDate);
+        d.setHours(23, 59, 59, 999);
+        return d;
     }
 }

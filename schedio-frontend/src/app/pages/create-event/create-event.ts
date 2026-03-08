@@ -25,6 +25,10 @@ export class CreateEvent {
   hour = '';
   minute = '';
   ampm = 'AM';
+  isAllDay = false;
+  endHour = '';
+  endMinute = '';
+  endAmPm = 'AM';
   selectedSubject = '';
 
   onSave() {
@@ -47,22 +51,51 @@ export class CreateEvent {
   }
 
   onSubmit() {
-    if (!this.date || !this.hour || !this.minute) {
-      alert('Por favor, completa la fecha y la hora.');
+    if (!this.date) {
+      alert('Por favor, selecciona una fecha.');
       return;
     }
 
-    let finalHour = Number.parseInt(this.hour);
-    if (this.ampm === 'PM' && finalHour < 12) finalHour += 12;
-    if (this.ampm === 'AM' && finalHour === 12) finalHour = 0;
+    if (!this.isAllDay && (!this.hour || !this.minute || !this.endHour || !this.endMinute)) {
+      alert('Por favor, completa la hora de inicio y fin, o selecciona "Todo el día".');
+      return;
+    }
 
-    const timeString = `${finalHour.toString().padStart(2, '0')}:${this.minute.padStart(2, '0')}:00`;
-    const formattedDate = new Date(`${this.date}T${timeString}`);
+    let finalDate: Date;
+    let finalEndDate: Date | undefined;
+
+    if (this.isAllDay) {
+      // Just use the start of the selected day
+      finalDate = new Date(`${this.date}T00:00:00`);
+    } else {
+      // Parse start time
+      let startH = Number.parseInt(this.hour);
+      if (this.ampm === 'PM' && startH < 12) startH += 12;
+      if (this.ampm === 'AM' && startH === 12) startH = 0;
+
+      const startTimeStr = `${startH.toString().padStart(2, '0')}:${this.minute.padStart(2, '0')}:00`;
+      finalDate = new Date(`${this.date}T${startTimeStr}`);
+
+      // Parse end time
+      let endH = Number.parseInt(this.endHour);
+      if (this.endAmPm === 'PM' && endH < 12) endH += 12;
+      if (this.endAmPm === 'AM' && endH === 12) endH = 0;
+
+      const endTimeStr = `${endH.toString().padStart(2, '0')}:${this.endMinute.padStart(2, '0')}:00`;
+      finalEndDate = new Date(`${this.date}T${endTimeStr}`);
+
+      if (finalEndDate <= finalDate) {
+        alert('La hora de finalización debe ser después de la hora de inicio.');
+        return;
+      }
+    }
 
     const newEvent: Event = {
       title: this.title,
-      description: this.description,  // Backend uses 'instructions'
-      date: formattedDate,
+      description: this.description,  // Backend uses 'description'/ 'instructions'
+      date: finalDate,
+      endDate: finalEndDate,
+      isAllDay: this.isAllDay,
       agendas: ["65f123456789012345678901"] // Mock ID for now, should link with current agenda
     };
 
