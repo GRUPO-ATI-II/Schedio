@@ -21,6 +21,7 @@
       <div class="tasks-list">
         @for (task of visibleTasks; track task.id) {
           <app-task-card
+            [id]="task.id" 
             [title]="task.title"
             [dueAt]="task.dueAt"
             [timeLabel]="task.timeLabel"

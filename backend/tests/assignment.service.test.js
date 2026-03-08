@@ -33,4 +33,23 @@ describe("Assignment Service", () => {
     expect(mockFind.sort).toHaveBeenCalledWith({ deadline: 1 });
     expect(result).toHaveLength(1);
   });
+
+  test("getById - should fetch assignment by id", async () => {
+    Assignment.findById = jest.fn().mockResolvedValue({ _id: "123", ...mockData });
+    const result = await assignmentService.getById("123");
+    expect(Assignment.findById).toHaveBeenCalledWith("123");
+    expect(result._id).toBe("123");
+  });
+
+  test("updateAssignment - should forward object to findByIdAndUpdate", async () => {
+    Assignment.findByIdAndUpdate = jest.fn().mockResolvedValue({ _id: "123", ...mockData });
+    const updates = { title: "new title" };
+    const result = await assignmentService.updateAssignment("123", updates);
+    expect(Assignment.findByIdAndUpdate).toHaveBeenCalledWith(
+      "123",
+      { $set: updates },
+      { new: true, runValidators: true },
+    );
+    expect(result)._toBeDefined();
+  });
 });
