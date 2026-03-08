@@ -34,6 +34,7 @@
         </app-date-field>
 
         <div class="info-section">
+          
           <app-input-field
             label="Contraseña"
             [required]="missingPassword"
@@ -51,7 +52,23 @@
             type='password'
             [(ngModel)]="userForm.confirmPassword">
           </app-input-field>
+          <div class="password-policy-icon">
+            <span class="info-icon" tabindex="0">
+              <img src="./icon_info.svg" alt="Política de contraseñas" style="width:20px;height:20px;vertical-align:middle;" />
+              <span class="tooltip">
+                <strong i18n>La contraseña debe tener:</strong><br>
+                <ul>
+                  <li i18n>Mínimo 8 caracteres</li>
+                  <li i18n>Al menos una mayúscula</li>
+                  <li i18n>Al menos una minúscula</li>
+                  <li i18n>Al menos un número</li>
+                  <li i18n>Al menos un carácter especial</li>
+                </ul>
+              </span>
+            </span>
+          </div>
           <label [class.visible]="passwordError" class="missingField" i18n>Las contraseñas no coinciden</label>
+          <label [class.visible]="weakPasswordError" class="missingField" i18n>La contraseña no cumple la política de seguridad</label>
         </div>
         <label [class.visible]="missingFields" class="missingField" i18n>* campos obligatorios</label>
         <app-rect-base-button [isAction]="true" class="login-button" (clicked)="register()" i18n="@@SignInButton">Registrar</app-rect-base-button>
