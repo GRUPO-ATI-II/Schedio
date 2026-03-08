@@ -1,58 +1,32 @@
 <div class="calendar-card">
   <div class="calendar-header">
-    <span class="month-year" i18n>Febrero 2026</span>
+    <span class="month-year">{{ headerTitle }}</span>
     <div class="nav-arrows">
-      <img src="icon_despliegue.svg" class="arrow left-arrow" alt="Previous">
-      <img src="icon_despliegue.svg" class="arrow right-arrow" alt="Next">
+      <img src="icon_despliegue.svg" class="arrow left-arrow" alt="Previous" (click)="prev()">
+      <img src="icon_despliegue.svg" class="arrow right-arrow" alt="Next" (click)="next()">
     </div>
   </div>
   <div class="calendar-grid">
-    <div class="day-name" i18n>Dom</div>
-    <div class="day-name" i18n>Lun</div>
-    <div class="day-name" i18n>Mar</div>
-    <div class="day-name" i18n>Mié</div>
-    <div class="day-name" i18n>Jue</div>
-    <div class="day-name" i18n>Vie</div>
-    <div class="day-name" i18n>Sáb</div>
-    <!-- Week 1 -->
-    <div class="day">1</div>
-    <div class="day">2</div>
-    <div class="day">3</div>
-    <div class="day active">4</div>
-    <div class="day">5</div>
-    <div class="day">6</div>
-    <div class="day">7</div>
-    <!-- Week 2 -->
-    <div class="day">8</div>
-    <div class="day">9</div>
-    <div class="day">10</div>
-    <div class="day">11</div>
-    <div class="day">12</div>
-    <div class="day">13</div>
-    <div class="day">14</div>
-    <!-- Week 3 -->
-    <div class="day">15</div>
-    <div class="day">16</div>
-    <div class="day">17</div>
-    <div class="day">18</div>
-    <div class="day">19</div>
-    <div class="day">20</div>
-    <div class="day">21</div>
-    <!-- Week 4 -->
-    <div class="day">22</div>
-    <div class="day">23</div>
-    <div class="day">24</div>
-    <div class="day">25</div>
-    <div class="day">26</div>
-    <div class="day">27</div>
-    <div class="day">28</div>
-    <!-- Week 5 -->
-    <div class="day faded">1</div>
-    <div class="day faded">2</div>
-    <div class="day faded">3</div>
-    <div class="day faded">4</div>
-    <div class="day faded">5</div>
-    <div class="day faded">6</div>
-    <div class="day faded">7</div>
+    <div class="day-name">Lun</div>
+    <div class="day-name">Mar</div>
+    <div class="day-name">Mié</div>
+    <div class="day-name">Jue</div>
+    <div class="day-name">Vie</div>
+    <div class="day-name">Sáb</div>
+    <div class="day-name">Dom</div>
+    
+    @for (week of monthWeeks; track $index) {
+        @for (day of week; track day.dateStr) {
+            <div class="day" 
+                 [class.active]="day.isActive" 
+                 [class.faded]="day.isOtherMonth"
+                 (click)="onDayClick(day.dateStr)">
+                 {{ day.date }}
+                 @if (day.hasEvent) {
+                     <div class="event-dot"></div>
+                 }
+            </div>
+        }
+    }
   </div>
 </div>

@@ -3,6 +3,8 @@ export interface Event {
   title: string;
   description?: string;
   date: Date | string;
+  endDate?: Date | string;
+  isAllDay?: boolean;
   agendas: string[];
   subject?: string | null;
   createdAt?: Date;
