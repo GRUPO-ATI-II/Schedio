@@ -26,10 +26,12 @@ export class EditProfile implements OnInit {
   password = '';
   confirmPassword = '';
   isSubmitting = false;
-  userName = '';
+  username = '';
 
   isEditingUsername = false; // Flag for UI toggle
   tempUsername = '';
+
+  loadedUsername = false;
   
   ngOnInit() {
     // Load current user info
@@ -40,23 +42,26 @@ export class EditProfile implements OnInit {
       this.preferredLanguage = user.preferredLanguage || '';
       this.password = '';
       this.confirmPassword = '';
-      this.userName = user.username || '';
-      this.tempUsername = this.userName;
-      this.preferredLanguage = user.preferredLanguage || '';
+      this.username = user.username || '';
+      this.tempUsername = this.username;
     } else {
       alert('No user logged in');
+    }
+    if(this.username === '') { 
+      this.onGuardar();
+      window.location.reload();
     }
   }
   toggleEditUsername() {
     this.isEditingUsername = !this.isEditingUsername;
     if (this.isEditingUsername) {
-      this.tempUsername = this.userName; // Reset temp when opening
+      this.tempUsername = this.username; // Reset temp when opening
     }
   }
 
   confirmUsername() {
     if (this.tempUsername.trim()) {
-      this.userName = this.tempUsername;
+      this.username = this.tempUsername;
       this.isEditingUsername = false;
     }
   }
@@ -70,7 +75,6 @@ export class EditProfile implements OnInit {
     // Save name, language, and password if provided
     if (this.isSubmitting) return;
     this.isSubmitting = true;
-
     if (this.password && this.password !== this.confirmPassword) {
       alert('Las contraseñas no coinciden');
       this.isSubmitting = false;
@@ -84,17 +88,17 @@ export class EditProfile implements OnInit {
       this.isSubmitting = false;
       return;
     }
-
+    
     const fields: any = {
       firstName: this.firstName,
       lastName: this.lastName,
-      username: this.userName,
+      username: this.username,
       preferredLanguage: this.preferredLanguage,
     };
     if (this.password) {
       fields.password = this.password;
     }
-
+    
     this.authService.updateUserById(id, fields).subscribe({
       next: (res: any) => {
         // Store the updated user object directly
@@ -103,7 +107,8 @@ export class EditProfile implements OnInit {
           localStorage.setItem('user', JSON.stringify(updatedUser));
           this.authService.currentUser.set(updatedUser);
         }
-        alert('Perfil actualizado');
+        if (this.loadedUsername) alert('Perfil actualizado');
+        this.loadedUsername = true;
         this.isSubmitting = false;
         // Optionally reload page for language change
         if (this.preferredLanguage) {
@@ -116,7 +121,9 @@ export class EditProfile implements OnInit {
         alert('Error al actualizar: ' + (err.error?.message || err.message));
         this.isSubmitting = false;
       }
+      
     });
+    
   }
 
   sendTicket() {

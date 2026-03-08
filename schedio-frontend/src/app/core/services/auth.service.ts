@@ -27,7 +27,7 @@ export class AuthService {
   
 
   getCurrentUser(): any {
-    return this.currentUser(); // Now always reflects the most recent state
+    return this.currentUser();
   }
 
   /**

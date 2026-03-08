@@ -8,8 +8,10 @@
   <div class="basic-profile-info-group">
     <app-pfp src="./profile_picture.jpeg"></app-pfp>
 <div class="username">
+  
       @if (!isEditingUsername) {
-    <span>{{ userName }}</span>
+    <!-- Display the username from the user object -->
+    <span class="username-text">{{ username }}</span>
     <button class="edit-btn" (click)="toggleEditUsername()">
       <img src="./icon_edit.svg" alt="Edit Username" />
     </button>

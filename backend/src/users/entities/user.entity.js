@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema(
   {
     firstName: { type: String, trim: true },
     lastName: { type: String, trim: true },
-    username: { type: String, required: true, unique: true, trim: true },
+    userName: { type: String, required: true, unique: true, trim: true },
     email: {
       type: String,
       required: true,
@@ -25,11 +25,13 @@ const userSchema = new mongoose.Schema(
       ref: "Grade",
       default: null,
     },
+    preferredLanguage: { type: String, default: "en" },
   },
   {
     timestamps: true,
     versionKey: false,
   },
+  
 );
 
 module.exports = mongoose.model("User", userSchema);
