@@ -1,0 +1,208 @@
+.streaks-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  height: 100%;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-title {
+  color: var(--purple-950);
+  font: var(--text-h2);
+  margin: 0;
+}
+
+/* Tabs */
+.tabs-container {
+  display: flex;
+  background: var(--purple-200);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+  width: fit-content;
+}
+
+.tabs-container button {
+  border: none;
+  background: transparent;
+  padding: 8px 24px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--purple-950);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabs-container button.active {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Calendar Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-header h3 {
+  font: var(--text-h5);
+  margin: 0;
+  color: var(--purple-950);
+}
+
+.nav-arrows {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-arrow {
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--purple-950);
+}
+
+/* Completions Grid */
+.completions-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.grid-cell {
+  aspect-ratio: 1;
+  background: var(--purple-200);
+  border-radius: 12px;
+  transition: background 0.3s;
+}
+
+.grid-cell.highlighted {
+  background: var(--orange-400);
+}
+
+.grid-cell.today {
+  background: var(--purple-950);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.today-label {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+/* Summary Section */
+.summary-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.summary-title {
+  font: var(--text-h4);
+  color: var(--purple-950);
+  margin: 0;
+}
+
+.summary-pill {
+  background: var(--purple-200);
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--purple-950);
+}
+
+.summary-footer {
+  text-align: center;
+  font: var(--text-p);
+  color: var(--purple-950);
+  font-weight: 600;
+}
+
+/* Habits Column Styling */
+.action-header {
+  width: 100%;
+}
+
+.habits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.habit-card-item {
+  background: #fff;
+  border: 1px solid var(--purple-100);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.habit-border-indicator {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 4px;
+  background: var(--purple-600);
+  border-radius: 0 4px 4px 0;
+}
+
+.habit-card-item.is-done {
+  background: var(--purple-50);
+}
+
+.habit-name {
+  font: var(--text-h5);
+  margin: 0 0 4px 0;
+  color: var(--purple-950);
+}
+
+.habit-desc {
+  font: var(--text-small);
+  color: var(--grey-400);
+  margin: 0;
+}
+
+.habit-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.streak-label {
+  font: var(--text-p);
+  font-weight: 700;
+  color: var(--purple-950);
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

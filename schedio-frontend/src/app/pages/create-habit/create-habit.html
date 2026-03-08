@@ -1,0 +1,24 @@
+<h2 class="pageHeader">
+  Nuevo Hábito
+</h2>
+
+<form class="form-grid">
+  <label class="section-label">Nombre del Hábito</label>
+  <label class="section-label second-column">Frecuencia</label>
+
+  <app-input-field [(ngModel)]="name" name="name" placeholder="Colócale un nombre a tu hábito">
+  </app-input-field>
+
+  <select [(ngModel)]="frequency" name="frequency" class="custom-select second-column">
+    <option value="" disabled selected>Selecciona la frecuencia del hábito</option>
+    <option value="daily">Diario</option>
+    <option value="weekly">Semanal</option>
+  </select>
+
+  <label class="section-label">Descripción (Opcional)</label>
+
+  <app-input-textarea [(ngModel)]="description" name="description" placeholder="Describe tu hábito en pocas palabras">
+  </app-input-textarea>
+</form>
+
+<app-button-box (cancelClicked)="onCancel()" (saveClicked)="onSave()"></app-button-box>
