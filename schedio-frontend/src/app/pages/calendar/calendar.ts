@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { EventService } from '../../core/services/event.service';
 import { AgendaService } from '../../core/services/agenda.service';
 import { AuthService } from '../../core/services/auth.service';
@@ -36,14 +36,19 @@ export class Calendar implements OnInit {
     private agendaService = inject(AgendaService);
     private authService = inject(AuthService);
     private router = inject(Router);
+    private activatedRoute = inject(ActivatedRoute);
 
     viewMode: 'month' | 'week' | 'day' = 'week';
     currentDate: Date = new Date();
 
-    // Data State
-    rawEvents: any[] = [];
-    displayEvents: CalendarEvent[] = [];
-    allDayEvents: CalendarEvent[] = [];
+    // Modal State
+    selectedEventForDetails: CalendarEvent | null = null;
+    isDeletingEvent = false;
+
+    // Data
+    rawEvents: any[] = []; // the raw DB objects
+    displayEvents: CalendarEvent[] = []; // mapped to our grid
+    allDayEvents: CalendarEvent[] = []; // Separated array for the All-Day banner
 
     // Time grid layout
     hours = Array.from({ length: 14 }, (_, i) => {
@@ -62,36 +67,71 @@ export class Calendar implements OnInit {
     get currentMonthYearLabel(): string {
         const monthFormatter = new Intl.DateTimeFormat('es-ES', { month: 'long', year: 'numeric' });
 
-        if (this.viewMode === 'day') {
-            const dayFormatter = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-            return dayFormatter.format(this.currentDate).replace(/^\w/, c => c.toUpperCase());
+        if (this.viewMode === 'month') {
+            const capitalized = monthFormatter.format(this.currentDate);
+            return capitalized.charAt(0).toUpperCase() + capitalized.slice(1);
         }
-        else if (this.viewMode === 'week' && this.days.length > 0) {
-            const start = this.days[0].fullDate;
-            const end = this.days[6].fullDate;
-            const startMonth = start.toLocaleDateString('es-ES', { month: 'short' });
-            const endMonth = end.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+        else if (this.viewMode === 'day') {
+            const dayFormatter = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+            return dayFormatter.format(this.currentDate);
+        }
+        else if (this.viewMode === 'week') {
+            if (this.days.length === 0) return '';
+            const firstDay = this.days[0].fullDate;
+            const lastDay = this.days[6].fullDate;
 
-            if (start.getMonth() !== end.getMonth()) {
-                return `${start.getDate()} ${startMonth} - ${end.getDate()} ${endMonth}`.replace(/^\w/, c => c.toUpperCase());
+            const optionsPartial: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short' };
+            const optionsFull: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+
+            if (firstDay.getMonth() === lastDay.getMonth()) {
+                return `${firstDay.getDate()} - ${lastDay.toLocaleDateString('es-ES', optionsFull)}`;
             } else {
-                return `${start.getDate()} - ${end.getDate()} de ${endMonth}`.replace(/^\w/, c => c.toUpperCase());
+                return `${firstDay.toLocaleDateString('es-ES', optionsPartial)} - ${lastDay.toLocaleDateString('es-ES', optionsFull)}`;
             }
         }
-
-        // Default Month View
-        return monthFormatter.format(this.currentDate).replace(/^\w/, c => c.toUpperCase());
+        return '';
     }
 
     ngOnInit(): void {
         // Load events
-        this.loadUserEvents();
+        this.loadEvents();
+
+        // Initial grid setup
         this.updateCalendarGrid();
+        this.processEventsForCurrentView();
+
+        // Listen for incoming route parameters (e.g. from Sidebar Mini Calendar)
+        this.activatedRoute.queryParams.subscribe((params: any) => {
+            let shouldUpdate = false;
+            if (params['date']) {
+                // date format expected: YYYY-MM-DD
+                const parts = params['date'].split('-');
+                if (parts.length === 3) {
+                    const newDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+                    // Only update if the date is actually different to avoid unnecessary re-renders
+                    if (this.currentDate.getTime() !== newDate.getTime()) {
+                        this.currentDate = newDate;
+                        shouldUpdate = true;
+                    }
+                }
+            }
+            if (params['mode'] && ['month', 'week', 'day'].includes(params['mode'])) {
+                if (this.viewMode !== params['mode']) {
+                    this.viewMode = params['mode'] as 'month' | 'week' | 'day';
+                    shouldUpdate = true;
+                }
+            }
+
+            if (shouldUpdate) {
+                this.updateCalendarGrid();
+                this.processEventsForCurrentView();
+            }
+        });
     }
 
     // --- Data Loading --- //
 
-    loadUserEvents() {
+    loadEvents() {
         // Usamos el ID de agenda por defecto que se utiliza en la creación de eventos.
         const mockAgendaId = "65f123456789012345678901";
         this.fetchEventsForAgenda(mockAgendaId);
@@ -397,5 +437,39 @@ export class Calendar implements OnInit {
         const d = new Date(lastWeek[6].fullDate);
         d.setHours(23, 59, 59, 999);
         return d;
+    }
+
+    addEvent() {
+        this.router.navigate(['/agenda/new-event']);
+    }
+
+    // --- Details Popup Actions --- //
+    openEventDetails(event: CalendarEvent) {
+        this.selectedEventForDetails = event;
+    }
+
+    closeEventDetails() {
+        this.selectedEventForDetails = null;
+    }
+
+    deleteSelectedEvent() {
+        if (!this.selectedEventForDetails) return;
+
+        const confirmDelete = window.confirm(`¿Estás seguro de que deseas eliminar el evento "${this.selectedEventForDetails.title}"?`);
+        if (!confirmDelete) return;
+
+        this.isDeletingEvent = true;
+        this.eventService.deleteEvent(this.selectedEventForDetails.id).subscribe({
+            next: () => {
+                this.isDeletingEvent = false;
+                this.closeEventDetails();
+                this.loadEvents(); // Reload all events from backend
+            },
+            error: (err) => {
+                console.error("Error deleting event:", err);
+                this.isDeletingEvent = false;
+                alert("Hubo un error al eliminar el evento.");
+            }
+        });
     }
 }
