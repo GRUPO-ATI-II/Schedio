@@ -48,4 +48,17 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { create, getBySubject, getById, getAll, update }; // Simplificado para el ejemplo
+const remove = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await assignmentService.deleteAssignment(id);
+    if (!deleted) {
+      return res.status(404).json({ error: "Asignación no encontrada" });
+    }
+    res.status(200).json({ message: "Asignación eliminada" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { create, getBySubject, getById, getAll, update, remove }; // Simplificado para el ejemplo
