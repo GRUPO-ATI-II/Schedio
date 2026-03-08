@@ -75,7 +75,8 @@
                          [style.top]="getEventTop(event.startHour)" 
                          [style.height]="getEventHeight(event.durationHours)"
                          [style.width]="'calc(100% / ' + event.totalOverlaps + ')'"
-                         [style.left]="'calc((100% / ' + event.totalOverlaps + ') * ' + event.overlapIndex + ')'">
+                         [style.left]="'calc((100% / ' + event.totalOverlaps + ') * ' + event.overlapIndex + ')'"
+                         (click)="$event.stopPropagation()">
                       <p class="event-title">{{ event.title }}</p>
                       <p class="event-time">{{ event.timeLabel }}</p>
                       @if (event.hasAvatars && event.totalOverlaps === 1) {
@@ -113,11 +114,11 @@
         @for (week of monthWeeks; track $index) {
           <div class="month-week-row">
             @for (day of week; track day.date) {
-              <div class="month-day-cell clickable-day" [class.other-month]="day.isOtherMonth" [class.active-month-day]="day.active" (click)="goToDayView(day.fullDate)">
-                <span class="month-day-number">{{ day.date }}</span>
+              <div class="month-day-cell clickable-day" [class.other-month]="day.isOtherMonth" [class.active-month-day]="day.active" (click)="onMonthDayClick(day.dateStr!)">
+                <span class="month-day-number" (click)="goToDayView(day.fullDate); $event.stopPropagation()" style="cursor: pointer;" title="Ver vista diaria">{{ day.date }}</span>
                 <div class="month-events-container">
                   @for (event of getEventsForDate(day.dateStr!); track event.id) {
-                    <div class="month-event-pill" [ngClass]="event.colorClass" [class.month-all-day-pill]="event.isAllDay">
+                    <div class="month-event-pill" [ngClass]="event.colorClass" [class.month-all-day-pill]="event.isAllDay" (click)="$event.stopPropagation()">
                       @if (!event.isAllDay && event.monthTimeLabel) {
                          <span class="pill-time">{{ event.monthTimeLabel }}</span>
                       }

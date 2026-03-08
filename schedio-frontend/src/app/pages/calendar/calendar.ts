@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { EventService } from '../../core/services/event.service';
 import { AgendaService } from '../../core/services/agenda.service';
 import { AuthService } from '../../core/services/auth.service';
@@ -34,6 +35,7 @@ export class Calendar implements OnInit {
     private eventService = inject(EventService);
     private agendaService = inject(AgendaService);
     private authService = inject(AuthService);
+    private router = inject(Router);
 
     viewMode: 'month' | 'week' | 'day' = 'week';
     currentDate: Date = new Date();
@@ -267,6 +269,18 @@ export class Calendar implements OnInit {
         this.viewMode = 'day';
         this.updateCalendarGrid();
         this.processEventsForCurrentView();
+    }
+
+    onMonthDayClick(dateStr: string) {
+        if (confirm(`¿Deseas agregar un evento para todo el día el ${dateStr}?`)) {
+            // Navigate for All-Day event
+            this.router.navigate(['/agenda/new-event'], {
+                queryParams: {
+                    date: dateStr,
+                    allDay: 'true'
+                }
+            });
+        }
     }
 
     prev() {

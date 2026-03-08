@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ButtonBox } from '../../shared/components/ui/button-box/button-box';
 import { InputField } from '../../shared/components/ui/input-field/input-field';
@@ -15,9 +15,10 @@ import { DateField } from '../../shared/components/ui/date-field/date-field';
   templateUrl: './create-event.html',
   styleUrl: './create-event.css',
 })
-export class CreateEvent {
+export class CreateEvent implements OnInit {
   private readonly eventService = inject(EventService);
   private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
 
   title = '';
   description = '';
@@ -30,6 +31,35 @@ export class CreateEvent {
   endMinute = '';
   endAmPm = 'AM';
   selectedSubject = '';
+
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['date']) {
+        this.date = params['date'];
+      }
+      if (params['allDay'] === 'true') {
+        this.isAllDay = true;
+      } else if (params['hour'] && params['minute'] && params['ampm']) {
+        this.hour = params['hour'];
+        this.minute = params['minute'];
+        this.ampm = params['ampm'];
+
+        // Automatically set End Time 1 hour later for convenience
+        let numEndHour = Number.parseInt(this.hour) + 1;
+        let endAmPmVar = this.ampm;
+
+        if (numEndHour === 12) {
+          endAmPmVar = this.ampm === 'AM' ? 'PM' : 'AM';
+        } else if (numEndHour > 12) {
+          numEndHour = 1; // 12 -> 1
+        }
+
+        this.endHour = numEndHour.toString();
+        this.endMinute = this.minute;
+        this.endAmPm = endAmPmVar;
+      }
+    });
+  }
 
   onSave() {
     console.log('Attempting to save...');
