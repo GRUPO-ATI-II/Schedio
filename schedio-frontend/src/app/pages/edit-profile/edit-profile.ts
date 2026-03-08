@@ -40,14 +40,13 @@ export class EditProfile implements OnInit {
       this.preferredLanguage = user.preferredLanguage || '';
       this.password = '';
       this.confirmPassword = '';
-      this.userName = user.username || user.email || '';
+      this.userName = user.username || '';
       this.tempUsername = this.userName;
       this.preferredLanguage = user.preferredLanguage || '';
     } else {
       alert('No user logged in');
     }
   }
-
   toggleEditUsername() {
     this.isEditingUsername = !this.isEditingUsername;
     if (this.isEditingUsername) {
