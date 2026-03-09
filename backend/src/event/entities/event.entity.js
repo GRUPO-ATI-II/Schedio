@@ -8,9 +8,9 @@ const mongoose = require("mongoose");
 const EventSchema = new mongoose.Schema(
   {
     title: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
     description: {
       type: String,
@@ -19,6 +19,14 @@ const EventSchema = new mongoose.Schema(
     date: {
       type: Date,
       required: [true, "La fecha del evento es obligatoria"],
+    },
+    endDate: {
+      type: Date,
+      required: false,
+    },
+    isAllDay: {
+      type: Boolean,
+      default: false,
     },
 
     agendas: {

@@ -1,0 +1,185 @@
+<div class="calendar-page-container">
+  <div class="calendar-main-card">
+    
+    <!-- Top Header -->
+    <div class="calendar-top">
+      <div class="calendar-title-date">
+        <h2 class="calendar-month-year">{{ currentMonthYearLabel }}</h2>
+        <div class="calendar-nav-arrows">
+          <button class="nav-arrow-btn" (click)="prev()">&lt;</button>
+          <button class="nav-arrow-btn" (click)="next()">&gt;</button>
+        </div>
+      </div>
+
+      <div class="calendar-view-toggles">
+        <button class="toggle-btn add-btn-small" (click)="addEvent()">+ Evento</button>
+        <span class="view-toggles-separator">|</span>
+        <button class="toggle-btn" [class.active]="viewMode === 'month'" (click)="setViewMode('month')">Mes</button>
+        <button class="toggle-btn" [class.active]="viewMode === 'week'" (click)="setViewMode('week')">Semana</button>
+        <button class="toggle-btn" [class.active]="viewMode === 'day'" (click)="setViewMode('day')">Día</button>
+      </div>
+    </div>
+
+    @if (viewMode === 'week' || viewMode === 'day') {
+      
+      <div class="calendar-grid-body">
+        <div class="sticky-header-container">
+          <div class="calendar-days-header" [class.single-col]="viewMode === 'day'">
+        <div class="time-column-spacer"></div>
+        @for (day of days; track day.date) {
+          <div class="day-header-col" [class.active-day]="day.active" [class.clickable-day]="viewMode === 'week'" (click)="viewMode === 'week' ? goToDayView(day.fullDate) : null" tabindex="0" (keydown.enter)="viewMode === 'week' ? goToDayView(day.fullDate) : null">
+            <span class="day-name">{{ day.name }}</span>
+            <span class="day-number">{{ day.date }}</span>
+          </div>
+        }
+      </div>
+
+      
+      @if (allDayEvents.length > 0) {
+        <div class="calendar-days-header all-day-banner" [class.single-col]="viewMode === 'day'">
+          <div class="time-column-spacer"><span class="all-day-label">Todo el día</span></div>
+          @for (day of days; track day.date; let dayIdx = $index) {
+            <div class="all-day-col">
+              @for (event of allDayEvents; track event.id) {
+                @if (event.dayIndex === dayIdx) {
+                  <div class="month-event-pill" [ngClass]="event.colorClass" style="margin-bottom: 2px;" (click)="openEventDetails(event); $event.stopPropagation()" tabindex="0" (keydown.enter)="openEventDetails(event); $event.stopPropagation()">
+                    <span class="calendar-pill-title">{{ event.title }}</span>
+                  </div>
+                }
+              }
+            </div>
+          }
+        </div>
+      }
+
+        </div> 
+
+        <div class="calendar-grid-content">
+          
+          <div class="time-row-container">
+          @for (hour of hours; track hour.offset) {
+            <div class="time-row">
+              <div class="time-label">{{ hour.label }}</div>
+              <div class="time-line"></div>
+            </div>
+          }
+        </div>
+
+       
+        <div class="events-overlay" [class.single-col]="viewMode === 'day'">
+          <div class="events-cols">
+            <div class="time-column-spacer"></div>
+            
+            @for (day of days; track day.date; let dayIdx = $index) {
+              <div class="day-events-col">
+                @for (event of displayEvents; track event.id) {
+                  @if (event.dayIndex === dayIdx) {
+                    <div class="event-block" [ngClass]="event.colorClass" 
+                         [style.top]="getEventTop(event.startHour)" 
+                         [style.height]="getEventHeight(event.durationHours)"
+                          [style.width]="'calc(100% / ' + event.totalOverlaps + ')'"
+                         [style.left]="'calc((100% / ' + event.totalOverlaps + ') * ' + event.overlapIndex + ')'"
+                         (click)="openEventDetails(event); $event.stopPropagation()"
+                         tabindex="0" (keydown.enter)="openEventDetails(event); $event.stopPropagation()">
+                      <p class="event-title">{{ event.title }}</p>
+                      <p class="event-time">{{ event.timeLabel }}</p>
+                      @if (event.hasAvatars && event.totalOverlaps === 1) {
+                        <div class="event-avatars">
+                          <div class="avatar-circle"></div>
+                          <div class="avatar-circle"></div>
+                          <div class="avatar-circle"></div>
+                        </div>
+                      }
+                    </div>
+                  }
+                }
+              </div>
+            }
+
+          </div>
+        </div>
+
+        </div>
+      </div> 
+    }
+
+    
+    @if (viewMode === 'month') {
+      <div class="calendar-month-header">
+        <div class="month-day-name">Lunes</div>
+        <div class="month-day-name">Martes</div>
+        <div class="month-day-name">Miércoles</div>
+        <div class="month-day-name">Jueves</div>
+        <div class="month-day-name">Viernes</div>
+        <div class="month-day-name">Sábado</div>
+        <div class="month-day-name">Domingo</div>
+      </div>
+      
+      <div class="calendar-month-body">
+        @for (week of monthWeeks; track $index) {
+          <div class="month-week-row">
+            @for (day of week; track day.date) {
+              <div class="month-day-cell clickable-day" [class.other-month]="day.isOtherMonth" [class.active-month-day]="day.active" (click)="onMonthDayClick(day.dateStr!)" tabindex="0" (keydown.enter)="onMonthDayClick(day.dateStr!)">
+                <span class="month-day-number" (click)="goToDayView(day.fullDate); $event.stopPropagation()" style="cursor: pointer;" title="Ver vista diaria" tabindex="0" (keydown.enter)="goToDayView(day.fullDate); $event.stopPropagation()">{{ day.date }}</span>
+                <div class="month-events-container">
+                  @for (event of getEventsForDate(day.dateStr!); track event.id) {
+                    <div class="month-event-pill" [ngClass]="event.colorClass" [class.month-all-day-pill]="event.isAllDay" (click)="openEventDetails(event); $event.stopPropagation()" tabindex="0" (keydown.enter)="openEventDetails(event); $event.stopPropagation()">
+                      @if (!event.isAllDay && event.monthTimeLabel) {
+                         <span class="pill-time">{{ event.monthTimeLabel }}</span>
+                      }
+                      <span class="calendar-pill-title">{{ event.title }}</span>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    
+    @if (selectedEventForDetails) {
+      <div class="event-modal-backdrop" (click)="closeEventDetails()" tabindex="0" (keydown.enter)="closeEventDetails()">
+        <div class="event-modal-content" (click)="$event.stopPropagation()" tabindex="0" (keydown.enter)="$event.stopPropagation()">
+          
+          <div class="event-modal-header" [ngClass]="selectedEventForDetails.colorClass">
+            <h3 class="modal-event-title">{{ selectedEventForDetails.title }}</h3>
+            <button class="modal-close-btn" (click)="closeEventDetails()">×</button>
+          </div>
+
+          <div class="event-modal-body">
+            <div class="modal-detail-row">
+              <span class="modal-icon">📅</span>
+              <span class="modal-text">{{ selectedEventForDetails.dateStr }}</span>
+            </div>
+            
+            <div class="modal-detail-row">
+              <span class="modal-icon">⏰</span>
+              <span class="modal-text">{{ selectedEventForDetails.isAllDay ? 'Todo el día' : selectedEventForDetails.timeLabel }}</span>
+            </div>
+
+            @if (selectedEventForDetails.description) {
+              <div class="modal-detail-row">
+                <span class="modal-icon">📝</span>
+                <span class="modal-text">{{ selectedEventForDetails.description }}</span>
+              </div>
+            }
+
+            <div class="modal-actions">
+              <button class="delete-event-btn" (click)="deleteSelectedEvent()" [disabled]="isDeletingEvent">
+                @if (isDeletingEvent) {
+                  Eliminando...
+                } @else {
+                  <span class="delete-icon">🗑️</span> Eliminar evento
+                }
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

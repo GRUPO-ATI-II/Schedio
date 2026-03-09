@@ -68,6 +68,7 @@
   width: 24px;
   height: 24px;
   margin: 0 auto;
+  position: relative;
 }
 
 .day:hover:not(.active) {
@@ -76,11 +77,22 @@
 
 .day.active {
   background-color: var(--on-card-color, #FF8C00);
-  /* Orange */
   font-weight: bold;
   color: white;
 }
 
 .day.faded {
   color: rgba(255, 255, 255, 0.3);
+}
+
+.event-dot {
+  position: absolute;
+  bottom: 0px;
+  width: 4px;
+  height: 4px;
+  background-color: #F8B52A; 
+  border-radius: 50%;
+}
+.day.active .event-dot {
+  background-color: white; 
 }
