@@ -1,3 +1,39 @@
+/* Tooltip para política de contraseñas */
+.password-policy-icon {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.info-icon {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: 260px;
+  background: var(--main-card-color, #fff);
+  color: var(--grey-900, #222);
+  text-align: left;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  position: absolute;
+  z-index: 10;
+  top: 120%;
+  left: 0;
+  font-size: 0.95rem;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.info-icon:hover .tooltip,
+.info-icon:focus .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
 main {
   display: flex;
   align-items: center;
