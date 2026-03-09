@@ -62,7 +62,31 @@ app-date-field {
   margin: 0 0 20px 0;
 }
 
-.delete-section {
-  margin-top: 20px;
-  text-align: center;
+.actions-container {
+  display: flex;
+  justify-content: left;
+  margin: 20px 0;
+}
+
+.btn-delete-simple {
+  background: #d32f2f;
+  color: #fff; /* Rojo de alerta */
+  border: 1px solid #d32f2f;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px; /* Tamaño reducido */
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.btn-delete-simple:hover {
+  background-color: #ffcdd2; /* Fondo suave al pasar el mouse */
+  border-color: #b71c1c;
+  color: #b71c1c;
+}
+
+.btn-delete-simple:active {
+  background-color: #ffeeee;
 }
