@@ -1,3 +1,4 @@
+
 <h2 class = "pageHeader" i18n="@@NewAssignment">
   Editar Tarea
 </h2>
@@ -53,4 +54,11 @@
   </select>
 
 </form>
+<div class="actions-container">
+  <button type="button" class="btn-delete-simple" (click)="onDelete()" i18n>
+    <span>Borrar Tarea</span>
+    <img src="icon_delete.svg" alt="Del" />
+  </button>
+</div>
+
 <app-button-box (cancelClicked)="onCancel()" (saveClicked)="onSave()"></app-button-box>

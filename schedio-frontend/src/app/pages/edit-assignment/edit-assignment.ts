@@ -4,6 +4,7 @@ import { InputField } from '../../shared/components/ui/input-field/input-field';
 import { InputTextarea } from '../../shared/components/ui/input-textarea/input-textarea';
 import { ButtonBox } from '../../shared/components/ui/button-box/button-box';
 import { DateField } from '../../shared/components/ui/date-field/date-field';
+import { RectBaseButton } from '../../shared/components/ui/rect-base-button/rect-base-button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentService } from '../../core/services/assignment.service';
 import { Assignment } from '../../shared/entities/assignment.entity';
@@ -11,7 +12,7 @@ import { Assignment } from '../../shared/entities/assignment.entity';
 @Component({
   selector: 'app-edit-assignment',
   standalone: true,
-  imports: [InputField, InputTextarea, ButtonBox, FormsModule, DateField],
+  imports: [InputField, InputTextarea, ButtonBox, FormsModule, DateField, RectBaseButton],
   templateUrl: './edit-assignment.html',
   styleUrl: './edit-assignment.css',
 })
@@ -94,6 +95,21 @@ export class EditAssignment implements OnInit {
     if (confirm('¿Estás seguro de que deseas cancelar? Se perderán los cambios.')) {
       // navigate back or reset
       this.router.navigate(['/agenda']);
+    }
+  }
+
+  onDelete() {
+    if (confirm('¿Estás seguro de que deseas eliminar esta tarea? Esta acción no se puede deshacer.')) {
+      this.assignmentService.deleteAssignment(this.assignmentId).subscribe({
+        next: () => {
+          alert('Tarea eliminada con éxito');
+          this.router.navigate(['/agenda']);
+        },
+        error: (err) => {
+          console.error('Error deleting assignment', err);
+          alert('Error al eliminar la tarea: ' + err.error?.message);
+        },
+      });
     }
   }
 
