@@ -8,6 +8,7 @@ import { AuthService } from '../../core/services/auth.service';
 export interface CalendarEvent {
     id: string;
     title: string;
+    description?: string;
     timeLabel: string;
     dayIndex: number; // 0 for Monday, 1 for Tuesday... (relative to current week/month)
     startHour: number; // e.g. 7.5 for 7:30
@@ -50,11 +51,21 @@ export class Calendar implements OnInit {
     displayEvents: CalendarEvent[] = []; // mapped to our grid
     allDayEvents: CalendarEvent[] = []; // Separated array for the All-Day banner
 
-    // Time grid layout
-    hours = Array.from({ length: 14 }, (_, i) => {
-        const h = i + 7; // start at 7am
-        const suffix = h >= 12 ? 'pm' : 'am';
-        const labelH = h > 12 ? h - 12 : h;
+    // Time grid layout (24 hours)
+    hours = Array.from({ length: 24 }, (_, i) => {
+        const h = i; // start at 0 (12am)
+        let suffix = 'am';
+        let labelH = h;
+
+        if (h === 0) {
+            labelH = 12;
+        } else if (h === 12) {
+            suffix = 'pm';
+        } else if (h > 12) {
+            suffix = 'pm';
+            labelH = h - 12;
+        }
+
         return { label: `${labelH}:00 ${suffix}`, offset: i };
     });
 
@@ -217,6 +228,7 @@ export class Calendar implements OnInit {
             return {
                 id: ev._id || i.toString(),
                 title: ev.title,
+                description: ev.description,
                 timeLabel,
                 dayIndex: dayIdx,
                 startHour,
@@ -284,8 +296,7 @@ export class Calendar implements OnInit {
 
     // --- View Helpers --- //
     getEventTop(startHour: number): string {
-        const offsetHour = startHour - 7;
-        return `calc(${offsetHour * 80}px + 10px)`;
+        return `calc(${startHour * 80}px + 10px)`;
     }
 
     getEventHeight(durationHours: number): string {
@@ -318,6 +329,44 @@ export class Calendar implements OnInit {
                 queryParams: {
                     date: dateStr,
                     allDay: 'true'
+                }
+            });
+        }
+    }
+
+    onDayColumnClick(event: MouseEvent, dateStr?: string) {
+        if (!dateStr) return;
+
+        // Allow the event creation only if clicked directly on the column (not an event block)
+        if ((event.target as HTMLElement).classList.contains('event-block') ||
+            (event.target as HTMLElement).closest('.event-block')) {
+            return;
+        }
+
+        const target = event.currentTarget as HTMLElement;
+        const rect = target.getBoundingClientRect();
+        const offsetY = event.clientY - rect.top;
+
+        // 80px per hour
+        const clickedHourRaw = Math.floor(offsetY / 80);
+
+        let ampm = 'am';
+        let formattedHour = clickedHourRaw;
+        let displayHour = clickedHourRaw;
+
+        if (clickedHourRaw >= 12) {
+            ampm = 'pm';
+            if (clickedHourRaw > 12) displayHour = clickedHourRaw - 12;
+        } else if (clickedHourRaw === 0) {
+            displayHour = 12; // 12am representation
+        }
+
+        if (confirm(`¿Deseas agregar un evento a las ${displayHour}:00 ${ampm} el ${dateStr}?`)) {
+            this.router.navigate(['/agenda/new-event'], {
+                queryParams: {
+                    date: dateStr,
+                    hour: displayHour,
+                    ampm: ampm
                 }
             });
         }
@@ -446,11 +495,15 @@ export class Calendar implements OnInit {
     // --- Details Popup Actions --- //
     openEventDetails(event: CalendarEvent) {
         this.selectedEventForDetails = event;
+        this.isEventDeletedSuccess = false;
     }
 
     closeEventDetails() {
         this.selectedEventForDetails = null;
+        this.isEventDeletedSuccess = false;
     }
+
+    isEventDeletedSuccess = false;
 
     deleteSelectedEvent() {
         if (!this.selectedEventForDetails) return;
@@ -462,7 +515,7 @@ export class Calendar implements OnInit {
         this.eventService.deleteEvent(this.selectedEventForDetails.id).subscribe({
             next: () => {
                 this.isDeletingEvent = false;
-                this.closeEventDetails();
+                this.isEventDeletedSuccess = true;
                 this.loadEvents(); // Reload all events from backend
             },
             error: (err) => {

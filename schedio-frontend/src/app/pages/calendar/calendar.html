@@ -71,7 +71,7 @@
             <div class="time-column-spacer"></div>
             
             @for (day of days; track day.date; let dayIdx = $index) {
-              <div class="day-events-col">
+              <div class="day-events-col" (click)="onDayColumnClick($event, day.dateStr)">
                 @for (event of displayEvents; track event.id) {
                   @if (event.dayIndex === dayIdx) {
                     <div class="event-block" [ngClass]="event.colorClass" 
@@ -142,32 +142,52 @@
       <div class="event-modal-backdrop" (click)="closeEventDetails()">
         <div class="event-modal-content" (click)="$event.stopPropagation()">
           
-          <div class="event-modal-header" [ngClass]="selectedEventForDetails.colorClass">
-            <h3 class="modal-event-title">{{ selectedEventForDetails.title }}</h3>
-            <button class="modal-close-btn" (click)="closeEventDetails()">×</button>
-          </div>
+          @if (!isEventDeletedSuccess) {
+              <div class="event-modal-header" [ngClass]="selectedEventForDetails.colorClass">
+                <h3 class="modal-event-title">{{ selectedEventForDetails.title }}</h3>
+                <button class="modal-close-btn" (click)="closeEventDetails()">×</button>
+              </div>
 
-          <div class="event-modal-body">
-            <div class="modal-detail-row">
-              <span class="modal-icon">📅</span>
-              <span class="modal-text">{{ selectedEventForDetails.dateStr }}</span>
-            </div>
-            
-            <div class="modal-detail-row">
-              <span class="modal-icon">⏰</span>
-              <span class="modal-text">{{ selectedEventForDetails.isAllDay ? 'Todo el día' : selectedEventForDetails.timeLabel }}</span>
-            </div>
+              <div class="event-modal-body">
+                <div class="modal-detail-row">
+                  <span class="modal-icon">📅</span>
+                  <span class="modal-text">{{ selectedEventForDetails.dateStr }}</span>
+                </div>
+                
+                <div class="modal-detail-row">
+                  <span class="modal-icon">⏰</span>
+                  <span class="modal-text">{{ selectedEventForDetails.isAllDay ? 'Todo el día' : selectedEventForDetails.timeLabel }}</span>
+                </div>
 
-            <div class="modal-actions">
-              <button class="delete-event-btn" (click)="deleteSelectedEvent()" [disabled]="isDeletingEvent">
-                @if (isDeletingEvent) {
-                  Eliminando...
-                } @else {
-                  <span class="delete-icon">🗑️</span> Eliminar evento
+                @if (selectedEventForDetails.description) {
+                  <div class="modal-detail-row description-row">
+                    <span class="modal-icon">📝</span>
+                    <span class="modal-text">{{ selectedEventForDetails.description }}</span>
+                  </div>
                 }
-              </button>
-            </div>
-          </div>
+
+                <div class="modal-actions">
+                  <button class="delete-event-btn" (click)="deleteSelectedEvent()" [disabled]="isDeletingEvent">
+                    @if (isDeletingEvent) {
+                      Eliminando...
+                    } @else {
+                      <span class="delete-icon">🗑️</span> Eliminar evento
+                    }
+                  </button>
+                </div>
+              </div>
+          } @else {
+              <div class="event-modal-body success-state-body">
+                <div class="success-icon-container">
+                    <span class="success-icon">✅</span>
+                </div>
+                <h3 class="success-title">Evento eliminado</h3>
+                <p class="success-subtitle">El evento ha sido borrado de tu calendario.</p>
+                <div class="modal-actions success-actions">
+                    <button class="close-success-btn" (click)="closeEventDetails()">Cerrar</button>
+                </div>
+              </div>
+          }
           
         </div>
       </div>

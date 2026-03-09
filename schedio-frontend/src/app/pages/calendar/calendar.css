@@ -224,7 +224,7 @@
   grid-template-columns: 80px 1fr;
   gap: 10px;
   align-items: flex-start;
-  height: 90px; /* This needs to match the getEventTop / Height math */
+  height: 80px; /* Matches 80px per hour exactly */
 }
 
 .time-label {
@@ -395,6 +395,9 @@
   flex-direction: column;
   gap: 5px;
   transition: all 0.2s;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .month-day-cell.clickable-day:hover {
@@ -432,6 +435,7 @@
   gap: 4px;
   flex: 1;
   overflow-y: auto;
+  min-width: 0; /* Flexbox constraint hack */
   max-height: 85px; /* prevent cell from growing too much */
 }
 
@@ -446,6 +450,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  max-width: 100%;
+}
+
+.pill-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
 }
 
 .pill-time {
@@ -594,4 +606,84 @@
 
 .delete-icon {
   font-size: 1.1rem;
+}
+
+/* Success State Modal */
+.success-state-body {
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.success-icon-container {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0); opacity: 0; }
+  80% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-title {
+  color: #2F115C;
+  font-size: 1.4rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+.success-subtitle {
+  color: #6d5b88;
+  font-size: 0.9rem;
+  margin: 5px 0 20px 0;
+}
+
+.success-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  border-top: none;
+  padding-top: 5px;
+  width: 100%;
+}
+
+.undo-event-btn {
+  background-color: #f78d1e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.undo-event-btn:hover:not(:disabled) {
+  background-color: #e0770b;
+}
+
+.undo-event-btn:disabled {
+  background-color: #ffc999;
+  cursor: not-allowed;
+}
+
+.close-success-btn {
+  background-color: transparent;
+  color: #2F115C;
+  border: 1px solid #d3cce3;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close-success-btn:hover {
+  background-color: #f0eaf5;
+  border-color: #b0a3c9;
 }
