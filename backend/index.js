@@ -17,6 +17,7 @@ const eventModule = require("./src/event/event.module");
 const subjectModule = require("./src/subject/subject.module");
 const assignmentModule = require("./src/assignments/assignment.module");
 const gradeModule = require("./src/grades/grade.module");
+const habitModule = require("./src/habits/habit.module");
 
 const app = express();
 app.use(cors());
@@ -74,6 +75,7 @@ const startApp = async () => {
     subjectModule(app);
     assignmentModule(app);
     gradeModule(app);
+    habitModule(app);
 
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
