@@ -22,11 +22,12 @@ function apiBase() {
 
 function makeUser() {
   const id = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  const password = Cypress.env("E2E_PASSWORD") || "TestPass123!";
   return {
     username: `e2e-${id}`,
     email: `e2e-${id}@test.com`,
-    birthDate: '2000-01-15',
-    password: 'TestPass123!',
+    birthDate: "2000-01-15",
+    password,
   };
 }
 
@@ -66,9 +67,9 @@ describe('Flujo de creación de tareas', () => {
   beforeEach(() => {
     createdAssignmentIds = [];
     currentUser = makeUser();
-    cy.intercept('POST', '**/api/assignment', (req) => {
+    cy.intercept("POST", "**/api/assignment", (req) => {
       req.continue((res) => {
-        if (res.body && res.body._id) createdAssignmentIds.push(res.body._id);
+        if (res.body?._id) createdAssignmentIds.push(res.body._id);
       });
     });
     cy.visit('/register');
@@ -83,7 +84,7 @@ describe('Flujo de creación de tareas', () => {
     createdAssignmentIds.forEach((id) => {
       cy.request({ method: 'DELETE', url: `${base}/api/assignment/${id}`, failOnStatusCode: false });
     });
-    if (currentUser && currentUser.email) {
+    if (currentUser?.email) {
       cy.request({
         method: 'DELETE',
         url: `${base}/api/users/${encodeURIComponent(currentUser.email)}`,
