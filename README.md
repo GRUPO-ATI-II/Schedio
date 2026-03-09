@@ -2,13 +2,15 @@
 
 ## Índice
 
+## Índice
+
 1. [Introducción](#1-introducción)
-2. [Ficha técnica](#2-Ficha-técnica)
-   - [2.1 Núcleo tecnológico](#21-Núcleo-tecnológico)
+2. [Ficha técnica](#2-ficha-técnica)
+   - [2.1 Núcleo tecnológico](#21-núcleo-tecnológico)
    - [2.2 Stack de desarrollo y dependencias](#22-stack-de-desarrollo-y-dependencias)
-     - [2.2.1 Backend (Servidor API)](#221-Backend-(Servidor-API))
-     - [2.2.2 Frontend (Cliente Web)](#222-Frontend-(Cliente-Web))
-3. [Guía de instalación](#3-Guía-de-instalación)
+     - [2.2.1 Backend (Servidor API)](#221-backend-servidor-api)
+     - [2.2.2 Frontend (Cliente Web)](#222-frontend-cliente-web)
+3. [Guía de instalación](#3-guía-de-instalación)
 4. [Diagramas asociados](#4-diagramas-asociados)
    - [4.1 Diagrama entidad relación de la base de datos](#41-diagrama-entidad-relación-de-la-base-de-datos)
    - [4.2 Diagrama de componentes](#42-diagrama-de-componentes)
