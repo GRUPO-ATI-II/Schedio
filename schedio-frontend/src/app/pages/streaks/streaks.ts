@@ -10,7 +10,7 @@ import { MainLayoutComponent } from '../../layout/main-layout/main-layout';
 @Component({
     selector: 'app-streaks',
     standalone: true,
-    imports: [CommonModule, RouterModule, RectBaseButton, CardCheckbox],
+    imports: [CommonModule, RouterModule, CardCheckbox],
     templateUrl: './streaks.html',
     styleUrl: './streaks.css',
 })
@@ -38,19 +38,19 @@ export class Streaks implements OnInit {
         });
     }
 
-    get completedCount() {
-        return this.habits().filter(h => this.isCompletedToday(h)).length;
-    }
+    completedCount = computed(() =>
+      this.habits().filter(h => this.isCompletedToday(h)).length
+    );
 
-    get pendingCount() {
-        return this.habits().length - this.completedCount;
-    }
+    pendingCount = computed(() =>
+      this.habits().length - this.completedCount()
+    );
 
-    get completionPercent() {
-        const total = this.habits().length;
-        if (total === 0) return 0;
-        return Math.round((this.completedCount / total) * 100);
-    }
+    completionPercent = computed(() => {
+      const total = this.habits().length;
+      if (total === 0) return 0;
+      return Math.round((this.completedCount() / total) * 100);
+    });
 
     /** Returns the 7 days of the current week (Monday to Sunday) */
     get weekDays(): { date: Date; label: string; isToday: boolean }[] {
@@ -84,12 +84,7 @@ export class Streaks implements OnInit {
         });
     }
 
-    onComplete(habitId: string) {
-        this.habitService.completeHabit(habitId).subscribe({
-            next: () => this.loadHabits(),
-            error: (err) => alert('Error: ' + err.message)
-        });
-    }
+
 
     onCreateNew() {
         this.router.navigate(['/streaks/new']);
@@ -115,5 +110,33 @@ export class Streaks implements OnInit {
     nextMonth() {
         console.log('Next month');
     }
+
+  onToggleHabit(habit: Habit) {
+
+    if (this.isCompletedToday(habit)) {
+
+      // DESMARCAR
+      const updated = this.habits().map(h =>
+        h._id === habit._id
+          ? { ...h, lastCompleted: null, streak: Math.max(h.streak - 1, 0) }
+          : h
+      );
+
+      this.habits.set(updated);
+
+    } else {
+
+      // MARCAR
+      const updated = this.habits().map(h =>
+        h._id === habit._id
+          ? { ...h, lastCompleted: new Date(), streak: h.streak + 1 }
+          : h
+      );
+
+      this.habits.set(updated);
+
+    }
+
+  }
 }
 

@@ -54,9 +54,9 @@
     <div class="summary-section">
       <h2 class="summary-title">Resumen</h2>
       <div class="summary-pill">
-        <span>{{ completedCount }} hábitos completados</span>
+        <span>{{ completedCount() }} hábitos completados</span>
       </div>
-      <h4 class="summary-footer">Te quedan {{ pendingCount }} hábitos por completar</h4>
+      <h4 class="summary-footer">Te quedan {{ pendingCount() }} hábitos por completar</h4>
     </div>
   </section>
 
@@ -90,7 +90,7 @@
           </div>
           <div class="habit-meta">
             <h4 class="streak-label">{{ habit.streak }} días activo</h4>
-            <app-card-checkbox [checked]="isCompletedToday(habit)" (toggle)="onComplete(habit._id!)">
+            <app-card-checkbox [checked]="isCompletedToday(habit)" (toggle)="onToggleHabit(habit)">
             </app-card-checkbox>
           </div>
         </div>
