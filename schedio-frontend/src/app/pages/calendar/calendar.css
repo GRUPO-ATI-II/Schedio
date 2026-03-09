@@ -38,22 +38,29 @@
 
 .calendar-nav-arrows {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
-.arrow {
+.nav-arrow-btn {
+  border: none;
+  background: #efe9f4;
+  color: #6d5b88;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
   cursor: pointer;
-  width: 16px;
-  height: 16px;
-  user-select: none;
+  transition: all 0.2s ease;
 }
 
-.left-arrow-cal {
-  transform: rotate(90deg);
-}
-
-.right-arrow-cal {
-  transform: rotate(-90deg);
+.nav-arrow-btn:hover {
+  background: #e2d7ec;
+  color: #2F115C;
+  transform: scale(1.05);
 }
 
 .calendar-view-toggles {
@@ -86,6 +93,24 @@
   background-color: rgba(255,255,255,0.4);
 }
 
+.add-btn-small {
+  background-color: var(--on-card-color, #FF8C00);
+  color: white;
+  padding: 6px 14px;
+}
+
+.add-btn-small:hover {
+  background-color: #e67e00 !important;
+  color: white !important;
+}
+
+.view-toggles-separator {
+  color: #756788;
+  font-weight: 300;
+  margin-top: 5px;
+  user-select: none;
+}
+
 /* ============================ */
 /* WEEK / DAY VIEW STYLES */
 /* ============================ */
@@ -96,7 +121,7 @@
   grid-template-columns: 80px repeat(7, 1fr);
   gap: 10px;
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   margin-bottom: 15px;
 }
 
@@ -147,12 +172,45 @@
   color: white;
 }
 
+/* ALL DAY BANNER */
+.all-day-banner {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #efe9f4;
+  margin-top: -10px;
+}
+
+.all-day-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #717171;
+  text-transform: uppercase;
+}
+
+.all-day-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: flex-end; /* stack towards bottom of header */
+}
+
 /* CALENDAR GRID BODY */
 .calendar-grid-body {
-  position: relative;
   flex: 1;
   overflow-y: auto;
   padding-right: 10px;
+}
+
+.sticky-header-container {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background-color: white;
+  padding-top: 10px;
+}
+
+.calendar-grid-content {
+  position: relative;
 }
 
 /* Time lines */
@@ -162,23 +220,23 @@
 }
 
 .time-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 10px;
   align-items: flex-start;
-  height: 90px; /* This needs to match the getEventTop / Height math */
+  height: 80px; /* This needs to match the getEventTop / Height math */
 }
 
 .time-label {
-  width: 80px;
   font-size: 0.8rem;
-  color: #a0a0a0;
-  text-align: left;
-  padding-right: 15px;
+  color: #717171;
+  text-align: right;
   transform: translateY(-8px);
   font-weight: 500;
 }
 
 .time-line {
-  flex: 1;
+  width: 100%;
   height: 1px;
   background-color: #eeeeee;
 }
@@ -188,20 +246,21 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  display: grid;
-  grid-template-columns: 80px repeat(7, 1fr);
-  gap: 10px;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
-.events-overlay.single-col {
+.events-overlay.single-col .events-cols {
   grid-template-columns: 80px 1fr;
 }
 
 .events-cols {
-  display: contents;
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  gap: 10px;
+  width: 100%;
+  height: 100%;
 }
 
 .day-events-col {
@@ -213,13 +272,23 @@
   pointer-events: auto;
   position: absolute;
   left: 0;
-  right: 0;
+  /* width should be overridden inline */
+  width: 100%; 
   border-radius: 8px;
-  padding: 12px;
+  padding: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  border: 1px solid rgba(255,255,255,0.5); /* separation for overlaps */
+}
+
+.event-block:hover {
+  z-index: 100 !important; /* bring to front on hover if overlapped heavily */
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .event-title {
@@ -251,15 +320,15 @@
   background-color: #c4aef5; /* Light purple */
 }
 
-.event-orange .event-title, .event-orange .event-time, .event-orange .pill-time, .event-orange .pill-title {
+.event-orange .event-title, .event-orange .event-time, .event-orange .pill-time, .event-orange .calendar-pill-title {
   color: #6a3a00;
 }
 
-.event-grey .event-title, .event-grey .event-time, .event-grey .pill-time, .event-grey .pill-title {
+.event-grey .event-title, .event-grey .event-time, .event-grey .pill-time, .event-grey .calendar-pill-title {
   color: #333333;
 }
 
-.event-purple .event-title, .event-purple .event-time, .event-purple .pill-time, .event-purple .pill-title {
+.event-purple .event-title, .event-purple .event-time, .event-purple .pill-time, .event-purple .calendar-pill-title {
   color: #3b1b5e;
 }
 
@@ -326,6 +395,8 @@
   flex-direction: column;
   gap: 5px;
   transition: all 0.2s;
+  overflow: hidden; /* Added to constrain content within the cell */
+  min-width: 0; /* Let flex item shrink */
 }
 
 .month-day-cell.clickable-day:hover {
@@ -338,7 +409,7 @@
 }
 
 .month-day-cell.other-month .month-day-number {
-  color: #cabbd9;
+  color: #756788;
 }
 
 .month-day-cell.active-month-day {
@@ -377,6 +448,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  max-width: 100%;
 }
 
 .pill-time {
@@ -385,8 +457,148 @@
   opacity: 0.8;
 }
 
-.pill-title {
+.calendar-pill-title {
   font-weight: 700;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1; /* allow shrinking while taking space if needed */
+  display: block;
+}
+
+/* Distinct style for All-Day events in month view */
+.month-all-day-pill {
+  border-left: 3px solid rgba(0,0,0,0.3);
+  font-weight: 800;
+  box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.4);
+}
+.month-all-day-pill .calendar-pill-title {
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+}
+
+/* ============================ */
+/* EVENT DETAILS MODAL POPUP */
+/* ============================ */
+.event-modal-backdrop {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+}
+
+.event-modal-content {
+  background-color: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modal-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modal-pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.event-modal-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Inherits .event-orange, .event-purple, .event-grey background colors natively */
+.event-modal-header.event-orange { background-color: #ffd699; color: #6a3a00; }
+.event-modal-header.event-purple { background-color: #c4aef5; color: #3b1b5e; }
+.event-modal-header.event-grey { background-color: #e2e2e2; color: #333333; }
+
+.modal-event-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.6;
+  padding: 0;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.modal-close-btn:hover {
+  opacity: 1;
+}
+
+.event-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-icon {
+  font-size: 1.2rem;
+}
+
+.modal-text {
+  font-size: 1rem;
+  color: #2F115C;
+  font-weight: 600;
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.delete-event-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.delete-event-btn:hover:not(:disabled) {
+  background-color: #e60000;
+}
+
+.delete-event-btn:disabled {
+  background-color: #ffb3b3;
+  cursor: not-allowed;
+}
+
+.delete-icon {
+  font-size: 1.1rem;
 }

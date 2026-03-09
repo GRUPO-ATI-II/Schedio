@@ -2,15 +2,23 @@
 
 ## Índice
 
+## Índice
+
 1. [Introducción](#1-introducción)
-2. [Diagramas asociados](#2-diagramas-asociados)
-   - [2.1 Diagrama entidad relación de la base de datos](#21-diagrama-entidad-relación-de-la-base-de-datos)
-   - [2.2 Diagrama de componentes](#22-diagrama-de-componentes)
-   - [2.3 Diagrama de despliegue](#23-diagrama-de-despliegue)
-   - [2.4 Diagramas de flujo de datos](#24-diagramas-de-flujo-de-datos)
-     - [2.4.1 Módulo de calificaciones](#241-módulo-de-calificaciones)
-     - [2.4.2 Agenda personal](#242-agenda-personal)
-3. [Prototipo de alta fidelidad](#3-prototipo-de-alta-fidelidad)
+2. [Ficha técnica](#2-ficha-técnica)
+   - [2.1 Núcleo tecnológico](#21-núcleo-tecnológico)
+   - [2.2 Stack de desarrollo y dependencias](#22-stack-de-desarrollo-y-dependencias)
+     - [2.2.1 Backend (Servidor API)](#221-backend-servidor-api)
+     - [2.2.2 Frontend (Cliente Web)](#222-frontend-cliente-web)
+3. [Guía de instalación](#3-guía-de-instalación)
+4. [Diagramas asociados](#4-diagramas-asociados)
+   - [4.1 Diagrama entidad relación de la base de datos](#41-diagrama-entidad-relación-de-la-base-de-datos)
+   - [4.2 Diagrama de componentes](#42-diagrama-de-componentes)
+   - [4.3 Diagrama de despliegue](#43-diagrama-de-despliegue)
+   - [4.4 Diagramas de flujo de datos](#44-diagramas-de-flujo-de-datos)
+     - [4.4.1 Módulo de calificaciones](#441-módulo-de-calificaciones)
+     - [4.4.2 Agenda personal](#442-agenda-personal)
+5. [Prototipo de alta fidelidad](#5-prototipo-de-alta-fidelidad)
 
 ---
 
@@ -37,33 +45,74 @@ Algunas aplicaciones similares a esta propuesta son:
 
 ---
 
-## 2. Diagramas asociados
+## 2. Ficha técnica
 
-### 2.1 Diagrama entidad relación de la base de datos
+El ecosistema de Schedio está desarrollado bajo un stack de tecnologías modernas enfocadas en el rendimiento y la escalabilidad, utilizando una arquitectura desacoplada de Frontend y Backend.
+
+### 2.1 Núcleo tecnológico
+
+| Componente | Tecnología | Versión | Rol |
+| :--- | :--- | :--- | :--- |
+| Frontend | Angular | `21.1.0` | Framework para la interfaz de usuario (SPA/SSR) |
+| Backend** | Express | `5.2.1` | Framework de servidor web y API REST |
+| Base de Datos**| MongoDB | `9.1.6` | (Mongoose) Modelado de datos y persistencia |
+| Entorno | Node.js | `20.17.x` | Entorno de ejecución (basado en `@types/node`) |
+| Paquetes | NPM | `10.9.3` | Gestor de dependencias oficial del proyecto |
+
+---
+
+### 2.2 Stack de desarrollo y dependencias
+
+#### 2.2.1 Backend (Servidor API)
+* Seguridad: `bcryptjs ^3.0.0` (Hasing de credenciales).
+* Migraciones de DB: `migrate-mongo ^14.0.7` (Control de versiones de esquema).
+* Gestión de Entornos: `cross-env` y `dotenv` para perfiles de `dev`, `qa` y `prod`.
+* Testing: * `Jest ^30.2.0` (Motor de pruebas).
+  * `Supertest ^7.2.2` (Pruebas de integración HTTP).
+  * `mongodb-memory-server` para bases de datos efímeras en tests.
+
+#### 2.2.2 Frontend (Cliente Web)
+* **Renderizado:** Soporte nativo para **SSR** (Server Side Rendering) mediante `@angular/ssr`.
+* **Lenguaje:** `TypeScript ~5.9.2`.
+* **Estado y Reactividad:** `RxJS ~7.8.0`.
+* **Testing Unitario:** `Vitest ^4.0.8` con entorno `jsdom`.
+* **Formateo de Código:** `Prettier` (configurado para Angular).
+
+## 3. Guía de instalación
+
+Este proyecto puede ser ejecutado utilizando el comando docker compose up --build en la carpeta raíz del proyecto. Sin embargo, y si se desea, tambien puede ser levantado de manera local haciendo la siguiente secuencia de pasos:
+
+- En la carpeta del frontend o del backend:
+  -  Hacer npm install.
+  -  Ejecutar el comando npm run start:dev, npm run start:qa o npm run start:prod en función del ambiente que se quiera levantar y su respectiva base de datos.
+
+## 4. Diagramas asociados
+
+### 4.1 Diagrama entidad relación de la base de datos
 
 <img width="1653" height="814" alt="Diagrama entidad relación" src="https://github.com/user-attachments/assets/bc542f88-1de6-495b-b5a8-37b034c17b82" />
 
-### 2.2 Diagrama de componentes
+### 4.2 Diagrama de componentes
 
 <img width="539" height="277" alt="Diagrama de componentes" src="https://github.com/user-attachments/assets/c671c0b0-83c6-4890-8bb4-9731fb8eb431" />
 
-### 2.3 Diagrama de despliegue
+### 4.3 Diagrama de despliegue
 
-<img width="842" height="581" alt="Diagrama de despliegue" src="https://github.com/user-attachments/assets/a794110f-8e9e-4d24-87bc-61cda04d4e3d" />
+<img width="881" height="471" alt="Diagrama de despliegue Schedio" src="https://github.com/user-attachments/assets/96cb0dc6-9ab9-4c68-ab5f-00284a541054" />
 
-### 2.4 Diagramas de flujo de datos
+### 4.4 Diagramas de flujo de datos
 
-#### 2.4.1 Módulo de calificaciones
+#### 4.4.1 Módulo de calificaciones
 
 <img width="811" height="481" alt="Diagrama de flujo de datos en módulo de calificaciones" src="https://github.com/user-attachments/assets/8bf9c650-a15d-4cb2-8779-3c4a2daffc6d" />
 
-#### 2.4.2 Agenda personal
+#### 4.4.2 Agenda personal
 
 <img width="501" height="411" alt="Diagrama de flujo de datos en módulo de agenda personal" src="https://github.com/user-attachments/assets/d82591de-84ab-4a8d-b265-7437c0409683" />
 
 ---
 
-## 3. Prototipo de alta fidelidad.
+## 5. Prototipo de alta fidelidad.
 
 <img width="1920" height="1024" alt="Wireframe  US-1_ Crear Tarea" src="https://github.com/user-attachments/assets/56189507-d6cd-4ece-b2b1-ff240e305303" />
 

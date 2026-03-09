@@ -22,6 +22,7 @@ export class Register {
     missingBDay = false;
     missingPassword = false;
     passwordError = false;
+    weakPasswordError = false;
     missingFields = false;
 
     userForm = {
@@ -50,9 +51,10 @@ export class Register {
         this.missingBDay = !this.userForm.birthDate;
         this.missingPassword = !this.userForm.password;
         this.passwordError = this.userForm.password != this.userForm.confirmPassword;
+        this.weakPasswordError = !this.isStrongPassword(this.userForm.password);
 
         this.missingFields = this.missingUsername || this.missingEmail || this.missingBDay || this.missingPassword;
-        if (this.missingFields || this.invalidEmail || this.passwordError) {
+        if (this.missingFields || this.invalidEmail || this.passwordError || this.weakPasswordError) {
             this.isSubmitting = false;
             this.cdr.detectChanges();
             return;
@@ -72,5 +74,12 @@ export class Register {
                 this.isSubmitting = false;
             }
         });
+    }
+
+    // Política: mínimo 8 caracteres, al menos una mayúscula, una minúscula, un número y un carácter especial
+    isStrongPassword(password: string): boolean {
+        if (!password) return false;
+        const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+        return strongRegex.test(password);
     }
 }

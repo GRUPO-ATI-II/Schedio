@@ -18,4 +18,8 @@ export class EventService {
   getEventsByAgenda(agendaId: string): Observable<Event[]> {
     return this.http.get<Event[]>(`${this.apiUrl}/agenda/${agendaId}`);
   }
+
+  deleteEvent(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
 }
