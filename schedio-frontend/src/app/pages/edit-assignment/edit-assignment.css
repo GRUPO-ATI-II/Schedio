@@ -65,28 +65,32 @@ app-date-field {
 .actions-container {
   display: flex;
   justify-content: left;
-  margin: 20px 0;
+  margin: 40px 0;
+  font: var(--text-h6);
 }
 
 .btn-delete-simple {
-  background: #d32f2f;
-  color: #fff; /* Rojo de alerta */
-  border: 1px solid #d32f2f;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 14px; /* Tamaño reducido */
-  font-weight: 500;
+  background: #FFE6C6;
+  color: #F95050; 
+  border: 0.5px solid #F95050;
+  border-radius: 8px;
+  padding: 6px 22px;
+  font-size: 14px; 
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
   width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
-
+.btn-delete-simple img {
+  width: 18px;  
+  height: 18px; 
+  display: block;
+}
 .btn-delete-simple:hover {
-  background-color: #ffcdd2; /* Fondo suave al pasar el mouse */
-  border-color: #b71c1c;
-  color: #b71c1c;
-}
-
-.btn-delete-simple:active {
-  background-color: #ffeeee;
+  background-color: #fababa; 
+  border-color: #F95050;
 }
