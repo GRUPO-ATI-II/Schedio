@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardCheckbox } from '../card-checkbox/card-checkbox';
+import { Router } from '@angular/router';
 
 export type TaskCardState = 'completed' | 'overdue' | 'imminent' | 'soon' | 'upcoming';
 
@@ -12,6 +13,8 @@ export type TaskCardState = 'completed' | 'overdue' | 'imminent' | 'soon' | 'upc
   styleUrl: './task-card.css',
 })
 export class TaskCard {
+  private readonly router = inject(Router);
+  @Input() id = '';
   @Input() title = '';
   /** Fecha/hora de vencimiento; define el estado y la fecha mostrada. */
   @Input() dueAt!: Date | string;
@@ -19,6 +22,15 @@ export class TaskCard {
   @Input() timeLabel: string | null = null;
   @Input() completed = false;
   @Output() toggleComplete = new EventEmitter<void>();
+
+  navigateToEdit(event: Event): void {
+    event.stopPropagation();
+    if (this.id) {
+      this.router.navigate(['/agenda/edit-assignment'], { 
+        state: { id: this.id } 
+      });
+    }
+  }
 
   private get dueAtDate(): Date | null {
     const raw = this.dueAt;
