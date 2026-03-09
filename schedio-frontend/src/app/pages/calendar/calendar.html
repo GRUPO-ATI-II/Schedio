@@ -27,7 +27,7 @@
           <div class="calendar-days-header" [class.single-col]="viewMode === 'day'">
         <div class="time-column-spacer"></div>
         @for (day of days; track day.date) {
-          <div class="day-header-col" [class.active-day]="day.active" [class.clickable-day]="viewMode === 'week'" (click)="viewMode === 'week' ? goToDayView(day.fullDate) : null">
+          <div class="day-header-col" [class.active-day]="day.active" [class.clickable-day]="viewMode === 'week'" (click)="viewMode === 'week' ? goToDayView(day.fullDate) : null" tabindex="0" (keydown.enter)="viewMode === 'week' ? goToDayView(day.fullDate) : null">
             <span class="day-name">{{ day.name }}</span>
             <span class="day-number">{{ day.date }}</span>
           </div>
@@ -42,8 +42,8 @@
             <div class="all-day-col">
               @for (event of allDayEvents; track event.id) {
                 @if (event.dayIndex === dayIdx) {
-                  <div class="month-event-pill" [ngClass]="event.colorClass" style="margin-bottom: 2px;" (click)="openEventDetails(event); $event.stopPropagation()">
-                    <span class="pill-title">{{ event.title }}</span>
+                  <div class="month-event-pill" [ngClass]="event.colorClass" style="margin-bottom: 2px;" (click)="openEventDetails(event); $event.stopPropagation()" tabindex="0" (keydown.enter)="openEventDetails(event); $event.stopPropagation()">
+                    <span class="calendar-pill-title">{{ event.title }}</span>
                   </div>
                 }
               }
@@ -71,7 +71,7 @@
             <div class="time-column-spacer"></div>
             
             @for (day of days; track day.date; let dayIdx = $index) {
-              <div class="day-events-col" (click)="onDayColumnClick($event, day.dateStr)">
+              <div class="day-events-col">
                 @for (event of displayEvents; track event.id) {
                   @if (event.dayIndex === dayIdx) {
                     <div class="event-block" [ngClass]="event.colorClass" 
@@ -79,7 +79,8 @@
                          [style.height]="getEventHeight(event.durationHours)"
                           [style.width]="'calc(100% / ' + event.totalOverlaps + ')'"
                          [style.left]="'calc((100% / ' + event.totalOverlaps + ') * ' + event.overlapIndex + ')'"
-                         (click)="openEventDetails(event); $event.stopPropagation()">
+                         (click)="openEventDetails(event); $event.stopPropagation()"
+                         tabindex="0" (keydown.enter)="openEventDetails(event); $event.stopPropagation()">
                       <p class="event-title">{{ event.title }}</p>
                       <p class="event-time">{{ event.timeLabel }}</p>
                       @if (event.hasAvatars && event.totalOverlaps === 1) {
@@ -118,15 +119,15 @@
         @for (week of monthWeeks; track $index) {
           <div class="month-week-row">
             @for (day of week; track day.date) {
-              <div class="month-day-cell clickable-day" [class.other-month]="day.isOtherMonth" [class.active-month-day]="day.active" (click)="onMonthDayClick(day.dateStr!)">
-                <span class="month-day-number" (click)="goToDayView(day.fullDate); $event.stopPropagation()" style="cursor: pointer;" title="Ver vista diaria">{{ day.date }}</span>
+              <div class="month-day-cell clickable-day" [class.other-month]="day.isOtherMonth" [class.active-month-day]="day.active" (click)="onMonthDayClick(day.dateStr!)" tabindex="0" (keydown.enter)="onMonthDayClick(day.dateStr!)">
+                <span class="month-day-number" (click)="goToDayView(day.fullDate); $event.stopPropagation()" style="cursor: pointer;" title="Ver vista diaria" tabindex="0" (keydown.enter)="goToDayView(day.fullDate); $event.stopPropagation()">{{ day.date }}</span>
                 <div class="month-events-container">
                   @for (event of getEventsForDate(day.dateStr!); track event.id) {
-                    <div class="month-event-pill" [ngClass]="event.colorClass" [class.month-all-day-pill]="event.isAllDay" (click)="openEventDetails(event); $event.stopPropagation()">
+                    <div class="month-event-pill" [ngClass]="event.colorClass" [class.month-all-day-pill]="event.isAllDay" (click)="openEventDetails(event); $event.stopPropagation()" tabindex="0" (keydown.enter)="openEventDetails(event); $event.stopPropagation()">
                       @if (!event.isAllDay && event.monthTimeLabel) {
                          <span class="pill-time">{{ event.monthTimeLabel }}</span>
                       }
-                      <span class="pill-title">{{ event.title }}</span>
+                      <span class="calendar-pill-title">{{ event.title }}</span>
                     </div>
                   }
                 </div>
@@ -139,55 +140,42 @@
 
     
     @if (selectedEventForDetails) {
-      <div class="event-modal-backdrop" (click)="closeEventDetails()">
-        <div class="event-modal-content" (click)="$event.stopPropagation()">
+      <div class="event-modal-backdrop" (click)="closeEventDetails()" tabindex="0" (keydown.enter)="closeEventDetails()">
+        <div class="event-modal-content" (click)="$event.stopPropagation()" tabindex="0" (keydown.enter)="$event.stopPropagation()">
           
-          @if (!isEventDeletedSuccess) {
-              <div class="event-modal-header" [ngClass]="selectedEventForDetails.colorClass">
-                <h3 class="modal-event-title">{{ selectedEventForDetails.title }}</h3>
-                <button class="modal-close-btn" (click)="closeEventDetails()">×</button>
+          <div class="event-modal-header" [ngClass]="selectedEventForDetails.colorClass">
+            <h3 class="modal-event-title">{{ selectedEventForDetails.title }}</h3>
+            <button class="modal-close-btn" (click)="closeEventDetails()">×</button>
+          </div>
+
+          <div class="event-modal-body">
+            <div class="modal-detail-row">
+              <span class="modal-icon">📅</span>
+              <span class="modal-text">{{ selectedEventForDetails.dateStr }}</span>
+            </div>
+            
+            <div class="modal-detail-row">
+              <span class="modal-icon">⏰</span>
+              <span class="modal-text">{{ selectedEventForDetails.isAllDay ? 'Todo el día' : selectedEventForDetails.timeLabel }}</span>
+            </div>
+
+            @if (selectedEventForDetails.description) {
+              <div class="modal-detail-row">
+                <span class="modal-icon">📝</span>
+                <span class="modal-text">{{ selectedEventForDetails.description }}</span>
               </div>
+            }
 
-              <div class="event-modal-body">
-                <div class="modal-detail-row">
-                  <span class="modal-icon">📅</span>
-                  <span class="modal-text">{{ selectedEventForDetails.dateStr }}</span>
-                </div>
-                
-                <div class="modal-detail-row">
-                  <span class="modal-icon">⏰</span>
-                  <span class="modal-text">{{ selectedEventForDetails.isAllDay ? 'Todo el día' : selectedEventForDetails.timeLabel }}</span>
-                </div>
-
-                @if (selectedEventForDetails.description) {
-                  <div class="modal-detail-row description-row">
-                    <span class="modal-icon">📝</span>
-                    <span class="modal-text">{{ selectedEventForDetails.description }}</span>
-                  </div>
+            <div class="modal-actions">
+              <button class="delete-event-btn" (click)="deleteSelectedEvent()" [disabled]="isDeletingEvent">
+                @if (isDeletingEvent) {
+                  Eliminando...
+                } @else {
+                  <span class="delete-icon">🗑️</span> Eliminar evento
                 }
-
-                <div class="modal-actions">
-                  <button class="delete-event-btn" (click)="deleteSelectedEvent()" [disabled]="isDeletingEvent">
-                    @if (isDeletingEvent) {
-                      Eliminando...
-                    } @else {
-                      <span class="delete-icon">🗑️</span> Eliminar evento
-                    }
-                  </button>
-                </div>
-              </div>
-          } @else {
-              <div class="event-modal-body success-state-body">
-                <div class="success-icon-container">
-                    <span class="success-icon">✅</span>
-                </div>
-                <h3 class="success-title">Evento eliminado</h3>
-                <p class="success-subtitle">El evento ha sido borrado de tu calendario.</p>
-                <div class="modal-actions success-actions">
-                    <button class="close-success-btn" (click)="closeEventDetails()">Cerrar</button>
-                </div>
-              </div>
-          }
+              </button>
+            </div>
+          </div>
           
         </div>
       </div>

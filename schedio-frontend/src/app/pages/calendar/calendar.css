@@ -105,7 +105,7 @@
 }
 
 .view-toggles-separator {
-  color: #cabbd9;
+  color: #756788;
   font-weight: 300;
   margin-top: 5px;
   user-select: none;
@@ -183,7 +183,7 @@
 .all-day-label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #a0a0a0;
+  color: #717171;
   text-transform: uppercase;
 }
 
@@ -224,12 +224,12 @@
   grid-template-columns: 80px 1fr;
   gap: 10px;
   align-items: flex-start;
-  height: 80px; /* Matches 80px per hour exactly */
+  height: 80px; /* This needs to match the getEventTop / Height math */
 }
 
 .time-label {
   font-size: 0.8rem;
-  color: #a0a0a0;
+  color: #717171;
   text-align: right;
   transform: translateY(-8px);
   font-weight: 500;
@@ -320,15 +320,15 @@
   background-color: #c4aef5; /* Light purple */
 }
 
-.event-orange .event-title, .event-orange .event-time, .event-orange .pill-time, .event-orange .pill-title {
+.event-orange .event-title, .event-orange .event-time, .event-orange .pill-time, .event-orange .calendar-pill-title {
   color: #6a3a00;
 }
 
-.event-grey .event-title, .event-grey .event-time, .event-grey .pill-time, .event-grey .pill-title {
+.event-grey .event-title, .event-grey .event-time, .event-grey .pill-time, .event-grey .calendar-pill-title {
   color: #333333;
 }
 
-.event-purple .event-title, .event-purple .event-time, .event-purple .pill-time, .event-purple .pill-title {
+.event-purple .event-title, .event-purple .event-time, .event-purple .pill-time, .event-purple .calendar-pill-title {
   color: #3b1b5e;
 }
 
@@ -395,9 +395,8 @@
   flex-direction: column;
   gap: 5px;
   transition: all 0.2s;
-  width: 100%;
-  min-width: 0;
-  overflow: hidden;
+  overflow: hidden; /* Added to constrain content within the cell */
+  min-width: 0; /* Let flex item shrink */
 }
 
 .month-day-cell.clickable-day:hover {
@@ -410,7 +409,7 @@
 }
 
 .month-day-cell.other-month .month-day-number {
-  color: #cabbd9;
+  color: #756788;
 }
 
 .month-day-cell.active-month-day {
@@ -435,7 +434,6 @@
   gap: 4px;
   flex: 1;
   overflow-y: auto;
-  min-width: 0; /* Flexbox constraint hack */
   max-height: 85px; /* prevent cell from growing too much */
 }
 
@@ -453,23 +451,20 @@
   max-width: 100%;
 }
 
-.pill-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    flex: 1;
-}
-
 .pill-time {
   font-weight: 800;
   font-size: 0.65rem;
   opacity: 0.8;
 }
 
-.pill-title {
+.calendar-pill-title {
   font-weight: 700;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1; /* allow shrinking while taking space if needed */
+  display: block;
 }
 
 /* Distinct style for All-Day events in month view */
@@ -478,7 +473,7 @@
   font-weight: 800;
   box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.4);
 }
-.month-all-day-pill .pill-title {
+.month-all-day-pill .calendar-pill-title {
   text-transform: uppercase;
   font-size: 0.65rem;
   letter-spacing: 0.5px;
@@ -606,84 +601,4 @@
 
 .delete-icon {
   font-size: 1.1rem;
-}
-
-/* Success State Modal */
-.success-state-body {
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.success-icon-container {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes pop-in {
-  0% { transform: scale(0); opacity: 0; }
-  80% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.success-title {
-  color: #2F115C;
-  font-size: 1.4rem;
-  margin: 0;
-  font-weight: 800;
-}
-
-.success-subtitle {
-  color: #6d5b88;
-  font-size: 0.9rem;
-  margin: 5px 0 20px 0;
-}
-
-.success-actions {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  border-top: none;
-  padding-top: 5px;
-  width: 100%;
-}
-
-.undo-event-btn {
-  background-color: #f78d1e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background-color 0.2s;
-}
-
-.undo-event-btn:hover:not(:disabled) {
-  background-color: #e0770b;
-}
-
-.undo-event-btn:disabled {
-  background-color: #ffc999;
-  cursor: not-allowed;
-}
-
-.close-success-btn {
-  background-color: transparent;
-  color: #2F115C;
-  border: 1px solid #d3cce3;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.close-success-btn:hover {
-  background-color: #f0eaf5;
-  border-color: #b0a3c9;
 }

@@ -8,7 +8,7 @@ import { AuthService } from '../../core/services/auth.service';
 export interface CalendarEvent {
     id: string;
     title: string;
-    description?: string;
+    description: string; // New field
     timeLabel: string;
     dayIndex: number; // 0 for Monday, 1 for Tuesday... (relative to current week/month)
     startHour: number; // e.g. 7.5 for 7:30
@@ -25,6 +25,8 @@ export interface CalendarEvent {
 // Colors pool for dynamic assignment
 const EVENT_COLORS = ['event-orange', 'event-purple', 'event-grey'];
 
+export type CalendarViewMode = 'month' | 'week' | 'day';
+
 @Component({
     selector: 'app-calendar',
     standalone: true,
@@ -33,13 +35,13 @@ const EVENT_COLORS = ['event-orange', 'event-purple', 'event-grey'];
     styleUrl: './calendar.css',
 })
 export class Calendar implements OnInit {
-    private eventService = inject(EventService);
-    private agendaService = inject(AgendaService);
-    private authService = inject(AuthService);
-    private router = inject(Router);
-    private activatedRoute = inject(ActivatedRoute);
+    private readonly eventService = inject(EventService);
+    private readonly agendaService = inject(AgendaService);
+    private readonly authService = inject(AuthService);
+    private readonly router = inject(Router);
+    private readonly activatedRoute = inject(ActivatedRoute);
 
-    viewMode: 'month' | 'week' | 'day' = 'week';
+    viewMode: CalendarViewMode = 'week';
     currentDate: Date = new Date();
 
     // Modal State
@@ -51,21 +53,12 @@ export class Calendar implements OnInit {
     displayEvents: CalendarEvent[] = []; // mapped to our grid
     allDayEvents: CalendarEvent[] = []; // Separated array for the All-Day banner
 
-    // Time grid layout (24 hours)
+    // Time grid layout
     hours = Array.from({ length: 24 }, (_, i) => {
-        const h = i; // start at 0 (12am)
-        let suffix = 'am';
-        let labelH = h;
-
-        if (h === 0) {
-            labelH = 12;
-        } else if (h === 12) {
-            suffix = 'pm';
-        } else if (h > 12) {
-            suffix = 'pm';
-            labelH = h - 12;
-        }
-
+        const h = i; // start at 12am
+        const suffix = h >= 12 ? 'PM' : 'AM';
+        let labelH = h > 12 ? h - 12 : h;
+        if (labelH === 0) labelH = 12;
         return { label: `${labelH}:00 ${suffix}`, offset: i };
     });
 
@@ -118,7 +111,7 @@ export class Calendar implements OnInit {
                 // date format expected: YYYY-MM-DD
                 const parts = params['date'].split('-');
                 if (parts.length === 3) {
-                    const newDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+                    const newDate = new Date(Number.parseInt(parts[0], 10), Number.parseInt(parts[1], 10) - 1, Number.parseInt(parts[2], 10));
                     // Only update if the date is actually different to avoid unnecessary re-renders
                     if (this.currentDate.getTime() !== newDate.getTime()) {
                         this.currentDate = newDate;
@@ -128,7 +121,7 @@ export class Calendar implements OnInit {
             }
             if (params['mode'] && ['month', 'week', 'day'].includes(params['mode'])) {
                 if (this.viewMode !== params['mode']) {
-                    this.viewMode = params['mode'] as 'month' | 'week' | 'day';
+                    this.viewMode = params['mode'] as CalendarViewMode;
                     shouldUpdate = true;
                 }
             }
@@ -168,80 +161,7 @@ export class Calendar implements OnInit {
             return d >= startOfRange && d <= endOfRange;
         });
 
-        const mappedEvents: CalendarEvent[] = filtered.map((ev, i) => {
-            const d = new Date(ev.date);
-            // Determine day index based on view
-            let dayIdx = 0;
-            if (this.viewMode === 'week') {
-                dayIdx = d.getDay() === 0 ? 6 : d.getDay() - 1; // 0 = Mon, 6 = Sun
-            } else if (this.viewMode === 'day') {
-                dayIdx = 0; // always column 0 in day view
-            }
-
-            const h = d.getHours();
-            const m = d.getMinutes();
-            const startHour = h + (m / 60);
-
-            // Compute actual duration if endDate is present
-            let durationHours = 1;
-            let timeLabel = '';
-
-            const timeFormat = new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', hour12: true });
-
-            if (ev.isAllDay) {
-                timeLabel = 'Todo el día';
-            } else if (ev.endDate) {
-                const endD = new Date(ev.endDate);
-                const endH = endD.getHours();
-                const endM = endD.getMinutes();
-                const absoluteEnd = endH + (endM / 60);
-                durationHours = Math.max(0.5, absoluteEnd - startHour); // minimum 30 min visual block
-
-                timeLabel = `${timeFormat.format(d)} - ${timeFormat.format(endD)}`;
-            } else {
-                // Fallback if no endDate
-                timeLabel = `${timeFormat.format(d)} (1hr)`;
-            }
-
-            const colorClass = EVENT_COLORS[i % EVENT_COLORS.length];
-
-            // Formatter for month pill (short string)
-            let monthTimeLabel = '';
-            if (ev.isAllDay) {
-                monthTimeLabel = '';
-            } else {
-                let displayH = h;
-                const ampm = displayH >= 12 ? 'p' : 'a';
-                if (displayH > 12) {
-                    displayH -= 12;
-                }
-                if (displayH === 0) {
-                    displayH = 12; // 12 AM
-                }
-                // If there are minutes, show them, otherwise just the hour
-                monthTimeLabel = m > 0 ? `${displayH}:${m.toString().padStart(2, '0')}${ampm}` : `${displayH}${ampm}`;
-            }
-
-            // Generate Local Date String instead of ISO String for stable matching
-            const localDateStr = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
-
-            return {
-                id: ev._id || i.toString(),
-                title: ev.title,
-                description: ev.description,
-                timeLabel,
-                dayIndex: dayIdx,
-                startHour,
-                durationHours,
-                colorClass,
-                hasAvatars: i % 3 === 0,
-                dateStr: localDateStr,
-                isAllDay: ev.isAllDay || false,
-                overlapIndex: 0,
-                totalOverlaps: 1,
-                monthTimeLabel
-            };
-        });
+        const mappedEvents: CalendarEvent[] = filtered.map((ev, i) => this.mapRawEventToCalendarEvent(ev, i));
 
         this.allDayEvents = mappedEvents.filter(e => e.isAllDay);
         this.displayEvents = mappedEvents.filter(e => !e.isAllDay);
@@ -250,8 +170,65 @@ export class Calendar implements OnInit {
         this.calculateOverlaps();
     }
 
+    private mapRawEventToCalendarEvent(ev: any, i: number): CalendarEvent {
+        const d = new Date(ev.date);
+        let dayIdx = 0;
+        if (this.viewMode === 'week') {
+            dayIdx = d.getDay() === 0 ? 6 : d.getDay() - 1;
+        }
+
+        const h = d.getHours();
+        const m = d.getMinutes();
+        const startHour = h + (m / 60);
+
+        let durationHours = 1;
+        let timeLabel = '';
+        const timeFormat = new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+        if (ev.isAllDay) {
+            timeLabel = 'Todo el día';
+        } else if (ev.endDate) {
+            const endD = new Date(ev.endDate);
+            const absoluteEnd = endD.getHours() + (endD.getMinutes() / 60);
+            durationHours = Math.max(0.5, absoluteEnd - startHour);
+            timeLabel = `${timeFormat.format(d)} - ${timeFormat.format(endD)}`;
+        } else {
+            timeLabel = `${timeFormat.format(d)} (1hr)`;
+        }
+
+        const colorClass = EVENT_COLORS[i % EVENT_COLORS.length];
+        const monthTimeLabel = this.formatMonthTimeLabel(ev.isAllDay, h, m);
+
+        const localDateStr = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
+
+        return {
+            id: ev._id || i.toString(),
+            title: ev.title,
+            description: ev.description || '',
+            timeLabel,
+            dayIndex: dayIdx,
+            startHour,
+            durationHours,
+            colorClass,
+            hasAvatars: i % 3 === 0,
+            dateStr: localDateStr,
+            isAllDay: ev.isAllDay || false,
+            overlapIndex: 0,
+            totalOverlaps: 1,
+            monthTimeLabel
+        };
+    }
+
+    private formatMonthTimeLabel(isAllDay: boolean, h: number, m: number): string {
+        if (isAllDay) return '';
+        let displayH = h;
+        const ampm = displayH >= 12 ? 'p' : 'a';
+        if (displayH > 12) displayH -= 12;
+        if (displayH === 0) displayH = 12;
+        return m > 0 ? `${displayH}:${m.toString().padStart(2, '0')}${ampm}` : `${displayH}${ampm}`;
+    }
+
     private calculateOverlaps() {
-        // Group by day first
         const eventsByDay = new Map<number, CalendarEvent[]>();
         for (const ev of this.displayEvents) {
             if (!eventsByDay.has(ev.dayIndex)) {
@@ -260,43 +237,43 @@ export class Calendar implements OnInit {
             eventsByDay.get(ev.dayIndex)!.push(ev);
         }
 
-        for (const [, dayEvents] of eventsByDay.entries()) {
-            // Sort by startHour
-            dayEvents.sort((a, b) => a.startHour - b.startHour);
+        for (const dayEvents of eventsByDay.values()) {
+            this.processOverlapsForDay(dayEvents);
+        }
+    }
 
-            let columns: CalendarEvent[][] = [];
+    private processOverlapsForDay(dayEvents: CalendarEvent[]) {
+        dayEvents.sort((a, b) => a.startHour - b.startHour);
+        const columns: CalendarEvent[][] = [];
 
-            for (const ev of dayEvents) {
-                let placed = false;
-                // Try to place in an existing column where the previous event has ended
-                for (let col = 0; col < columns.length; col++) {
-                    const lastEventInCol = columns[col][columns[col].length - 1];
-                    if (lastEventInCol.startHour + lastEventInCol.durationHours <= ev.startHour) {
-                        columns[col].push(ev);
-                        placed = true;
-                        break;
-                    }
-                }
-
-                // If couldn't place in existing column, create a new one
-                if (!placed) {
-                    columns.push([ev]);
+        for (const ev of dayEvents) {
+            let placed = false;
+            for (const col of columns) {
+                const lastEventInCol = col.at(-1)!;
+                if (lastEventInCol.startHour + lastEventInCol.durationHours <= ev.startHour) {
+                    col.push(ev);
+                    placed = true;
+                    break;
                 }
             }
 
-            // Assign overlap properties to events based on how many columns exist in this cluster
-            for (let i = 0; i < columns.length; i++) {
-                for (const ev of columns[i]) {
-                    ev.overlapIndex = i;
-                    ev.totalOverlaps = columns.length;
-                }
+            if (!placed) {
+                columns.push([ev]);
+            }
+        }
+
+        for (let i = 0; i < columns.length; i++) {
+            for (const ev of columns[i]) {
+                ev.overlapIndex = i;
+                ev.totalOverlaps = columns.length;
             }
         }
     }
 
     // --- View Helpers --- //
     getEventTop(startHour: number): string {
-        return `calc(${startHour * 80}px + 10px)`;
+        const offsetHour = startHour; // no offset needed, starts at 0
+        return `calc(${offsetHour * 80}px + 10px)`;
     }
 
     getEventHeight(durationHours: number): string {
@@ -309,7 +286,7 @@ export class Calendar implements OnInit {
     }
 
     // --- Navigation & View Toggles --- //
-    setViewMode(mode: 'month' | 'week' | 'day') {
+    setViewMode(mode: CalendarViewMode) {
         this.viewMode = mode;
         this.updateCalendarGrid();
         this.processEventsForCurrentView();
@@ -329,44 +306,6 @@ export class Calendar implements OnInit {
                 queryParams: {
                     date: dateStr,
                     allDay: 'true'
-                }
-            });
-        }
-    }
-
-    onDayColumnClick(event: MouseEvent, dateStr?: string) {
-        if (!dateStr) return;
-
-        // Allow the event creation only if clicked directly on the column (not an event block)
-        if ((event.target as HTMLElement).classList.contains('event-block') ||
-            (event.target as HTMLElement).closest('.event-block')) {
-            return;
-        }
-
-        const target = event.currentTarget as HTMLElement;
-        const rect = target.getBoundingClientRect();
-        const offsetY = event.clientY - rect.top;
-
-        // 80px per hour
-        const clickedHourRaw = Math.floor(offsetY / 80);
-
-        let ampm = 'am';
-        let formattedHour = clickedHourRaw;
-        let displayHour = clickedHourRaw;
-
-        if (clickedHourRaw >= 12) {
-            ampm = 'pm';
-            if (clickedHourRaw > 12) displayHour = clickedHourRaw - 12;
-        } else if (clickedHourRaw === 0) {
-            displayHour = 12; // 12am representation
-        }
-
-        if (confirm(`¿Deseas agregar un evento a las ${displayHour}:00 ${ampm} el ${dateStr}?`)) {
-            this.router.navigate(['/agenda/new-event'], {
-                queryParams: {
-                    date: dateStr,
-                    hour: displayHour,
-                    ampm: ampm
                 }
             });
         }
@@ -405,50 +344,60 @@ export class Calendar implements OnInit {
         const todayStr = new Date().toISOString().split('T')[0];
 
         if (this.viewMode === 'day') {
-            const dName = this.currentDate.toLocaleDateString('es-ES', { weekday: 'short' });
-            this.days.push({ name: dName, date: this.currentDate.getDate(), active: true, fullDate: this.currentDate });
+            this.generateDayGridView();
+        } else if (this.viewMode === 'week') {
+            this.generateWeekGridView(todayStr);
+        } else if (this.viewMode === 'month') {
+            this.generateMonthGridView(todayStr);
         }
-        else if (this.viewMode === 'week') {
-            const d = new Date(this.currentDate);
-            const day = d.getDay();
-            const diff = d.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
-            const monday = new Date(d.setDate(diff));
+    }
 
-            for (let i = 0; i < 7; i++) {
-                const curr = new Date(monday);
-                curr.setDate(monday.getDate() + i);
-                const name = curr.toLocaleDateString('es-ES', { weekday: 'short' });
-                const localStr = `${curr.getFullYear()}-${(curr.getMonth() + 1).toString().padStart(2, '0')}-${curr.getDate().toString().padStart(2, '0')}`;
+    private generateDayGridView() {
+        const dName = this.currentDate.toLocaleDateString('es-ES', { weekday: 'short' });
+        this.days.push({ name: dName, date: this.currentDate.getDate(), active: true, fullDate: this.currentDate });
+    }
+
+    private generateWeekGridView(todayStr: string) {
+        const d = new Date(this.currentDate);
+        const day = d.getDay();
+        const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+        const monday = new Date(d.setDate(diff));
+
+        for (let i = 0; i < 7; i++) {
+            const curr = new Date(monday);
+            curr.setDate(monday.getDate() + i);
+            const name = curr.toLocaleDateString('es-ES', { weekday: 'short' });
+            const localStr = `${curr.getFullYear()}-${(curr.getMonth() + 1).toString().padStart(2, '0')}-${curr.getDate().toString().padStart(2, '0')}`;
+            const isActive = localStr === todayStr;
+            this.days.push({ name, date: curr.getDate(), active: isActive, fullDate: curr, dateStr: localStr });
+        }
+    }
+
+    private generateMonthGridView(todayStr: string) {
+        const year = this.currentDate.getFullYear();
+        const month = this.currentDate.getMonth();
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+
+        let startDayIdx = firstDayOfMonth.getDay() - 1;
+        if (startDayIdx === -1) startDayIdx = 6;
+
+        let currentDay = new Date(firstDayOfMonth);
+        currentDay.setDate(currentDay.getDate() - startDayIdx);
+
+        for (let i = 0; i < 6; i++) {
+            const week = [];
+            for (let j = 0; j < 7; j++) {
+                const name = currentDay.toLocaleDateString('es-ES', { weekday: 'short' });
+                const localStr = `${currentDay.getFullYear()}-${(currentDay.getMonth() + 1).toString().padStart(2, '0')}-${currentDay.getDate().toString().padStart(2, '0')}`;
                 const isActive = localStr === todayStr;
-                this.days.push({ name, date: curr.getDate(), active: isActive, fullDate: curr, dateStr: localStr });
+                const isOther = currentDay.getMonth() !== month;
+                week.push({ name, date: currentDay.getDate(), active: isActive, fullDate: new Date(currentDay), isOtherMonth: isOther, dateStr: localStr });
+                currentDay.setDate(currentDay.getDate() + 1);
             }
-        }
-        else if (this.viewMode === 'month') {
-            const year = this.currentDate.getFullYear();
-            const month = this.currentDate.getMonth();
-            const firstDayOfMonth = new Date(year, month, 1);
-            const lastDayOfMonth = new Date(year, month + 1, 0);
-
-            let startDayIdx = firstDayOfMonth.getDay() - 1;
-            if (startDayIdx === -1) startDayIdx = 6; // Sunday
-
-            let currentDay = new Date(firstDayOfMonth);
-            currentDay.setDate(currentDay.getDate() - startDayIdx); // go back to monday
-
-            for (let i = 0; i < 6; i++) { // 6 weeks maximum in a month matrix
-                const week = [];
-                for (let j = 0; j < 7; j++) {
-                    const name = currentDay.toLocaleDateString('es-ES', { weekday: 'short' });
-                    const localStr = `${currentDay.getFullYear()}-${(currentDay.getMonth() + 1).toString().padStart(2, '0')}-${currentDay.getDate().toString().padStart(2, '0')}`;
-                    const isActive = localStr === todayStr;
-                    const isOther = currentDay.getMonth() !== month;
-                    week.push({ name, date: currentDay.getDate(), active: isActive, fullDate: new Date(currentDay), isOtherMonth: isOther, dateStr: localStr });
-                    currentDay.setDate(currentDay.getDate() + 1);
-                }
-                this.monthWeeks.push(week);
-                if (currentDay > lastDayOfMonth && currentDay.getDay() === 1) {
-                    break; // done if we finished the month and ended on a Sunday
-                }
+            this.monthWeeks.push(week);
+            if (currentDay > lastDayOfMonth && currentDay.getDay() === 1) {
+                break;
             }
         }
     }
@@ -482,7 +431,7 @@ export class Calendar implements OnInit {
             return d;
         }
         // month: get last day of last week
-        const lastWeek = this.monthWeeks[this.monthWeeks.length - 1];
+        const lastWeek = this.monthWeeks.at(-1)!;
         const d = new Date(lastWeek[6].fullDate);
         d.setHours(23, 59, 59, 999);
         return d;
@@ -495,27 +444,24 @@ export class Calendar implements OnInit {
     // --- Details Popup Actions --- //
     openEventDetails(event: CalendarEvent) {
         this.selectedEventForDetails = event;
-        this.isEventDeletedSuccess = false;
     }
 
     closeEventDetails() {
         this.selectedEventForDetails = null;
-        this.isEventDeletedSuccess = false;
     }
-
-    isEventDeletedSuccess = false;
 
     deleteSelectedEvent() {
         if (!this.selectedEventForDetails) return;
 
-        const confirmDelete = window.confirm(`¿Estás seguro de que deseas eliminar el evento "${this.selectedEventForDetails.title}"?`);
+        const confirmDelete = globalThis.confirm(`¿Estás seguro de que deseas eliminar el evento "${this.selectedEventForDetails.title}"?`);
         if (!confirmDelete) return;
 
         this.isDeletingEvent = true;
         this.eventService.deleteEvent(this.selectedEventForDetails.id).subscribe({
             next: () => {
                 this.isDeletingEvent = false;
-                this.isEventDeletedSuccess = true;
+                this.closeEventDetails();
+                globalThis.alert("Evento eliminado con éxito"); // Added success popup
                 this.loadEvents(); // Reload all events from backend
             },
             error: (err) => {
