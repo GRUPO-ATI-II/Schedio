@@ -54,3 +54,6 @@
 
 </form>
 <app-button-box (cancelClicked)="onCancel()" (saveClicked)="onSave()"></app-button-box>
+<div class="delete-section">
+  <app-rect-base-button [isLine]="true" (clicked)="onDelete()" i18n>Eliminar Tarea</app-rect-base-button>
+</div>
