@@ -1,73 +1,76 @@
-<div class="streaks-page">
-  <div class="dashboard-grid">
-    <!-- Vista General Section -->
-    <section class="card-container">
-      <h2 class="card-title">Vista General</h2>
+<div class="dashboard-columns">
+  <!-- Left Column: Vista General -->
+  <section class="column left-column">
+    <h2 class="column-title">Vista General</h2>
 
-      <div class="tabs-container">
-        <button [class.active]="currentTab() === 'month'" (click)="setTab('month')">Mes</button>
-        <button [class.active]="currentTab() === 'week'" (click)="setTab('week')">Semana</button>
-        <button [class.active]="currentTab() === 'day'" (click)="setTab('day')">Día</button>
+    <div class="tabs-container">
+      <button [class.active]="currentTab() === 'month'" (click)="setTab('month')">Mes</button>
+      <button [class.active]="currentTab() === 'week'" (click)="setTab('week')">Semana</button>
+      <button [class.active]="currentTab() === 'day'" (click)="setTab('day')">Día</button>
+    </div>
+
+    <div class="mini-calendar-header">
+      <h4>Febrero 2026</h4>
+      <div class="nav-arrows">
+        <span class="nav-arrow" (click)="prevMonth()">‹</span>
+        <span class="nav-arrow" (click)="nextMonth()">›</span>
       </div>
+    </div>
 
-      <div class="calendar-header">
-        <h3>Febrero 2026</h3>
-        <div class="nav-arrows">
-          <span class="nav-arrow" (click)="prevMonth()">‹</span>
-          <span class="nav-arrow" (click)="nextMonth()">›</span>
-        </div>
+    <div class="completions-grid">
+      @for (i of [].constructor(28); track $index) {
+      <div class="grid-cell" [class.highlighted]="[2, 4, 15, 23, 27].includes($index)"></div>
+      }
+      <div class="grid-cell today">
       </div>
+    </div>
 
-      <div class="completions-grid">
-        @for (i of [].constructor(28); track $index) {
-        <div class="grid-cell" [class.highlighted]="[2, 4, 15, 23, 27].includes($index)"></div>
-        }
-        <div class="grid-cell today">
-          <span class="today-label">Hoy</span>
-        </div>
+    <div class="summary-section">
+      <h2 class="summary-title">Resumen</h2>
+      <div class="summary-pill">
+        <span>{{ completedCount }} hábitos completados</span>
       </div>
+      <h4 class="summary-footer">Te quedan {{ pendingCount }} hábitos por completar</h4>
+    </div>
+  </section>
 
-      <div class="summary-section">
-        <h3 class="summary-title">Resumen</h3>
-        <div class="summary-pill">
-          <span>{{ completedCount }} hábitos completados</span>
-        </div>
-        <p class="summary-footer">Te quedan {{ pendingCount }} hábitos por completar</p>
+  <div class="column-divider"></div>
+
+  <!-- Right Column: Marcar Hábitos -->
+  <section class="column right-column">
+    <h2 class="column-title">Marcar Hábitos</h2>
+
+    <div class="action-header">
+      <button class="add-habit-btn" (click)="onCreateNew()">
+        Añadir Nuevo Hábito
+      </button>
+    </div>
+
+    <div class="habits-list">
+      @if (habits().length === 0) {
+      <div class="empty-state">
+        <p>No hay hábitos. Agrega uno nuevo para empezar.</p>
       </div>
-    </section>
-
-    <!-- Marcar Hábitos Section -->
-    <section class="card-container">
-      <h2 class="card-title">Marcar Hábitos</h2>
-
-      <div class="action-header">
-        <app-rect-base-button [isAction]="true" (clicked)="onCreateNew()">
-          <span>Añadir Nuevo Hábito</span>
-        </app-rect-base-button>
-      </div>
-
-      <div class="habits-list">
-        @if (habits().length === 0) {
-        <div class="empty-state">
-          <p>No hay hábitos. Agrega uno nuevo para empezar.</p>
-        </div>
-        } @else {
-        @for (habit of habits(); track habit._id) {
-        <div class="habit-card-item" [class.is-done]="isCompletedToday(habit)">
-          <div class="habit-border-indicator"></div>
+      } @else {
+      @for (habit of habits(); track habit._id) {
+      <div class="habit-card-item" [class.is-done]="isCompletedToday(habit)">
+        <div class="habit-border-indicator"></div>
+        <div class="habit-content-wrapper">
           <div class="habit-info">
-            <h3 class="habit-name">{{ habit.name }}</h3>
-            <p class="habit-desc">{{ habit.description || 'Sin descripción' }}</p>
+            <h4 class="habit-name">{{ habit.name }}</h4>
+            @if (habit.description) {
+            <p class="habit-desc">{{ habit.description }}</p>
+            }
           </div>
           <div class="habit-meta">
-            <span class="streak-label">{{ habit.streak }} días activo</span>
+            <h4 class="streak-label">{{ habit.streak }} días activo</h4>
             <app-card-checkbox [checked]="isCompletedToday(habit)" (toggle)="onComplete(habit._id!)">
             </app-card-checkbox>
           </div>
         </div>
-        }
-        }
       </div>
-    </section>
-  </div>
+      }
+      }
+    </div>
+  </section>
 </div>

@@ -1,44 +1,66 @@
-.streaks-page {
+:host {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   padding: 10px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
-.dashboard-grid {
+.pageHeader {
+  color: var(--purple-950);
+  font: var(--text-h2);
+  margin: 0 0 30px 0;
+}
+
+.dashboard-columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Accommodates Left Column, Divider, and Right Column */
+  grid-template-columns: 1fr auto 1fr;
   gap: 30px;
-  height: 100%;
+  align-items: start;
 }
 
-.card-container {
+.column {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.card-title {
+.column-title {
   color: var(--purple-950);
-  font: var(--text-h2);
-  margin: 0;
+  font: var(--text-h5);
+  /* Scaled down from h3 */
+  font-weight: 800;
+  /* Extra bold for dashboard sections */
+  margin: 0 0 10px 0;
+}
+
+.column-divider {
+  width: 1px;
+  background-color: rgba(74, 34, 179, 0.08);
+  /* Very subtle divider */
+  height: 100%;
 }
 
 /* Tabs */
 .tabs-container {
   display: flex;
-  background: var(--purple-200);
+  background: #e9e2ff;
+  /* Softer lavender background */
   border-radius: 12px;
-  padding: 4px;
-  gap: 4px;
+  padding: 5px;
+  gap: 5px;
   width: fit-content;
+  margin-bottom: 15px;
 }
 
 .tabs-container button {
   border: none;
   background: transparent;
-  padding: 8px 24px;
+  padding: 8px 32px;
+  /* Wider buttons as seen in Image 20 */
   border-radius: 10px;
   font-weight: 700;
   color: var(--purple-950);
@@ -51,43 +73,45 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Calendar Header */
-.calendar-header {
+.mini-calendar-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 15px;
 }
 
-.calendar-header h3 {
-  font: var(--text-h5);
+.mini-calendar-header h4 {
+  font: var(--text-h6);
+  /* Standardized size */
+  font-weight: 700;
   margin: 0;
   color: var(--purple-950);
 }
 
 .nav-arrows {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
 .nav-arrow {
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: var(--purple-950);
 }
 
-/* Completions Grid */
 .completions-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  /* Span full width */
   gap: 12px;
+  width: 100%;
 }
 
 .grid-cell {
   aspect-ratio: 1;
-  background: var(--purple-200);
-  border-radius: 12px;
-  transition: background 0.3s;
+  /* Keep them square */
+  background: #cfbcff;
+  border-radius: 10px;
 }
 
 .grid-cell.highlighted {
@@ -95,114 +119,158 @@
 }
 
 .grid-cell.today {
-  background: var(--purple-950);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--purple-800);
+  position: relative;
 }
 
-.today-label {
-  color: #fff;
-  font-size: 0.75rem;
+.grid-cell.today::after {
+  content: 'Hoy';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 2px;
+  color: var(--purple-950);
+  font-size: 10px;
   font-weight: 800;
+  pointer-events: none;
 }
 
-/* Summary Section */
 .summary-section {
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: auto;
 }
 
 .summary-title {
-  font: var(--text-h4);
-  color: var(--purple-950);
+  font: var(--text-h5);
+  font-weight: 800;
   margin: 0;
+  color: var(--purple-950);
 }
 
 .summary-pill {
-  background: var(--purple-200);
-  padding: 15px;
+  background: #b699ff;
+  /* Solid lavender-purple pill */
+  padding: 12px 20px;
+  /* Scaled down */
   border-radius: 12px;
   text-align: center;
-  font-weight: 700;
-  color: var(--purple-950);
+  font-weight: 800;
+  color: #fff;
+  font-size: 1rem;
+  /* Scaled down from 1.2rem */
+  box-shadow: 0 2px 10px rgba(182, 153, 255, 0.2);
 }
 
 .summary-footer {
   text-align: center;
   font: var(--text-p);
+  /* Scaled down from text-p/1rem */
   color: var(--purple-950);
-  font-weight: 600;
+  margin-top: 8px;
+  font-weight: 700;
 }
 
 /* Habits Column Styling */
-.action-header {
+.add-habit-btn {
   width: 100%;
+  background-color: #e9e2ff;
+  /* Lavender background as in Image 20 */
+  color: var(--purple-950);
+  border: 1px solid rgba(74, 34, 179, 0.05);
+  padding: 12px 16px;
+  /* Normalized to standard button height */
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  /* Scaled down */
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+
+.add-habit-btn:hover {
+  background-color: #dfd4ff;
 }
 
 .habits-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  flex: 1;
-  overflow-y: auto;
+  gap: 1rem;
+  margin-top: 10px;
 }
 
 .habit-card-item {
   background: #fff;
-  border: 1px solid var(--purple-100);
-  border-radius: 16px;
-  padding: 20px;
+  border: 1px solid rgba(74, 34, 179, 0.08);
+  border-radius: 18px;
+  padding: 1.2rem 1.8rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s;
   position: relative;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  align-items: center;
 }
 
 .habit-border-indicator {
   position: absolute;
   left: 0;
-  top: 15%;
-  bottom: 15%;
-  width: 4px;
-  background: var(--purple-600);
-  border-radius: 0 4px 4px 0;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  /* Thicker indicator as in Image 20 */
+  background: #7c3eff;
 }
 
-.habit-card-item.is-done {
-  background: var(--purple-50);
+.habit-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-left: 5px;
 }
 
 .habit-name {
-  font: var(--text-h5);
-  margin: 0 0 4px 0;
+  font: var(--text-h6);
+  /* Normalized to standard paragraph/tile size */
+  font-weight: 800;
+  /* Heavier weight for habit names */
   color: var(--purple-950);
+  margin: 0 0 1px 0;
 }
 
 .habit-desc {
   font: var(--text-small);
-  color: var(--grey-400);
+  /* Normalized */
+  color: #7c3eff;
+  /* Matching indicator color */
   margin: 0;
+  font-weight: 600;
 }
 
 .habit-meta {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.5rem;
+  /* Reduced gap */
 }
 
 .streak-label {
-  font: var(--text-p);
-  font-weight: 700;
+  font: var(--text-h6);
+  /* Normalized */
+  font-weight: 800;
   color: var(--purple-950);
+  white-space: nowrap;
 }
 
 @media (max-width: 1024px) {
-  .dashboard-grid {
+  .dashboard-columns {
     grid-template-columns: 1fr;
+  }
+
+  .column-divider {
+    display: none;
   }
 }

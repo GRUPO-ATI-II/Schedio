@@ -22,7 +22,7 @@ export class CreateHabit {
 
     name = '';
     description = '';
-    frequency: 'daily' | 'weekly' = 'daily';
+    frequency: 'daily' | 'weekly' | '' = '';
 
     // Mock user ID
     userId = '65f123456789012345678901';
@@ -35,11 +35,15 @@ export class CreateHabit {
             alert('El nombre es obligatorio');
             return;
         }
+        if (!this.frequency) {
+            alert('La frecuencia es obligatoria');
+            return;
+        }
 
         const newHabit: Partial<Habit> = {
             name: this.name,
             description: this.description,
-            frequency: this.frequency,
+            frequency: (this.frequency as 'daily' | 'weekly') || undefined,
             user: this.userId
         };
 
