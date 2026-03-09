@@ -9,6 +9,8 @@
       <button [class.active]="currentTab() === 'day'" (click)="setTab('day')">Día</button>
     </div>
 
+    <!-- Month View -->
+    @if (currentTab() === 'month') {
     <div class="mini-calendar-header">
       <h4>Febrero 2026</h4>
       <div class="nav-arrows">
@@ -21,9 +23,33 @@
       @for (i of [].constructor(28); track $index) {
       <div class="grid-cell" [class.highlighted]="[2, 4, 15, 23, 27].includes($index)"></div>
       }
-      <div class="grid-cell today">
-      </div>
+      <div class="grid-cell today"></div>
     </div>
+    }
+
+    <!-- Week View -->
+    @if (currentTab() === 'week') {
+    <div class="mini-calendar-header">
+      <h4>Esta Semana</h4>
+    </div>
+
+    <div class="week-grid">
+      @for (day of weekDays; track $index) {
+      <div class="week-cell-wrapper">
+        <div class="grid-cell" [class.today]="day.isToday"></div>
+        <span class="week-cell-label">{{ day.label }}</span>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- Day View -->
+    @if (currentTab() === 'day') {
+    <div class="day-view">
+      <p class="day-date-label">{{ todayLabel }}</p>
+      <div class="day-big-cell"></div>
+    </div>
+    }
 
     <div class="summary-section">
       <h2 class="summary-title">Resumen</h2>

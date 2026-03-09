@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { HabitService } from '../../core/services/habit.service';
@@ -46,6 +46,44 @@ export class Streaks implements OnInit {
         return this.habits().length - this.completedCount;
     }
 
+    get completionPercent() {
+        const total = this.habits().length;
+        if (total === 0) return 0;
+        return Math.round((this.completedCount / total) * 100);
+    }
+
+    /** Returns the 7 days of the current week (Monday to Sunday) */
+    get weekDays(): { date: Date; label: string; isToday: boolean }[] {
+        const today = new Date();
+        const todayStr = today.toDateString();
+        const dayOfWeek = today.getDay(); // 0 = Sunday
+        // Normalize to Monday start
+        const monday = new Date(today);
+        monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7));
+
+        const labels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+        return labels.map((label, i) => {
+            const date = new Date(monday);
+            date.setDate(monday.getDate() + i);
+            return {
+                date,
+                label,
+                isToday: date.toDateString() === todayStr // reliable comparison
+            };
+        });
+    }
+
+    /** Returns a formatted string for today's date in Spanish */
+    get todayLabel(): string {
+        const today = new Date();
+        return today.toLocaleDateString('es-ES', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+    }
+
     onComplete(habitId: string) {
         this.habitService.completeHabit(habitId).subscribe({
             next: () => this.loadHabits(),
@@ -78,3 +116,4 @@ export class Streaks implements OnInit {
         console.log('Next month');
     }
 }
+
