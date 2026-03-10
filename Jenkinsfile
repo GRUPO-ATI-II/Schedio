@@ -66,8 +66,9 @@ pipeline {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     sh """
+                    docker compose -f docker-compose.qa.yml up -d backend
                     docker build -f tests/api/Dockerfile.test -t ${API_TEST_IMAGE} tests/api
-                    docker run --rm ${API_TEST_IMAGE}
+                    docker run --rm --network schedio-main-pipeline_default ${API_TEST_IMAGE}
                     """
                 }
             }
@@ -107,7 +108,7 @@ pipeline {
           docker compose -f docker-compose.qa.yml ps
 
           echo "⏳ Esperando a que Angular levante..."
-          sleep 20
+          sleep 5
 
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e
@@ -117,7 +118,7 @@ pipeline {
           echo "🔹 Ejecutando Cypress..."
           docker run --rm \
             --network schedio-main-pipeline_default \
-            -e CYPRESS_BASE_URL=http://frontend:4000 \
+            -e CYPRESS_BASE_URL=http://frontend \
             ${E2E_IMAGE}:latest
         """
       }
