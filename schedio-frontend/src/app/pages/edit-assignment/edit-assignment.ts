@@ -1,10 +1,9 @@
-import { Component, inject, OnInit , ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InputField } from '../../shared/components/ui/input-field/input-field';
 import { InputTextarea } from '../../shared/components/ui/input-textarea/input-textarea';
 import { ButtonBox } from '../../shared/components/ui/button-box/button-box';
 import { DateField } from '../../shared/components/ui/date-field/date-field';
-import { RectBaseButton } from '../../shared/components/ui/rect-base-button/rect-base-button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentService } from '../../core/services/assignment.service';
 import { Assignment } from '../../shared/entities/assignment.entity';
@@ -12,7 +11,7 @@ import { Assignment } from '../../shared/entities/assignment.entity';
 @Component({
   selector: 'app-edit-assignment',
   standalone: true,
-  imports: [InputField, InputTextarea, ButtonBox, FormsModule, DateField, RectBaseButton],
+  imports: [InputField, InputTextarea, ButtonBox, FormsModule, DateField],
   templateUrl: './edit-assignment.html',
   styleUrl: './edit-assignment.css',
 })
@@ -44,7 +43,7 @@ export class EditAssignment implements OnInit {
       this.assignmentId = id; //
     }
   }
-  
+
   ngOnInit() {
     // If we have an ID from the constructor state, load it.
     // If not, redirect back to the agenda.

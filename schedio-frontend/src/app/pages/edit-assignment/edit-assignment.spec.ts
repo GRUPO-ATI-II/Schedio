@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
 import { EditAssignment } from './edit-assignment';
 
 describe('EditAssignment', () => {
@@ -8,7 +8,8 @@ describe('EditAssignment', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditAssignment]
+      imports: [EditAssignment],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 

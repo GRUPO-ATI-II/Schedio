@@ -35,9 +35,11 @@ describe("Assignment Service", () => {
   });
 
   test("getById - should fetch assignment by id", async () => {
-    Assignment.findById = jest.fn().mockResolvedValue({ _id: "123", ...mockData });
+    const mockPopulate = jest.fn().mockResolvedValue({ _id: "123", ...mockData });
+    Assignment.findById = jest.fn().mockReturnValue({ populate: mockPopulate });
     const result = await assignmentService.getById("123");
     expect(Assignment.findById).toHaveBeenCalledWith("123");
+    expect(mockPopulate).toHaveBeenCalledWith("subject");
     expect(result._id).toBe("123");
   });
 
@@ -50,6 +52,6 @@ describe("Assignment Service", () => {
       { $set: updates },
       { new: true, runValidators: true },
     );
-    expect(result)._toBeDefined();
+    expect(result).toBeDefined();
   });
 });
