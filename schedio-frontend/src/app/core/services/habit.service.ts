@@ -8,7 +8,7 @@ import { Habit } from '../../shared/entities/habit.entity';
 })
 export class HabitService {
     private readonly http = inject(HttpClient);
-    private readonly apiUrl = '/api/habits';
+    private readonly apiUrl = 'http://localhost:3000/api/habits';
 
     createHabit(habit: Partial<Habit>): Observable<Habit> {
         return this.http.post<Habit>(this.apiUrl, habit);
