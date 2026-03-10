@@ -68,6 +68,9 @@ pipeline {
                     sh """
                     docker compose -f docker-compose.qa.yml down -v --remove-orphans || true
                     docker compose -f docker-compose.qa.yml up -d backend mongo
+                    echo "⏳ Esperando estabilización completa (15s)..."
+                    sleep 15
+                    docker compose -f docker-compose.qa.yml logs backend
                     docker build -f tests/api/Dockerfile.test -t ${API_TEST_IMAGE} tests/api
                     docker run --rm --network schedio-main-pipeline_default ${API_TEST_IMAGE}
                     """
@@ -114,6 +117,7 @@ pipeline {
 
           echo "⏳ Esperando a que Angular levante..."
           sleep 10
+          docker compose -f docker-compose.qa.yml logs backend
 
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e

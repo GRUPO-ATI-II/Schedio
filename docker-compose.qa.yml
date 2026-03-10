@@ -1,17 +1,13 @@
 services:
   mongo:
     image: mongo:latest
-    healthcheck:
-      test: [ "CMD", "mongosh", "--eval", "db.runCommand('ping').ok" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+
   backend:
     build:
       context: ./backend
       target: production
     environment:
-      - NODE_ENV=qa
+      - NODE_ENV=production
       - DB_NAME=schedio_qa
       - MONGO_URI=mongodb://mongo:27017/schedio_qa
     depends_on:
@@ -24,7 +20,6 @@ services:
     ports:
       - "4100:80"
     environment:
-      - NODE_ENV=qa
+      - NODE_ENV=production
     depends_on:
-      backend:
-        condition: service_started
+      - backend
