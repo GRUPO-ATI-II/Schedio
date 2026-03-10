@@ -75,6 +75,9 @@ pipeline {
             }
         }
         post {
+            failure {
+                sh "docker compose -f docker-compose.qa.yml logs backend"
+            }
             unstable {
                 echo 'AVISO: No se ejecutaron pruebas de API o fallo del contenedor Newman'
             }
@@ -110,7 +113,7 @@ pipeline {
           docker compose -f docker-compose.qa.yml ps
 
           echo "⏳ Esperando a que Angular levante..."
-          sleep 5
+          sleep 10
 
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e
@@ -127,6 +130,9 @@ pipeline {
     }
   }
     post {
+      failure {
+          sh "docker compose -f docker-compose.qa.yml logs backend"
+      }
       unstable {
         echo 'AVISO: Pruebas E2E fallaron o el contenedor Cypress tuvo errores'
       }
