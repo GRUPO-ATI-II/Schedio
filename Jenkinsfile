@@ -91,8 +91,11 @@ pipeline {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     sh """
-                    docker build -f tests/performance/Dockerfile.perf -t ${PERF_IMAGE} tests/performance
-                    docker run --rm ${PERF_IMAGE}
+                    docker build -f tests/performance/Dockerfile.perf -t ${PERF_IMAGE} .
+                    docker run --rm --network schedio-main-pipeline_default ${PERF_IMAGE} \
+                      -n -t stress-test.jmx \
+                      -l results.jtl \
+                      -Jhost=backend -Jport=3000 -Jusers=10 -JrampUp=5 -Jloops=1
                     """
                 }
             }

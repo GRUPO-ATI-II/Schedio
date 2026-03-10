@@ -17,10 +17,13 @@ RUN cd /tmp && \
 
 ENV PATH="${PATH}:/opt/apache-jmeter-${JMETER_VERSION}/bin"
 
-# Crear directorio para scripts de JMeter
-RUN mkdir -p /app/scripts
+# Copiar scripts de JMeter desde la carpeta stress
+COPY tests/stress/*.jmx /app/scripts/
 
-# Por defecto, mostrar versión de JMeter como "Hola Mundo"
-CMD ["jmeter", "--version"]
+WORKDIR /app/scripts
+
+# Por defecto, ejecutar JMeter
+ENTRYPOINT ["jmeter"]
+CMD ["--version"]
 
 
