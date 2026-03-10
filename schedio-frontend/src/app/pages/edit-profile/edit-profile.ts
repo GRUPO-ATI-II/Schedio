@@ -30,8 +30,6 @@ export class EditProfile implements OnInit {
 
   isEditingUsername = false; // Flag for UI toggle
   tempUsername = '';
-
-  loadedUsername = false;
   
   ngOnInit() {
     // Load current user info
@@ -42,14 +40,10 @@ export class EditProfile implements OnInit {
       this.preferredLanguage = user.preferredLanguage || '';
       this.password = '';
       this.confirmPassword = '';
-      this.username = user.username || '';
+      this.username = user.username || 'Nombre de Usuario';
       this.tempUsername = this.username;
     } else {
       alert('No user logged in');
-    }
-    if(this.username === '') { 
-      this.onGuardar();
-      window.location.reload();
     }
   }
   toggleEditUsername() {
@@ -107,8 +101,7 @@ export class EditProfile implements OnInit {
           localStorage.setItem('user', JSON.stringify(updatedUser));
           this.authService.currentUser.set(updatedUser);
         }
-        if (this.loadedUsername) alert('Perfil actualizado');
-        this.loadedUsername = true;
+        alert('Perfil actualizado');
         this.isSubmitting = false;
         // Optionally reload page for language change
         if (this.preferredLanguage) {
