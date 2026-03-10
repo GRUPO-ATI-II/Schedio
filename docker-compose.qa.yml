@@ -11,9 +11,9 @@ services:
       - NODE_ENV=qa
       - PORT=3000
       - DB_NAME=schedio_qa
-      - MONGO_URI=mongodb://mongo:27017/schedio_qa
+      - MONGO_URI=mongodb://mongo-qa:27017/schedio_qa
     depends_on:
-      - mongo
+      - mongo-qa
 
   frontend:
     build:
