@@ -6,8 +6,10 @@ services:
     build:
       context: ./backend
       target: production
+    command: npm run start:qa
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=qa
+      - PORT=3000
       - DB_NAME=schedio_qa
       - MONGO_URI=mongodb://mongo:27017/schedio_qa
     depends_on:
