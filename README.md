@@ -2,8 +2,6 @@
 
 ## Índice
 
-## Índice
-
 1. [Introducción](#1-introducción)
 2. [Ficha técnica](#2-ficha-técnica)
    - [2.1 Núcleo tecnológico](#21-núcleo-tecnológico)
