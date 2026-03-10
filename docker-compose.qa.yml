@@ -1,14 +1,24 @@
 services:
+  mongo:
+    image: mongo:latest
+    container_name: schedio-mongo-qa
   backend:
     build:
+      context: ./backend
       target: production
     environment:
       - NODE_ENV=qa
+      - MONGO_URI=mongodb://mongo:27017/schedio_qa
+    depends_on:
+      - mongo
 
   frontend:
     build:
+      context: ./schedio-frontend
       target: server
     ports:
       - "4100:80"
     environment:
       - NODE_ENV=qa
+    depends_on:
+      - backend

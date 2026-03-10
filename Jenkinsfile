@@ -66,7 +66,8 @@ pipeline {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     sh """
-                    docker compose -f docker-compose.qa.yml up -d backend
+                    docker compose -f docker-compose.qa.yml down -v --remove-orphans || true
+                    docker compose -f docker-compose.qa.yml up -d backend mongo
                     docker build -f tests/api/Dockerfile.test -t ${API_TEST_IMAGE} tests/api
                     docker run --rm --network schedio-main-pipeline_default ${API_TEST_IMAGE}
                     """
@@ -104,6 +105,7 @@ pipeline {
           set -e
 
           echo "🔹 Levantando servicios con docker compose..."
+          docker compose -f docker-compose.qa.yml down -v --remove-orphans || true
           docker compose -f docker-compose.qa.yml up -d
           docker compose -f docker-compose.qa.yml ps
 
@@ -118,7 +120,7 @@ pipeline {
           echo "🔹 Ejecutando Cypress..."
           docker run --rm \
             --network schedio-main-pipeline_default \
-            -e CYPRESS_BASE_URL=http://frontend \
+            -e CYPRESS_BASE_URL=http://frontend/es \
             ${E2E_IMAGE}:latest
         """
       }
