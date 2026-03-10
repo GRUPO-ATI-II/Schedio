@@ -68,6 +68,10 @@ export const routes: Routes = [
         component: EditSpecificUserCredentials,
       },
       {
+        path: 'calendar',
+        loadComponent: () => import('./pages/calendar/calendar').then(m => m.Calendar),
+      },
+      {
         path: 'agenda',
         component: Tasks,
       },
