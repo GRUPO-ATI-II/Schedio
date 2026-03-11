@@ -1,0 +1,95 @@
+<h2 class = "pageHeader" i18n="@@NewEvent">
+  Nuevo Evento
+</h2>
+
+<form class="form-grid">
+  <label class="section-label" i18n="@@NewEventTitle">Título del evento</label>
+
+  <label class="section-label second-column" i18n="@@EventDate">Fecha del evento</label>
+
+  <app-input-field
+    [(ngModel)]="title"
+    name="title"
+    placeholder='Colócale un nombre a tu evento'
+    i18n-placeholder="@@NewEventTitlePlaceholder">
+  </app-input-field>
+
+  <app-date-field
+    [(ngModel)]="date"
+    name="date"
+  ></app-date-field>
+
+  <label class="section-label" i18n="@@NewEventDesc">Descripción (Opcional)</label>
+
+  <!-- Checkbox for All Day -->
+  <label class="section-label second-column" style="display: flex; align-items: center; gap: 10px;">
+    <input type="checkbox" [(ngModel)]="isAllDay" name="isAllDay" style="width: 18px; height: 18px;">
+    Todo el día
+  </label>
+
+  <app-input-textarea
+    [(ngModel)]="description"
+    name="description"
+    placeholder='Describe tu evento en pocas palabras'
+    i18n-placeholder="@@NewAssignmentDescPlaceholder">
+  </app-input-textarea>
+
+  <!-- Start Time fields (Disabled if All Day) -->
+  <div class="time-inputs-container second-column">
+    <label class="section-label" i18n="@@EventTime">Hora de inicio</label>
+    <div style="display: flex; gap: 5px;">
+      <app-input-field
+        [(ngModel)]="hour"
+        name="hour"
+        placeholder='Hora'
+        [disabled]="isAllDay"
+        i18n-placeholder="@@HourPlaceholder">
+      </app-input-field>
+      <app-input-field
+        [(ngModel)]="minute"
+        name="minute"
+        placeholder='Min'
+        [disabled]="isAllDay"
+        i18n-placeholder="@@MinutePlaceholder">
+      </app-input-field>
+      <select class="custom-select" [(ngModel)]="ampm" name="ampm" [disabled]="isAllDay" style="width: auto !important; padding: 12px 6px !important;">
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- End Time fields (Disabled if All Day) -->
+  <div class="time-inputs-container second-column">
+    <label class="section-label" i18n="@@EventEndTime" style="margin-top: 5px;">Hora de finalización</label>
+    <div style="display: flex; gap: 5px;">
+      <app-input-field
+        [(ngModel)]="endHour"
+        name="endHour"
+        placeholder='Hora'
+        [disabled]="isAllDay"
+        i18n-placeholder="@@HourPlaceholder">
+      </app-input-field>
+      <app-input-field
+        [(ngModel)]="endMinute"
+        name="endMinute"
+        placeholder='Min'
+        [disabled]="isAllDay"
+        i18n-placeholder="@@MinutePlaceholder">
+      </app-input-field>
+      <select class="custom-select" [(ngModel)]="endAmPm" name="endAmPm" [disabled]="isAllDay" style="width: auto !important; padding: 12px 6px !important;">
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="second-column" style="display: flex; flex-direction: column; gap: 5px; margin-top: 5px;">
+    <label class="section-label" i18n="@@Category" style="margin-top:0;">Categoria</label>
+    <select class="custom-select" style="width: 100%;">
+      <option value="" disabled selected i18n>Selecciona una categoría</option>
+    </select>
+  </div>
+
+</form>
+<app-button-box (cancelClicked)="onCancel()" (saveClicked)="onSave()"></app-button-box>

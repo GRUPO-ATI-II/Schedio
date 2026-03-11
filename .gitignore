@@ -1,0 +1,3 @@
+# Dependencias (en toda la raíz y subcarpetas)
+node_modules/
+**/node_modules/

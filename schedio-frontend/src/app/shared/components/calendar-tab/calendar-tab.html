@@ -1,0 +1,32 @@
+<div class="calendar-card">
+  <div class="calendar-header">
+    <span class="month-year">{{ headerTitle }}</span>
+    <div class="nav-arrows">
+      <img src="icon_despliegue.svg" class="arrow left-arrow" alt="Previous" (click)="prev()">
+      <img src="icon_despliegue.svg" class="arrow right-arrow" alt="Next" (click)="next()">
+    </div>
+  </div>
+  <div class="calendar-grid">
+    <div class="day-name">Lun</div>
+    <div class="day-name">Mar</div>
+    <div class="day-name">Mié</div>
+    <div class="day-name">Jue</div>
+    <div class="day-name">Vie</div>
+    <div class="day-name">Sáb</div>
+    <div class="day-name">Dom</div>
+    
+    @for (week of monthWeeks; track $index) {
+        @for (day of week; track day.dateStr) {
+            <div class="day" 
+                 [class.active]="day.isActive" 
+                 [class.faded]="day.isOtherMonth"
+                 (click)="onDayClick(day.dateStr)">
+                 {{ day.date }}
+                 @if (day.hasEvent) {
+                     <div class="event-dot"></div>
+                 }
+            </div>
+        }
+    }
+  </div>
+</div>

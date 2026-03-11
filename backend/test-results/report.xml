@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="20" failures="2" errors="0" time="16.256">
+  <testsuite name="Assignment Service" errors="0" failures="2" skipped="0" timestamp="2026-03-09T02:37:18" time="3.02" tests="4">
+    <testcase classname="Assignment Service createAssignment - Should save and return a new assignment" name="Assignment Service createAssignment - Should save and return a new assignment" time="0.032">
+    </testcase>
+    <testcase classname="Assignment Service getBySubject - Should return sorted list of assignments" name="Assignment Service getBySubject - Should return sorted list of assignments" time="0.015">
+    </testcase>
+    <testcase classname="Assignment Service getById - should fetch assignment by id" name="Assignment Service getById - should fetch assignment by id" time="0.006">
+      <failure>TypeError: Assignment.findById(...).populate is not a function
+    at AssignmentService.populate [as getById] (C:\ATI2\Schedio\backend\src\assignments\services\assignment.service.js:18:42)
+    at Object.getById (C:\ATI2\Schedio\backend\tests\assignment.service.test.js:39:44)
+    at Promise.finally.completed (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+    at _callCircusTest (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+    at _runTest (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+    at C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+    at _runTestsForDescribeBlock (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+    at _runTestsForDescribeBlock (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+    at run (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+    at runAndTransformResultsToJestFormat (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+    at jestAdapter (C:\ATI2\Schedio\backend\node_modules\jest-circus\build\runner.js:101:19)
+    at runTestInternal (C:\ATI2\Schedio\backend\node_modules\jest-runner\build\index.js:275:16)
+    at runTest (C:\ATI2\Schedio\backend\node_modules\jest-runner\build\index.js:343:7)</failure>
+    </testcase>
+    <testcase classname="Assignment Service updateAssignment - should forward object to findByIdAndUpdate" name="Assignment Service updateAssignment - should forward object to findByIdAndUpdate" time="0.008">
+      <failure>TypeError: expect(...)._toBeDefined is not a function
+    at Object._toBeDefined (C:\ATI2\Schedio\backend\tests\assignment.service.test.js:53:20)</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Integration Test: User Login" errors="0" failures="0" skipped="0" timestamp="2026-03-09T02:37:22" time="6.471" tests="3">
+    <testcase classname="Integration Test: User Login Should login a user and return 200" name="Integration Test: User Login Should login a user and return 200" time="0.354">
+    </testcase>
+    <testcase classname="Integration Test: User Login Should fail with 401 if the email is not registered" name="Integration Test: User Login Should fail with 401 if the email is not registered" time="0.093">
+    </testcase>
+    <testcase classname="Integration Test: User Login Should fail with 401 if the password is different" name="Integration Test: User Login Should fail with 401 if the password is different" time="0.236">
+    </testcase>
+  </testsuite>
+  <testsuite name="Integration Test: User Registration" errors="0" failures="0" skipped="0" timestamp="2026-03-09T02:37:28" time="3.591" tests="2">
+    <testcase classname="Integration Test: User Registration Should register a new user and return 201" name="Integration Test: User Registration Should register a new user and return 201" time="0.334">
+    </testcase>
+    <testcase classname="Integration Test: User Registration Should fail with 400 if the email is already in use" name="Integration Test: User Registration Should fail with 400 if the email is already in use" time="0.48">
+    </testcase>
+  </testsuite>
+  <testsuite name="Assignment Controller" errors="0" failures="0" skipped="0" timestamp="2026-03-09T02:37:32" time="0.953" tests="6">
+    <testcase classname="Assignment Controller POST /api/assignment - Should return 201 on success" name="Assignment Controller POST /api/assignment - Should return 201 on success" time="0.049">
+    </testcase>
+    <testcase classname="Assignment Controller POST /api/assignment - Should return 500 on service error" name="Assignment Controller POST /api/assignment - Should return 500 on service error" time="0.05">
+    </testcase>
+    <testcase classname="Assignment Controller GET /api/assignment/:id - success returns assignment" name="Assignment Controller GET /api/assignment/:id - success returns assignment" time="0.033">
+    </testcase>
+    <testcase classname="Assignment Controller GET /api/assignment/:id - not found" name="Assignment Controller GET /api/assignment/:id - not found" time="0.044">
+    </testcase>
+    <testcase classname="Assignment Controller PUT /api/assignment/:id - success" name="Assignment Controller PUT /api/assignment/:id - success" time="0.042">
+    </testcase>
+    <testcase classname="Assignment Controller PUT /api/assignment/:id - service error" name="Assignment Controller PUT /api/assignment/:id - service error" time="0.046">
+    </testcase>
+  </testsuite>
+  <testsuite name="Event Controller" errors="0" failures="0" skipped="0" timestamp="2026-03-09T02:37:33" time="0.668" tests="2">
+    <testcase classname="Event Controller POST /api/events - Success should return 201" name="Event Controller POST /api/events - Success should return 201" time="0.034">
+    </testcase>
+    <testcase classname="Event Controller GET /api/events/agenda/:id - Should return list of events" name="Event Controller GET /api/events/agenda/:id - Should return list of events" time="0.027">
+    </testcase>
+  </testsuite>
+  <testsuite name="Event Service &amp; Model Validation" errors="0" failures="0" skipped="0" timestamp="2026-03-09T02:37:33" time="0.793" tests="2">
+    <testcase classname="Event Service &amp; Model Validation createEvent - Should save a valid event" name="Event Service &amp; Model Validation createEvent - Should save a valid event" time="0.002">
+    </testcase>
+    <testcase classname="Event Service &amp; Model Validation Model Validation - Should fail if agendas array is empty" name="Event Service &amp; Model Validation Model Validation - Should fail if agendas array is empty" time="0.184">
+    </testcase>
+  </testsuite>
+  <testsuite name="Sample Test" errors="0" failures="0" skipped="0" timestamp="2026-03-09T02:37:34" time="0.126" tests="1">
+    <testcase classname="Sample Test should test that true === true" name="Sample Test should test that true === true" time="0.003">
+    </testcase>
+  </testsuite>
+</testsuites>

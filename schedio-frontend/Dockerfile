@@ -10,14 +10,14 @@ CMD ["npm", "start", "--", "--host", "0.0.0.0"]
 
 FROM base AS builder
 COPY package*.json ./
-RUN npm install
+RUN npm install --include=dev
 COPY . .
-RUN npm run build
+RUN rm -rf .angular/cache && npx ng build --localize --configuration production
 
 FROM node:22-alpine AS production
 WORKDIR /app
-COPY --from=builder /app/dist ./dist
-CMD ["node", "dist/schedio-frontend/server/server.mjs"]
+COPY --from=builder /app/dist/schedio-frontend/server ./server
+CMD ["node", "server/es/server.mjs"]
 
 FROM nginx:alpine AS server
 

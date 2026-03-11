@@ -1,0 +1,115 @@
+/* Tooltip para política de contraseñas */
+.password-policy-icon {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.info-icon {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: 260px;
+  background: var(--main-card-color, #fff);
+  color: var(--grey-900, #222);
+  text-align: left;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  position: absolute;
+  z-index: 10;
+  top: 120%;
+  left: 0;
+  font-size: 0.95rem;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.info-icon:hover .tooltip,
+.info-icon:focus .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.missingField {
+  color: var(--error);
+  display: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  padding-left: 0.25rem;
+}
+
+.visible {
+  display: inline;
+}
+
+.login-container {
+  background-color: var(--main-card-color);
+  border-radius: 24px;
+  padding: 2rem;
+  gap: 1rem;
+  width: clamp(20rem, 95%, 28rem);
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  /* Changed height from 60% to auto to fit all the inputs nicely */
+}
+
+.image-container {
+  width: clamp(20rem, 95%, 54rem);
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+.login-form {
+  gap: 1rem;
+  width: 100%;
+}
+
+.login-logo {
+  width: clamp(12rem, 20vw, 16rem);
+}
+
+a {
+  font-size: var(--text-p);
+  color: var(--grey-800);
+  text-decoration: underline;
+  font-weight: 500;
+  transition: 0.25s ease-in-out;
+}
+
+a:hover {
+  color: var(--purple-800);
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}

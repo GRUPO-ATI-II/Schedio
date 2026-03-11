@@ -1,0 +1,81 @@
+<main>
+  <div class="login-container vertical">
+      <img src="./logo-horizontal.svg" alt="Logo" class="login-logo" />
+      <form class="login-form vertical" (ngSubmit)="register()">
+
+        <app-input-field
+          label="Nombre de Usuario"
+          [required]="missingUsername"
+          i18n-label="@@usernameLabel"
+          name="userName"
+          placeholder="Ingrese su nombre de usuario"
+          i18n-placeholder="@@usernamePlaceholder"
+          [(ngModel)]="userForm.username">
+        </app-input-field>
+
+        <app-input-field
+          label="Correo Electrónico"
+          [required]="missingEmail"
+          i18n-label="@@emailLabel"
+          name="email"
+          placeholder="Ingrese su correo electrónico"
+          i18n-placeholder="@@emailPlaceholder"
+          type='email'
+          [(ngModel)]="userForm.email">
+        </app-input-field>
+        <label [class.visible]="invalidEmail" class="missingField" i18n>Introduce un correo electrónico válido</label>
+
+        <app-date-field
+          label="Fecha de Nacimiento"
+          [required]="missingBDay"
+          i18n-label="@@birthDateLabel"
+          [(ngModel)]="userForm.birthDate"
+          name="birthDate">
+        </app-date-field>
+
+        <div class="info-section">
+          
+          <app-input-field
+            label="Contraseña"
+            [required]="missingPassword"
+            i18n-label="@@passwordLabel"
+            name="password"
+            placeholder="Ingrese su contraseña"
+            i18n-placeholder="@@passwordPlaceholder"
+            type='password'
+            [(ngModel)]="userForm.password">
+          </app-input-field>
+          <app-input-field
+            name="confirmPassword"
+            placeholder="Confirmar contraseña"
+            i18n-placeholder="@@confirmPasswordPlaceholder"
+            type='password'
+            [(ngModel)]="userForm.confirmPassword">
+          </app-input-field>
+          <div class="password-policy-icon">
+            <span class="info-icon" tabindex="0">
+              <img src="/icon_info.svg" alt="Política de contraseñas" style="width:20px;height:20px;vertical-align:middle;" />
+              <span class="tooltip">
+                <strong i18n>La contraseña debe tener:</strong><br>
+                <ul>
+                  <li i18n>Mínimo 8 caracteres</li>
+                  <li i18n>Al menos una mayúscula</li>
+                  <li i18n>Al menos una minúscula</li>
+                  <li i18n>Al menos un número</li>
+                  <li i18n>Al menos un carácter especial</li>
+                </ul>
+              </span>
+            </span>
+          </div>
+          <label [class.visible]="passwordError" class="missingField" i18n>Las contraseñas no coinciden</label>
+          <label [class.visible]="weakPasswordError" class="missingField" i18n>La contraseña no cumple la política de seguridad</label>
+        </div>
+        <label [class.visible]="missingFields" class="missingField" i18n>* campos obligatorios</label>
+        <app-rect-base-button [isAction]="true" class="login-button" (clicked)="register()" i18n="@@SignInButton">Registrar</app-rect-base-button>
+      </form>
+      <a routerLink="/login" i18n="@@LoginLink">¿Ya tienes cuenta? Inicia sesión aquí.</a>
+  </div>
+  <div class="image-container">
+    <img src="./register-illustration.svg" alt="Register Image" class="login-image" />
+  </div>
+</main>

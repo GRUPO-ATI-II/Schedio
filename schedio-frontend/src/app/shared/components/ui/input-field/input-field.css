@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.input-field {
+  font: var(--text-h6);
+  color: var(--light-fc);
+  border-radius: 8px;
+  background-color: var(--shade-main-color);
+  border: none;
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  font-weight: 500;
+}
+
+.input-label {
+  font-size: 0.875rem;
+  color: var(--light-fc, #fff);
+  font-weight: 500;
+  text-align: left;
+  padding-left: 0.25rem;
+}
+
+.missingField {
+  color: var(--error);
+  display: none;
+}
+
+.visible {
+  display: inline;
+}

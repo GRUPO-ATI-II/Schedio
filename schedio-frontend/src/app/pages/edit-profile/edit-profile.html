@@ -1,0 +1,72 @@
+<h2 class = "pageHeader" i18n="@@EditProfile">
+  Configuración
+</h2>
+
+
+
+<div class="content">
+  <div class="basic-profile-info-group">
+    <app-pfp src="./profile_picture.jpeg"></app-pfp>
+<div class="username">
+  
+      @if (!isEditingUsername) {
+    <!-- Display the username from the user object -->
+    <span class="username-text">{{ username }}</span>
+    <button class="edit-btn" (click)="toggleEditUsername()">
+      <img src="./icon_edit.svg" alt="Edit Username" />
+    </button>
+  } @else {
+    <div class="edit-username-container">
+      <input type="text" [(ngModel)]="tempUsername" class="username-input" />
+      <button class="save-small-btn" (click)="confirmUsername()">Confirmar</button>
+      <button class="cancel-small-btn" (click)="toggleEditUsername()">Cancelar</button>
+    </div>
+  }
+    </div>    <app-rect-base-button [isAction]="true" id="logout" (clicked)="logout()" i18n>
+      Cerrar Sesión
+      <img src="./icon_logout.svg" class="btn-icon" alt="Logout Icon" />
+    </app-rect-base-button>
+  </div>
+
+  <div class="form-grid">
+    <label class="section-label" i18n="@@BasicUserData">Datos Básicos</label>
+   
+    
+    
+     <app-input-field [(ngModel)]="firstName" placeholder='Nombre' i18n-placeholder="@@edit-profile-namePlaceholder"></app-input-field>
+    <app-input-field [(ngModel)]="lastName" placeholder='Apellido' i18n-placeholder="@@edit-profile-lastnamePlaceholder"></app-input-field>
+    <app-input-field [(ngModel)]="password" placeholder='Contraseña Nueva' i18n-placeholder="@@PasswordPlaceholder" type="password"></app-input-field>
+    <app-input-field [(ngModel)]="confirmPassword" placeholder='Confirmar Contraseña' i18n-placeholder="@@ConfirmPasswordPlaceholder" type="password"></app-input-field>
+   <div class="password-policy-icon">
+      <span class="info-icon" tabindex="0">
+        <img src="./icon_info.svg" alt="Política de contraseñas" style="width:20px;height:20px;vertical-align:middle;" />
+        <span class="tooltip">
+          <strong i18n>Política de contraseñas:</strong><br>
+          <ul>
+            <li i18n>Mínimo 8 caracteres</li>
+            <li i18n>Al menos una mayúscula</li>
+            <li i18n>Al menos una minúscula</li>
+            <li i18n>Al menos un número</li>
+            <li i18n>Al menos un carácter especial</li>
+          </ul>
+        </span>
+      </span>
+    </div>
+    <label class="missingField" style="display:none" id="weakPasswordError" i18n>La contraseña no cumple la política de seguridad</label>
+    <app-upload-image></app-upload-image>
+    <label class="section-label" i18n="@@Internationalization">Internacionalización</label>
+    <select class="custom-select" [(ngModel)]="preferredLanguage">
+      <option value="" disabled selected i18n="@@LanguageSelect">Idioma Preferido</option>
+      <option value="es" i18n="@@Spanish">Español</option>
+      <option value="en" i18n="@@English">Inglés</option>
+      <option value="fr" i18n="@@French">Francés</option>
+      <option value="it" i18n="@@Italian">Italiano</option>
+      <option value="pt" i18n="@@Portuguese">Portugués</option>
+    </select>
+
+    <label class="section-label" i18n="@@Support">¿Estás teniendo problemas?</label>
+    <app-rect-base-button  [isLine]="true" id="ticket-btn" (clicked)="sendTicket()" i18n>Envia un ticket</app-rect-base-button>
+    <app-rect-base-button [isLine]="true" id="report-btn" (clicked)="reportError()" i18n>Reportar Error</app-rect-base-button>
+  </div>
+</div>
+<app-button-box (saveClicked)="onGuardar()"></app-button-box>

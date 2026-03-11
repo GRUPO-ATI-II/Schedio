@@ -1,0 +1,102 @@
+<div class="dashboard-columns">
+  <!-- Left Column: Vista General -->
+  <section class="column left-column">
+    <h2 class="column-title">Vista General</h2>
+
+    <div class="tabs-container">
+      <button [class.active]="currentTab() === 'month'" (click)="setTab('month')">Mes</button>
+      <button [class.active]="currentTab() === 'week'" (click)="setTab('week')">Semana</button>
+      <button [class.active]="currentTab() === 'day'" (click)="setTab('day')">Día</button>
+    </div>
+
+    <!-- Month View -->
+    @if (currentTab() === 'month') {
+    <div class="mini-calendar-header">
+      <h4>Febrero 2026</h4>
+      <div class="nav-arrows">
+        <span class="nav-arrow" (click)="prevMonth()">‹</span>
+        <span class="nav-arrow" (click)="nextMonth()">›</span>
+      </div>
+    </div>
+
+    <div class="completions-grid">
+      @for (i of [].constructor(28); track $index) {
+      <div class="grid-cell" [class.highlighted]="[2, 4, 15, 23, 27].includes($index)"></div>
+      }
+      <div class="grid-cell today"></div>
+    </div>
+    }
+
+    <!-- Week View -->
+    @if (currentTab() === 'week') {
+    <div class="mini-calendar-header">
+      <h4>Esta Semana</h4>
+    </div>
+
+    <div class="week-grid">
+      @for (day of weekDays; track $index) {
+      <div class="week-cell-wrapper">
+        <div class="grid-cell" [class.today]="day.isToday"></div>
+        <span class="week-cell-label">{{ day.label }}</span>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- Day View -->
+    @if (currentTab() === 'day') {
+    <div class="day-view">
+      <p class="day-date-label">{{ todayLabel }}</p>
+      <div class="day-big-cell"></div>
+    </div>
+    }
+
+    <div class="summary-section">
+      <h2 class="summary-title">Resumen</h2>
+      <div class="summary-pill">
+        <span>{{ completedCount() }} hábitos completados</span>
+      </div>
+      <h4 class="summary-footer">Te quedan {{ pendingCount() }} hábitos por completar</h4>
+    </div>
+  </section>
+
+  <div class="column-divider"></div>
+
+  <!-- Right Column: Marcar Hábitos -->
+  <section class="column right-column">
+    <h2 class="column-title">Marcar Hábitos</h2>
+
+    <div class="action-header">
+      <button class="add-habit-btn" (click)="onCreateNew()">
+        Añadir Nuevo Hábito
+      </button>
+    </div>
+
+    <div class="habits-list">
+      @if (habits().length === 0) {
+      <div class="empty-state">
+        <p>No hay hábitos. Agrega uno nuevo para empezar.</p>
+      </div>
+      } @else {
+      @for (habit of habits(); track habit._id) {
+      <div class="habit-card-item" [class.is-done]="isCompletedToday(habit)">
+        <div class="habit-border-indicator"></div>
+        <div class="habit-content-wrapper">
+          <div class="habit-info">
+            <h4 class="habit-name">{{ habit.name }}</h4>
+            @if (habit.description) {
+            <p class="habit-desc">{{ habit.description }}</p>
+            }
+          </div>
+          <div class="habit-meta">
+            <h4 class="streak-label">{{ habit.streak }} días activo</h4>
+            <app-card-checkbox [checked]="isCompletedToday(habit)" (toggle)="onToggleHabit(habit)">
+            </app-card-checkbox>
+          </div>
+        </div>
+      </div>
+      }
+      }
+    </div>
+  </section>
+</div>

@@ -1,0 +1,30 @@
+.sidebar-container {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sidebar-menu-color);
+  height: 100%;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+.LogoApp {
+  grid-area: logo;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.main-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-configurations {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 30px;
+  align-items: flex-end;
+}

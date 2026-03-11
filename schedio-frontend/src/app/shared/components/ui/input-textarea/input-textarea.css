@@ -1,0 +1,17 @@
+:host {
+  width: 100%;
+}
+
+.input-textarea {
+  font: var(--text-h6);
+  color: var(--light-fc);
+  border-radius: 8px;
+  background-color: var(--shade-main-color);
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-weight: 500;
+  box-sizing: border-box;
+  height: 170px !important;
+  resize: none;
+}

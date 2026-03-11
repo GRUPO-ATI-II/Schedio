@@ -1,1 +1,0 @@
-Archivo con el propósito de crear la estructura de carpetas en GitHub.

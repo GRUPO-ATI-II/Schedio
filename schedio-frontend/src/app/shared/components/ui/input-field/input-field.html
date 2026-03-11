@@ -1,0 +1,16 @@
+@if (label) {
+  <label class="input-label">
+    {{ label }}
+    <span [class.visible]="required" class="missingField">*</span>
+  </label>
+}
+<input
+  class="input-field"
+  [type]="type"
+  [placeholder]="placeholder"
+  [value]="value"
+  [pattern]="pattern"
+  [readonly]="readOnly"
+  (input)="onInput($event)"
+  (blur)="onTouched()">
+

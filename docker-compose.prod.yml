@@ -1,6 +1,8 @@
 services:
   backend:
     build:
+      context: ./backend
+      dockerfile: Dockerfile
       target: production
     environment:
       - NODE_ENV=production
@@ -9,9 +11,10 @@ services:
   frontend:
     build:
       context: ./schedio-frontend
+      dockerfile: Dockerfile
       target: server
     ports:
-      - "4000:80"
+      - "4200:80"
     environment:
       - NODE_ENV=production
     volumes: !reset []

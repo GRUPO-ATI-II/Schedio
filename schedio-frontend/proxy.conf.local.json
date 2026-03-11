@@ -1,0 +1,9 @@
+{
+  "_comment": "Usar este archivo cuando ejecutes el frontend en tu PC (npm run start) y el backend en Docker o local. Copia como proxy.conf.json o configura angular.json proxyConfig.",
+  "/api": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

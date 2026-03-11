@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "9e427641-a9be-49fb-b01d-e9f864a4a30b"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -12,12 +13,25 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "es",
+        "locales": {
+          "en": "src/locale/messages.en.xlf",
+          "fr": "src/locale/messages.fr.xlf",
+          "it": "src/locale/messages.it.xlf",
+          "pt": "src/locale/messages.pt.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"
+            ],
             "assets": [
               {
                 "glob": "**/*",
@@ -27,11 +41,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "outputMode": "static",
+            "preserveSymlinks": true,
+            "prerender": false
           },
           "configurations": {
             "production": {
@@ -53,16 +65,32 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "es": {
+              "localize": ["es"]
+            },
+            "en": {
+              "localize": ["en"]
+            },
+            "fr": {
+              "localize": ["fr"]
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "proxyConfig": "proxy.conf.json",
+            "allowedHosts": ["frontend", "localhost", "127.0.0.1"]
+          },
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "schedio-frontend:build:production"
             },
+            "es": { "buildTarget": "schedio-frontend:build:es" },
+            "en": { "buildTarget": "schedio-frontend:build:en" },
+            "fr": { "buildTarget": "schedio-frontend:build:fr" },
             "development": {
               "buildTarget": "schedio-frontend:build:development"
             }

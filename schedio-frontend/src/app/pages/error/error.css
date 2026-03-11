@@ -1,0 +1,96 @@
+.form-title {
+  color: var(--purple-950);
+  font: var(--text-h2);
+  margin: 0 0 20px 0;
+}
+
+.report-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px 45px;
+  align-items: start;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.input-group label {
+  color: var(--purple-800);
+  font: var(--text-h6);
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 600;
+}
+
+::ng-deep app-input-field input,
+.custom-select,
+.custom-textarea {
+  background-color: #e9dffe !important;
+  border: none !important;
+  padding: 12px 16px !important;
+  border-radius: 14px !important;
+  font: var(--text-p) !important;
+  color: #5a5a5a !important;
+  width: 100% !important;
+  height: 48px !important;
+  box-sizing: border-box !important;
+}
+
+.custom-textarea {
+  height: 180px !important;
+  resize: none;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.report-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.actions app-rect-base-button {
+  width: 220px !important;
+  height: 50px !important;
+}
+
+::ng-deep .actions button {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap !important;
+  gap: 10px;
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.email-btn ::ng-deep button {
+  background-color: var(--accent-color) !important;
+  color: white !important;
+}
+
+.whatsapp-btn ::ng-deep button {
+  background-color: #34a853 !important;
+  color: white !important;
+}
+
+app-upload-image {
+  height: 180px;
+  display: flex;
+  width: 100%;
+}
