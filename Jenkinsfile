@@ -121,16 +121,16 @@ pipeline {
           echo "⏳ Esperando a que frontend y backend respondan..."
           docker run --rm --network schedio-main-pipeline_default curlimages/curl:latest sh -c '
             code=000;
-            for i in $(seq 1 45); do
-              code=$$(curl -s -o /dev/null -w "%{http_code}" http://frontend/es/ 2>/dev/null || echo "000");
-              if [ "$$code" = "200" ]; then echo "Frontend OK"; break; fi;
-              echo "Frontend wait $$i/45 ($$code)"; sleep 2;
+            for i in \$(seq 1 45); do
+              code=\$(curl -s -o /dev/null -w "%{http_code}" http://frontend/es/ 2>/dev/null || echo "000");
+              if [ "\$code" = "200" ]; then echo "Frontend OK"; break; fi;
+              echo "Frontend wait \$i/45 (\$code)"; sleep 2;
             done;
-            if [ "$$code" != "200" ]; then echo "Frontend no respondio 200"; exit 1; fi;
-            for i in $(seq 1 30); do
-              code=$$(curl -s -o /dev/null -w "%{http_code}" http://backend:3000/api/users/register -X POST -H "Content-Type: application/json" -d "{}" 2>/dev/null || echo "000");
-              if [ "$$code" = "400" ] || [ "$$code" = "201" ] || [ "$$code" = "500" ]; then echo "Backend OK ($$code)"; exit 0; fi;
-              echo "Backend wait $$i/30 ($$code)"; sleep 2;
+            if [ "\$code" != "200" ]; then echo "Frontend no respondio 200"; exit 1; fi;
+            for i in \$(seq 1 30); do
+              code=\$(curl -s -o /dev/null -w "%{http_code}" http://backend:3000/api/users/register -X POST -H "Content-Type: application/json" -d "{}" 2>/dev/null || echo "000");
+              if [ "\$code" = "400" ] || [ "\$code" = "201" ] || [ "\$code" = "500" ]; then echo "Backend OK (\$code)"; exit 0; fi;
+              echo "Backend wait \$i/30 (\$code)"; sleep 2;
             done;
             echo "Backend no respondio"; exit 1
           '
