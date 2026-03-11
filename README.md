@@ -21,6 +21,7 @@
 7. [Pruebas](#7-pruebas)
    - [7.1 End to End](#71-end-to-end)
    - [7.2 API](#72-api)
+   - [7.3 Rendimiento](#73-rendimiento)
     
 
 ---
@@ -162,3 +163,10 @@ docker run --network="schedio_default" schedio-api-tests
 
 <img width="801" height="797" alt="image" src="https://github.com/user-attachments/assets/61c40d6c-883d-4ff1-8b9c-8949a22a4642" />
 <img width="821" height="747" alt="image" src="https://github.com/user-attachments/assets/c20e4845-3863-4487-95dd-456a58bc1c01" />
+
+### 7.3 Rendimiento.
+
+<img width="1557" height="679" alt="image" src="https://github.com/user-attachments/assets/eea7ccf7-f94e-4b61-a6f3-08b25444ddec" />
+<img width="1600" height="840" alt="image" src="https://github.com/user-attachments/assets/32d83605-37ae-45b3-b82a-2a917377a605" />
+
+
