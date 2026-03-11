@@ -32,6 +32,8 @@ pipeline {
     stage('Backend Unit Tests') {
       steps {
           script {
+              // Evitar conflicto con contenedores de runs anteriores (container_name fijo en compose)
+              sh 'docker rm -f schedio-mongo schedio-backend schedio-frontend 2>/dev/null || true'
               // Red fija para que backend-test pueda usar --network schedio-main-pipeline_default
               sh 'docker compose -f docker-compose.yml -p schedio-main-pipeline down --remove-orphans || true'
               sh 'docker compose -f docker-compose.yml -p schedio-main-pipeline up -d mongo'
