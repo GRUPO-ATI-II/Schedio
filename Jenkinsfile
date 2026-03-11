@@ -124,7 +124,7 @@ pipeline {
           docker run --rm --network schedio-main-pipeline_default curlimages/curl:latest sh -c '
             code=000;
             for i in \$(seq 1 45); do
-              code=\$(curl -s -o /dev/null -w "%{http_code}" http://frontend/es/ 2>/dev/null || echo "000");
+              code=\$(curl -s -o /dev/null -w "%{http_code}" http://frontend/en/ 2>/dev/null || echo "000");
               if [ "\$code" = "200" ]; then echo "Frontend OK"; break; fi;
               echo "Frontend wait \$i/45 (\$code)"; sleep 2;
             done;
@@ -146,7 +146,7 @@ pipeline {
           echo "🔹 Ejecutando Cypress..."
           docker run --rm \
             --network schedio-main-pipeline_default \
-            -e CYPRESS_BASE_URL=http://frontend/es \
+            -e CYPRESS_BASE_URL=http://frontend/en \
             ${E2E_IMAGE}:latest
         """
       }
