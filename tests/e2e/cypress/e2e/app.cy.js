@@ -1,6 +1,7 @@
-describe('App Boot Test', () => {
-  it('Carga el frontend', () => {
-    cy.visit('/')
-    cy.get('body').should('exist')
-  })
-})
+describe("App Boot Test", () => {
+  // Mapeado a la clave correspondiente en Zephyr
+  it("SCH-T11: Carga el frontend correctamente", () => {
+    cy.visit("/");
+    cy.get("body").should("exist");
+  });
+});
