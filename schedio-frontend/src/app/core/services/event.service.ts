@@ -7,7 +7,7 @@ import { Event } from '../../shared/entities/event.entity';
   providedIn: 'root'
 })
 export class EventService {
-  private apiUrl = 'http://localhost:3000/api/events';
+  private readonly apiUrl = '/api/events';
 
   constructor(private http: HttpClient) { }
 

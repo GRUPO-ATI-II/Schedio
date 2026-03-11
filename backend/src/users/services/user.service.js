@@ -2,6 +2,30 @@ const User = require("../entities/user.entity");
 const bcrypt = require("bcryptjs");
 
 class UserService {
+    /**
+     * Actualiza campos de usuario por _id
+     * @param {string} userId - MongoDB _id
+     * @param {object} fields - Objeto con los campos a actualizar
+     * @returns {Promise<User|null>}
+     */
+    async updateUserById(userId, fields) {
+      // Verifica existencia
+      const user = await User.findById(userId);
+      if (!user) return null;
+
+      // Si se actualiza password, hashearla
+      if (fields.password) {
+        const salt = await bcrypt.genSalt(10);
+        fields.password = await bcrypt.hash(fields.password, salt);
+      }
+
+      // Actualiza los campos
+      return await User.findByIdAndUpdate(
+        userId,
+        { $set: fields },
+        { new: true, runValidators: true }
+      );
+    }
   async findByEmail(email) {
     // Usamos .lean() para mejorar rendimiento si solo queremos verificar existencia
     return await User.findOne({ email }).lean();

@@ -1,3 +1,17 @@
+// --- ACTUALIZACIÓN POR ID ---
+const updateById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const fields = req.body;
+    const updatedUser = await userService.updateUserById(id, fields);
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json({ message: "Update successful", user: updatedUser });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 const userService = require("../services/user.service");
 
 // --- LOGIN ---
@@ -93,4 +107,4 @@ const remove = async (req, res) => {
   }
 };
 
-module.exports = { register, login, update, remove };
+module.exports = { register, login, update, remove, updateById };

@@ -12,6 +12,8 @@ import { EditAssignment } from './pages/edit-assignment/edit-assignment';
 import { NotFound } from './pages/not-found/not-found';
 import { authGuard } from './core/guards/auth.guard';
 import { guestGuard } from './core/guards/guest.guard';
+import { Streaks } from './pages/streaks/streaks';
+import { CreateHabit } from './pages/create-habit/create-habit';
 
 export const routes: Routes = [
   {
@@ -82,6 +84,14 @@ export const routes: Routes = [
       {
         path: 'agenda/new-event',
         component: CreateEvent,
+      },
+      {
+        path: 'streaks',
+        component: Streaks,
+      },
+      {
+        path: 'streaks/new',
+        component: CreateHabit,
       },
       {
         path: '**',

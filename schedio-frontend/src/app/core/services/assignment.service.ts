@@ -49,6 +49,11 @@ export class AssignmentService {
     return this.http.get<AssignmentResponse[]>(this.apiUrl);
   }
 
+  /** Elimina una tarea por su id. */
+  deleteAssignment(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
   /** Marca o desmarca la tarea como completada en la BD (send_time). */
   updateCompletion(assignmentId: string, completed: boolean): Observable<AssignmentResponse> {
     const send_time = completed ? new Date().toISOString() : null;

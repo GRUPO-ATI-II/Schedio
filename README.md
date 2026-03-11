@@ -2,8 +2,6 @@
 
 ## Índice
 
-## Índice
-
 1. [Introducción](#1-introducción)
 2. [Ficha técnica](#2-ficha-técnica)
    - [2.1 Núcleo tecnológico](#21-núcleo-tecnológico)
@@ -18,7 +16,13 @@
    - [4.4 Diagramas de flujo de datos](#44-diagramas-de-flujo-de-datos)
      - [4.4.1 Módulo de calificaciones](#441-módulo-de-calificaciones)
      - [4.4.2 Agenda personal](#442-agenda-personal)
-5. [Prototipo de alta fidelidad](#5-prototipo-de-alta-fidelidad)
+5. [Flujo de trabajo](#5-flujo-de-trabajo)
+6. [Prototipo de alta fidelidad](#6-prototipo-de-alta-fidelidad)
+7. [Pruebas](#7-pruebas)
+   - [7.1 End to End](#71-end-to-end)
+   - [7.2 API](#72-api)
+   - [7.3 Rendimiento](#73-rendimiento)
+    
 
 ---
 
@@ -86,6 +90,8 @@ Este proyecto puede ser ejecutado utilizando el comando docker compose up --buil
   -  Hacer npm install.
   -  Ejecutar el comando npm run start:dev, npm run start:qa o npm run start:prod en función del ambiente que se quiera levantar y su respectiva base de datos.
 
+Tras levantar la aplicación con Docker, el frontend será accesible a través del puerto 4200 de nuestro computador mientras el backend se encuentra disponible en el puerto 3000. 
+
 ## 4. Diagramas asociados
 
 ### 4.1 Diagrama entidad relación de la base de datos
@@ -112,7 +118,15 @@ Este proyecto puede ser ejecutado utilizando el comando docker compose up --buil
 
 ---
 
-## 5. Prototipo de alta fidelidad.
+## 5. Flujo de trabajo.
+
+A modo de organizar y conocer mejor en qué está trabajando cada miembro del equipo, el repositorio posee una integración con la herramienta Jira de manera que el status de las tareas se modifique de manera automática de acuerdo a la interacción de los desarrolladores con Git. Para ello, los desarrolladores deben seguir convenciones a la hora de crear sus ramas siguiendo la siguiente convención para el nombre: 
+
+{feature,hotfix,bugfix,tests}/SCH-[0-9][0-9]-((A-z)-?)*
+
+Cuando esta rama sea publicada en el repositorio remoto, la tarea de jira se moverá automáticamente a "En curso". Luego, cuando se genere el PR a develop y los cambios se aprueben y pasen a dicha rama, la tarea pasará de estar "En curso" a "Finalizada".
+
+## 6. Prototipo de alta fidelidad.
 
 <img width="1920" height="1024" alt="Wireframe  US-1_ Crear Tarea" src="https://github.com/user-attachments/assets/56189507-d6cd-4ece-b2b1-ff240e305303" />
 
@@ -129,3 +143,30 @@ Este proyecto puede ser ejecutado utilizando el comando docker compose up --buil
 <img width="1920" height="1024" alt="Wireframe US-30 2_ Ver Progreso Cursos" src="https://github.com/user-attachments/assets/e65006bc-0662-47c2-acd6-67e6d93b71a7" />
 
 <img width="1920" height="1024" alt="Wireframe US-30_ Ver progreso tareas" src="https://github.com/user-attachments/assets/4c2fbc64-f20d-4357-b41e-401da5f6a78f" />
+
+## 7. Pruebas.
+
+Para ejecutar las pruebas es necesario ejecutar los siguientes comandos desde la raíz del proyecto:
+
+### 7.1 End to End.
+docker build -f tests/e2e/Dockerfile.e2e -t schedio-e2e-tests tests/e2e
+docker run --network="schedio_default" schedio-e2e-tests
+
+<img width="872" height="620" alt="image" src="https://github.com/user-attachments/assets/1a748027-3791-41aa-b5aa-527464e0c5fe" />
+<img width="885" height="629" alt="image" src="https://github.com/user-attachments/assets/356e2534-dea2-4326-80bc-8e43fe362f30" />
+<img width="735" height="166" alt="image" src="https://github.com/user-attachments/assets/549c0170-b080-4af2-9d01-cfca9817ea70" />
+
+
+### 7.2 API
+docker build -t schedio-api-tests -f tests/api/Dockerfile.test tests/api/
+docker run --network="schedio_default" schedio-api-tests
+
+<img width="801" height="797" alt="image" src="https://github.com/user-attachments/assets/61c40d6c-883d-4ff1-8b9c-8949a22a4642" />
+<img width="821" height="747" alt="image" src="https://github.com/user-attachments/assets/c20e4845-3863-4487-95dd-456a58bc1c01" />
+
+### 7.3 Rendimiento.
+
+<img width="1557" height="679" alt="image" src="https://github.com/user-attachments/assets/eea7ccf7-f94e-4b61-a6f3-08b25444ddec" />
+<img width="1600" height="840" alt="image" src="https://github.com/user-attachments/assets/32d83605-37ae-45b3-b82a-2a917377a605" />
+
+

@@ -61,3 +61,36 @@ app-date-field {
   font: var(--text-h2);
   margin: 0 0 20px 0;
 }
+
+.actions-container {
+  display: flex;
+  justify-content: left;
+  margin: 40px 0;
+  font: var(--text-h6);
+}
+
+.btn-delete-simple {
+  background: #FFE6C6;
+  color: #F95050; 
+  border: 0.5px solid #F95050;
+  border-radius: 8px;
+  padding: 6px 22px;
+  font-size: 14px; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-delete-simple img {
+  width: 18px;  
+  height: 18px; 
+  display: block;
+}
+.btn-delete-simple:hover {
+  background-color: #fababa; 
+  border-color: #F95050;
+}
