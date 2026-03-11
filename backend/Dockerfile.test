@@ -1,7 +1,11 @@
-# MongoMemoryServer no soporta Alpine; usar Debian slim para los tests
+# MongoMemoryServer requiere libcurl; usar slim + libcurl4
 FROM node:22-slim
 
 WORKDIR /app
+
+# Dependencia necesaria para mongodb-memory-server
+RUN apt-get update && apt-get install -y --no-install-recommends libcurl4 \
+  && rm -rf /var/lib/apt/lists/*
 
 # Copiar archivos de definición de dependencias
 COPY package*.json ./
