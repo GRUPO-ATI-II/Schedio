@@ -69,6 +69,7 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     sh """
                     docker compose -f docker-compose.qa.yml -p schedio-main-pipeline down -v --remove-orphans || true
+                    DOCKER_BUILDKIT=1 docker compose -f docker-compose.qa.yml -p schedio-main-pipeline build backend
                     docker compose -f docker-compose.qa.yml -p schedio-main-pipeline up -d backend mongo
                     echo "⏳ Esperando estabilización completa (15s)..."
                     sleep 15
@@ -117,6 +118,7 @@ pipeline {
 
           echo "🔹 Levantando servicios con docker compose..."
           docker compose -f docker-compose.qa.yml -p schedio-main-pipeline down -v --remove-orphans || true
+          DOCKER_BUILDKIT=1 docker compose -f docker-compose.qa.yml -p schedio-main-pipeline build --parallel
           docker compose -f docker-compose.qa.yml -p schedio-main-pipeline up -d
           docker compose -f docker-compose.qa.yml -p schedio-main-pipeline ps
 
@@ -124,7 +126,7 @@ pipeline {
           docker run --rm --network schedio-main-pipeline_default curlimages/curl:latest sh -c '
             code=000;
             for i in \$(seq 1 45); do
-              code=\$(curl -s -o /dev/null -w "%{http_code}" http://frontend/en/ 2>/dev/null || echo "000");
+              code=\$(curl -s -o /dev/null -w "%{http_code}" http://frontend/es/ 2>/dev/null || echo "000");
               if [ "\$code" = "200" ]; then echo "Frontend OK"; break; fi;
               echo "Frontend wait \$i/45 (\$code)"; sleep 2;
             done;
@@ -146,7 +148,7 @@ pipeline {
           echo "🔹 Ejecutando Cypress..."
           docker run --rm \
             --network schedio-main-pipeline_default \
-            -e CYPRESS_BASE_URL=http://frontend/en \
+            -e CYPRESS_BASE_URL=http://frontend/es \
             ${E2E_IMAGE}:latest
         """
       }

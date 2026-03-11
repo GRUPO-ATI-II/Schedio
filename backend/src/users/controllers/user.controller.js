@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const userService = require("../services/user.service");
 
 // --- LOGIN ---
@@ -10,10 +11,13 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    const token = crypto.randomBytes(32).toString("hex");
     res.status(200).json({
       message: "Login successful",
+      token,
       user: {
         id: user._id,
+        _id: user._id,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -28,7 +32,13 @@ const login = async (req, res) => {
 // --- REGISTRO ---
 const register = async (req, res) => {
   try {
-    const { email } = req.body;
+    const body = req.body || {};
+    const { email, username, password, birthDate } = body;
+    if (!email || !username || !password || !birthDate) {
+      return res.status(400).json({
+        message: "Faltan campos requeridos: email, username, password, birthDate",
+      });
+    }
     console.log("📥 [Controller] Registrando:", email);
 
     // 1. Verificación manual previa
@@ -37,8 +47,14 @@ const register = async (req, res) => {
       return res.status(400).json({ message: "The user already exists" });
     }
 
-    // 2. Intento de creación
-    const savedUser = await userService.createUser(req.body);
+    // 2. Normalizar birthDate (string ISO → Date)
+    const normalized = { ...body };
+    if (typeof normalized.birthDate === "string") {
+      normalized.birthDate = new Date(normalized.birthDate);
+    }
+
+    // 3. Intento de creación
+    const savedUser = await userService.createUser(normalized);
 
     res.status(201).json({
       message: "User created successfully",

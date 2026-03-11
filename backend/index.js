@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
+const fs = require("fs");
 const cors = require("cors");
 // Importamos la librería completa primero
 const migrateMongo = require("migrate-mongo");
@@ -25,6 +26,11 @@ app.use(express.json());
 
 const runMigrations = async () => {
   try {
+    const migrationsDir = path.resolve(process.cwd(), "migrations");
+    if (!fs.existsSync(migrationsDir)) {
+      fs.mkdirSync(migrationsDir, { recursive: true });
+      console.log("📁 [Migrator]: Carpeta migrations creada.");
+    }
     console.log(
       `🔄 [Migrator]: Verificando migraciones en entorno: ${env.toUpperCase()}`,
     );

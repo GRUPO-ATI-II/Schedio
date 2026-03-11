@@ -18,7 +18,12 @@ class UserService {
   }
 
   async createUser(userData) {
-    const { password, ...rest } = userData;
+    const { password, ...rest } = userData || {};
+    if (password == null || typeof password !== "string") {
+      const err = new Error("Password is required");
+      err.name = "ValidationError";
+      throw err;
+    }
 
     // Hash de contraseña
     const salt = await bcrypt.genSalt(10);
