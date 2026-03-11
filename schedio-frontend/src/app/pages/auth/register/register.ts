@@ -26,7 +26,7 @@ export class Register {
     missingFields = false;
 
     userForm = {
-        username: '',
+        userName: '',
         email: '',
         birthDate: '',
         password: '',
@@ -45,7 +45,7 @@ export class Register {
     register() {
         if (this.isSubmitting) return;
         this.isSubmitting = true;
-        this.missingUsername = !this.userForm.username;
+        this.missingUsername = !this.userForm.userName;
         this.missingEmail = !this.userForm.email;
         this.invalidEmail = !!this.userForm.email && !Register.EMAIL_REGEX.test(this.userForm.email.trim());
         this.missingBDay = !this.userForm.birthDate;

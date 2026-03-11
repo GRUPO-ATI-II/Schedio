@@ -90,7 +90,7 @@ vars.put("taskTitle", "Task " + randomString);
                 <stringProp name="Argument.value">{
   &quot;firstName&quot;: &quot;Load&quot;,
   &quot;lastName&quot;: &quot;Tester&quot;,
-  &quot;username&quot;: &quot;${randomUsername}&quot;,
+  &quot;userName&quot;: &quot;${randomUsername}&quot;,
   &quot;email&quot;: &quot;${randomEmail}&quot;,
   &quot;password&quot;: &quot;Password123!&quot;,
   &quot;birthDate&quot;: &quot;1990-01-01&quot;
