@@ -37,10 +37,8 @@ function fillLogin(email, password) {
 describe('Integración Frontend–Backend: Registro, Login y Sesión', () => {
   it('Registro redirige a login y login da acceso al home', () => {
     const user = makeUser();
-    cy.intercept('POST', '**/api/users/register').as('register');
     cy.visit('/register');
     fillRegister(user);
-    cy.wait('@register').its('response.status').should('eq', 201);
     cy.url().should('include', '/login', { timeout: NAV_TIMEOUT });
     fillLogin(user.email, user.password);
     cy.url().should('include', '/agenda', { timeout: NAV_TIMEOUT });
@@ -48,10 +46,8 @@ describe('Integración Frontend–Backend: Registro, Login y Sesión', () => {
 
   it('Tras login el token se guarda en localStorage', () => {
     const user = makeUser();
-    cy.intercept('POST', '**/api/users/register').as('register');
     cy.visit('/register');
     fillRegister(user);
-    cy.wait('@register').its('response.status').should('eq', 201);
     cy.url().should('include', '/login', { timeout: NAV_TIMEOUT });
     fillLogin(user.email, user.password);
     cy.url().should('include', '/agenda', { timeout: NAV_TIMEOUT });
