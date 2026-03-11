@@ -84,7 +84,7 @@ vars.put("eventDesc", "Meeting " + randomString);
                 <stringProp name="Argument.value">{
   "firstName": "Perf",
   "lastName": "Event",
-  "username": "${randomUsername}",
+  "userName": "${randomUsername}",
   "email": "${randomEmail}",
   "password": "Password123!",
   "birthDate": "1990-01-01"

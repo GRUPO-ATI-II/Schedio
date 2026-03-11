@@ -13,7 +13,7 @@
         "header": [{ "key": "Content-Type", "value": "application/json" }],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"username\": \"user{{$randomInt}}\",\n  \"email\": \"newman{{$randomInt}}@test.com\",\n    \"password\": \"password123\",\n    \"birthDate\": \"2000-01-01\"\n}"
+          "raw": "{\n    \"userName\": \"user{{$randomInt}}\",\n  \"email\": \"newman{{$randomInt}}@test.com\",\n    \"password\": \"password123\",\n    \"birthDate\": \"2000-01-01\"\n}"
         },
         "url": {
           "raw": "http://backend:3000/api/users/register",

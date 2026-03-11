@@ -10,7 +10,7 @@
           name="userName"
           placeholder="Ingrese su nombre de usuario"
           i18n-placeholder="@@usernamePlaceholder"
-          [(ngModel)]="userForm.username">
+          [(ngModel)]="userForm.userName">
         </app-input-field>
 
         <app-input-field
@@ -34,7 +34,7 @@
         </app-date-field>
 
         <div class="info-section">
-          
+
           <app-input-field
             label="Contraseña"
             [required]="missingPassword"
