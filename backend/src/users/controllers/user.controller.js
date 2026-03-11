@@ -47,8 +47,9 @@ const register = async (req, res) => {
       return res.status(400).json({ message: "The user already exists" });
     }
 
-    // 2. Normalizar birthDate (string ISO → Date)
-    const normalized = { ...body };
+    // 2. Normalizar birthDate y quitar campos que no usa el modelo
+    const { confirmPassword, ...rest } = body;
+    const normalized = { ...rest };
     if (typeof normalized.birthDate === "string") {
       normalized.birthDate = new Date(normalized.birthDate);
     }

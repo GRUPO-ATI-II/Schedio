@@ -67,6 +67,7 @@ describe('Flujo de creación de tareas', () => {
   beforeEach(() => {
     createdAssignmentIds = [];
     currentUser = makeUser();
+    cy.intercept("POST", "**/api/users/register").as("register");
     cy.intercept("POST", "**/api/assignment", (req) => {
       req.continue((res) => {
         if (res.body?._id) createdAssignmentIds.push(res.body._id);
@@ -74,6 +75,7 @@ describe('Flujo de creación de tareas', () => {
     });
     cy.visit('/register');
     fillRegister(cy, currentUser);
+    cy.wait("@register").its("response.status").should("eq", 201);
     cy.url().should('include', '/login', { timeout: NAV_TIMEOUT });
     fillLogin(cy, currentUser.email, currentUser.password);
     cy.url().should('match', /\/(agenda|ticket)/, { timeout: NAV_TIMEOUT });
