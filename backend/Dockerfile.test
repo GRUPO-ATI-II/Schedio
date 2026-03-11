@@ -1,4 +1,5 @@
-FROM node:22-alpine
+# MongoMemoryServer no soporta Alpine; usar Debian slim para los tests
+FROM node:22-slim
 
 WORKDIR /app
 

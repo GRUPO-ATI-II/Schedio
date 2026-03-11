@@ -6,7 +6,7 @@ services:
     build:
       context: ./backend
       target: production
-    command: npm run start:qa
+    command: node index.js
     environment:
       - NODE_ENV=qa
       - PORT=3000

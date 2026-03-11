@@ -32,9 +32,9 @@ pipeline {
     stage('Backend Unit Tests') {
       steps {
           script {
-              // Limpiar rastro anterior y levantar bd
-              sh 'docker rm -f schedio-mongo || true'
-              sh 'docker compose up -d mongo'
+              // Red fija para que backend-test pueda usar --network schedio-main-pipeline_default
+              sh 'docker compose -f docker-compose.yml -p schedio-main-pipeline down --remove-orphans || true'
+              sh 'docker compose -f docker-compose.yml -p schedio-main-pipeline up -d mongo'
 
               catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                   sh 'docker build -f ./backend/Dockerfile.test -t backend-test ./backend'
@@ -66,11 +66,11 @@ pipeline {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     sh """
-                    docker compose -f docker-compose.qa.yml down -v --remove-orphans || true
-                    docker compose -f docker-compose.qa.yml up -d backend mongo
+                    docker compose -f docker-compose.qa.yml -p schedio-main-pipeline down -v --remove-orphans || true
+                    docker compose -f docker-compose.qa.yml -p schedio-main-pipeline up -d backend mongo
                     echo "⏳ Esperando estabilización completa (15s)..."
                     sleep 15
-                    docker compose -f docker-compose.qa.yml logs backend
+                    docker compose -f docker-compose.qa.yml -p schedio-main-pipeline logs backend
                     docker build -f tests/api/Dockerfile.test -t ${API_TEST_IMAGE} tests/api
                     docker run --rm --network schedio-main-pipeline_default ${API_TEST_IMAGE}
                     """
@@ -79,7 +79,7 @@ pipeline {
         }
         post {
             failure {
-                sh "docker compose -f docker-compose.qa.yml logs backend"
+                sh "docker compose -f docker-compose.qa.yml -p schedio-main-pipeline logs backend"
             }
             unstable {
                 echo 'AVISO: No se ejecutaron pruebas de API o fallo del contenedor Newman'
@@ -114,13 +114,13 @@ pipeline {
           set -e
 
           echo "🔹 Levantando servicios con docker compose..."
-          docker compose -f docker-compose.qa.yml down -v --remove-orphans || true
-          docker compose -f docker-compose.qa.yml up -d
-          docker compose -f docker-compose.qa.yml ps
+          docker compose -f docker-compose.qa.yml -p schedio-main-pipeline down -v --remove-orphans || true
+          docker compose -f docker-compose.qa.yml -p schedio-main-pipeline up -d
+          docker compose -f docker-compose.qa.yml -p schedio-main-pipeline ps
 
           echo "⏳ Esperando a que Angular levante..."
           sleep 10
-          docker compose -f docker-compose.qa.yml logs backend
+          docker compose -f docker-compose.qa.yml -p schedio-main-pipeline logs backend
 
           echo "🔹 Construyendo imagen E2E..."
           docker build -f tests/e2e/Dockerfile.e2e -t ${E2E_IMAGE}:latest ./tests/e2e
@@ -138,7 +138,7 @@ pipeline {
   }
     post {
       failure {
-          sh "docker compose -f docker-compose.qa.yml logs backend"
+          sh "docker compose -f docker-compose.qa.yml -p schedio-main-pipeline logs backend"
       }
       unstable {
         echo 'AVISO: Pruebas E2E fallaron o el contenedor Cypress tuvo errores'
@@ -155,7 +155,8 @@ pipeline {
       echo 'Pipeline finalizado: Error crítico en el proceso'
     }
     always {
-      sh 'docker compose -f docker-compose.yml down --remove-orphans || true'
+      sh 'docker compose -f docker-compose.yml -p schedio-main-pipeline down --remove-orphans || true'
+      sh 'docker compose -f docker-compose.qa.yml -p schedio-main-pipeline down --remove-orphans || true'
       sh 'docker system prune -f'
     }
   }
