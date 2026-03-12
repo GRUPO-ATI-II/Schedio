@@ -108,6 +108,20 @@
   background: var(--accent-color);
   border: none;
   border-radius: 50%;
+  cursor: pointer; /* Ensures the hand icon appears */
+  transition: background-color 0.2s ease, transform 0.1s ease; /* Smooth transition */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn:hover {
+  background-color: var(--purple-800); 
+  transform: scale(1.1); 
+}
+
+.edit-btn:active {
+  transform: scale(0.95);
 }
 
 .btn-icon {
@@ -154,4 +168,37 @@ app-upload-image {
 #ticket-btn:hover ::ng-deep button{
   border-color: var(--accent-color) ;
   background-color: var(--accent-color) ;
+}
+
+.username-input {
+  background-color: var(--purple-100);
+  border: 1px solid var(--purple-300);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font: var(--text-h5);
+  color: var(--purple-950);
+  width: 150px;
+}
+
+.save-small-btn, .cancel-small-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.save-small-btn {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.cancel-small-btn {
+  background-color: var(--purple-300);
+  color: var(--purple-950);
+}
+
+.save-small-btn:hover, .cancel-small-btn:hover {
+  opacity: 0.8;
 }
