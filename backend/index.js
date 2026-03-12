@@ -84,11 +84,13 @@ const startApp = async () => {
     habitModule(app);
 
     const PORT = process.env.PORT || 3000;
+    const HOST = '0.0.0.0';
+
     app.listen(PORT, () => {
       console.log(
         `🚀 [Server]: Schedio API lista en modo ${env.toUpperCase()}`,
       );
-      console.log(`🔗 [URL]: http://localhost:${PORT}`);
+      console.log(`🔗 [URL]: http://${HOST}:${PORT}`);
     });
   } catch (err) {
     console.error("❌ [Fatal Error]:", err.message);
