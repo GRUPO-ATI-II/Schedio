@@ -51,7 +51,7 @@ describe('Integration Test: User Registration', () => {
 
     it('Should register a new user and return 201', async () => {
         const newUser = {
-            username: 'Test',
+            userName: 'Test',
             email: 'test.jenkins@example.com',
             password: 'password123',
             birthDate: '2003-05-31'
@@ -69,7 +69,7 @@ describe('Integration Test: User Registration', () => {
 
     it('Should fail with 400 if the email is already in use', async () => {
         const userData = {
-            username: 'Duplicated',
+            userName: 'Duplicated',
             email: 'duplicate@example.com',
             password: 'password123',
             birthDate: '2003-05-31'
