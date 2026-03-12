@@ -33,7 +33,7 @@ describe('Integration Test: User Login', () => {
 
         const userService = require('../src/users/services/user.service');
         const userData = {
-            username: 'Login',
+            userName: 'Login',
             email: 'login@example.com',
             password: 'correctPassword123',
             birthDate: '2005-09-03'
