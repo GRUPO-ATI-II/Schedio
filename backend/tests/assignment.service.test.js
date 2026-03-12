@@ -35,10 +35,18 @@ describe("Assignment Service", () => {
   });
 
   test("getById - should fetch assignment by id", async () => {
-    Assignment.findById = jest.fn().mockResolvedValue({ _id: "123", ...mockData });
-    const result = await assignmentService.getById("123");
-    expect(Assignment.findById).toHaveBeenCalledWith("123");
-    expect(result._id).toBe("123");
+    const mockQuery = {
+        populate: jest.fn().mockResolvedValue({ _id: "123", ...mockData })
+      };
+
+      // Hacemos que findById devuelva ese objeto en lugar del resultado directo
+      Assignment.findById = jest.fn().mockReturnValue(mockQuery);
+
+      const result = await assignmentService.getById("123");
+
+      expect(Assignment.findById).toHaveBeenCalledWith("123");
+      expect(mockQuery.populate).toHaveBeenCalledWith("subject");
+      expect(result._id).toBe("123");
   });
 
   test("updateAssignment - should forward object to findByIdAndUpdate", async () => {
@@ -50,6 +58,6 @@ describe("Assignment Service", () => {
       { $set: updates },
       { new: true, runValidators: true },
     );
-    expect(result)._toBeDefined();
+    expect(result).toBeDefined();
   });
 });
