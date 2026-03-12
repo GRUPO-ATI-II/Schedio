@@ -70,7 +70,7 @@
                 <stringProp name="Argument.value">{&#xd;
   &quot;firstName&quot;: &quot;Stress&quot;,&#xd;
   &quot;lastName&quot;: &quot;Tester&quot;,&#xd;
-  &quot;username&quot;: &quot;${randomUsername}&quot;,&#xd;
+  &quot;userName&quot;: &quot;${randomUsername}&quot;,&#xd;
   &quot;email&quot;: &quot;${randomEmail}&quot;,&#xd;
   &quot;password&quot;: &quot;Password123!&quot;,&#xd;
   &quot;birthDate&quot;: &quot;1990-01-01&quot;&#xd;

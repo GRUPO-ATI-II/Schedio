@@ -21,6 +21,7 @@
 7. [Pruebas](#7-pruebas)
    - [7.1 End to End](#71-end-to-end)
    - [7.2 API](#72-api)
+   - [7.3 Rendimiento](#73-rendimiento)
     
 
 ---
@@ -151,6 +152,21 @@ Para ejecutar las pruebas es necesario ejecutar los siguientes comandos desde la
 docker build -f tests/e2e/Dockerfile.e2e -t schedio-e2e-tests tests/e2e
 docker run --network="schedio_default" schedio-e2e-tests
 
+<img width="872" height="620" alt="image" src="https://github.com/user-attachments/assets/1a748027-3791-41aa-b5aa-527464e0c5fe" />
+<img width="885" height="629" alt="image" src="https://github.com/user-attachments/assets/356e2534-dea2-4326-80bc-8e43fe362f30" />
+<img width="735" height="166" alt="image" src="https://github.com/user-attachments/assets/549c0170-b080-4af2-9d01-cfca9817ea70" />
+
+
 ### 7.2 API
 docker build -t schedio-api-tests -f tests/api/Dockerfile.test tests/api/
 docker run --network="schedio_default" schedio-api-tests
+
+<img width="801" height="797" alt="image" src="https://github.com/user-attachments/assets/61c40d6c-883d-4ff1-8b9c-8949a22a4642" />
+<img width="821" height="747" alt="image" src="https://github.com/user-attachments/assets/c20e4845-3863-4487-95dd-456a58bc1c01" />
+
+### 7.3 Rendimiento.
+
+<img width="1557" height="679" alt="image" src="https://github.com/user-attachments/assets/eea7ccf7-f94e-4b61-a6f3-08b25444ddec" />
+<img width="1600" height="840" alt="image" src="https://github.com/user-attachments/assets/32d83605-37ae-45b3-b82a-2a917377a605" />
+
+
