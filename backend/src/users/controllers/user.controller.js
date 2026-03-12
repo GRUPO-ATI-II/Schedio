@@ -33,8 +33,8 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   try {
     const body = req.body || {};
-    const { email, username, password, birthDate } = body;
-    if (!email || !username || !password || !birthDate) {
+    const { email, userName, password, birthDate } = body;
+    if (!email || !userName || !password || !birthDate) {
       return res.status(400).json({
         message: "Faltan campos requeridos: email, username, password, birthDate",
       });

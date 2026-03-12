@@ -1,6 +1,11 @@
 services:
   mongo:
     image: mongo:latest
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   backend:
     build:
@@ -13,7 +18,8 @@ services:
       - DB_NAME=schedio_qa
       - MONGO_URI=mongodb://mongo:27017/schedio_qa
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
 
   frontend:
     build:
