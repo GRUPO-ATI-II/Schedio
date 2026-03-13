@@ -169,4 +169,12 @@ docker run --network="schedio_default" schedio-api-tests
 <img width="1557" height="679" alt="image" src="https://github.com/user-attachments/assets/eea7ccf7-f94e-4b61-a6f3-08b25444ddec" />
 <img width="1600" height="840" alt="image" src="https://github.com/user-attachments/assets/32d83605-37ae-45b3-b82a-2a917377a605" />
 
+## 8. Jenkins
+Para poder probar las pruebas en el pipeline de Jenkins, hay un compose separado, se ejecuta con el siguiente comando
+```
+cd jenkins
+docker-compose up -d
+```
+Luego que se haya levantado el entorno se accede a traves del url [http://localhost:8080](http://localhost:8080)
 
+Una vez abierto el URL se encontrará con el pipeline "Schedio-Main-Pipeline" al cual solo se tiene que dar al botón de "Contruir ahora" para poder comenzar a ejecutar las pruebas.

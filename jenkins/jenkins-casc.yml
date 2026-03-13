@@ -28,7 +28,7 @@ jobs:
                   url('https://github.com/GRUPO-ATI-II/Schedio.git') 
                   credentials('github-token-ati')
                 }
-                branches('main')
+                branches('hotfix/arreglo-jenkins')
               }
             }
           }
